@@ -151,7 +151,7 @@
 			}
 		?>		
 
-	<form action="productAddSQL.php">
+	<form action="productAddSQL.php" method="post" enctype="multipart/form-data">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -236,6 +236,13 @@
                                 <td>
                                 	<input type="text" id="txtPrice" name="txtPrice" >
                                 	<label>บาท</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>อัพโหลดรูป:</label></td>
+                                <td>
+                                	<input type="file" id="imageProduct" name="imageProduct" >
                                 </td>
                             </tr>
 

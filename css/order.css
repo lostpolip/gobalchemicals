@@ -412,7 +412,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .fp_service_box { 
-	padding: 10px 10px 0; 
+	vertical-align: middle;
+	padding: 10px 10px 10px; 
 	margin-bottom: 5px; 
 }
 
@@ -481,5 +482,12 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	margin-bottom: 10px;
 	margin-left: 10px;
 }
+#numberLevel{
+	width: 30px;
+	height: 20px;
+}
 
-.njkb
+.imageProduct{
+	width: 128px;
+}
+

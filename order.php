@@ -51,7 +51,7 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT ProductID,ProductName,Cost FROM product");
+			$result = $dbManagement->select("SELECT * FROM product");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
@@ -59,6 +59,7 @@
 			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $Cost[$i] = $row["Cost"];
+			        $ImageProduct[$i] = $row["ImageProduct"];
 			        $i++;
 			    }
 			}
@@ -80,7 +81,7 @@
                     ?>
 						<div class="fp_service">	
 							<div class="fp_service_box fp_c1">
-								<img src="../images/Show1.png" alt="Image" />
+								<img class="imageProduct" src="<?php echo '../gobalchemicals/images/'. $ImageProduct[$j]; ?>" alt="Image" />
 									<p>
 										<label><?php echo $ProductName[$j]; ?></label>
 									<br>
@@ -92,7 +93,7 @@
 										<span>บาท</span>	
 									<br>
 										<span>จำนวน :</span>	
-										<input type="number" id="numberLevel" name="numberLevel"></input>	
+										<input type="text" id="numberLevel" name="numberLevel"></input>	
 										<span>ตัน</span>	
 
 										&nbsp; &nbsp;<button type="submit" id="btnAdd">หยิบใส่ตะกร้า</button>	
