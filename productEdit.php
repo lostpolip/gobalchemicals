@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['EmployeeID'])){
+	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 ?>
@@ -50,7 +50,7 @@
 				<div id="tooplate_wrapper">				
 					<div id="tooplate_header">	
                     	<div id="tooplate_user">
-							<label id="label1"><?php echo $_SESSION['EmployeeID']?> |&nbsp;</label>
+							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
                         	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
@@ -164,12 +164,13 @@
 			        $ProductWeight[$i] = $row["ProductWeight"];
 			        $Cost[$i] = $row["Cost"];
 			        $Price[$i] = $row["Price"];
+			        $ImageProduct[$i] = $row["ImageProduct"];
 			        $i++;
 			    }
 			}
 		?>
 
-	<form action="editProductSQL.php">
+	<form action="editProductSQL.php" method="post" enctype="multipart/form-data">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -257,6 +258,13 @@
                                 <td>
                                 	<input type="text" id="txtPrice" name="txtPrice" value="<?php echo $Price[0]; ?>" reguired>
                                 	<label>บาท</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>อัพโหลดรูป:</label></td>
+                                <td>
+                                	<input type="file" id="imageProduct" name="imageProduct">
                                 </td>
                             </tr>
 

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['CustomerID'])){
+	if(!isset($_SESSION['CustomerName'])){
 		header( "location: /gobalchemicals/index.html" );
 	}
 ?>
@@ -26,7 +26,10 @@
 	<body>
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">				
-					<div id="tooplate_header">			
+					<div id="tooplate_header">	
+                    	<div id="tooplate_user">
+							<label id="label1"><?php echo $_SESSION['CustomerName']?> |&nbsp;</label>
+                        </div>						
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
 		                       <form action="index.html" method="get">
@@ -71,8 +74,9 @@
 						<h2>สินค้าทั้งหมด&nbsp;</h2>
 						<tr>
 							<td>
-							<a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a>
 							<input id="button-basket">
+							<a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a>
+							
 							</td>
 						</tr>
 						

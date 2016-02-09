@@ -175,7 +175,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 
 #tooplate_login {
-	margin-left: 50px;
+	margin-left: 40px;
 	margin-top: 6px;
 }
 
@@ -206,7 +206,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	display: block;
 	margin-left: 5px;	
  	height: 30px;
-	width: 77px;
+	width: 85px;
+	border-radius: 5px;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;

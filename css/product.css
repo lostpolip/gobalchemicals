@@ -195,7 +195,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	float: left;
 	display: block;	
  	height: 30px;
-	width: 77px;
+	width: 98px;
+	border-radius:5px;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
@@ -205,6 +206,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border: none;
 	background: url(../images/tooplate_logout_btn.png);
 }
+
 #tooplate_user{
 	margin-top:11px;
 	width:750px;
@@ -214,7 +216,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	float: right;
 	font-family: 'quarkbold';
 	font-size: 19px;
-	color: #e5a923;
+	color: #FACC2E;
 }
 #imageMenuOrder{
 	float:left;

@@ -169,26 +169,16 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 #tooplate_top {
-	float:right;
 	height: 42px;
 }
 
 
 #tooplate_login {
-	margin-left: 50px;
-	margin-top: 6px;
-}
-
-#tooplate_login form {
-	height: 30px;
-	margin: 0;
-	padding: 0;
+	padding-top:6px;
 }
 
 #tooplate_login .txt_field {
 	float: left;
-	display: block;
-	margin-left: 5px;
 	height: 30px;
 	width: 160px;
 	color: #c7c7c7;
@@ -203,10 +193,10 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_login .sub_btn {
 	float: left;
-	display: block;
-	margin-left: 5px;	
+	display: block;	
  	height: 30px;
-	width: 77px;
+	width: 98px;
+	border-radius:5px;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
@@ -217,11 +207,21 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
-
+#tooplate_user{
+	margin-top:11px;
+	width:800px;
+	float:left;
+}
+#tooplate_user label{
+	float: right;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #FACC2E;
+}
 
 #site_title { 
 	float: left; 
-	margin-top: 46px; 
+	margin-top: 6px; 
 }
 
 #site_title h1 { 
@@ -241,14 +241,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
  
 #tooplate_menu { 
-	margin-top:95px;
-	float: right;
+	float:left;
+	margin-left: 100px;
 }
 
-#tooplate_menu li a{
+#tooplate_menu ul li a{
 	font-family: 'quarkbold';
-	font-size: 19px;
+	font-size: 20px;
 }
+
 
 
 #tooplate_fw { 

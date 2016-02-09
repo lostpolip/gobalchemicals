@@ -169,26 +169,16 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 #tooplate_top {
-	float:right;
 	height: 42px;
 }
 
 
 #tooplate_login {
-	margin-left: 50px;
-	margin-top: 6px;
-}
-
-#tooplate_login form {
-	height: 30px;
-	margin: 0;
-	padding: 0;
+	padding-top:6px;
 }
 
 #tooplate_login .txt_field {
 	float: left;
-	display: block;
-	margin-left: 5px;
 	height: 30px;
 	width: 160px;
 	color: #c7c7c7;
@@ -203,10 +193,10 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_login .sub_btn {
 	float: left;
-	display: block;
-	margin-left: 5px;	
+	display: block;	
  	height: 30px;
-	width: 77px;
+	width: 98px;
+	border-radius:5px;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
@@ -217,11 +207,21 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
-
+#tooplate_user{
+	margin-top:11px;
+	width:800px;
+	float:left;
+}
+#tooplate_user label{
+	float: right;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #FACC2E;
+}
 
 #site_title { 
 	float: left; 
-	margin-top: 46px; 
+	margin-top: 6px; 
 }
 
 #site_title h1 { 
@@ -241,8 +241,13 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
  
 #tooplate_menu { 
-	float: right;
-	margin-top: 95px;
+	float:left;
+	margin-left: 100px;
+}
+
+#tooplate_menu ul li a{
+	font-family: 'quarkbold';
+	font-size: 20px;
 }
 
 #tooplate_fw { 
@@ -335,7 +340,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #totalPrice{
 	border:#FFFFFF;
 	background: #FFFFFF;
-	width: 198px;
+	width: 140px;
 	font-family: 'quarkbold';
 	font-size: 19px;
 	color: #000000;
@@ -344,7 +349,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #totalTransaction{
 	border:#FFFFFF;
 	background: #FFFFFF;
-	width: 198px;
+	width: 140px;
 	font-family: 'quarkbold';
 	font-size: 19px;
 	color: #000000;	
@@ -352,7 +357,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #totalOther{
 	border:#FFFFFF;
 	background: #FFFFFF;
-	width: 198px;
+	width: 140px;
 	font-family: 'quarkbold';
 	font-size: 19px;
 	color: #000000;		
@@ -513,13 +518,13 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #btnBack{
 	font-family: 'quarklight';
 	font-size: 20px;
-	border-color: #088A4B;
-	background-color: #04B45F;
+	border-color: #DF0101;
+	background-color: #FE2E2E;
 	color: #fff;
 	border-style: solid;
 	height: 40px;
 	width: 120px;
-	margin-left: 250px;
+	margin-left: 200px;
 }
 
 #btnOK{
@@ -532,4 +537,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	height: 40px;
 	width: 120px;
 	margin-left: 20px;
+}
+#btnPrint{
+	font-family: 'quarklight';
+	font-size: 20px;
+	border-color: #2E2EFE;
+	background-color: #5882FA;
+	color: #fff;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+	margin-left: 20px;	
 }

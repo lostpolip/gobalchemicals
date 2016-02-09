@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['CustomerID'])){
+	if(!isset($_SESSION['CustomerName'])){
 		header( "location: /gobalchemicals/index.html" );
 	}
 ?>
@@ -26,7 +26,10 @@
 	<body>
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">				
-					<div id="tooplate_header">			
+					<div id="tooplate_header">	
+                    	<div id="tooplate_user">
+							<label id="label1"><?php echo $_SESSION['CustomerName']?> |&nbsp;</label>
+                        </div>						
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
 		                       <form action="index.html" method="get">
@@ -60,7 +63,7 @@
 						<h2>รายการสั่งซื้อ</h2>
 						<div class="button-menu">
 							<input type="image" src="images/buttonBasket1.png" alt="Submit" id="menu0rder">
-							<input type="image" src="images/buttonBasketOrder1.png" alt="Submit" id="menu0rder">
+							<!-- <input type="image" src="images/buttonBasketOrder1.png" alt="Submit" id="menu0rder"> -->
 						</div>
 
 						<table id="table2" width="95%">
@@ -118,6 +121,7 @@
 	                    			</td>
 	                    			<td>
 		                        		<input id="totalPrice" name="totalPrice"> 
+		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
 
@@ -127,6 +131,7 @@
 	                    			</td>
 	                    			<td>
 		                        		<input id="totalTransaction" name="totalTransaction"> 
+		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
 
@@ -136,6 +141,7 @@
 	                    			</td>
 	                    			<td>
 		                        		<input id="totalOther" name="totalOther"> 
+		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
 
@@ -231,6 +237,7 @@
 							<br>
 							 <tr>
                             	<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
+                            	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
                                  <td><button type="submit" id="btnOK">บันทึก</button></td>     
                             </tr>
                     	</div>

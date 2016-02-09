@@ -19,4 +19,7 @@ $( document ).ready(function() {
 		}		
 
 	});
+
+	$('#imageProduct').change(function(){
+	});
 });

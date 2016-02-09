@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['EmployeeID'])){
+	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 ?>
@@ -50,7 +50,7 @@
 				<div id="tooplate_wrapper">				
 					<div id="tooplate_header">	
                     	<div id="tooplate_user">
-							<label id="label1"><?php echo $_SESSION['EmployeeID']?> |&nbsp;</label>
+							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
                         	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">

@@ -195,7 +195,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	float: left;
 	display: block;	
  	height: 30px;
-	width: 77px;
+	width: 98px;
+	border-radius:5px;
 	cursor: pointer;
 	font-size: 12px;
 	text-align: center;
@@ -205,8 +206,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border: none;
 	background: url(../images/tooplate_logout_btn.png);
 }
-
-
 
 #site_title { 
 	float: left; 
