@@ -1,0 +1,414 @@
+@charset "utf-8";
+/*---font---*/
+@font-face {
+    font-family: 'quarkbold';
+    src: url('quark-bold-webfont.eot');
+    src: url('quark-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quark-bold-webfont.woff2') format('woff2'),
+         url('quark-bold-webfont.woff') format('woff'),
+         url('quark-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'quarklight';
+    src: url('quark-light-webfont.eot');
+    src: url('quark-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quark-light-webfont.woff2') format('woff2'),
+         url('quark-light-webfont.woff') format('woff'),
+         url('quark-light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/*---font---*/
+
+
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #a5a5a7;
+	font-family: 'quarklight';
+	font-size: 12px;
+	line-height: 1.5em; 
+	background-color: #303030;
+	background-repeat: repeat;
+	background-image: url(../images/tooplate_body.png);
+}
+
+a, a:link, a:visited { 
+	color: #e5a923; 
+	font-weight: normal; 
+	text-decoration: none; 
+}
+
+a:hover { 
+	text-decoration: underline; 
+}
+
+a.more { 
+	display: block; 
+	width: 97px; 
+	height: 35px; 
+	line-height: 26px; 
+	color: #000; 
+	text-align: center; 
+	background:  no-repeat; 
+	font-weight: 700; 
+	text-decoration: none; 
+}
+
+p { 
+	margin: 0 0 10px 0; 
+	padding: 0; 
+}
+
+img { 
+	border: none; 
+}
+
+blockquote { 
+	font-style: italic; 
+	margin: 0 0 0 10px;
+}
+
+cite { 
+	font-weight: bold; 
+	color:#fff; 
+}
+
+cite a, cite a:link, cite a:visited  { 
+	font-weight: bold; 
+	color:#fff; 
+}
+
+cite span { 
+	font-weight: 400; 
+	color: #a5a5a7; 
+}
+
+em { 
+	color: #fff; 
+}
+
+h1, h2, h3, h4, h5, h6 { color: #e5a923; font-weight: normal; 	font-family: 'quarkbold';}
+h1 { font-size: 48px; margin: 0 0 30px; padding: 5px 0; }
+h2 { font-size: 30px; margin: 0 0 25px; padding: 5px 0; }
+h3 { font-size: 36px; margin: 0 0 20px; padding: 0; }
+h4 { font-size: 22px; margin: 0 0 15px; padding: 0; }
+h5 { font-size: 18px; margin: 0 0 10px; padding: 0;  }
+h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
+
+.cleaner { clear: both }
+.h10 { height: 10px }
+.h20 { height: 20px }
+.h30 { height: 30px }
+.h40 { height: 40px }
+.h50 { height: 50px }
+.h60 { height: 60px }
+
+.float_l { float: left }
+.float_r { float: right }
+
+.image_frame { 
+	background: #262424; 
+	border: 1px solid #333232; 
+	padding: 9px; 
+}
+
+.image_fl { 
+	float: left; 
+	margin: 10px 30px 0 0; 
+}
+
+.image_fr { 
+	float: right; 
+	margin: 10px 0 0 30px; 
+}
+
+.tooplate_list { 
+	margin: 15px 0 15px 15px; 
+	padding: 0; 
+	list-style: none; 
+}
+
+.tooplate_list li { 
+	color:#fff; 
+	margin: 0 0 5px 0; 
+	padding: 0 0 0 20px; 
+	background: url(../images/tooplate_list.png) no-repeat scroll 0 7px;  
+}
+
+.tooplate_list li a { 
+	font-weight: normal; 
+}
+
+.tooplate_list li a:hover { 
+	color: #fff; 
+}
+
+#tooplate_body_wrapper {
+	width: 100%;
+	background: url(../images/tooplate_top.jpg) repeat-x top;
+}
+
+#tooplate_wrapper {
+	margin: 0 auto;
+	padding: 0 10px;
+	width: 960px;
+}
+
+#tooplate_header {
+	width: 100%;
+	height: 180px;
+	background: url(../images/tooplate_header.jpg);
+}
+
+#tooplate_top {
+	height: 42px;
+}
+
+
+#tooplate_login {
+	padding-top:6px;
+}
+
+#tooplate_login .txt_field {
+	float: left;
+	height: 30px;
+	width: 160px;
+	color: #c7c7c7;
+	font-size: 11px;
+	padding: 0 5px;
+	font-variant: normal;
+	line-height: normal;
+	background: url(../images/tooplate_login_txt.png) no-repeat;
+	border: none;	
+	line-height: 30px;
+}
+
+#tooplate_login .sub_btn {
+	float: left;
+	display: block;	
+ 	height: 30px;
+	width: 77px;
+	cursor: pointer;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: bottom;
+	white-space: pre;
+	color: #c7c7c7;
+	border: none;
+	background: url(../images/tooplate_logout_btn.png);
+}
+#tooplate_user{
+	margin-top:11px;
+	width:750px;
+	float:left;
+}
+#tooplate_user label{
+	float: right;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #e5a923;
+}
+#imageMenuOrder{
+	float:left;
+	width:100px;
+	height:40px;
+}
+
+#site_title { 
+	float: left; 
+	margin-top: 6px; 
+}
+
+#site_title h1 { 
+	margin: 0; 
+	padding: 0; 
+}
+#site_title h1 a {
+        display: block;
+        width: 220px;
+        height: 100px;
+        color: #fff;
+        text-indent: -10000px;
+        background: url() no-repeat top left;
+        background-image: url(../images/LogoChemical.png);
+    }
+
+ 
+#tooplate_menu { 
+	float: right;
+}
+
+#tooplate_fw { 
+	width: 960px; 
+	height: 500px; 
+}
+
+#tooplate_main {
+	clear: both;
+	width: 960px;
+	margin-left: 180px;
+	padding: 30px 0 20px;
+
+}
+
+#content { 
+	float: left; 
+	width: 630px; 
+}
+
+#sidebar { 
+	float: right; 
+	width: 300px; 
+}
+
+.col_fw { 
+	margin-bottom: 40px; 
+	padding-bottom: 30px; 
+	border-bottom: 1px solid #a3a3a3; 
+}
+
+.col_fw_last { 
+	padding-bottom: 20px; 
+    padding-left: 165px;
+}
+
+.col_fw_last1 { 
+	padding-bottom: 20px; 
+  
+}
+
+
+.col_w240 {
+	float: left;
+	width: 920px;
+	padding-right: 20px;
+	margin-left: 50px;
+}
+
+.col_w240 h4 {
+	font-family: 'quarkbold';
+	margin-left: 350px;
+}
+
+.col_w630 { 
+	width: 630px; 
+	margin-bottom: 30px;
+}
+.col_w630 p span { 
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+
+}
+#table { 
+	margin-left: 160px;
+	border-color: #FFFFFF;
+}
+#table tr td label { 
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #e5a923;
+}
+#btnAdd{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #e5a923;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+}
+
+#btnOK{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #e5a923;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+}
+
+#table2{
+	border: 2px solid #333232;
+	border-collapse: collapse;
+	background-color: #FFFFFF;
+}
+#table2 th {
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #e5a923;
+	background-color: #262424;
+	text-align: center;
+    border: 2px solid #333232;
+    padding: 5px;
+ }  
+
+#table2 td{
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+	text-align: center;
+	 border: 2px solid #333232;
+	 height: 30px;
+} 
+#btnEdit, #btnDetail a{
+	color: black;
+}
+
+
+
+/* footer */
+#tooplate_footer_wrapper {
+	clear: both;
+	width: 100%;
+	background: #000000 url(../images/tooplate_footer.png) top repeat-x;
+}
+
+#tooplate_footer {
+	clear: both;
+	width: 960px;
+	color: #876926;
+	margin-top: 0;
+	margin-right: 50px;
+	margin-bottom: 0;
+	margin-left: 50px;
+	padding-top: 30px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 80px;
+}
+
+#tooplate_footer h5 {
+	font-family: 'quarkbold';
+	margin-bottom: 30px;
+	color: #b68e34;
+	text-align: center;
+}
+
+.footer_link { 
+	margin: 0; 
+	padding: 0; 
+	list-style: none; 
+}
+
+.footer_link li {
+	font-family: 'quarklight';
+	border-bottom: 1px dotted #876926;
+	color: #5f4712;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	font-size: 20px;
+	text-align: center;
+}
+
