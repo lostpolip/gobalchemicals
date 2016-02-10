@@ -75,17 +75,17 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
-						<h2>สินค้าทั้งหมด&nbsp;</h2>
+						<label id="label1">สินค้าทั้งหมด&nbsp;</label>
 						<tr>
 							<td>
 							
 							
-							<!-- Button trigger modal -->
+						<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
-							<!-- Button trigger modal -->
+						<!-- Button trigger modal -->
 
-							<!-- Modal -->
+						<!-- Modal -->
 							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
@@ -107,11 +107,11 @@
 	   										<?php 
 	   											for($j=0; $j<$i; $j++){
 	   										?>
-	   										<tr>
+	   										<tr id="<?php echo 'row' . $ProductID[$j];?>" class="hide">
 											    <td><label><?php echo $ProductName[$j];?></label></td>
 											    <td><label></label>ตัน</td>
 											    <td><label><?php echo $Cost[$j];?></label></td>
-											    <td><label><?php echo $ProductName[$j];?>l</label></td>
+											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label></td>
 											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
 											    		<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
@@ -128,15 +128,15 @@
 
 							      </div>
 							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							        <button type="button" class="btn btn-primary">Save changes</button>
+							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
+							        <button type="button" class="btn btn-primary"><a href="orderBasket.php">สั่งซื้อสินค้า</button></a>
 							      </div>
 							    </div>
 							  </div>
 							</div>
-							<!-- Modal -->
+						<!-- Modal -->
 
-							<a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a>
+							<!-- <a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a> -->
 							
 							</td>
 						</tr>

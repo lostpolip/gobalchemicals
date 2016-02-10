@@ -553,3 +553,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #ddOrderAmout{
 	width: 50px;
 }
+
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
+}

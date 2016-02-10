@@ -31,9 +31,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	color: #FFFFFF;
+	color: #a5a5a7;
 	font-family: 'quarklight';
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 1.5em; 
 	background-color: #303030;
 	background-repeat: repeat;
@@ -97,10 +97,10 @@ em {
 
 h1, h2, h3, h4, h5, h6 { color: #e5a923; font-weight: normal; 	font-family: 'quarkbold';}
 h1 { font-size: 48px; margin: 0 0 30px; padding: 5px 0; }
-h2 { font-size: 36px; margin: 0 0 25px; padding: 5px 0; color: #e5a923 }
-h3 { font-size: 30px; margin: 0 0 20px; padding: 0; }
+h2 { font-size: 30px; margin: 0 0 25px; padding: 5px 0; }
+h3 { font-size: 36px; margin: 0 0 20px; padding: 0; }
 h4 { font-size: 22px; margin: 0 0 15px; padding: 0; }
-h5 { font-size: 18px; margin: 0 0 30px; padding: 0;  }
+h5 { font-size: 18px; margin: 0 0 10px; padding: 0;  }
 h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .cleaner { clear: both }
@@ -207,29 +207,19 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
-#tooplate_user{
-	margin-top:11px;
-	width:800px;
-	float:left;
-}
-#tooplate_user label{
-	float: right;
-	font-family: 'quarklight';
-	font-size: 19px;
-	color: #FACC2E;
-}
+
 
 #site_title { 
-	float: left; 
-	margin-top: 6px; 
+	float: left;  
 }
 
-#site_title h1 { 
+/*#site_title h1 { 
 	margin: 0; 
 	padding: 0; 
-}
+}*/
 
-#site_title h1 a {
+ #site_title h1 a {
+ 		float: left; 
         display: block;
         width: 220px;
         height: 100px;
@@ -241,15 +231,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
  
 #tooplate_menu { 
-	float:left;
-	margin-left: 100px;
+	float: right;
 }
-
-#tooplate_menu ul li a{
-	font-family: 'quarkbold';
-	font-size: 20px;
-}
-
 
 #tooplate_fw { 
 	width: 960px; 
@@ -300,69 +283,71 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .col_w240 h4 {
 	font-family: 'quarkbold';
-	margin-left: 380px;
+	margin-left: 350px;
 }
 
 .col_w630 { 
-	width: 700px; 
+	width: 630px; 
 	margin-bottom: 30px;
 }
-
-#btnEdit{
+.col_w630 p span { 
 	font-family: 'quarklight';
-	font-size: 20px;
+	font-size: 18px;
 	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
-	border-style: solid;
-	height: 40px;
-	width: 120px;
-}
 
+}
 #table { 
-	padding-left: 120px;
+	margin-left: 160px;
 }
-#table tr td label{ 
+#table tr td label { 
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #e5a923;
+}
+#btnOK, #btnAdd{
 	font-family: 'quarklight';
 	font-size: 20px;
-	color: #FFFFFF;
-}
-#table tr td input{
-	width: 280px;
-	height: 30px;
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
-	border-style: solid;
-}
-#table tr td button{
-	font-family: 'quarklight';
-	font-size: 20px;
+	color: #e5a923;
 	border-color: #333232;
 	background-color: #262424;
 	border-style: solid;
 	height: 40px;
 	width: 120px;
 }
-#table tr td select{
-	width: 180px;
-	height: 30px;
+
+#table2{
+	border: 2px solid #333232;
+	border-collapse: collapse;
+	background-color: #FFFFFF;
+}
+#table2 th {
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #e5a923;
+	background-color: #262424;
+	text-align: center;
+    border: 2px solid #333232;
+    padding: 5px;
+ }  
+
+#table2 td{
 	font-family: 'quarklight';
 	font-size: 18px;
-	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
-	border-style: solid;
+	color: #000000;
+	text-align: center;
+	 border: 2px solid #333232;
+	 height: 30px;
+} 
+#btnEdit, #btnDetail a{
+	color: black;
 }
+
 
 
 /* footer */
 #tooplate_footer_wrapper {
 	clear: both;
 	width: 100%;
-	height: 80%;
 	background: #000000 url(../images/tooplate_footer.png) top repeat-x;
 }
 
@@ -388,7 +373,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .footer_link { 
-	margin-left: 100px;
+	margin: 0; 
 	padding: 0; 
 	list-style: none; 
 }
@@ -403,80 +388,20 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	text-align: center;
 }
 
-.fp_service { 
-	width: 600px; 
-	background: #262424; 
-	border: 1px solid #333232;
-	margin-left: 40px;
-	padding: 10px 9px 4px; 
-	color: #ccc; 
+#tooplate_user{
+	margin-top:11px;
+	width:600px;
+	float:left;
 }
-
-.fp_service_box { 
-	vertical-align: middle;
-	padding: 10px 10px 10px; 
-	margin-bottom: 5px; 
-}
-
-.fp_service_box p { 
+#tooplate_user label{
+	float: right;
 	font-family: 'quarklight';
-	float: right; 
-	width: 300px;
-	font-size: 20px; 
+	font-size: 19px;
+	color: #FACC2E;
+}
+#imageMenuOrder{
+	float:left;
+	width:100px;
+	height:40px;
 }
 
-.fp_service_box label { 
-	color: #e5a923;
-	font-size: 22px; 
-	font-family: 'quarkbold';
-}
-
-.fp_service_box label span { 
-	color: #e5a923;
-	font-size: 20px; 
-	font-family: 'quarklight';
-}
-.fp_service_box img { 
-	float: left; 
-	margin-left: 20px;
-}
-
-.fp_c1 { 
-	background: #545454; 
-}
-.fp_lp img { 
-	border-bottom: 5px solid #fff; 
-}
-
-
-#button-basket{
-	border: none;
-	width: 53px;
-	height: 51px;
-	background:url(../images/basket.png);
-	margin-left: 590px;
-	margin-bottom: 5px;
-}
-#numberLevel{
-	width: 30px;
-	height: 20px;
-}
-
-.imageProduct{
-	width: 128px;
-}
-
-.btn {
-	font-family: 'quarklight';
-	color: #FFFFFF;
-	font-size: 22px;	
-}
-input{
-	width: 50px;
-}
-
-#label1{
-	font-family: 'quarkbold';
-	color: #e5a923;
-	font-size: 36px;	
-}
