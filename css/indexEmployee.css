@@ -33,7 +33,7 @@ body {
 	padding: 0;
 	color: #a5a5a7;
 	font-family: 'quarklight';
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 1.5em; 
 	background-color: #303030;
 	background-repeat: repeat;
@@ -41,6 +41,8 @@ body {
 }
 
 a, a:link, a:visited { 
+	font-family: 'quarkbold';
+	font-size: 24px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -170,6 +172,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_top {
 	height: 42px;
+	width: 100%;
 }
 
 
@@ -207,9 +210,11 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
+
+
 #site_title { 
 	float: left; 
-	margin-top: 6px; 
+	width: 100%; 
 }
 
 #site_title h1 { 
@@ -217,7 +222,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	padding: 0; 
 }
 
-#site_title h1 a {
+ #site_title h1 a {
+ 		float: left; 
         display: block;
         width: 220px;
         height: 100px;
@@ -232,16 +238,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	float: right;
 }
 
-/*#tooplate_menu li a  {
-	font-family: 'quarkbold';
-	font-size: 19px;
-}
-
-#tooplate_menu ul li ul li a  {
-	font-family: 'quarklight';
-	font-size: 18px;
-}*/
-
 #tooplate_fw { 
 	width: 960px; 
 	height: 500px; 
@@ -250,7 +246,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #tooplate_main {
 	clear: both;
 	width: 960px;
-	margin-left: 180px;
+	margin-left: 120px;
 	padding: 30px 0 20px;
 
 }
@@ -282,6 +278,18 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 
+.col_w240 {
+	float: left;
+	width: 920px;
+	padding-right: 20px;
+	margin-left: 50px;
+}
+
+.col_w240 h4 {
+	font-family: 'quarkbold';
+	margin-left: 350px;
+}
+
 .col_w630 { 
 	width: 630px; 
 	margin-bottom: 30px;
@@ -292,6 +300,37 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #FFFFFF;
 
 }
+
+
+
+#table2{
+	width: 790px;
+	border: 2px solid #333232;
+	border-collapse: collapse;
+	background-color: #FFFFFF;
+}
+#table2 th {
+	font-family: 'quarkbold';
+	font-size: 20px;
+	color: #4B088A;
+	background-color: #E6E6E6;
+	text-align: center;
+    border: 2px solid #6E6E6E;
+    padding: 5px;
+ }  
+
+#table2 td{
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+	text-align: center;
+	 border: 2px solid #6E6E6E;
+	 height: 30px;
+} 
+#btnEdit, #btnDetail a{
+	color: black;
+}
+
 
 
 /* footer */
@@ -307,7 +346,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #876926;
 	margin-top: 0;
 	margin-right: 50px;
-	margin-bottom: 0;
 	margin-left: 50px;
 	padding-top: 30px;
 	padding-right: 10px;
@@ -340,7 +378,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_user{
 	margin-top:11px;
-	width:750px;
+	width:720px;
 	float:left;
 }
 #tooplate_user label{
@@ -355,3 +393,45 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	height:40px;
 }
 
+.nav-tabs{
+	width: 790px;
+}
+
+#btnDetail {
+	font-size: 20px;
+	font-family: 'quarklight';
+	color: #000000;
+}
+
+#btnDelete {
+	font-size: 20px;
+	font-family: 'quarklight';
+	color: #000000;
+}
+
+#labelDate , #labelID{
+	font-size: 22px;
+	font-family: 'quarklight';
+}
+
+
+
+#menuAlert{
+	border:none;
+	background:url(../images/order.png);
+	width: 35px;
+	height: 35px;
+	margin-bottom: 25px;
+
+}
+
+.btnAlert{
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	border-color: #088A4B;
+    background-color: #04B45F;
+	font-size: 18px;
+	font-family: 'quarklight';
+	color: #FFFFFF;
+}

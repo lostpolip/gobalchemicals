@@ -17,10 +17,11 @@
 		<link href="css/indexEmployee.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 
 		<script language="javascript" type="text/javascript">
@@ -53,7 +54,49 @@
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
-                        	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+
+						<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-lg" id="menuAlert" data-toggle="modal" data-target="#myModal">
+							</button>
+						<!-- Button trigger modal -->
+
+						<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
+							      </div>
+							      <div class="modal-body">
+
+             						 <table  class="table table-bordred table-striped">
+             						 	<thead>
+				                        		<th>ชื่อสินค้า</th>
+				                                <th>จำนวนคงเหลือ</th>
+							                    <th>สั่งซื้อ</th>
+										</thead>
+	   									<tbody id="showOrder">
+											    <td><label></label></td>
+											    <td><label></label></td>
+											    <td>
+											    		<a href="productPurchaseAdd.php"><button class="btnAlert" data-title="delete" data-toggle="modal" data-target="#delete" >สั่งซื้อสินค้า</button>
+											    	
+											    </td>
+											</tr>
+										</tbody>
+        							</table>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
+							        
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						<!-- Modal -->
+
                             <input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
                         </div>
                         		
@@ -62,7 +105,7 @@
 		  							<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
 							</div>
 					  </div>						
-						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
+						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
 									<li><a href="#">จัดการข้อมูล</a>
@@ -107,6 +150,7 @@
 									</li>
 								</ul>
 							</div> <!-- end of tooplate_menu -->
+						</div>
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->

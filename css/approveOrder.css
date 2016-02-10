@@ -41,6 +41,8 @@ body {
 }
 
 a, a:link, a:visited { 
+	font-family: 'quarkbold';
+	font-size: 24px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -170,6 +172,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_top {
 	height: 42px;
+	width: 100%;
 }
 
 
@@ -210,13 +213,14 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 
 #site_title { 
-	float: left;  
+	float: left; 
+	width: 100%; 
 }
 
-/*#site_title h1 { 
+#site_title h1 { 
 	margin: 0; 
 	padding: 0; 
-}*/
+}
 
  #site_title h1 a {
  		float: left; 
@@ -242,7 +246,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #tooplate_main {
 	clear: both;
 	width: 960px;
-	margin-left: 180px;
+	margin-left: 120px;
 	padding: 30px 0 20px;
 
 }
@@ -296,37 +300,22 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #FFFFFF;
 
 }
-#table { 
-	margin-left: 160px;
-}
-#table tr td label { 
-	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #e5a923;
-}
-#btnOK, #btnAdd{
-	font-family: 'quarklight';
-	font-size: 20px;
-	color: #e5a923;
-	border-color: #333232;
-	background-color: #262424;
-	border-style: solid;
-	height: 40px;
-	width: 120px;
-}
+
+
 
 #table2{
+	width: 790px;
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
 }
 #table2 th {
 	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #e5a923;
-	background-color: #262424;
+	font-size: 20px;
+	color: #4B088A;
+	background-color: #E6E6E6;
 	text-align: center;
-    border: 2px solid #333232;
+    border: 2px solid #6E6E6E;
     padding: 5px;
  }  
 
@@ -335,7 +324,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 18px;
 	color: #000000;
 	text-align: center;
-	 border: 2px solid #333232;
+	 border: 2px solid #6E6E6E;
 	 height: 30px;
 } 
 #btnEdit, #btnDetail a{
@@ -357,7 +346,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #876926;
 	margin-top: 0;
 	margin-right: 50px;
-	margin-bottom: 0;
 	margin-left: 50px;
 	padding-top: 30px;
 	padding-right: 10px;
@@ -390,7 +378,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_user{
 	margin-top:11px;
-	width:600px;
+	width:720px;
 	float:left;
 }
 #tooplate_user label{
@@ -403,5 +391,26 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	float:left;
 	width:100px;
 	height:40px;
+}
+
+.nav-tabs{
+	width: 790px;
+}
+
+#btnDetail {
+	font-size: 20px;
+	font-family: 'quarklight';
+	color: #000000;
+}
+
+#btnDelete {
+	font-size: 20px;
+	font-family: 'quarklight';
+	color: #000000;
+}
+
+#labelDate , #labelID{
+	font-size: 22px;
+	font-family: 'quarklight';
 }
 

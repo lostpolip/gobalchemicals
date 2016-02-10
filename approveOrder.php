@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/approveOrder.js"></script>
 		
 		
 
@@ -65,7 +66,7 @@
 						  		<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
 							</div>
 					  </div>						
-						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
+						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
 									<li><a href="#" class="selected">จัดการข้อมูล</a>
@@ -110,6 +111,7 @@
 									</li>
 								</ul>
 							</div> <!-- end of tooplate_menu -->
+						</div>
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
@@ -117,8 +119,77 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
+					 <!-- Nav tabs -->
+					  <ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">แจ้งการสั่งซื้อ</a></li>
+					    <li role="presentation"><a href="#approveClaim" aria-controls="profile" role="tab" data-toggle="tab">แจ้งการเคลม</a></li> 
+					  </ul>
 
-					<h2>พนักงาน</h2>
+					  <!-- Tab panes -->
+					  <div class="tab-content">
+					    <div role="tabpanel" class="tab-pane active" id="approveOrder">
+					    	<br>
+					    	<table id="table2" width="100%">
+					    		<label id="labelDate">วันที่ :</label>&nbsp;&nbsp;
+					    		<label id="labelID">รหัสการสั่งซื้อ :</label>
+
+		                        	<tr>
+		                        		<th>รหัสสินค้า</th>
+		                                <th>ชื่อสินค้า</th>
+		                                <th>จำนวน</th>
+		                                <th>ราคา/หน่วย</th>
+		                                <th>รวมทั้งสิ้น</th>
+		                                <th>คำสั่ง</th>
+		                                
+		                        	</tr>
+
+		                        	<tr>
+		                        		<td id=""></td>
+		                        		<td id=""></td>
+		                        		<td id=""></td>
+		                        		<td id=""></td>
+		                        		<td id=""></td>
+		                        		<td>
+
+		                        			<a href="#"><button id="btnDetail">รายละเอียด</button></a>
+											<button id="btnApprove">อนุมัติ</button>
+											<button id="btnNonApprove">ไม่อนุมัติ</button>
+
+		                        		</td>
+		                        	</tr>
+							</table>     
+					    </div><!--- แจ้งซื้อสินค้า -->
+
+					    <div role="tabpanel" class="tab-pane" id="approveClaim">
+					    	<br>
+					    	<table id="table2" width="100%">
+					    		<label id="labelDate">วันที่ :</label>&nbsp;&nbsp;
+					    		<label id="labelID">รหัสการเคลมสินค้า:</label>
+
+		                        	<tr>
+		                        		<th>รหัสสินค้า</th>
+		                                <th>ชื่อสินค้า</th>
+		                                <th>จำนวน</th>
+		                                <th>คำสั่ง</th>
+		                                
+		                        	</tr>
+
+		                        	<tr>
+		                        		<td id=""></td>
+		                        		<td id=""></td>
+		                        		<td id="">ถุง</td>
+		                        		<td>
+		                        			<button id="btnDetail">ได้รับแล้ว</button>
+		                        			<button id="btnDelete">ลบ</button>
+		                        		</td>
+		                        	</tr>
+							</table>     
+					    </div>
+
+					  </div>
+
+					</div>
+					<div>
 
 				</div>
 			</div>	
@@ -128,7 +199,7 @@
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
-					Copyright © 2016 <a href="#">The GobalChemicals CO.,LTD.</a>
+					Copyright © 2016 &nbsp;&nbsp;The GobalChemicals CO.,LTD.
 				<div class="cleaner"></div><!--end of tooplate_footer-->
 			</div><!--end of tooplate_footer-->
 		</div> <!--end of tooplate_footer_wrapper-->

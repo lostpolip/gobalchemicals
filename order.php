@@ -99,8 +99,8 @@
              						 	<thead>
 				                        		<th>ชื่อสินค้า</th>
 				                                <th>จำนวน</th>
-				                                <th>ราคา</th>
-				                                <th>รวม</th>
+				                                <th>ราคา/หน่วย</th>
+				                                <th>รวมทั้งสิ้น</th>
 							                    <th>ลบ</th>
 										</thead>
 	   									<tbody id="showOrder">
@@ -109,9 +109,9 @@
 	   										?>
 	   										<tr id="<?php echo 'row' . $ProductID[$j];?>" class="hide">
 											    <td><label><?php echo $ProductName[$j];?></label></td>
-											    <td><label></label>ตัน</td>
+											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label>&nbsp;&nbsp;ตัน</td>
 											    <td><label><?php echo $Cost[$j];?></label></td>
-											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label></td>
+											    <td><label></label></td>
 											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
 											    		<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
@@ -135,8 +135,6 @@
 							  </div>
 							</div>
 						<!-- Modal -->
-
-							<!-- <a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a> -->
 							
 							</td>
 						</tr>
