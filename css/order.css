@@ -97,7 +97,7 @@ em {
 
 h1, h2, h3, h4, h5, h6 { color: #e5a923; font-weight: normal; 	font-family: 'quarkbold';}
 h1 { font-size: 48px; margin: 0 0 30px; padding: 5px 0; }
-h2 { font-size: 36px; margin: 0 0 25px; padding: 5px 0; }
+h2 { font-size: 36px; margin: 0 0 25px; padding: 5px 0; color: #e5a923 }
 h3 { font-size: 30px; margin: 0 0 20px; padding: 0; }
 h4 { font-size: 22px; margin: 0 0 15px; padding: 0; }
 h5 { font-size: 18px; margin: 0 0 30px; padding: 0;  }
@@ -214,7 +214,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 #tooplate_user label{
 	float: right;
-	font-family: 'quarkbold';
+	font-family: 'quarklight';
 	font-size: 19px;
 	color: #FACC2E;
 }
@@ -420,24 +420,20 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .fp_service_box p { 
 	font-family: 'quarklight';
-	margin-top: 10px;
 	float: right; 
 	width: 300px;
-	height: 110px;
 	font-size: 20px; 
 }
 
 .fp_service_box label { 
 	color: #e5a923;
 	font-size: 22px; 
-	margin-top: 5px;
 	font-family: 'quarkbold';
 }
 
 .fp_service_box label span { 
 	color: #e5a923;
 	font-size: 20px; 
-	margin-top: 5px;
 	font-family: 'quarklight';
 }
 .fp_service_box img { 
@@ -472,7 +468,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 20px;
 	border-style: solid;
 	margin-bottom: 10px;
-	margin-left: 10px;
+	border-radius: 5px;
 }
 
 #button-basket{
@@ -480,7 +476,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 53px;
 	height: 51px;
 	background:url(../images/basket.png);
-	margin-left: 490px;
+	margin-left: 480px;
 }
 #numberLevel{
 	width: 30px;
@@ -491,3 +487,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 128px;
 }
 
+.btn {
+	font-family: 'quarklight';
+	color: #FFFFFF;
+	font-size: 22px;	
+}

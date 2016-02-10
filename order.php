@@ -17,9 +17,12 @@
 		<link href="css/order.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/order.js"></script>
 		
 
 	</head>
@@ -63,6 +66,7 @@
 			        $ProductName[$i] = $row["ProductName"];
 			        $Cost[$i] = $row["Cost"];
 			        $ImageProduct[$i] = $row["ImageProduct"];
+			        $ProductAmount[$i] = $row["ProductAmount"];
 			        $i++;
 			    }
 			}
@@ -74,7 +78,64 @@
 						<h2>สินค้าทั้งหมด&nbsp;</h2>
 						<tr>
 							<td>
-							<input id="button-basket">
+							
+							
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
+							</button>
+							<!-- Button trigger modal -->
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
+							      </div>
+							      <div class="modal-body">
+
+             						 <table  class="table table-bordred table-striped">
+             						 	<thead>
+				                        		<th>ชื่อสินค้า</th>
+				                                <th>จำนวน</th>
+				                                <th>ราคา</th>
+				                                <th>รวม</th>
+							                    <th>ลบ</th>
+										</thead>
+	   									<tbody id="showOrder">
+	   										<?php 
+	   											for($j=0; $j<$i; $j++){
+	   										?>
+	   										<tr>
+											    <td><label><?php echo $ProductName[$j];?></label></td>
+											    <td><label></label>ตัน</td>
+											    <td><label><?php echo $Cost[$j];?></label></td>
+											    <td><label><?php echo $ProductName[$j];?>l</label></td>
+											    <td>
+											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
+											    		<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
+											    			<span class="glyphicon glyphicon-trash"></span>
+											    		</button>
+											    	</p>
+											    </td>
+											</tr>
+											<?php
+												}
+											?>
+										</tbody>
+        							</table>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-primary">Save changes</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<!-- Modal -->
+
 							<a href="orderBasket.php"><button type="submit" id="buttonOrder">สั่งซื้อ</button></a>
 							
 							</td>
@@ -90,17 +151,17 @@
 										<label><?php echo $ProductName[$j]; ?></label>
 									<br>
 										<span>รหัสสินค้า :</span>
-										<label id="labelIDProduct"><span><?php echo $ProductID[$j]; ?></span></label>	
+										<label><?php echo $ProductID[$j]; ?></label>	
 									<br>
 										<span>ราคาสินค้า :</span>
-										<label id="labelPriceProduct"><span><?php echo $Cost[$j]; ?></span></label>
+										<label id="<?php echo 'productPrice' . $ProductID[$j]; ?>"><?php echo $Cost[$j]; ?></label>
 										<span>บาท</span>	
 									<br>
 										<span>จำนวน :</span>	
-										<input type="text" id="numberLevel" name="numberLevel"></input>	
+										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"></input>	
 										<span>ตัน</span>	
 
-										&nbsp; &nbsp;<button type="submit" id="btnAdd">หยิบใส่ตะกร้า</button>	
+										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" >หยิบใส่ตะกร้า</button>	
 
 									</p>
 								<div class="cleaner"></div>

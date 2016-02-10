@@ -214,9 +214,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 #tooplate_user label{
 	float: right;
-	font-family: 'quarkbold';
+	font-family: 'quarklight';
 	font-size: 19px;
-	color: #e5a923;
+	color: #FACC2E;
 }
 #imageMenuOrder{
 	float:left;

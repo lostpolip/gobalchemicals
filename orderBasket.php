@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['CustomerName'])){
 		header( "location: /gobalchemicals/index.html" );
 	}
-?>
+?>c
 <!DOCTYPE html>
 
 <html>
@@ -16,6 +16,7 @@
 
 		<link href="css/orderBasket.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -81,17 +82,7 @@
                         		<td id="orderid"></td>
                         		<td id="productid"></td>
                         		<td id="orderamount">
-                        			<select id="ddOrderAmout" name="ddOrderAmout">
-                        				<option>1</option>
-                        				<option>2</option>
-                        				<option>3</option>
-                        				<option>4</option>
-                        				<option>5</option>
-                        				<option>6</option>
-                        				<option>7</option>
-                        				<option>8</option>
-                        				<option>9</option>
-                        			</select>
+									<input type="text" id="ddOrderAmout" name="ddOrderAmout"></input>
                         			<label>ตัน</label>
                         		</td>
                         		<td id="productcost"></td>
@@ -124,6 +115,16 @@
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
+
+                    			<tr>
+	                    			<td>
+	                    				<label>ภาษีมูลค่าเพิ่ม :</label>
+	                    			</td>
+	                    			<td>
+		                        		<input id="totalPrice" name="totalPrice"> 
+		                        		<label>บาท</label>
+		                        	</td>
+		                        </tr>		                      
 
 		                        <tr>
 		                        	<td>

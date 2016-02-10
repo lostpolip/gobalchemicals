@@ -549,3 +549,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 120px;
 	margin-left: 20px;	
 }
+
+#ddOrderAmout{
+	width: 50px;
+}

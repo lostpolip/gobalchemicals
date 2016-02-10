@@ -11,8 +11,9 @@ $( document ).ready(function() {
 
 	    	return false;
 		}
+		alert('สมัครสมาชิกเรียบร้อยแล้วค่ะ');
 	});
-
+	
 	$('#province').change(function(){
 		$('#txtSubDistrict').empty();
 		$('#txtZipcode').empty();
