@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+	
 	$('#btnCF').click(function() {
 		var patt= /[-+]?(\d*[.])?\d+/;
 
@@ -17,8 +18,9 @@ $( document ).ready(function() {
 	    	alert('กรณากรอกราคาขายเป็นตัวเลข');
 	    	return false;
 		}		
-
+		alert('บันทึกเรียบร้อย');
 	});
+
 	$('#imageProduct').change(function(){
 		// var filename = document.getElementById('file-id').value;
 		// alert(filename);

@@ -482,8 +482,12 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .button-menu{
-	width: 100%;
-	height: 60px;
+	width: 820px;
+	height: 50px;
+	border:#489cdf;
+	background: #489cdf;
+	margin-bottom: 10px;
+	border-radius: 5px;
 }
 #menu0rder{
 	width:200px;
@@ -558,4 +562,24 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-family: 'quarkbold';
 	color: #e5a923;
 	font-size: 36px;	
+}
+
+#txtDateOrder{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 18px;
+}
+
+#OrderDate{
+	margin: 20px 0 20px 0;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
+}
+
+#OrderID{
+	margin: 20px 0 20px 250px;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
 }

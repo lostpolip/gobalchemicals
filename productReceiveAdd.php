@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['EmployeeName'])){
+	if(!isset($_SESSION['EmployeeID'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 ?>
@@ -20,6 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/productReceiveAdd.js"></script>
 	
 		
 
@@ -55,7 +56,7 @@
                         <div id="imageMenuOrder">
                         	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
                             <input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
-                        </div>						
+                        </div>							
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
 		                       <form action="index.html" method="get">
@@ -83,11 +84,11 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">คลังสินค้า</a>
+									<li><a href="warehouse.php" class="selected">คลังสินค้า</a>
 										<ul>
-											<li><a href="productReceive.php">รับสินค้า</a></li>
+											<li><a href="productReceiveAdd.php" >รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
-											<li><a href="productStock.php">เช็คสินค้า</a></li>
+											<li><a href="#">เช็คสินค้า</a></li>
 									  	</ul>
 									</li>
 									
@@ -114,28 +115,21 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
-			$result = $dbManagement->select("SELECT * FROM `product` 
-												JOIN supplier ON product.SupplierID=supplier.SupplierID
-												JOIN brand ON product.BrandID=brand.BrandID
-												JOIN producttype ON product.ProductTypeID=producttype.ProductTypeID");
+			$product = $dbManagement->select("SELECT * FROM product");
 
-			$i = 0;
-			if (mysqli_num_rows($result) > 0) {
-			    while($row = mysqli_fetch_assoc($result)) {
-			        $ProductID[$i] = $row["ProductID"];
-			        $ProductName[$i] = $row["ProductName"];
-			        $ProductAmount[$i] = $row["ProductAmount"];
-			        $SupplierID[$i] = $row["SupplierID"];
-			        $SupplierName[$i] = $row["SupplierName"];
-			        $BrandID[$i] = $row["BrandID"];
-			        $BrandName[$i] = $row["BrandName"];
-			        $ProductTypeID[$i] = $row["ProductTypeID"];
-			        $ProductTypeName[$i] = $row["ProductTypeName"];
-			        $i++;
+			$ddProduct = 0;
+			if (mysqli_num_rows($product) > 0) {
+			    while($row = mysqli_fetch_assoc($product)) {
+			        $ProductID[$ddProduct] = $row["ProductID"];
+			        $ProductName[$ddProduct] = $row["ProductName"];
+			        $ddProduct++;
 			    }
+			   
 			}
-		?>
 
+			
+
+		?>
 	<form action="productReceiveAddSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
@@ -144,7 +138,7 @@
 					<h2>รับสินค้า</h2>
                     <table id="table" style="width: 100%">
                         	<tr>
-                                <td><input type="hidden" id="txtReceiveID" name="txtReceiveID"></td>
+                                <td><input type="hidden" id="txtInventoryID" name="txtInventoryID"></td>
                             </tr>
 
                         	<tr>
@@ -154,7 +148,39 @@
 
                         	<tr>
                                 <td><label><span class="red-star">* </span>Lot Number:</label></td>
-                                <td><input type="text" id="txtLotReceive" name="txtLotReceive" required></td>
+                                <td><input type="text" id="txtLotReceive" name="txtLotReceive"></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td><label>ชื่อสินค้า :</label></td>                       
+                                <td><select id="ddProduct" name="ddProduct" >
+                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
+                                	 	<?php
+                        					for($p=0;$p<$ddProduct;$p++){ 
+                        				?>	
+                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
+                                		<?php
+                        					}
+                        				?>
+                                	</select>
+                                </td>
+                            </tr>
+
+                            <tr id="row_productType">
+                                <td><label>ประเภทสินค้า:</label></td>
+                                <td><label id="ddProductType" name="ddProductType"></label></td>
+                            </tr>
+
+                            <tr id="row-brandName">
+                                <td><label>ยี่ห้อ:</label></td>
+                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
+                            </tr>
+
+                            <tr id="row-supplierName">
+                            	<td><label>Email:</label></td>
+                                <td><label id="txtsupplierName" name="txtsupplierName"></label></td>      
                             </tr>
 
 							<tr>
@@ -162,44 +188,19 @@
                                 <td><input type="date" id="txtExpiryDate" name="txtExpiryDate"></td>
 
                             </tr> 
-                       </table>
-                       <br>
-						<table id="table2" width="100%">
-                        	<tr>
-                        		<th>รหัสสินค้า</th>
-                        		<th>ผู้จัดจำหน่าย</th>
-                        		<th>ยี่ห้อ</th>
-                                <th>ประเภทสินค้า</th>
-                                <th>ชื่อสินค้า</th>
-                                <th>จำนวนสินค้า</th>
-                                
-                        	</tr>
-                        	<?php
-                        	for($j=0;$j<$i;$j++){ 
-                        	?>
-                        	<tr>
-                        		<td id="productid" name="ddProduct" value="<?php echo $ProductID[$j]; ?>"><?php echo $ProductID[$j]; ?></td>
-                        		<td id="supplierid"><?php echo $ProductTypeName[$j]; ?></td>
-                        		<td id="brandid"><?php echo $BrandName[$j]; ?></td>
-                        		<td id="producttypeid"><?php echo $ProductTypeName[$j]; ?></td>
-                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
-                        		<td>
-                        			<input type="text" id="txtReceiveAmount" name="txtReceiveAmount" >&nbsp;&nbsp;
-                                	<label>ตัน</label> 
-                        		</td>
-                        	</tr>
-                        	<?php
-                        	}
-                        	?>
 
-                        </table>  
-                        <br>   
-                         <table id="table" style="width: 100%">
-<!-- 							<tr> 
+                            <tr>
+                                <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
+                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" required>&nbsp;&nbsp;
+                                	<label>ตัน</label> 
+                                </td>
+                            </tr>
+
+							<tr> 
 								<td><label>คิดเป็น</label></td>
-								<td><label id="LabelAmount" name="LabelAmount"></label>
+								<td><label id="LabelAmount"></label>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>ถุง</label></td>
-							</tr>  -->
+							</tr> 
 
                             <tr> <td><input type="hidden" id="txtReceiveState" name="txtReceiveState"></td>
                             </tr>
@@ -220,6 +221,18 @@
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
+	        
+				<div class="col_w240">
+						<h4>ติดต่อสอบถามรายละเอียดเพิ่มเติม</h4>
+					<ul class="footer_link">
+						<li>สถานที่ติดต่อ :&nbsp; 87/84&nbsp; หมู่ 2&nbsp; ตำบลบางพลับ&nbsp; อำเภอปากเกร็ด&nbsp; จังหวัดนนทบุรี&nbsp; 11120</li>
+						<li>โทรศัพท์ : (668) 188-9525-0&nbsp;&nbsp; Fax : (662) 554-300</li>
+						<li>Email : nantiyathongpriwan@gmail.com</li>
+					</ul>
+				</div>
+			
+				
+				<div class="cleaner h40"></div>
 					Copyright © 2016 <a href="#">The GobalChemicals CO.,LTD.</a>
 				<div class="cleaner"></div><!--end of tooplate_footer-->
 			</div><!--end of tooplate_footer-->

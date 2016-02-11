@@ -20,6 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/productPurchase.js"></script>
 	
 		
 
@@ -115,8 +116,6 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$product = $dbManagement->select("SELECT * FROM product");
-			$productType = $dbManagement->select("SELECT * FROM producttype");
-			$brand = $dbManagement->select("SELECT * FROM brand");
 			$supplier = $dbManagement->select("SELECT * FROM supplier");
 
 			$ddProduct = 0;
@@ -125,28 +124,6 @@
 			        $ProductID[$ddProduct] = $row["ProductID"];
 			        $ProductName[$ddProduct] = $row["ProductName"];
 			        $ddProduct++;
-			    }
-			   
-			}
-
-			
-			$ddProductType = 0;
-			if (mysqli_num_rows($productType) > 0) {
-			    while($row = mysqli_fetch_assoc($productType)) {
-			        $ProductTypeID[$ddProductType] = $row["ProductTypeID"];
-			        $ProductTypeName[$ddProductType] = $row["ProductTypeName"];
-			        $ddProductType++;
-			    }
-			   
-			}
-
-
-			$ddBrandName = 0;
-			if (mysqli_num_rows($brand) > 0) {
-			    while($row = mysqli_fetch_assoc($brand)) {
-			        $BrandID[$ddBrandName] = $row["BrandID"];
-			        $BrandName[$ddBrandName] = $row["BrandName"];
-			        $ddBrandName++;
 			    }
 			   
 			}
@@ -194,36 +171,9 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td><label>ประเภทสินค้า:</label></td>
-                                <td>
-                               	<select id="ddProductType" name="ddProductType">
-                                	<option value="" selected>-------- กรุณาเลือก --------</option>
-                               	 	<?php
-                        					for($j=0;$j<$ddProductType;$j++){ 
-                        			?>	
-                                		<option value="<?php echo $ProductTypeID[$j]; ?>"><?php echo $ProductTypeName[$j]; ?></option>
-                                	<?php
-                        					}
-                        			?>
-									</select>                                 	
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>ยี่ห้อ:</label></td>
-                                <td>
-                                	<select id="ddBrandName" name="ddBrandName">
-											  <option value="" >-------- กรุณาเลือก --------</option>
-                                	 	<?php
-                        					for($b=0;$b<$ddBrandName;$b++){ 
-                        				?>	
-                                		<option value="<?php echo $BrandID[$b]; ?>"><?php echo $BrandName[$b]; ?></option>
-                                		<?php
-                        					}
-                        				?>
-									</select> 
-                                </td>
+                            <tr id="row-supplierEmail">
+                            	<td><label>Email:</label></td>
+                                <td><label id="txtSupplierEmail" name="txtSupplierEmail"></label></td>      
                             </tr>
 
                             <tr>
@@ -239,6 +189,17 @@
                         				?>
                                 	</select>
                                 </td>
+                            </tr>
+
+
+                            <tr id="row_productType">
+                                <td><label>ประเภทสินค้า:</label></td>
+                                <td><label id="ddProductType" name="ddProductType"></label></td>
+                            </tr>
+
+                            <tr id="row-brandName">
+                                <td><label>ยี่ห้อ:</label></td>
+                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
                             </tr>
 
                             <tr>
@@ -280,3 +241,4 @@
 	
 	</body>
 </html>
+

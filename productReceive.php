@@ -64,7 +64,7 @@
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
-									<li><a href="#" class="selected">จัดการข้อมูล</a>
+									<li><a href="#">จัดการข้อมูล</a>
 				                        <ul>
 												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
@@ -81,7 +81,7 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">คลังสินค้า</a>
+									<li><a href="#" class="selected">คลังสินค้า</a>
 										<ul>
 											<li><a href="productReceive.php">รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
@@ -119,17 +119,17 @@
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
+			        $ReceiveID[$i] = $row["ReceiveID"];
 			        $Lot[$i] = $row["Lot"];
 			        $ExpiryDate[$i] = $row["ExpiryDate"];
 			        $ReceiveDate[$i] = $row["ReceiveDate"];
 			        $ProductName[$i] = $row["ProductName"];
-			        // $ProductTypeID[$i] = $row["ProductTypeID"];
 			        $ReceiveAmount[$i] = $row["ReceiveAmount"];	
 			        $i++;
 			    }
 			}
 		?>
-
+	<form action="editProductReceiveSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -138,24 +138,14 @@
                         <p>
                             <button id="btnAdd"><a href="productReceiveAdd.php">รับสินค้า</a></button>
                         </p>
-                        <table id="table" style="width: 100%">
-                            <tr>
-                                <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
-                                    <input type="text" ID="txtSearch">
-                                &nbsp;&nbsp;
-                                   <button type="submit" id="btnOK">ตกลง</button>
-                                </td>
-                            </tr>                           
-                        </table>  
-
 				</div>
 			</div>	
 						<table id="table2" width="100%">
                         	<tr>
+                        		<th>รหัสรับสินค้า</th>
                         		<th>Lot</th>
                                 <th>วันรับสินค้า</th>
                                 <th>วันหมดอายุ</th>
-                                <!-- <th>ประเภทสินค้า</th> -->
                                 <th>ชื่อสินค้า</th>
                                 <th>จำนวน</th>
                                 <th>คำสั่ง</th>
@@ -167,17 +157,16 @@
                         	?>
 
                         	<tr>
+                        		<td id="receive"><?php echo $ReceiveID[$j] ?></td>
                         		<td id="lot"><?php echo $Lot[$j] ?></td>
                         		<td id="receiveDate"><?php echo $ReceiveDate[$j] ?></td>
                         		<td id="expiryDate"><?php echo $ExpiryDate[$j] ?></td>
-                        		<!-- <td id="productName"><?php echo $ProductTypeID[$j] ?></td>  -->
-                        		<td id="productTypeName"><?php echo $ProductName[$j] ?></td>
+                        		<td id="productName"><?php echo $ProductName[$j] ?></td>
                         		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
                         		
                         		<td>
-                        			<!-- <button id="btnDetail"><a href="employeeDetail.php?EmployeeID=<?php echo $EmployeeID[$j]; ?>">รายละเอียด</a></button> -->
-                        			<button id="btnEdit" ><a href="employeeEdit.php?EmployeeID=<?php echo $EmployeeID[$j]; ?>">แก้ไข</a></button>
-                        			<button id="btnDelete"><a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a></button>             
+                        			<button id="btnEdit" ><a href="productReceiveEdit.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">แก้ไข</a></button>
+                        			<button id="btnDelete"><a href="deleteProductReceiveSQL.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">ลบ</a></button>             
                         		</td>
                         	</tr>
                         	<?php
@@ -186,7 +175,7 @@
 
                         </table>       
 		</div><!--end of tooplate_main-->
-
+	</form>
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

@@ -1,5 +1,10 @@
 $( document ).ready(function() {
 
+
+	$('#btnCF').click(function() {
+			alert('แก้ไขเรียบร้อย');
+	});
+
 	$('#province').change(function(){
 		$('#txtSubDistrict').empty();
 		$('#txtZipcode').empty();

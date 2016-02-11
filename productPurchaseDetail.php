@@ -116,10 +116,12 @@
 			$dbManagement = new dbManagement();	
 			$result = $dbManagement->select("SELECT * FROM `purchase`
 												LEFT JOIN `supplier`ON purchase.SupplierID=supplier.SupplierID
-												LEFT JOIN `producttype`ON purchase.ProducttypeID=producttype.ProducttypeID
-												LEFT JOIN `brand`ON purchase.BrandID=brand.BrandID
 												LEFT JOIN `product`ON purchase.ProductID=product.ProductID
 												WHERE PurchaseID ='" . $_REQUEST['PurchaseID'] . "'");
+			
+			$product = $dbManagement->select("SELECT * FROM `product`
+												JOIN producttype ON product.ProductTypeID=producttype.ProductTypeID
+												JOIN brand ON product.BrandID=brand.BrandID");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
@@ -128,19 +130,29 @@
 			    	$PurchaseDate[$i] = $row["PurchaseDate"];
 			    	$SupplierID[$i] = $row["SupplierID"];
 			    	$SupplierName[$i] = $row["SupplierName"];
+			    	$SupplierEmail[$i] = $row["SupplierEmail"];
 			    	$ProductID[$i] = $row["ProductID"];
 			    	$ProductName[$i] = $row["ProductName"];
 			    	$PurchaseAmount[$i] = $row["PurchaseAmount"];
 			    	$State[$i] = $row["State"];
-			    	$ProductTypeID[$i] = $row["ProductTypeID"];
-			    	$ProductTypeName[$i] = $row["ProductTypeName"];
-			    	$BrandID[$i] = $row["BrandID"];
-			    	$BrandName[$i] = $row["BrandName"];
 			    	$PurchaseDetail[$i] = $row["PurchaseDetail"];
 
 			        $i++;
 			    }
-			}					
+			}
+
+			$i = 0;
+			if (mysqli_num_rows($product) > 0) {
+			    while($row = mysqli_fetch_assoc($product)) {
+			    	$ProductTypeID[$i] = $row["ProductTypeID"];
+			    	$ProductTypeName[$i] = $row["ProductTypeName"];
+			    	$BrandID[$i] = $row["BrandID"];
+			    	$BrandName[$i] = $row["BrandName"];
+
+
+			        $i++;
+			    }
+			}										
 
 		?>
 		<div id="tooplate_main">
@@ -162,6 +174,11 @@
                             <tr>
                             	<td>ผู้จัดจำหน่าย:</td>
                                 <td><label id="ddSupplier"><?php echo ($SupplierName[0]); ?></label></td>
+                            </tr>
+
+                            <tr>
+                            	<td>Email:</td>
+                                <td><label id="ddSupplier"><?php echo ($SupplierEmail[0]); ?></label></td>
                             </tr>
 
                             <tr>

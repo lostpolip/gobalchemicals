@@ -20,7 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script type="text/javascript" src="js/supplierAdd.js"></script>
 
 
 		<script language="javascript" type="text/javascript">

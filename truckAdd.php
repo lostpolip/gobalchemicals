@@ -20,7 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script type="text/javascript" src="js/truckAdd.js"></script>
 
 
 		<script language="javascript" type="text/javascript">
@@ -188,7 +188,7 @@
                            <tr>
                                 <td><label><span class="red-star">*</span>น้ำหนักรถ :</label></td>
                                 <td>
-                                	<input id="txtTruckWeight" name="txtTruckWeight" required>
+                                	<input id="txtTruckWeight" name="txtTruckWeight" >
                                 	<label>กิโลกรัม</label>
                                 </td>
                             </tr>
@@ -196,7 +196,7 @@
 							<tr>
                                 <td><label><span class="red-star">*</span>บรรจุน้ำหนัก :</label></td>
                                 <td>
-                                	<input id="txtTruckCapacity" name="txtTruckCapacity" required>
+                                	<input id="txtTruckCapacity" name="txtTruckCapacity" >
                                 	<label>ตัน</label>
                                 </td>
 
@@ -205,7 +205,7 @@
                             <tr>
                                 <td><label><span class="red-star">*</span>ปริมาณสินค้า :</label></td>
                                 <td>
-                                	<input id="txtTruckQuantity" name="txtTruckQuantity" required>
+                                	<input id="txtTruckQuantity" name="txtTruckQuantity" >
                                 	<label>ถุง</label>
                                 </td>
                             </tr>

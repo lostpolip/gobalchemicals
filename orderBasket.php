@@ -62,7 +62,19 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
+
 						<label id="label1">รายการสั่งซื้อ</label>
+						<br>
+
+						<tr>
+	                        <td><label id="OrderDate">วันที่สั่งซื้อ:</label></td>
+	                        <td><input type="date" id="txtDateOrder" name="txtDateOrder"></td>
+
+
+	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>
+	                        <td><input type="text" id="txtOrderID" name="txtOrderID"></td>
+
+	                    </tr>
 						<div class="button-menu">
 							<input type="image" src="images/buttonBasket1.png" alt="Submit" id="menu0rder">
 							<!-- <input type="image" src="images/buttonBasketOrder1.png" alt="Submit" id="menu0rder"> -->

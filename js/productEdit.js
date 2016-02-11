@@ -17,7 +17,7 @@ $( document ).ready(function() {
 	    	alert('กรณากรอกราคาขายเป็นตัวเลข');
 	    	return false;
 		}		
-
+		alert('แก้ไขเรียบร้อย');
 	});
 
 	$('#imageProduct').change(function(){

@@ -123,6 +123,7 @@
 			        $PurchaseDate[$i] = $row["PurchaseDate"];
 			        $SupplierID[$i] = $row["SupplierID"];
 			        $SupplierName[$i] = $row["SupplierName"];
+			        $SupplierEmail[$i] = $row["SupplierEmail"];
 			        $PurchaseAmount[$i] = $row["PurchaseAmount"];
 			        $i++;
 			    }
@@ -154,6 +155,7 @@
                         		<th>รหัสการสั่งซื้อ</th>
                                 <th>วันที่สั่งซื้อ</th>
                                 <th>ชื่อผู้จัดจำหน่าย</th>
+                                <th>Email</th>
                                 <th>จำนวนสั่งซื้อ</th>
                                 <th>คำสั่ง</th>
                                 
@@ -167,6 +169,7 @@
                         		<td id="purchaseId"><?php echo $PurchaseID[$j] ?></td>
                         		<td id="purchaseDate"><?php echo $PurchaseDate[$j] ?></td>
                         		<td id="purchaseSupplier"><?php echo $SupplierName[$j] ?></td>
+                        		<td id="purchaseSupplierEmail"><?php echo $SupplierEmail[$j] ?></td>
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
                         		
                         		<td>

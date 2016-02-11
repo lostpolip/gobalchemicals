@@ -20,6 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/productReceiveEdit.js"></script>
 	
 		
 
@@ -83,7 +84,7 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">คลังสินค้า</a>
+									<li><a href="#" class="selected">คลังสินค้า</a>
 										<ul>
 											<li><a href="productReceive.php">รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
@@ -113,12 +114,9 @@
 		</div><!--end of tooplate_body_wrapper-->
 		<?php
 			require 'dbManagement.php';
-			$dbManagement = new dbManagement();			
+			$dbManagement = new dbManagement();	
+			$result = $dbManagement->select("SELECT * FROM productreceive where ReceiveID='" . $_REQUEST['ReceiveID'] . "'")	;	
 			$product = $dbManagement->select("SELECT * FROM product");
-			$productType = $dbManagement->select("SELECT * FROM producttype");
-			$brand = $dbManagement->select("SELECT * FROM brand");
-			$supplier = $dbManagement->select("SELECT * FROM supplier");
-
 			$ddProduct = 0;
 			if (mysqli_num_rows($product) > 0) {
 			    while($row = mysqli_fetch_assoc($product)) {
@@ -129,41 +127,22 @@
 			   
 			}
 
-			
-			$ddProductType = 0;
-			if (mysqli_num_rows($productType) > 0) {
-			    while($row = mysqli_fetch_assoc($productType)) {
-			        $ProductTypeID[$ddProductType] = $row["ProductTypeID"];
-			        $ProductTypeName[$ddProductType] = $row["ProductTypeName"];
-			        $ddProductType++;
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			        $ReceiveID[$i] = $row["ReceiveID"];
+			        $Lot[$i] = $row["Lot"];
+			        $ExpiryDate[$i] = $row["ExpiryDate"];
+			        $ReceiveDate[$i] = $row["ReceiveDate"];
+			        $ReceiveAmount[$i] = $row["ReceiveAmount"];	
+			        $i++;
 			    }
-			   
 			}
 
-
-			$ddBrandName = 0;
-			if (mysqli_num_rows($brand) > 0) {
-			    while($row = mysqli_fetch_assoc($brand)) {
-			        $BrandID[$ddBrandName] = $row["BrandID"];
-			        $BrandName[$ddBrandName] = $row["BrandName"];
-			        $ddBrandName++;
-			    }
-			   
-			}
-
-
-			$ddSupplier = 0;
-			if (mysqli_num_rows($supplier) > 0) {
-			    while($row = mysqli_fetch_assoc($supplier)) {
-			        $SupplierID[$ddSupplier] = $row["SupplierID"];
-			        $SupplierName[$ddSupplier] = $row["SupplierName"];
-			        $ddSupplier++;
-			    }
-			   
-			}
+		
 		?>
 
-	<form action="editProductReceiveSQL.php">
+	<form action="editProductReceiveSQL.php" method="post" >
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -171,71 +150,24 @@
 					<h2>รับสินค้า</h2>
                     <table id="table" style="width: 100%">
                         	<tr>
-                                <td><input type="hidden" id="txtReceiveID" name="txtReceiveID"></td>
+                                <td><input type="hidden" id="txtReceiveID" name="txtReceiveID" value="<?php echo $ReceiveID[0]; ?>"></td>
                             </tr>
 
                         	<tr>
                                 <td><label>วันที่รับสินค้า:</label></td>
-                                <td><input type="date" id="txtDateReceive" name="txtDateReceive"></td>
+                                <td><input type="date" id="txtDateReceive" name="txtDateReceive" value="<?php echo $ReceiveDate[0]; ?>"></td>
                             </tr>
 
                         	<tr>
                                 <td><label><span class="red-star">* </span>Lot Number:</label></td>
-                                <td><input type="text" id="txtLotReceive" name="txtLotReceive" required></td>
-                            </tr>
-
-                            <tr>
-                                <td><label>ผู้จัดจำหน่าย:</label></td>
-                                <td>
-                               	<select id="ddSupplier" name="ddSupplier">
-                                	<option value="" selected>-------- กรุณาเลือก --------</option>
-                               	 	<?php
-                        					for($s=0;$s<$ddSupplier;$s++){ 
-                        			?>	
-                                		<option value="<?php echo $SupplierID[$s]; ?>"><?php echo $SupplierName[$s]; ?></option>
-                                	<?php
-                        					}
-                        			?>
-									</select>                                 	
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>ประเภทสินค้า:</label></td>
-                                <td>
-                               	<select id="ddProductType" name="ddProductType">
-                                	<option value="" selected>-------- กรุณาเลือก --------</option>
-                               	 	<?php
-                        					for($j=0;$j<$ddProductType;$j++){ 
-                        			?>	
-                                		<option value="<?php echo $ProductTypeID[$j]; ?>"><?php echo $ProductTypeName[$j]; ?></option>
-                                	<?php
-                        					}
-                        			?>
-									</select>                                 	
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><label>ยี่ห้อ:</label></td>
-                                <td>
-                                	<select id="ddBrandName" name="ddBrandName">
-											  <option value="" >-------- กรุณาเลือก --------</option>
-                                	 	<?php
-                        					for($b=0;$b<$ddBrandName;$b++){ 
-                        				?>	
-                                		<option value="<?php echo $BrandID[$b]; ?>"><?php echo $BrandName[$b]; ?></option>
-                                		<?php
-                        					}
-                        				?>
-									</select> 
-                                </td>
+                                <td><input type="text" id="txtLotReceive" name="txtLotReceive" value="<?php echo $Lot[0]; ?>" required></td>
                             </tr>
 
                             <tr>
                                 <td><label>ชื่อสินค้า :</label></td>                       
                                 <td><select id="ddProduct" name="ddProduct" >
-                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
+                                        <option value="<?php echo $ProductID[0]; ?>" selected><?php echo $ProductName[0]; ?></option>
+                                	 	<option value="">-------- กรุณาเลือก --------</option>
                                 	 	<?php
                         					for($p=0;$p<$ddProduct;$p++){ 
                         				?>	
@@ -247,15 +179,30 @@
                                 </td>
                             </tr>
 
+                            <tr id="row_productType">
+                                <td><label>ประเภทสินค้า:</label></td>
+                                <td><label id="ddProductType" name="ddProductType"></label></td>
+                            </tr>
+
+                            <tr id="row-brandName">
+                                <td><label>ยี่ห้อ:</label></td>
+                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
+                            </tr>
+
+                            <tr id="row-supplierName">
+                            	<td><label>Email:</label></td>
+                                <td><label id="txtsupplierName" name="txtsupplierName"></label></td>      
+                            </tr>
+
 							<tr>
                                 <td><label><span class="red-star">* </span>วันหมดอายุ :</label></td>
-                                <td><input type="date" id="txtExpiryDate" name="txtExpiryDate"></td>
+                                <td><input type="date" id="txtExpiryDate" name="txtExpiryDate" value="<?php echo $ExpiryDate[0]; ?>"></td>
 
                             </tr> 
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
-                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" required>&nbsp;&nbsp;
+                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" value="<?php echo $ReceiveAmount[0]; ?>" required>&nbsp;&nbsp;
                                 	<label>ตัน</label> 
                                 </td>
                             </tr>
@@ -272,7 +219,7 @@
                             <tr> <td>&nbsp;</td></tr>
 
                             <tr>
-                            		<td><a href="productStock.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
+                            		<td><a href="productReceive.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
                                     <td><button type="submit" id="btnCF">บันทึก</button></td>
                                     
                             </tr>

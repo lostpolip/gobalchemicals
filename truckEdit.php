@@ -20,7 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<!--<script type="text/javascript" src="js/index.js"></script>-->
+		<script type="text/javascript" src="js/truckEdit.js"></script>
 
 
 		<script language="javascript" type="text/javascript">
@@ -204,7 +204,7 @@
                            <tr>
                                 <td><label><span class="red-star">*</span>น้ำหนักรถ :</label></td>
                                 <td>
-                                	<input type="text" id="txtTruckWeight" name="txtTruckWeight" value="<?php echo $TruckWeight[0]; ?>" required>
+                                	<input type="text" id="txtTruckWeight" name="txtTruckWeight" value="<?php echo $TruckWeight[0]; ?>" >
                                 	<label>กิโลกรัม</label>
                                 </td>
                             </tr>
@@ -212,7 +212,7 @@
 							<tr>
                                 <td><label><span class="red-star">*</span>บรรจุน้ำหนัก :</label></td>
                                 <td>
-                                	<input type="text" id="txtTruckCapacity" name="txtTruckCapacity" value="<?php echo $WeightCapacity[0]; ?>" required>
+                                	<input type="text" id="txtTruckCapacity" name="txtTruckCapacity" value="<?php echo $WeightCapacity[0]; ?>" >
                                 	<label>ตัน</label>
                                 </td>
 
@@ -221,7 +221,7 @@
                             <tr>
                                 <td><label><span class="red-star">*</span>ปริมาณสินค้า :</label></td>
                                 <td>
-                                	<input type="text" id="txtTruckQuantity" name="txtTruckQuantity" value="<?php echo $WeightQuantity[0]; ?>" required>
+                                	<input type="text" id="txtTruckQuantity" name="txtTruckQuantity" value="<?php echo $WeightQuantity[0]; ?>">
                                 	<label>ถุง</label>
                                 </td>
                             </tr>

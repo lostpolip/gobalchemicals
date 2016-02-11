@@ -69,7 +69,7 @@
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
-									<li><a href="#" class="selected">จัดการข้อมูล</a>
+									<li><a href="#">จัดการข้อมูล</a>
 				                        <ul>
 												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
@@ -116,6 +116,29 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+			$result = $dbManagement->select("SELECT * FROM  claim
+												JOIN product ON claim.ProductID=product.ProductID
+												JOIN customer ON claim.CustomerID=customer.CustomerID");
+
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			        $ClaimID[$i] = $row["ClaimID"];
+			        $ClaimDate[$i] = $row["ClaimDate"];
+			        $OrderID[$i] = $row["OrderID"];
+			        $CustomerID[$i] = $row["CustomerID"];
+			        $CustomerName[$i] = $row["CustomerName"];
+			        $ProductID[$i] = $row["ProductID"];
+			        $ProductName[$i] = $row["ProductName"];
+			        $ClaimAmount[$i] = $row["ClaimAmount"];
+			        $i++;
+			    }
+			}
+		?>
+
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -129,15 +152,16 @@
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane active" id="approveOrder">
 					    	<br>
+
 					    	<table id="table2" width="100%">
-					    		<label id="labelDate">วันที่ :</label>&nbsp;&nbsp;
-					    		<label id="labelID">รหัสการสั่งซื้อ :</label>
+					    		<label id="labelDate"><span id="claimDD">วันที่ :&nbsp;&nbsp;</span></label>&nbsp;&nbsp;
+					    		<label id="labelID"><span id="claimDD">รหัสการสั่งซื้อ :&nbsp;&nbsp;</span></label>
 
 		                        	<tr>
 		                        		<th>รหัสสินค้า</th>
 		                                <th>ชื่อสินค้า</th>
+		                                <th>ชื่อลูกค้า</th>
 		                                <th>จำนวน</th>
-		                                <th>ราคา/หน่วย</th>
 		                                <th>รวมทั้งสิ้น</th>
 		                                <th>คำสั่ง</th>
 		                                
@@ -157,17 +181,23 @@
 
 		                        		</td>
 		                        	</tr>
-							</table>     
+							</table> 
+
+
 					    </div><!--- แจ้งซื้อสินค้า -->
 
 					    <div role="tabpanel" class="tab-pane" id="approveClaim">
 					    	<br>
+					    	<?php
+		                        for($j=0;$j<$i;$j++){ 
+		                    ?>	
 					    	<table id="table2" width="100%">
-					    		<label id="labelDate">วันที่ :</label>&nbsp;&nbsp;
-					    		<label id="labelID">รหัสการเคลมสินค้า:</label>
+					    		<label id="labelDate"><span id="claimDD">วันที่ :&nbsp;&nbsp;</span><?php echo $ClaimDate[$j] ?></label>&nbsp;&nbsp;
+					    		<label id="labelID"><span id="claimDD">รหัสการเคลมสินค้า:&nbsp;&nbsp;</span><?php echo $ClaimID[$j] ?></label>
 
 		                        	<tr>
-		                        		<th>รหัสสินค้า</th>
+		                        		<th>รหัสใบสั่งซื้อ</th>
+		                        		<th>ชื่อลูกค้า</th>
 		                                <th>ชื่อสินค้า</th>
 		                                <th>จำนวน</th>
 		                                <th>คำสั่ง</th>
@@ -175,15 +205,20 @@
 		                        	</tr>
 
 		                        	<tr>
-		                        		<td id=""></td>
-		                        		<td id=""></td>
-		                        		<td id="">ถุง</td>
+		                        		
+		                        		<td id="orderid"><?php echo $OrderID[$j] ?></td>
+		                        		<td id="customername"><?php echo $CustomerName[$j] ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j] ?></td>
+		                        		<td id="claimamount"><?php echo $ClaimAmount[$j] ?>&nbsp;&nbsp;ถุง</td>
 		                        		<td>
 		                        			<button id="btnDetail">ได้รับแล้ว</button>
-		                        			<button id="btnDelete">ลบ</button>
+		                        			<!-- <button id="btnDelete">ลบ</button> -->
 		                        		</td>
 		                        	</tr>
-							</table>     
+							</table> 
+							<?php
+		                        }
+		                    ?>        
 					    </div>
 
 					  </div>

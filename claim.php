@@ -20,7 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/claim.js"></script>
 
 	</head>
 	<body>
@@ -54,14 +54,8 @@
 		<?php
 					require 'dbManagement.php';
 					$dbManagement = new dbManagement();
-					$productType = $dbManagement->select("SELECT  claim.ClaimID,producttype.ProductTypeName,
-															producttype.ProductTypeID
-															FROM producttype
-															LEFT JOIN claim ON claim.ProductTypeID=producttype.ProductTypeID");
-
-					$product = $dbManagement->select("SELECT  claim.ClaimID,product.ProductName,product.ProductID
-														FROM product
-														LEFT JOIN claim ON claim.ProductID=product.ProductID");
+					$productType = $dbManagement->select("SELECT * FROM producttype");
+					$product = $dbManagement->select("SELECT *FROM product");
 
 					$ddProductType = 0;
 					if (mysqli_num_rows($productType) > 0) {
@@ -82,22 +76,7 @@
 					    }
 					   
 					}		
-									
-					// $i = 0;
-					// if (mysqli_num_rows($result) > 0) {
-					//     while($row = mysqli_fetch_assoc($result)) {
-					//         $CustomerID[$i] = $row["CustomerID"];
-					//         $CustomerName[$i] = $row["CustomerName"];           
-					//         $CustomerAddress[$i] = $row["CustomerAddress"];
-					//        	$CustomerDistrict[$i] = $row["CustomerDistrict"];
-					//         $CustomerProvince[$i] = $row["CustomerProvince"];
-					//         $CustomerZipcode[$i] = $row["CustomerZipcode"];
-					//         $CustomerTel[$i] = $row["CustomerTel"];
-					//         $CustomerFax[$i] = $row["CustomerFax"];
-					//         $CustomerEmail[$i] = $row["CustomerEmail"];
-					//         $i++;
-					//     }
-					// }
+
 				?>
 	<form action="claimAddSQL.php">
 		<div id="tooplate_main">
@@ -109,6 +88,9 @@
                     <table id="table" style="width: 100%">
                             <tr>
                                 <td><input type="hidden" id="txtClaimID" name="txtClaimID"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="hidden" id="txtCustomerID" name="txtCustomerID" value="<?php echo $_SESSION['CustomerID']?>"></td>
                             </tr>
 
                         	<tr>

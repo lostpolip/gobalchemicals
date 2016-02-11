@@ -13,6 +13,8 @@ $( document ).ready(function() {
 	    	return false;
 
 		}
+
+			alert('บันทึกเรียบร้อย');
 	});
 
 	$('#province').change(function(){
