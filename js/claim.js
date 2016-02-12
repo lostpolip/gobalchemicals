@@ -25,6 +25,8 @@ $( document ).ready(function() {
 				productID : productID 
 			},
 			success: function(result){
+				$('#ddProductType').empty();
+				$('#ddBrandName').empty();
 		    	var detailProduct = jQuery.parseJSON(result);
 
 		    	for (var x in detailProduct['nameProductType']) {

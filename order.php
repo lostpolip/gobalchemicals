@@ -67,11 +67,12 @@
 			        $Cost[$i] = $row["Cost"];
 			        $ImageProduct[$i] = $row["ImageProduct"];
 			        $ProductAmount[$i] = $row["ProductAmount"];
+			        $ProductWeight[$i] = $row["ProductWeight"];
 			        $i++;
 			    }
 			}
 		?>
-
+	
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
@@ -79,7 +80,7 @@
 						<tr>
 							<td>
 							
-							
+					<form action="orderAddSQL.php">		
 						<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
@@ -98,9 +99,10 @@
              						 <table  class="table table-bordred table-striped">
              						 	<thead>
 				                        		<th>ชื่อสินค้า</th>
-				                                <th>จำนวน</th>
-				                                <th>ราคา/หน่วย</th>
-				                                <th>รวมทั้งสิ้น</th>
+				                                <th>จำนวน (ตัน)</th>
+				                                <th>ปริมาณ (หน่วย)</th>
+				                                <th>ราคา/หน่วย (บาท)</th>
+				                                <th>รวมทั้งสิ้น (บาท)</th>
 							                    <th>ลบ</th>
 										</thead>
 	   									<tbody id="showOrder">
@@ -109,9 +111,10 @@
 	   										?>
 	   										<tr id="<?php echo 'row' . $ProductID[$j];?>" class="hide">
 											    <td><label><?php echo $ProductName[$j];?></label></td>
-											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label>&nbsp;&nbsp;ตัน</td>
+											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label></td>											   
+											    <td><label id="<?php echo 'totalUnitOrder'. $ProductID[$j]; ?>"></label></td>
 											    <td><label><?php echo $Cost[$j];?></label></td>
-											    <td><label></label></td>
+											    <td><label id="<?php echo 'totalPriceOrder'. $ProductID[$j]; ?>"></label></td>
 											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
 											    		<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
@@ -120,22 +123,38 @@
 											    	</p>
 											    </td>
 											</tr>
+											
+											<input type="hidden" id="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" value="<?php echo $ProductID[$j];?>" disabled>
+											
+<!-- 											
+											<input type="hidden" id="<?php echo 'hiddenproductName' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductName' . $ProductID[$j]; ?>" value="<?php echo $ProductName[$j];?>" disabled> -->
+
+											<input type="hidden" id="<?php echo 'hiddenProductOrder' . $ProductID[$j];?>" name="<?php echo 'hiddenProductOrder' . $ProductID[$j];?>" disabled>
+
+											<input type="hidden" id="<?php echo 'hiddentotalUnitOrder'. $ProductID[$j]; ?>" name="<?php echo 'hiddentotalUnitOrder'. $ProductID[$j]; ?>" disabled>
+
+											<input type="hidden" id="hiddenproductCost" value="<?php echo $Cost[$j];?>" name="hiddenproductCost" value="<?php echo $Cost[$j];?>" disabled>
+
+											<input type="hidden" id="<?php echo 'hiddentotalPriceOrder'. $ProductID[$j]; ?>" name="<?php echo 'hiddentotalPriceOrder'. $ProductID[$j]; ?>" disabled>
+
 											<?php
 												}
 											?>
+											<input type="hidden" id="order-id" name="order-id">
 										</tbody>
         							</table>
 
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
-							        <button type="button" class="btn btn-primary"><a href="orderBasket.php">สั่งซื้อสินค้า</button></a>
+							        <button type="submit" class="btn btn-primary">สั่งซื้อสินค้า</button>
 							      </div>
 							    </div>
 							  </div>
 							</div>
 						<!-- Modal -->
-							
+	</form>
+	
 							</td>
 						</tr>
 						
@@ -159,7 +178,7 @@
 										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"></input>	
 										<span>ตัน</span>	
 
-										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
+										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Cost[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
 
 									</p>
 								<div class="cleaner"></div>
@@ -172,7 +191,6 @@
 				</div>   
 			</div>
 		</div><!--end of tooplate_main-->
-
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

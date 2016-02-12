@@ -1,28 +1,61 @@
 <?php
-require_once('PHPMailer_v5.0.2/class.phpmailer.php');
-$mail = new PHPMailer();
-$mail->IsHTML(true);
-$mail->IsSMTP();
-$mail->SMTPAuth = true; // enable SMTP authentication
-$mail->SMTPSecure = "ssl"; // sets the prefix to the servier
-$mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-$mail->Port = 465; // set the SMTP port for the GMAIL server
-$mail->Username = "porzipper@gmail.com"; // GMAIL username
-$mail->Password = "01422537"; // GMAIL password
-$mail->From = "porzipper@gmail.com"; // "name@yourdomain.com";
-$mail->FromName = "porzipper@gmail.com";  // set from Name
-$mail->Subject = "สวัสดีครับ ทดสอบการส่งเมล์ครับ"; 
-$mail->Body = 'ทดสอบการส่งเมล์ครับ body ครับ';
- 
-$mail->AddAddress('woraponok@gmail.com'); // to Address
- 
-$mail->set('X-Priority', '3'); //Priority 1 = High, 3 = Normal, 5 = low
-if(!$mail->Send()) 
-{
-    echo 'Mailer Error: ' . $mail->ErrorInfo.'<br />';
-} 
-else 
-{
-    echo 'Message has been sent<br />';
-}
+require_once('mail.php');
+$mail = new mail;
+
+$body = '<!DOCTYPE html>
+			<html>
+				<head>
+				</head>
+					<body>
+						<div class="floating-box" style="float: left;width: 1240px;height: 1020px;margin: 10px;border: 3px solid #E6E6E6; ">
+						<div class="box-Logo" style="width: 220px; height: 100px; margin: 50px 0 0 100px;">
+							<img src="..\gobalchemicals\images\LogoChemical.png">
+						</div>
+
+						<div class="box-POId" style="width: 300px;height: 50px;float: right;font-size: 18px;">
+							P.O Number :<label id="labelID" style="font-weight: bold;"></label>
+							<br>
+							P.O Date :<label id="labelDate"></label>
+						</div>
+
+						<div class="box-NamePO" style="font-size: 32px; font-weight: bold; margin: 20px 0 0 100px;">Purchase Order</div>
+
+						<div class="box-OrderBy" style="font-weight: bold; font-size: 22px; margin: 30px 0 0 100px;">
+							Ordered By <br>
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">The GolbalChemicals CO.,LTD</label><br>
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">87/84  No.2</label><br>
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">Bang Pat Sub-district,Amphoe Pak Kret </label><br>
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">Nonthaburi  11120</label><br>	
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">Phone Number :(668) 188-9525-0</label><br>
+							<label style="font-size: 16px; margin: 30px 0 0 10px;">Fax Number :(662) 554-300</label>
+
+						</div>
+
+						<div class="box-Detail" style="width: 1040px; margin: 50px 0 0 100px;">
+							<table id="table1" width="100%">
+			                	<tr>
+			                		<th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">Part No.</th>
+			                        <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">Description</th>
+			                        <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">Quanity</th>
+			                        
+			                	</tr>
+
+			                	<tr>
+			                		<td id="productid" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;">00022</td>
+			                		<td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;">Test</td>
+			                		<td id="productamount" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; text-align: right;">20</td>
+
+			                	</tr>
+			                </table>   
+			            </div>
+
+			            <div class="box-total" style="font-weight: bold; font-size: 19px; margin: 10px 0 0 700px;	"> 
+			            		Total Quanity :<label id="totalQuanity"></label> &nbsp;&nbsp;&nbsp;&nbsp; Ton
+			            </div>  
+					</div>
+				</body>
+			</html>
+			';
+
+$mail->sendmail($body,'woraponok@outlook.com');
 ?>

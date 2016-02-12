@@ -1,4 +1,3 @@
-
 <?php
 require 'dbManagement.php';
 $dbManagement = new dbManagement();
