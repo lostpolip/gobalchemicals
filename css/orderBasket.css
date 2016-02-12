@@ -366,8 +366,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #table3 td label{ 
 	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #e5a923;
+	font-size: 20px;
+	color: #000000;
 }
 
 #billing {
@@ -389,11 +389,24 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 22px;
 }
 
+#table4 label{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 20px;
+}
+
+
 #table5 td{
 	width: 400px;
 	font-family: 'quarkbold';
 	color: #0B6121;
 	font-size: 22px;
+}
+
+#table5 label{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 20px;
 }
 
 #btnOK {
@@ -582,4 +595,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-family: 'quarkbold';
 	color: #FFFFFF;
 	font-size: 24px;	
+}
+
+#totalOther{
+	color: red;
 }

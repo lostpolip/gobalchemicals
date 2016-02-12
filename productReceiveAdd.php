@@ -55,7 +55,7 @@
                         </div>
                         <div id="imageMenuOrder">
                         	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
-                            <input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>							
 					  <div id="tooplate_top">
 							<div id="tooplate_login">

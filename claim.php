@@ -54,18 +54,7 @@
 		<?php
 					require 'dbManagement.php';
 					$dbManagement = new dbManagement();
-					$productType = $dbManagement->select("SELECT * FROM producttype");
 					$product = $dbManagement->select("SELECT *FROM product");
-
-					$ddProductType = 0;
-					if (mysqli_num_rows($productType) > 0) {
-					    while($row = mysqli_fetch_assoc($productType)) {
-					        $ProductTypeID[$ddProductType] = $row["ProductTypeID"];
-					        $ProductTypeName[$ddProductType] = $row["ProductTypeName"];
-					        $ddProductType++;
-					    }
-					   
-					}
 
 					$ddProduct = 0;
 					if (mysqli_num_rows($product) > 0) {
@@ -103,37 +92,31 @@
                                 <td><input type="text" id="txtOrderID" name="txtOrderID" required ></td>
                             </tr>
 
-                             <tr>
-                                <td><label>ประเภทสินค้า:</label></td>
-                                <td>
-                                	<select id="type" name="ddTypeProduct">
-	                                	<option value="" selected>------ กรุณาเลือก ------</option>
-		                               	 	<?php
-		                        					for($j=0;$j<$ddProductType;$j++){ 
-		                        			?>	
-		                                		<option value="<?php echo $ProductTypeID[$j]; ?>"><?php echo $ProductTypeName[$j]; ?></option>
-		                                	<?php
-		                        					}
-		                        			?>
-									</select> 
+                            <tr>
+                                <td><label>ชื่อสินค้า :</label></td>                       
+                                <td><select id="ddProduct" name="ddProduct" >
+                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
+                                	 	<?php
+                        					for($p=0;$p<$ddProduct;$p++){ 
+                        				?>	
+                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
+                                		<?php
+                        					}
+                        				?>
+                                	</select>
                                 </td>
                             </tr>
 
-                             <tr>
-                                <td><label>ชื่อสินค้า:</label></td>
-                                <td>
-                                	<select id="type" name="ddProductName">
-	                                	<option value="" selected>------ กรุณาเลือก ------</option>
-		                               	 	<?php
-		                        					for($j=0;$j<$ddProduct;$j++){ 
-		                        			?>	
-		                                		<option value="<?php echo $ProductID[$j]; ?>"><?php echo $ProductName[$j]; ?></option>
-		                                	<?php
-		                        					}
-		                        			?>
-									</select> 
-                                </td>
+                            <tr id="row_productType">
+                                <td><label>ประเภทสินค้า:</label></td>
+                                <td><label id="ddProductType" name="ddProductType"></label></td>
                             </tr>
+
+                            <tr id="row-brandName">
+                                <td><label>ยี่ห้อ:</label></td>
+                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
+                            </tr>
+
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวน :</label></td>

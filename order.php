@@ -159,7 +159,7 @@
 										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"></input>	
 										<span>ตัน</span>	
 
-										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" >หยิบใส่ตะกร้า</button>	
+										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
 
 									</p>
 								<div class="cleaner"></div>

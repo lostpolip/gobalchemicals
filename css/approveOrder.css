@@ -308,6 +308,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
+	margin-bottom: 30px;
 }
 #table2 th {
 	font-family: 'quarkbold';

@@ -97,7 +97,7 @@
 							</div>
 						<!-- Modal -->
 
-                            <input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
                         		
 					  <div id="tooplate_top">

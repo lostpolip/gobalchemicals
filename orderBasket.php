@@ -56,6 +56,32 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
+			$result=$dbManagement->select("SELECT * FROM customer
+											JOIN province ON customer.ProvinceID=province.ProvinceID
+											JOIN aumphur ON customer.AumphurID=aumphur.AumphurID
+											JOIN district ON customer.DistrictID=district.DistrictID
+											JOIN zipcode ON customer.ZipcodeID=zipcode.ZipcodeID
+											WHERE CustomerID='".$_SESSION['CustomerID']."'");
+
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$CustomerID[$i] = $row["CustomerID"];
+			    	$CustomerName[$i] = $row["CustomerName"];
+			    	$CustomerTel[$i] = $row["CustomerTel"];
+			    	$CustomerAddress[$i] = $row["CustomerAddress"];
+			        $DistrictID[$i] = $row["DistrictID"];
+			        $DistrictName[$i] = $row["DistrictName"];
+			        $AumphurID[$i] = $row["AumphurID"];
+			        $AumphurName[$i] = $row["AumphurName"];
+			        $ProvinceID[$i] = $row["ProvinceID"];
+			        $ProvinceName[$i] = $row["ProvinceName"];
+			        $ZipcodeID[$i] = $row["ZipcodeID"];
+			        $Zipcode[$i] = $row["Zipcode"];	
+
+			        $i++;
+			    }
+			}
 
 		?>
 
@@ -131,7 +157,7 @@
 
                     			<tr>
 	                    			<td>
-	                    				<label>ภาษีมูลค่าเพิ่ม :</label>
+	                    				<label>ภาษีมูลค่าเพิ่ม 7% :</label>
 	                    			</td>
 	                    			<td>
 		                        		<input id="totalPrice" name="totalPrice"> 
@@ -171,37 +197,37 @@
 
 									<tr>
 										<td>ชื่อบริษัท :</td>
-										<td><label></label></td>
+										<td><label><?php echo $_SESSION['CustomerName']?></label></td>
 									</tr>
 
 									<tr>
 										<td>โทรศัพท์ :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($CustomerTel[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>ที่อยู่ เลขที่:</td>
-										<td><label></label></td>
+										<td><label><?php echo ($CustomerAddress[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>ตำบล :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($DistrictName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>อำเภอ:</td>
-										<td><label></label></td>
+										<td><label><?php echo ($AumphurName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>จังหวัด :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($ProvinceName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>รหัสไปรษณีย์ :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($Zipcode[0]); ?></label></td>
 									</tr>
 
 								</table>
@@ -213,37 +239,37 @@
 
 									<tr>
 										<td>ชื่อบริษัท :</td>
-										<td><label></label></td>
+										<td><label><?php echo $_SESSION['CustomerName']?></label></td>
 									</tr>
 
 									<tr>
 										<td>โทรศัพท์ :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($CustomerTel[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>ที่อยู่ เลขที่:</td>
-										<td><label></label></td>
+										<td><label><?php echo ($CustomerAddress[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>ตำบล :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($DistrictName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>อำเภอ:</td>
-										<td><label></label></td>
+										<td><label><?php echo ($AumphurName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>จังหวัด :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($ProvinceName[0]); ?></label></td>
 									</tr>
 
 									<tr>
 										<td>รหัสไปรษณีย์ :</td>
-										<td><label></label></td>
+										<td><label><?php echo ($Zipcode[0]); ?></label></td>
 									</tr>
 
 								</table>

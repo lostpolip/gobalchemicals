@@ -203,7 +203,6 @@
 		                                <th>คำสั่ง</th>
 		                                
 		                        	</tr>
-
 		                        	<tr>
 		                        		
 		                        		<td id="orderid"><?php echo $OrderID[$j] ?></td>
@@ -215,7 +214,8 @@
 		                        			<!-- <button id="btnDelete">ลบ</button> -->
 		                        		</td>
 		                        	</tr>
-							</table> 
+							</table>
+						 
 							<?php
 		                        }
 		                    ?>        
