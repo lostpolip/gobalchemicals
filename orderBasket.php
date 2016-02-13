@@ -63,6 +63,10 @@
 											JOIN zipcode ON customer.ZipcodeID=zipcode.ZipcodeID
 											WHERE CustomerID='".$_SESSION['CustomerID']."'");
 
+			$order=$dbManagement->select("SELECT * FROM orderdetail
+											JOIN product ON orderdetail.ProductID=product.ProductID");
+
+
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
@@ -83,8 +87,22 @@
 			    }
 			}
 
-		?>
+			$i = 0;
+			if (mysqli_num_rows($order) > 0) {
+			    while($row = mysqli_fetch_assoc($order)) {
+			    	$ProductID[$i] = $row["ProductID"];
+			    	$ProductName[$i] = $row["ProductName"];
+			    	$Cost[$i] = $row["Cost"];
+			    	$OrderAmount[$i] = $row["OrderAmount"];
+			    	$TotalVolumn[$i] = $row["TotalVolumn"];
+			    	$TotalCost[$i] = $row["TotalCost"];
 
+			        $i++;
+			    }
+			}			
+
+		?>
+	<!-- <form action="orderAddSQL.php"> -->
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
@@ -108,30 +126,34 @@
 
 						<table id="table2" width="95%">
                         	<tr>
-                        		<th>ชื่อสินค้า</th>
+                        		<th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
-                                <th>จำนวน</th>
+                                <th>จำนวน (ตัน)</th>
+                                <th>จำนวน (ถุง)</th>
                                 <th>ราคา</th>
                                 <th>รวม</th>
-                                <th>แก้ไข</th>
-                                
                         	</tr>
-  
+
+                       		<?php
+                        	for($j=0;$j<$i;$j++){ 
+                        	?>  
+
                         	<tr>
-                        		<td id="orderid"></td>
-                        		<td id="productid"></td>
-                        		<td id="orderamount">
-									<input type="text" id="ddOrderAmout" name="ddOrderAmout"></input>
-                        			<label>ตัน</label>
-                        		</td>
-                        		<td id="productcost"></td>
-                        		<td id="totalprice"></td>
-                        		<td>
-                        			<button id="btnCF">บันทึก</button>
-                        			<button id="btnDelete">ลบ</button>
-                        		</td>
+                        		<!-- <td id="orderid"><?php echo ($CustomerTel[0]); ?></td> -->
+                        		<td id="productid"><?php echo ($ProductID[$j]); ?></td>
+                        		<td id="productname"><?php echo ($ProductName[$j]); ?></td>
+                        		<td id="orderamount"><?php echo ($OrderAmount[$j]); ?></td>
+                        		<td id="totalUnit"><?php echo ($TotalVolumn[$j]); ?></td>
+                        		<td id="productcost"><?php echo ($Cost[$j]); ?></td>
+                        		<td id="totalcost"><?php echo ($TotalCost[$j]); ?></td>
+
                         	</tr>
-                        </table>     
+                        	<?php
+                        		}
+                        	?>                           
+                        </table> 
+ 
+
                     <br>
                     <div class="col_w540"><br> 
                     	<div class="boxPayment">
@@ -285,7 +307,7 @@
 				</div>   
 			</div>
 		</div><!--end of tooplate_main-->
-
+	<!-- </form> -->
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

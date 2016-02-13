@@ -156,8 +156,10 @@
                                 <th>วันที่สั่งซื้อ</th>
                                 <th>ชื่อผู้จัดจำหน่าย</th>
                                 <th>Email</th>
-                                <th>จำนวนสั่งซื้อ</th>
+                                <th>จำนวนสั่งซื้อ</th> 
+                                <th>ส่งEmail</th>
                                 <th>คำสั่ง</th>
+                               
                                 
                         	</tr>
 
@@ -171,12 +173,16 @@
                         		<td id="purchaseSupplier"><?php echo $SupplierName[$j] ?></td>
                         		<td id="purchaseSupplierEmail"><?php echo $SupplierEmail[$j] ?></td>
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
-                        		
                         		<td>
-                        			<button id="btnDetail"><a href="productPurchaseDetail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">รายละเอียด</a></button>
-                        			<!-- <button id="btnEdit" ><a href="purchaseEdit.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">แก้ไข</a></button> -->
-                        			<button id="btnDelete"><a href="deletePurchaseSQL.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ลบ</a></button>
+                        			<form action="testmail.php">
+                        			<button type="submit" id="btnEdit" ><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
+                        			</form>
                         		</td>
+                        		<td>
+                        			<a href="productPurchaseDetail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>"><button id="btnDetail">รายละเอียด</button></a>
+                        			<a href="deletePurchaseSQL.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>"><button id="btnDelete">ลบ</button></a>
+                        		</td>
+ 
                         	</tr>
                         	<?php
                         	}
