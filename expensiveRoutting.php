@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/transport.css" rel="stylesheet" type="text/css" />
+		<link href="css/expensiveRoutting.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
@@ -121,14 +121,17 @@
 				<div class="col_w630 float_l">
 					<p>จัดเส้นทาง</p>
 	           
-	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
-	                    
-	                    <label id="labelDate">วันที่จัดเส้นทาง:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport">
-	                    
+                        <table id="table" style="width: 100%">
+                                <input type="hidden" id="txtExpensiveID" name="txtExpensiveID">
+							<tr>
+                                <td><label id="date">ชื่อผู้จัดจำหน่าย:</label></td>
+                                <td><input type="date" id="txtExpensiveDate" name="txtExpensiveDate" ></td>
+                            
 
-	                                <!-- Button trigger modal -->
-										<button type="button" class="btn btn-primary btn-lg" id="addPr" data-toggle="modal" data-target="#myModal">เพิ่มใบสั่งซื้อ</button>
+                          
+                               
+                               	<td>   <!-- Button trigger modal -->
+										<button type="button" class="btn btn-primary btn-lg" id="addPr" data-toggle="modal" data-target="#myModal">เลือกใบส่งสินค้า</button>
 									<!-- Button trigger modal -->
 
 									<!-- Modal -->
@@ -137,23 +140,21 @@
 										    <div class="modal-content">
 										      <div class="modal-header">
 										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">ใบสั่งซื้อ</h4>
+										        <h4 class="modal-title" id="myModalLabel">ใบส่งสินค้า</h4>
 										      </div>
 										      <div class="modal-body">
 
 			             						 <table  class="table table-bordred table-striped">
 							                        	<tr>
-							                        		<th>รหัสสินค้า</th>
-							                                <th>ชื่อสินค้า</th>
-							                                <th>ชื่อลูกค้า</th>
-							                                <th>จำนวน</th>
+							                        		<th>รหัสใบส่งสินค้า</th>
+							                                <th>วันที่จัดเส้นทาง</th>
+							                                <th>จำนวนระยะทาง</th>
 							                                <th>เลือก</th>
 							                                
 							                        	</tr>
 
 							                        	<tbody id="showOrder">
 										                    <tr>    	
-															    <td><label></label></td>
 															    <td><label></label></td>
 															    <td><label></label></td>
 															    <td><label></label></td>
@@ -174,39 +175,76 @@
 										  </div>
 										</div>
 									<!-- Modal -->
-							<br>
-							<br>
+								</td>	
+                            </tr>
+                        </table>    
+ 
+                            <tr>
+					    	<table id="table2" width="100%">
 
-							<table id="table2" width="100%">
-	                        	<tr>
-	                        		<th>รหัสสั่งซื้อ</th>
-	                                <th>ชื่อลูกค้า</th>
-	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                                <th>จำนวนสินค้า(ถุง)</th>
-	                                <th>ลบ</th>
-	                                
-	                        	</tr>
-	                        	<tr>
-	                        		<td id="orderId"></td>
-	                        		<td id="customerName"></td>
-	                        		<td id="productWeight"></td>
-	                        		<td id="productVolunm"></td>
-	                        		<td>
-	                        		
-	                        			<button id="btnDelete" class="btn btn-default"><a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a></button>
-	                        		</td>
-	                        	</tr>
-                        	</table>     	
+		                        	<tr>
+		                        		<th>เส้นทางการขนส่ง</th>
+		                        		<th>ระยะทาง(กม.)</th>
+		                                <th>เชื้อเพลิง(ลิตร)</th>
+		                                <th>อัตราสิ้นเปลือง</th>
+		                                <th>เป็นเงิน(บาท)</th>
+		                                
+		                        	</tr>
+		                        	<tr>
+		                        		
+		                        		<td id="expensiveid"></td>
+		                        		<td id="expensive"></td>
+		                        		<td id="expensive"></td>
+		                        		<td id="expensive"></td>
+		                        		<td id="expensiveprice"></td>
+		                        	</tr>
+							</table>
+                            </tr>
+                        <p>ค่าใช้จ่ายต่างๆ</p>    
+                        <table id="table" style="width: 100%">
 
-	                            <tr> <td>&nbsp;</td></tr>
-	                            <tr> <td>&nbsp;</td></tr>
-	                            <br>
+                            <tr>
+                                <td><label>ค่าเที่ยวรถ:</label></td>
+                           
+                                <td><input id="txtExpensive" name="txtExpensive" required>
+                               		</input>
+								</td>
+                            </tr>
+
+							<tr>
+                                <td><label>ค่าผ่านทาง :</label></td>
+                                <td>
+                                	<input type="text" id="txtExpensive" name="txtExpensive" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>ค่าต่อเนื่องผู้ติดตาม :</label></td>
+                                <td>
+                                	<input type="tel" id="txtExpensive" name="txtExpensive" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><label>ค่าอื่นๆ :</label></td>
+                                <td>
+                                	<input type="email" id="txtExpensive" name="txtExpensive" >
+                                </td>
+                            </tr>
+
+                            <tr> <td><label>รวมค่าเชื้อเพลิง :</label></td></tr>
+                            <tr> <td><label>รวมค่าใช้จ่ายในการดำเนินการ :</label></td></tr>
+                            <tr> <td><label>สรุปค่าใช้จ่าย :</label></td></tr>
+                            <tr> <td>&nbsp;</td></tr>
+                            <tr> <td>&nbsp;</td></tr>
+
 	                            <tr id="button-command">
 	                            		<td><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></td>
 	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
 	                                    
 	                            </tr>
 
+                        </table>
 	                        
 				</div>
 			</div>	

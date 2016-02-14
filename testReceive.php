@@ -19,10 +19,10 @@
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/productReceiveAdd.js"></script>
+		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>		
+		<script type="text/javascript" src="js/testReceive.js"></script>
+
 	
-		
 
 		<script language="javascript" type="text/javascript">
 		function clearText(field)
@@ -33,6 +33,7 @@
 	</script>
 
 	<script type="text/javascript">
+
 		ddsmoothmenu.init({
 			mainmenuid: "tooplate_menu", //menu DIV id
 			orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
@@ -40,6 +41,7 @@
 			//customtheme: ["#1c5a80", "#18374a"],
 			contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 		})
+
 	</script>
 
 
@@ -47,14 +49,7 @@
 	<body>
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">				
-					<div id="tooplate_header">	
-                    	<div id="tooplate_user">
-							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
-                        </div>
-                        <div id="imageMenuOrder">
-                        	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
-                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
-                        </div>							
+					<div id="tooplate_header">			
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
 		                       <form action="index.html" method="get">
@@ -82,11 +77,11 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="warehouse.php" class="selected">คลังสินค้า</a>
+									<li><a href="#">คลังสินค้า</a>
 										<ul>
-											<li><a href="productReceiveAdd.php" >รับสินค้า</a></li>
+											<li><a href="productReceive.php">รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
-											<li><a href="#">เช็คสินค้า</a></li>
+											<li><a href="productStock.php">เช็คสินค้า</a></li>
 									  	</ul>
 									</li>
 									
@@ -113,19 +108,30 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
-			$product = $dbManagement->select("SELECT * FROM product");
-			$ddProduct = 0;
-			if (mysqli_num_rows($product) > 0) {
-			    while($row = mysqli_fetch_assoc($product)) {
-			        $ProductID[$ddProduct] = $row["ProductID"];
-			        $ProductName[$ddProduct] = $row["ProductName"];
-			        $ddProduct++;
+			$result = $dbManagement->select("SELECT * FROM `product` 
+												JOIN supplier ON product.SupplierID=supplier.SupplierID
+												JOIN brand ON product.BrandID=brand.BrandID
+												JOIN producttype ON product.ProductTypeID=producttype.ProductTypeID");
+
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			        $ProductID[$i] = $row["ProductID"];
+			        $ProductName[$i] = $row["ProductName"];
+			        $ProductAmount[$i] = $row["ProductAmount"];
+			        $SupplierID[$i] = $row["SupplierID"];
+			        $SupplierName[$i] = $row["SupplierName"];
+			        $BrandID[$i] = $row["BrandID"];
+			        $BrandName[$i] = $row["BrandName"];
+			        $ProductTypeID[$i] = $row["ProductTypeID"];
+			        $ProductTypeName[$i] = $row["ProductTypeName"];
+			        $ProductAmount[$i] = $row["ProductAmount"];
+			        $i++;
 			    }
-			   
 			}
-			
 		?>
-	<form action="productReceiveAddSQL.php">
+
+	<!-- <form action="productReceiveAddSQL.php"> -->
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -133,7 +139,7 @@
 					<h2>รับสินค้า</h2>
                     <table id="table" style="width: 100%">
                         	<tr>
-                                <td><input type="hidden" id="txtInventoryID" name="txtInventoryID"></td>
+                                <td><input type="hidden" id="txtReceiveID" name="txtReceiveID"></td>
                             </tr>
 
                         	<tr>
@@ -143,39 +149,7 @@
 
                         	<tr>
                                 <td><label><span class="red-star">* </span>Lot Number:</label></td>
-                                <td><input type="text" id="txtLotReceive" name="txtLotReceive"></td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td><label>ชื่อสินค้า :</label></td>                       
-                                <td><select id="ddProduct" name="ddProduct" >
-                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
-                                	 	<?php
-                        					for($p=0;$p<$ddProduct;$p++){ 
-                        				?>	
-                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
-                                		<?php
-                        					}
-                        				?>
-                                	</select>
-                                </td>
-                            </tr>
-
-                            <tr id="row_productType">
-                                <td><label>ประเภทสินค้า:</label></td>
-                                <td><label id="ddProductType" name="ddProductType"></label></td>
-                            </tr>
-
-                            <tr id="row-brandName">
-                                <td><label>ยี่ห้อ:</label></td>
-                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
-                            </tr>
-
-                            <tr id="row-supplierName">
-                            	<td><label>Email:</label></td>
-                                <td><label id="txtsupplierName" name="txtsupplierName"></label></td>      
+                                <td><input type="text" id="txtLotReceive" name="txtLotReceive" required></td>
                             </tr>
 
 							<tr>
@@ -183,17 +157,49 @@
                                 <td><input type="date" id="txtExpiryDate" name="txtExpiryDate"></td>
 
                             </tr> 
-
-                            <tr>
-                                <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
-                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" >&nbsp;&nbsp;
+                       </table>
+                       <br>
+						<table id="table2" width="100%">
+                        	<tr>
+                        		<th>รหัสสินค้า</th>
+                        		<th>ผู้จัดจำหน่าย</th>
+                        		<th>ยี่ห้อ</th>
+                                <th>ประเภทสินค้า</th>
+                                <th>ชื่อสินค้า</th>
+                                <th>เพิ่มสินค้า</th>
+                                <th>สินค้าทั้งหมด</th>
+                                <th>เพิ่ม</th>
+                                
+                        	</tr>
+                        	<?php
+                        	for($j=0;$j<$i;$j++){ 
+                        	?>
+                        	<tr>
+                        		<td id="productid" name="ddProduct" value="<?php echo $ProductID[$j]; ?>"><?php echo $ProductID[$j]; ?></td>
+                        		<td id="supplierid"><?php echo $SupplierName[$j]; ?></td>
+                        		<td id="brandid"><?php echo $BrandName[$j]; ?></td>
+                        		<td id="producttypeid"><?php echo $ProductTypeName[$j]; ?></td>
+                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+                        		<td>
+                        			<input type="text" id="<?php echo 'totalreceiveAmount' . $ProductID[$j]; ?>" name="txtReceiveAmount" value="0" >&nbsp;&nbsp;
                                 	<label>ตัน</label> 
-                                </td>
-                            </tr>
+                        		</td>
+                        		<td>
+                                	<label id="<?php echo 'totalamountProduct' . $ProductID[$j];?>"></label> 
+                        		</td>
+                        		<td><button name="receive" data-productid="<?php echo $ProductID[$j]; ?>" data-productamount="<?php echo $ProductAmount[$j]; ?>" class="btn btn-success">เพิ่ม</button>
+                        		</td>
+                        	</tr>
+                        	<?php
+                        	}
+                        	?>
 
+                        </table>  
+                        <br>   
+                         <table id="table" style="width: 100%">
 							<tr> 
 								<td><label>คิดเป็น</label></td>
-								<td><label id="LabelAmount"></label>
+								<td><label id="LabelAmount" name="LabelAmount"></label>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>ถุง</label></td>
 							</tr> 
 
@@ -212,7 +218,7 @@
 				</div>
 			</div>
 		</div><!--end of tooplate_main-->
-	</form>
+	<!-- </form> -->
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

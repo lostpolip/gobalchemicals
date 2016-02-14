@@ -5,15 +5,15 @@ $( document ).ready(function() {
 	$('#row-brandName').hide();
 
 
-	$('#btnCF').click(function() {
-		var patt= /[-+]?(\d*[.])?\d+/;
+	// $('#btnCF').click(function() {
+	// 	var patt= /[-+]?(\d*[.])?\d+/;
 
-		if(!patt.test($('#txtReceiveAmount').val())) {
-	    	alert('กรุณากรอกน้ำหนักเป็นตัวเลข');
-	    	return false;
-		}
-		alert('บันทึกข้อมูลเรียบร้อย');
-	});
+	// 	if(!patt.test($('#txtReceiveAmount').val())) {
+	//     	alert('กรุณากรอกน้ำหนักเป็นตัวเลข');
+	//     	return false;
+	// 	}
+	// 	alert('บันทึกข้อมูลเรียบร้อย');
+	// });
 
 	$('#ddProduct').change(function(){
 
@@ -44,4 +44,16 @@ $( document ).ready(function() {
 		});
 	});
 
+	$(':button[name=receive]').click(function() {
+		var productAmount = $(this).data('productamount');
+
+		var totalReceive = $('#totalreceiveAmount' + productID).val();
+		var totalAmountProduct = totalReceive+productAmount;
+		// var totalPrice = productPrice*totalUnit;
+		// var orderIDVal =  $('#order-id').val();
+
+		$('#totalAmountProduct' + productID).text(totalAmountProduct);
+		// $('#totalPriceOrder' + productID).text(totalPrice);
+		// $('#totalUnitOrder' + productID).text(totalUnit);
+	});
 });
