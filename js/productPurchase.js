@@ -5,7 +5,18 @@ $( document ).ready(function() {
 
 
 	$('#btnCF').click(function() {
+
+		var patt= /[-+]?(\d*[.])?\d+/;
+
+		if(!patt.test($('#txtProductAmount').val())) {
+	    	alert('กรุณากรอกจำนวนเป็นตัวเลข');
+	    	return false;
+		}
 			alert('บันทึกเรียบร้อย');
+		});
+
+	$('#btnEmail').click(function() {
+			alert('ส่งemailเรียบร้อยแล้วค่ะ');
 		});
 
 	$('#ddSupplier').change(function(){

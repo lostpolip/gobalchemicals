@@ -20,6 +20,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/productPurchase.js"></script>
 		
 		
 
@@ -73,13 +74,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="#">คลังสินค้า</a>
 										<ul>
@@ -175,7 +176,7 @@
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
                         		<td>
                         			<form action="testmail.php">
-                        			<button type="submit" id="btnEdit" ><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
+                        			<button type="submit" id="btnEmail" ><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
                         			</form>
                         		</td>
                         		<td>

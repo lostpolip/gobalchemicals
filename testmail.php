@@ -30,9 +30,9 @@ $body = '<!DOCTYPE html>
 				<head>
 				</head>
 					<body>
-				<div class="floating-box" style="float: left;width: 1240px;height: 1020px;margin: 10px;border: 3px solid #E6E6E6; ">
+				<div class="floating-box" style="float: left;width: 1040px;height: 900px;margin: 10px;border: 3px solid #E6E6E6; ">
 					<div class="box-Logo" style="width: 220px; height: 100px; margin: 50px 0 0 100px;">
-						<img src="..\gobalchemicals\images\LogoChemical.png">
+						<a href="http://www.mx7.com/view2/yV8WbW6C4pdEXtTJ" target="_blank"><img border="0" src="http://www.mx7.com/i/e9a/dU2SBm.png" /></a>
 					</div>
 
 					<div class="box-POId" style="width: 300px;height: 50px;float: right;font-size: 18px;">
@@ -54,7 +54,7 @@ $body = '<!DOCTYPE html>
 
 					</div>
 
-					<div class="box-Detail" style="width: 1040px; margin: 50px 0 0 100px;">
+					<div class="box-Detail" style="width: 840px; margin: 50px 0 0 100px;">
 						<table id="table1" width="100%">
                         	<tr>
                         		<th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">Part No.</th>
@@ -76,10 +76,11 @@ $body = '<!DOCTYPE html>
                     <div class="box-total" style="font-weight: bold; font-size: 19px; margin: 0px 0 0 100px;"> 
                     	<table id="table1" width="91%">
                         	<tr>
-								<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">Total Quanity(Ton) :'.$PurchaseAmount[0].'</th>
-                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;"></th>
+								<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">Total Quanity(Ton) :</th>
+                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;">'.$PurchaseAmount[0].'</th>
                             </tr>    
-						</table>   
+						</table>  
+						<label id="detail">More Detail :'.$PurchaseDetail[0].' </label>  
                     </div>  
 				</div>
 				</body>

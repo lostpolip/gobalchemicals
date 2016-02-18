@@ -73,13 +73,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="#" class="selected">คลังสินค้า</a>
 										<ul>
@@ -123,6 +123,7 @@
 			        $Lot[$i] = $row["Lot"];
 			        $ExpiryDate[$i] = $row["ExpiryDate"];
 			        $ReceiveDate[$i] = $row["ReceiveDate"];
+			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $ReceiveAmount[$i] = $row["ReceiveAmount"];	
 			        $i++;
@@ -147,7 +148,7 @@
                                 <th>วันรับสินค้า</th>
                                 <th>วันหมดอายุ</th>
                                 <th>ชื่อสินค้า</th>
-                                <th>จำนวน</th>
+                                <th>จำนวน(ตัน)</th>
                                 <th>คำสั่ง</th>
                                 
                         	</tr>
@@ -157,15 +158,14 @@
                         	?>
 
                         	<tr>
-                        		<td id="receive"><?php echo $ReceiveID[$j] ?></td>
+                        		<td id="<?php echo $ReceiveID[$j] ?>"><?php echo $ReceiveID[$j] ?></td>
                         		<td id="lot"><?php echo $Lot[$j] ?></td>
                         		<td id="receiveDate"><?php echo $ReceiveDate[$j] ?></td>
                         		<td id="expiryDate"><?php echo $ExpiryDate[$j] ?></td>
-                        		<td id="productName"><?php echo $ProductName[$j] ?></td>
+                        		<td id="<?php echo $ProductID[$j] ?>"><?php echo $ProductName[$j] ?></td>
                         		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
                         		
                         		<td>
-                        			<button id="btnEdit" ><a href="productReceiveEdit.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">แก้ไข</a></button>
                         			<button id="btnDelete"><a href="deleteProductReceiveSQL.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">ลบ</a></button>             
                         		</td>
                         	</tr>

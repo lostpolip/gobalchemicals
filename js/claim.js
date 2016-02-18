@@ -7,13 +7,12 @@ $( document ).ready(function() {
 		var patt= /[-+]?(\d*[.])?\d+/;
 
 		if(!patt.test($('#txtClaimAmount').val())) {
-	    	alert('กรุณากรอกน้ำหนักเป็นตัวเลข');
+	    	alert('กรุณากรอกจำนวนเป็นตัวเลข');
 	    	return false;
 		}
 		alert('บันทึกข้อมูลเรียบร้อย');
-
-
 	});
+
 
 	$('#ddProduct').change(function(){
 

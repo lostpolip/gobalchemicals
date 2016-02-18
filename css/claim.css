@@ -404,3 +404,13 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: red;
 	font-size: 16px;
 }
+#txtClaimDetail{
+	width: 220px;
+	height: 80px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+}

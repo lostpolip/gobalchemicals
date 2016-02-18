@@ -75,13 +75,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="#">คลังสินค้า</a>
 										<ul>
@@ -129,18 +129,23 @@
 
                             <tr>
                                 <td><label><span class="red-star">*</span>ที่อยู่ เลขที่ :</label></td>
-                                <td><input type="text" id="txtSupplierAddress" name="txtSupplierAddress" required></td>
+                                <td><input type="text" id="txtSupplierAddress" name="txtSupplierAddress" ></td>
+                            </tr>
+
+                            <tr>
+                                <td><label><span class="red-star">*</span>ตำบล :</label></td>
+                                <td><input type="text" id="txtSupplierDistrict" name="txtSupplierDistrict" ></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">*</span>อำเภอ :</label></td>
-                                <td><input type="text" id="txtSupplierDistrict" name="txtSupplierDistrict" required></td>
+                                <td><input type="text" id="txtSupplierAumphur" name="txtSupplierAumphur" ></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">*</span>จังหวัด :</label></td>
                            
-                                <td><input id="txtSupplierProvince" name="txtSupplierProvince" required>
+                                <td><input id="txtSupplierProvince" name="txtSupplierProvince" >
                                		</input>
 								</td>
                             </tr>
@@ -148,7 +153,7 @@
 							<tr>
                                 <td><label><span class="red-star">*</span>รหัสไปรษณีย์ :</label></td>
                                 <td>
-                                	<input type="text" id="txtSupplierZipcode" name="txtSupplierZipcode" required>
+                                	<input type="text" id="txtSupplierZipcode" name="txtSupplierZipcode" >
                                 </td>
                             </tr>
 
@@ -162,7 +167,7 @@
                             <tr>
                                 <td><label>Email :</label></td>
                                 <td>
-                                	<input type="email" id="txtSupplierEmail" name="txtSupplierEmail" >
+                                	<input type="email" id="txtSupplierEmail" name="txtSupplierEmail" required>
                                 </td>
                             </tr>
 

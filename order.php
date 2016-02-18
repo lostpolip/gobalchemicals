@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/order.js"></script>
+		<script type="text/javascript" src="js/deleteOrder.js"></script>
 		
 
 	</head>
@@ -80,7 +81,7 @@
 						<tr>
 							<td>
 							
-					<form action="orderAddSQL.php">		
+					<form action="orderAddSQL.php" method="POST">		
 						<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
@@ -110,18 +111,20 @@
 	   											for($j=0; $j<$i; $j++){
 	   										?>
 	   										<tr id="<?php echo 'row' . $ProductID[$j];?>" class="hide">
-											    <td><label><?php echo $ProductName[$j];?></label></td>
+											    <td><label id="productName"><?php echo $ProductName[$j];?></label></td>
 											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label></td>											   
 											    <td><label id="<?php echo 'totalUnitOrder'. $ProductID[$j]; ?>"></label></td>
 											    <td><label><?php echo $Cost[$j];?></label></td>
 											    <td><label id="<?php echo 'totalPriceOrder'. $ProductID[$j]; ?>"></label></td>
-											    <td>
+											    
+											     <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-title="<?php echo $ProductName[$j];?>" data-id="<?php echo 'row' . $ProductID[$j];?>" data-dismiss="modal"><span class="glyphicon glyphicon-trash"></span></a></td>
+<!-- 											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
-											    		<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >
+											    		<button class="btn btn-danger btn-xs" data-title="<?php echo $ProductName[$j];?>" data-toggle="modal" data-target="#delete" >
 											    			<span class="glyphicon glyphicon-trash"></span>
 											    		</button>
 											    	</p>
-											    </td>
+											    </td> -->
 											</tr>
 											
 											<input type="hidden" id="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" value="<?php echo $ProductID[$j];?>" disabled>
@@ -141,13 +144,13 @@
 												}
 											?>
 											<input type="hidden" id="order-id" name="order-id">
-										</tbody>
-        							</table>
 
+										</tbody>
+        							</table>						
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
-							        <button type="submit" class="btn btn-primary">สั่งซื้อสินค้า</button>
+							        <button type="submit" id="btnCF" class="btn btn-primary">สั่งซื้อสินค้า</button>
 							      </div>
 							    </div>
 							  </div>
@@ -175,7 +178,7 @@
 										<span>บาท</span>	
 									<br>
 										<span>จำนวน :</span>	
-										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"></input>	
+										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"  placeholder="0" requried>	
 										<span>ตัน</span>	
 
 										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Cost[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	

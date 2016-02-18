@@ -1,6 +1,7 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
+	
 	$product=$dbManagement->select("SELECT product.ProductAmount FROM product WHERE ProductID='".$_REQUEST['ddProduct']."'");
 	 			$ddProduct = 0;
 	 				if (mysqli_num_rows($product) > 0) {

@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<!-- <script type="text/javascript" src="js/orderBasket.js"></script> -->
 		
 
 	</head>
@@ -63,8 +64,16 @@
 											JOIN zipcode ON customer.ZipcodeID=zipcode.ZipcodeID
 											WHERE CustomerID='".$_SESSION['CustomerID']."'");
 
-			$order=$dbManagement->select("SELECT * FROM orderdetail
-											JOIN product ON orderdetail.ProductID=product.ProductID");
+			$orderdetail=$dbManagement->select("SELECT * FROM `orderdetail`
+												JOIN product 
+												ON orderdetail.ProductID=product.ProductID
+												JOIN orders 
+												ON orderdetail.OrderID = orders.OrderID
+												WHERE CustomerID = '".$_SESSION['CustomerID']."'
+                                                AND State = 'no'
+												");
+			// print_r($orderdetail);
+			// exit;
 
 
 			$i = 0;
@@ -88,21 +97,22 @@
 			}
 
 			$i = 0;
-			if (mysqli_num_rows($order) > 0) {
-			    while($row = mysqli_fetch_assoc($order)) {
+			if (mysqli_num_rows($orderdetail) > 0) {
+			    while($row = mysqli_fetch_assoc($orderdetail)) {
 			    	$ProductID[$i] = $row["ProductID"];
 			    	$ProductName[$i] = $row["ProductName"];
 			    	$Cost[$i] = $row["Cost"];
 			    	$OrderAmount[$i] = $row["OrderAmount"];
 			    	$TotalVolumn[$i] = $row["TotalVolumn"];
 			    	$TotalCost[$i] = $row["TotalCost"];
-
+			    	$OrderID[$i] = $row["OrderID"];
+			    	$OrderDate[$i] = $row["OrderDate"];
 			        $i++;
 			    }
 			}			
 
 		?>
-	<!-- <form action="orderAddSQL.php"> -->
+	<form action="orderAddSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
@@ -111,8 +121,8 @@
 						<br>
 
 						<tr>
-	                        <td><label id="OrderDate">วันที่สั่งซื้อ:</label></td>
-	                        <td><input type="date" id="txtDateOrder" name="txtDateOrder"></td>
+	                        <td><label id="OrderDate">วันที่สั่งซื้อ: <?php echo $OrderDate[0]; ?></label></td>
+	                        
 
 
 	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>
@@ -121,11 +131,12 @@
 	                    </tr>
 						<div class="button-menu">
 							<input type="image" src="images/buttonBasket1.png" alt="Submit" id="menu0rder">
-							<!-- <input type="image" src="images/buttonBasketOrder1.png" alt="Submit" id="menu0rder"> -->
+
 						</div>
 
 						<table id="table2" width="95%">
                         	<tr>
+                        		<th>รหัสOrder</th>
                         		<th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>จำนวน (ตัน)</th>
@@ -138,8 +149,8 @@
                         	for($j=0;$j<$i;$j++){ 
                         	?>  
 
-                        	<tr>
-                        		<!-- <td id="orderid"><?php echo ($CustomerTel[0]); ?></td> -->
+                        	<tr id="orderList">
+                        		<td id="orderid"><?php echo ($OrderID[$j]); ?></td>
                         		<td id="productid"><?php echo ($ProductID[$j]); ?></td>
                         		<td id="productname"><?php echo ($ProductName[$j]); ?></td>
                         		<td id="orderamount"><?php echo ($OrderAmount[$j]); ?></td>
@@ -157,12 +168,7 @@
                     <br>
                     <div class="col_w540"><br> 
                     	<div class="boxPayment">
-                    		<label>รูปแบบการชำระเงิน :</label>
-                    		
-                    		<form action="">
-							  <input type="radio" name="gender" value="credit">เครดิต30วัน<br>
-							  <input type="radio" name="gender" value="money"> ชำระเงินสด<br>
-							</form>        		
+                    		<label><span id="star">*</span>เงื่อนไขในการชำระเงิน : เครดิต 30 วัน</label>   		
                     	</div>
 
                     	<div class="boxSummaryPrice">
@@ -219,7 +225,7 @@
 
 									<tr>
 										<td>ชื่อบริษัท :</td>
-										<td><label><?php echo $_SESSION['CustomerName']?></label></td>
+										<td><label id="<?php echo $_SESSION['CustomerID']?>"><?php echo $_SESSION['CustomerName']?></label></td>
 									</tr>
 
 									<tr>
@@ -298,7 +304,7 @@
 							</div>
 							<br>
 							 <tr>
-                            	<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
+                            	<td><a href="order.php"><button type="button" id="btnBack">กลับไปหน้าสินค้า</button></a></td>
                             	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
                                  <td><button type="submit" id="btnOK">บันทึก</button></td>     
                             </tr>
@@ -307,7 +313,7 @@
 				</div>   
 			</div>
 		</div><!--end of tooplate_main-->
-	<!-- </form> -->
+	</form>
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

@@ -1,5 +1,13 @@
 $( document ).ready(function() {
+
 	$(':button[name=order]').click(function() {
+
+			var patt= /[-+]?(\d*[.])?\d+/;
+
+			if(!patt.test($(':input[name=numberLevel]').val())) {
+			    alert('กรุณากรอกเป็นตัวเลข');
+			    	return false;
+			}
 		var productID = $(this).data('productid');
 		var productName = $(this).data('productname');
 		var productPrice = $(this).data('productprice');
@@ -46,6 +54,6 @@ $( document ).ready(function() {
 			$('#order-id').val(orderIDVal.replace(reqEx,''));
 		}
 
-		// alert(totalPrice);
 	});
 });
+

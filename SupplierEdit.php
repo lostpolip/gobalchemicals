@@ -75,13 +75,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="#">คลังสินค้า</a>
 										<ul>
@@ -123,6 +123,7 @@
 			    	$SupplierID[$i] = $row["SupplierID"];
 			        $SupplierName[$i] = $row["SupplierName"]; 
 			        $SupplierAddress[$i] = $row["SupplierAddress"]; 
+			        $SupplierAumphur[$i] = $row["SupplierAumphur"]; 
 			        $SupplierDistrict[$i] = $row["SupplierDistrict"]; 
 			        $SupplierProvince[$i] = $row["SupplierProvince"]; 
 			        $SupplierZipcode[$i] = $row["SupplierZipcode"]; 
@@ -160,6 +161,12 @@
                             <tr>
                                 <td><span class="red-star">*</span>อำเภอ :</td>
                                 <td><input type="text" id="txtSupplierDistrict" name="txtSupplierDistrict" value="<?php echo $SupplierDistrict[0]; ?>" required>                               	
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="red-star">*</span>อำเภอ :</td>
+                                <td><input type="text" id="txtSupplierAumphur" name="txtSupplierAumphur" value="<?php echo $SupplierAumphur[0]; ?>" required>                               	
                                 </td>
                             </tr>
 

@@ -1,6 +1,7 @@
 <?php
 require 'dbManagement.php';
 $dbManagement = new dbManagement();
+
 $product=$dbManagement->select("SELECT product.ProductAmount FROM product WHERE ProductID='".$_REQUEST['ddProduct']."'");
 	 			$ddProduct = 0;
 	 				if (mysqli_num_rows($product) > 0) {
@@ -10,7 +11,7 @@ $product=$dbManagement->select("SELECT product.ProductAmount FROM product WHERE 
 	 		    		}
 	 				}
 
-$dbManagement->insert("INSERT INTO claim(ClaimID, ClaimDate, OrderID, ClaimAmount, ProductID, State,CustomerID) VALUES ('".$_REQUEST['txtClaimID']."','".$_REQUEST['txtDateClaim']."','".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtClaimState']."','".$_REQUEST['txtCustomerID']."')");
+$dbManagement->insert("INSERT INTO claim(ClaimDate, OrderID, ClaimAmount, ProductID, State, CustomerID, ClaimDetail) VALUES ('".$_REQUEST['txtDateClaim']."','".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtClaimState']."','".$_REQUEST['txtCustomerID']."','".$_REQUEST['txtClaimDetail']."')");
 
 $totalProduct = $ProductAmount[0]-$_REQUEST['txtClaimAmount'];
 

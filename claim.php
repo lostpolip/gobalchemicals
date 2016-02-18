@@ -84,16 +84,16 @@
 
                         	<tr>
                                 <td><label><span class="red-star">* </span>วันที่เคลมสินค้า:</label></td>
-                                <td><input type="date" id="txtDateClaim" name="txtDateClaim" required > </td>
+                                <td><input type="date" id="txtDateClaim" name="txtDateClaim" required></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">* </span>เลขที่ใบสั่งซื้อ:</label></td>
-                                <td><input type="text" id="txtOrderID" name="txtOrderID" required ></td>
+                                <td><input type="text" id="txtOrderID" name="txtOrderID" required></td>
                             </tr>
 
                             <tr>
-                                <td><label>ชื่อสินค้า :</label></td>                       
+                                <td><label><span class="red-star">* </span>ชื่อสินค้า :</label></td>                       
                                 <td><select id="ddProduct" name="ddProduct" >
                                 	 	<option value="" selected>-------- กรุณาเลือก --------</option>
                                 	 	<?php
@@ -120,8 +120,14 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวน :</label></td>
-                                <td><input type="text" id="txtClaimAmount" name="txtClaimAmount">
+                                <td><input type="text" id="txtClaimAmount" name="txtClaimAmount" required>
                                 <label>ถุง</label></td>
+                            </tr>
+
+                            <tr>
+                                <td><label>รายละเอียดเพิ่มเติม :</label></td>
+                                <td><textarea id="txtClaimDetail" name="txtClaimDetail"></textarea>
+                               
                             </tr>
 
                             <tr> <td>&nbsp;</td></tr>

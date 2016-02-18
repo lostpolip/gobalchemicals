@@ -73,13 +73,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="#">คลังสินค้า</a>
 										<ul>
@@ -136,7 +136,7 @@
 			</div>	
 						<table id="table2" width="100%">
                         	<tr>
-                        		<th>รหัสสินค้า</th>
+ 
                                 <th>ชื่อสินค้า</th>
                                 <th>จำนวนสินค้า</th>
                                 
@@ -147,7 +147,7 @@
                         	?>
 
                         	<tr>
-                        		<td id="productID"><?php echo $ProductID[$j] ?></td>
+
                         		<td id="productName"><?php echo $ProductName[$j] ?></td>
                         		<td id="productAmount"><?php echo $ProductAmount[$j] ?></td>
                         		

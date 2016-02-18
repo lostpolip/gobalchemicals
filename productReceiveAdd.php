@@ -74,13 +74,13 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="#">การสั่งซื้อสินค้า</a></li>
 												<li><a href="#">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li>
+			                        </li> -->
 									
 									<li><a href="warehouse.php" class="selected">คลังสินค้า</a>
 										<ul>
@@ -143,7 +143,7 @@
 
                         	<tr>
                                 <td><label><span class="red-star">* </span>Lot Number:</label></td>
-                                <td><input type="text" id="txtLotReceive" name="txtLotReceive"></td>
+                                <td><input type="text" id="txtLotReceive" name="txtLotReceive" required></td>
                             </tr>
 
 
@@ -174,7 +174,7 @@
                             </tr>
 
                             <tr id="row-supplierName">
-                            	<td><label>Email:</label></td>
+                            	<td><label>ผู้จัดจำหน่าย:</label></td>
                                 <td><label id="txtsupplierName" name="txtsupplierName"></label></td>      
                             </tr>
 
@@ -186,16 +186,16 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
-                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" >&nbsp;&nbsp;
+                                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" required>&nbsp;&nbsp;
                                 	<label>ตัน</label> 
                                 </td>
                             </tr>
 
-							<tr> 
+<!-- 							<tr> 
 								<td><label>คิดเป็น</label></td>
 								<td><label id="LabelAmount"></label>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>ถุง</label></td>
-							</tr> 
+							</tr>  -->
 
                             <tr> <td><input type="hidden" id="txtReceiveState" name="txtReceiveState"></td>
                             </tr>

@@ -304,7 +304,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 
 #table2{
-	width: 790px;
+	width: 820px;
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
@@ -420,4 +420,49 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-family: 'quarkbold';
 	font-size: 22px;
 	color: #000000;
+}
+#claimCM{
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #000000;
+}
+
+#dateCM{
+	border: none;
+	background: url(../images/tooplate_body.png);
+	width: 30px;
+	height: 30px;
+	font-family: 'quarkbold';
+	font-size: 18px;
+	color: #FACC2E;
+
+}
+#btnDate{
+	width: 80px;
+	height: 30px;
+	background-color: #f0ad4e;
+    border-radius: 5px;
+    border-color: #eea236;
+}
+#btnDate a{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+#claimdate{
+	width: 50px;
+}
+
+#btnCF{
+	width: 150px;
+	height: 30px;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    border-radius: 5px;
+}
+#btnCF a{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
 }

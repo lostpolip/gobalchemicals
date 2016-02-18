@@ -3,6 +3,10 @@ $( document ).ready(function() {
 	  e.preventDefault()
 	  $(this).tab('show')
 	});
+
+	$('#btnEmail').click(function() {
+			alert('ส่งemailเรียบร้อยแล้วค่ะ');
+	});
 });
 
 
