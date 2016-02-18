@@ -92,11 +92,12 @@ $body = '<!DOCTYPE html>
 			                    <div id="box-footer" style="border: 1px solid #999999; width:1030px; margin-left:100px;" >
 			                        <div class="box-OrderBy" style="font-weight: bold; font-size: 22px; float:left;  margin: 30px 0 0 30px; width:300px;">
 			                            The GolbalChemicals CO.,LTD 
+			                            <br>
 			                            <label style="font-size: 16px; margin: 30px 0 0 ">Email : nantiyathongpriwan@gmail.com</label><br>
 			                          
 			    
 			                        </div> 
-			                                                <div class="box-OrderBy" style="font-weight: bold; font-size: 22px;  width:600px; margin:0px 0 20px 400px; " >
+			                                                <div class="box-OrderBy" style="font-weight: bold; font-size: 22px;  width:700px; margin:0px 0 20px 380px; " >
 			                            <br>
 			                            <label style="font-size: 16px; margin: 30px 0 0 10px;">ติดต่อสอบถามรายละเอียดเพิ่มเติม</label><br>
 			                            <label style="font-size: 16px; margin: 30px 0 0 10px;">สถานที่ติดต่อ :&nbsp; 87/84&nbsp; หมู่ 2&nbsp; ตำบลบางพลับ&nbsp; อำเภอปากเกร็ด&nbsp; จังหวัดนนทบุรี&nbsp; 11120</label><br>
