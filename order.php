@@ -117,14 +117,13 @@
 											    <td><label><?php echo $Cost[$j];?></label></td>
 											    <td><label id="<?php echo 'totalPriceOrder'. $ProductID[$j]; ?>"></label></td>
 											    
-											     <td><a href="#" class="confirm-delete btn mini red-stripe" role="button" data-title="<?php echo $ProductName[$j];?>" data-id="<?php echo 'row' . $ProductID[$j];?>" data-dismiss="modal"><span class="glyphicon glyphicon-trash"></span></a></td>
-<!-- 											    <td>
+											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
-											    		<button class="btn btn-danger btn-xs" data-title="<?php echo $ProductName[$j];?>" data-toggle="modal" data-target="#delete" >
+											    		<button name="btnDelete" class="btn btn-danger btn-xs" data-productid="<?php echo $ProductID[$j];?>">
 											    			<span class="glyphicon glyphicon-trash"></span>
 											    		</button>
 											    	</p>
-											    </td> -->
+											    </td>
 											</tr>
 											
 											<input type="hidden" id="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" value="<?php echo $ProductID[$j];?>" disabled>
@@ -150,7 +149,7 @@
 							      </div>
 							      <div class="modal-footer">
 							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
-							        <button type="submit" id="btnCF" class="btn btn-primary">สั่งซื้อสินค้า</button>
+							        <button type="submit" id="btnCF"  class="btn btn-primary">สั่งซื้อสินค้า</button>
 							      </div>
 							    </div>
 							  </div>
@@ -178,10 +177,10 @@
 										<span>บาท</span>	
 									<br>
 										<span>จำนวน :</span>	
-										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0"  placeholder="0" requried>	
+										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0" requried>	
 										<span>ตัน</span>	
 
-										&nbsp; &nbsp;<button name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Cost[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
+										&nbsp; &nbsp;<button id="btnBasket" name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Cost[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
 
 									</p>
 								<div class="cleaner"></div>

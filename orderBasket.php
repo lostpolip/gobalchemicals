@@ -72,9 +72,6 @@
 												WHERE CustomerID = '".$_SESSION['CustomerID']."'
                                                 AND State = 'no'
 												");
-			// print_r($orderdetail);
-			// exit;
-
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
@@ -107,12 +104,18 @@
 			    	$TotalCost[$i] = $row["TotalCost"];
 			    	$OrderID[$i] = $row["OrderID"];
 			    	$OrderDate[$i] = $row["OrderDate"];
+			    	$TotalPrice[$i] = $row["TotalPrice"];
+			    	$TotalVat[$i] = $row["TotalVat"];
+			    	$TotalTransport[$i] = $row["TotalTransport"];
+			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
 			        $i++;
-			    }
-			}			
+			    } 
+			} else {
+			    header( "location: /gobalchemicals/order.php" );
+			}		
 
 		?>
-	<form action="orderAddSQL.php">
+	<form action="orderupdateSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
@@ -126,7 +129,9 @@
 
 
 	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>
-	                        <td><input type="text" id="txtOrderID" name="txtOrderID"></td>
+	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo $OrderID[0]; ?></label>
+	                        	<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[0]; ?>">
+	                        </td>
 
 	                    </tr>
 						<div class="button-menu">
@@ -136,7 +141,6 @@
 
 						<table id="table2" width="95%">
                         	<tr>
-                        		<th>รหัสOrder</th>
                         		<th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>จำนวน (ตัน)</th>
@@ -150,7 +154,6 @@
                         	?>  
 
                         	<tr id="orderList">
-                        		<td id="orderid"><?php echo ($OrderID[$j]); ?></td>
                         		<td id="productid"><?php echo ($ProductID[$j]); ?></td>
                         		<td id="productname"><?php echo ($ProductName[$j]); ?></td>
                         		<td id="orderamount"><?php echo ($OrderAmount[$j]); ?></td>
@@ -178,7 +181,7 @@
 	                    				<label>ราคาสินค้า :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice"> 
+		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPrice[0]); ?>" disabled> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -188,7 +191,7 @@
 	                    				<label>ภาษีมูลค่าเพิ่ม 7% :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice"> 
+		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalVat[0]); ?>" disabled> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>		                      
@@ -198,7 +201,7 @@
 	                    				<label>ค่าขนส่ง :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalTransaction" name="totalTransaction"> 
+		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo number_format($TotalTransport[0]); ?>"> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -208,7 +211,7 @@
 	                    				<label>รวมทั้งหมด :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalOther" name="totalOther"> 
+		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]); ?>" disabled> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -304,7 +307,7 @@
 							</div>
 							<br>
 							 <tr>
-                            	<td><a href="order.php"><button type="button" id="btnBack">กลับไปหน้าสินค้า</button></a></td>
+                            	<td><a href="indexEmployee.php"><button type="button" id="btnBack">กลับไปหน้าแรก</button></a></td>
                             	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
                                  <td><button type="submit" id="btnOK">บันทึก</button></td>     
                             </tr>
