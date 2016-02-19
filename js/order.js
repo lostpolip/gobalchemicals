@@ -10,9 +10,11 @@ $( document ).ready(function() {
 		var productName = $(this).data('productname');
 		var productPrice = $(this).data('productprice');
 		var productWeight = $(this).data('productweight');
+		var productCost = $(this).data('productcost');
 		var totalProduct = $('#totalProduct' + productID).val();
 		var totalUnit = (totalProduct*1000)/productWeight;
 		var totalPrice = productPrice*totalUnit;
+		var totalCost = productCost*totalUnit;
 		var orderIDVal =  $('#order-id').val();
 
 		if(totalProduct <= 0){
@@ -29,6 +31,7 @@ $( document ).ready(function() {
 		$('#hiddenProductOrder' + productID).val(totalProduct);
 		$('#hiddentotalUnitOrder' + productID).val(totalUnit);
 		$('#hiddentotalPriceOrder' + productID).val(totalPrice);
+		$('#hiddentotalCostOrder' + productID).val(totalCost);
 
 		if (totalProduct > 0) {
 			$('#row' + productID).removeClass('hide');
@@ -37,6 +40,7 @@ $( document ).ready(function() {
 			$('#hiddenProductOrder' + productID).removeAttr("disabled");
 			$('#hiddentotalUnitOrder' + productID).removeAttr("disabled");
 			$('#hiddentotalPriceOrder' + productID).removeAttr("disabled");		
+			$('#hiddentotalCostOrder' + productID).removeAttr("disabled");	
 			$('#hiddenproductCost' + productID).removeAttr("disabled");
 			// $('#hiddenproductName' + productID).removeAttr("disabled");
 
@@ -55,6 +59,7 @@ $( document ).ready(function() {
 			$('#hiddenproductID' + productID).attr("disabled", 'disabled');
 			$('#hiddenProductOrder' + productID).attr("disabled", 'disabled');
 			$('#hiddentotalUnitOrder' + productID).attr("disabled", 'disabled');
+			$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');	
 			$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
 			$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
 			// $('#hiddenproductName' + productID).attr("disabled", 'disabled');

@@ -139,7 +139,7 @@
 			    }
 			}
 		?>
-	
+	<form action="approveAddSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -187,49 +187,50 @@
 
 					    </div><!--- แจ้งซื้อสินค้า -->
 
+					<form action="approveAddSQL.php">
 					    <div role="tabpanel" class="tab-pane" id="approveClaim">
 					    	<br>
 					    	<?php
 		                        for($j=0;$j<$i;$j++){ 
 		                    ?>	
 					    	<table id="table2" width="100%">
-					    		<label id="labelDate"><span id="claimDD">วันที่ :&nbsp;&nbsp;</span><?php echo $ClaimDate[$j] ?></label>&nbsp;&nbsp;
-					    		<span id="claimDD">รหัสการเคลมสินค้า:&nbsp;&nbsp;</span><input id="dateCM" name="dateCM" value="<?php echo $ClaimID[$j] ?>">
-
+					    		<label id="labelDate"><span id="claimDD">วันที่ :&nbsp;&nbsp;</span><?php echo $ClaimDate[$j]; ?></label>&nbsp;&nbsp;
+					    		<label id="labelCM"><span id="claimDD">รหัสการเคลมสินค้า:&nbsp;&nbsp;</span><?php echo trim($ClaimID[$j]); ?></label>
+					    		<input type="hidden" id="claimid" name="claimid" value="<?php echo $ClaimID[$j]; ?>">
+								
 		                        	<tr>
 		                        		<th>รหัสใบสั่งซื้อ</th>
 		                        		<th>ชื่อลูกค้า</th>
 		                                <th>ชื่อสินค้า</th>
 		                                <th>จำนวน</th>
 		                                <th>กำหนดวันที่ส่ง</th>
-		                                <th>กำหนด</th>
+		                                <!-- <th>กำหนด</th> -->
 		                                <th>คำสั่ง</th>
 		                                
 		                        	</tr>
 		                        	<tr>
 
-		                        		<td id="orderid"><?php echo $OrderID[$j] ?></td>
-		                        		<td id="customername"><?php echo $CustomerName[$j] ?></td>
-		                        		<td id="productname"><?php echo $ProductName[$j] ?></td>
-		                        		<td id="claimamount"><?php echo $ClaimAmount[$j] ?>&nbsp;&nbsp;ถุง</td>
-		                        		<form action="approveAddSQL.php">
-		                        		<td id="claimdate">
+		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="claimamount"><?php echo $ClaimAmount[$j]; ?>&nbsp;&nbsp;ถุง</td>
+		                        		
+		                        		<td>
 			                        		<input type="date" id="claimDate" name="claimDate" >
 
 		                        		</td>
-		                        		</form>
-		                        		<td><button type="button" id="btnDate" ><a href="approveAddSQL.php?$ClaimID=<?php echo $ClaimID[$j]; ?>">กำหนด</a></button></td>
+
+		                        		<!-- <td><button type="submit" id="btnDate">กำหนด</button></td> -->
 		                        		<td>
-		                        			<button type="button" id="btnEmail" ><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j] ?>CustomerID=<?php echo $CustomerID[$j] ?> ">ยืนยันการแจ้ง</a></button>
-		                        			<!-- <button id="btnDelete">ลบ</button> -->
+		                        			<button type="submit" id="btnEmail">ยืนยันการแจ้ง</button>
 		                        		</td>
 		                        	</tr>
-							</table>
-						 
+							</table>					 
 							<?php
 		                        }
 		                    ?>        
 					    </div>
+					    </form>
 					</div>
 				</div>
 			</div>	

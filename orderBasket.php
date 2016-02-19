@@ -46,6 +46,8 @@
 			                       <li><a href="profileDetail.php">ข้อมูลส่วนตัว</a> </li>
 						
 									<li><a href="order.php" class="selected">สั่งซื้อสินค้า</a></li>
+
+									<li><a href="orderList.php" >รายการสั่งซื้อ</a></li>
 									
 									<li><a href="claim.php" >แจ้งเคลมสินค้า</a></li>
 								</ul>
@@ -158,8 +160,8 @@
                         		<td id="productname"><?php echo ($ProductName[$j]); ?></td>
                         		<td id="orderamount"><?php echo ($OrderAmount[$j]); ?></td>
                         		<td id="totalUnit"><?php echo ($TotalVolumn[$j]); ?></td>
-                        		<td id="productcost"><?php echo ($Cost[$j]); ?></td>
-                        		<td id="totalcost"><?php echo ($TotalCost[$j]); ?></td>
+                        		<td id="productcost"><?php echo number_format($Cost[$j]); ?></td>
+                        		<td id="totalcost"><?php echo number_format($TotalCost[$j]); ?></td>
 
                         	</tr>
                         	<?php
@@ -307,7 +309,7 @@
 							</div>
 							<br>
 							 <tr>
-                            	<td><a href="indexEmployee.php"><button type="button" id="btnBack">กลับไปหน้าแรก</button></a></td>
+                            	<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าแรก</button></a></td>
                             	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
                                  <td><button type="submit" id="btnOK">บันทึก</button></td>     
                             </tr>

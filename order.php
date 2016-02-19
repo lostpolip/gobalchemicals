@@ -48,6 +48,8 @@
 						
 									<li><a href="order.php" class="selected">สั่งซื้อสินค้า</a></li>
 									
+									<li><a href="orderList.php">รายการสั่งซื้อ</a></li>
+									
 									<li><a href="claim.php" >แจ้งเคลมสินค้า</a></li>
 								</ul>
 							</div> <!-- end of tooplate_menu -->
@@ -66,6 +68,7 @@
 			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $Cost[$i] = $row["Cost"];
+			        $Price[$i] = $row["Price"];
 			        $ImageProduct[$i] = $row["ImageProduct"];
 			        $ProductAmount[$i] = $row["ProductAmount"];
 			        $ProductWeight[$i] = $row["ProductWeight"];
@@ -114,8 +117,11 @@
 											    <td><label id="productName"><?php echo $ProductName[$j];?></label></td>
 											    <td><label id="<?php echo 'totalProductOrder' . $ProductID[$j];?>"></label></td>											   
 											    <td><label id="<?php echo 'totalUnitOrder'. $ProductID[$j]; ?>"></label></td>
-											    <td><label><?php echo $Cost[$j];?></label></td>
-											    <td><label id="<?php echo 'totalPriceOrder'. $ProductID[$j]; ?>"></label></td>
+											    <td><label><?php echo number_format($Price[$j]);?></label></td>
+											    <td><label id="<?php echo 'totalPriceOrder'. $ProductID[$j]; ?>"></label>
+
+											    	<input type="hidden" id="<?php echo 'totalCostOrder'. $ProductID[$j]; ?>" value="<?php echo 'totalCostOrder'. $ProductID[$j]; ?>">
+											    </td>
 											    
 											    <td>
 											    	<p data-placement="top" data-toggle="tooltip" title="Delete">
@@ -138,6 +144,9 @@
 											<input type="hidden" id="hiddenproductCost" value="<?php echo $Cost[$j];?>" name="hiddenproductCost" value="<?php echo $Cost[$j];?>" disabled>
 
 											<input type="hidden" id="<?php echo 'hiddentotalPriceOrder'. $ProductID[$j]; ?>" name="<?php echo 'hiddentotalPriceOrder'. $ProductID[$j]; ?>" disabled>
+
+											<input type="hidden" id="<?php echo 'hiddentotalCostOrder'. $ProductID[$j]; ?>" name="<?php echo 'hiddentotalCostOrder'. $ProductID[$j]; ?>" disabled>
+
 
 											<?php
 												}
@@ -173,14 +182,16 @@
 										<label><?php echo $ProductID[$j]; ?></label>	
 									<br>
 										<span>ราคาสินค้า :</span>
-										<label id="<?php echo 'productPrice' . $ProductID[$j]; ?>"><?php echo $Cost[$j]; ?></label>
+										<label id="<?php echo 'productPrice' . $ProductID[$j]; ?>"><?php echo $Price[$j]; ?></label>
 										<span>บาท</span>	
+
+										<input type="hidden" id="<?php echo 'productCost' . $ProductID[$j]; ?>">
 									<br>
 										<span>จำนวน :</span>	
 										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0" requried>	
 										<span>ตัน</span>	
 
-										&nbsp; &nbsp;<button id="btnBasket" name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Cost[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
+										&nbsp; &nbsp;<button id="btnBasket" name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Price[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" data-productcost="<?php echo $Cost[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	
 
 									</p>
 								<div class="cleaner"></div>

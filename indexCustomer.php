@@ -43,6 +43,8 @@
 			                       <li><a href="profileDetail.php">ข้อมูลส่วนตัว</a> </li>
 						
 									<li><a href="order.php">สั่งซื้อสินค้า</a></li>
+
+									<li><a href="orderList.php">รายการสั่งซื้อ</a></li>
 									
 									<li><a href="claim.php">แจ้งเคลมสินค้า</a></li>
 								</ul>

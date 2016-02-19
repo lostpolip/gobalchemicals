@@ -26,14 +26,14 @@
 
 	if ($orderID != '') {
 		foreach ($orderIDArray as $orderID) {
-				$dbManagement->insert("INSERT INTO orderdetail(ProductID, OrderAmount, TotalVolumn, TotalCost,OrderID) VALUES ('".$_REQUEST['hiddenproductID'.$orderID]."','".$_REQUEST['hiddenProductOrder'.$orderID]."','".$_REQUEST['hiddentotalUnitOrder'.$orderID]."','".$_REQUEST['hiddentotalPriceOrder'.$orderID]."','OR' '".$newID."')");
+				$dbManagement->insert("INSERT INTO orderdetail(ProductID, OrderAmount, TotalVolumn, TotalCost,OrderID,TotalPrice) VALUES ('".$_REQUEST['hiddenproductID'.$orderID]."','".$_REQUEST['hiddenProductOrder'.$orderID]."','".$_REQUEST['hiddentotalUnitOrder'.$orderID]."','".$_REQUEST['hiddentotalCostOrder'.$orderID]."','OR' '".$newID."','".$_REQUEST['hiddentotalPriceOrder'.$orderID]."')");
 				$totalPrice = $totalPrice + $_REQUEST['hiddentotalPriceOrder'.$orderID];
 			}
 
 			$totalVat= ($totalPrice*7)/100;
 			$extendedPrice = $totalPrice + $totalVat;
 
-			$dbManagement->insert("INSERT INTO orders(`OrderID`, `CustomerID`, `State`, `OrderDate`, `TotalPrice`, `TotalVat`, `TotalTransport`, `ExtendedPrice`) VALUES ('OR' '".$newID."','".$_SESSION['CustomerID']."','no','".date("Y-m-d")."','".$totalPrice."','".$totalVat."',0,'".$extendedPrice."')");
+			$dbManagement->insert("INSERT INTO orders(`OrderID`, `CustomerID`, `State`, `OrderDate`, `TotalPriceOrder`, `TotalVat`, `TotalTransport`, `ExtendedPrice`) VALUES ('OR' '".$newID."','".$_SESSION['CustomerID']."','no','".date("Y-m-d")."','".$totalPrice."','".$totalVat."',0,'".$extendedPrice."')");
 	}
 	
 

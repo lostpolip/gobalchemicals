@@ -31,9 +31,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	color: #a5a5a7;
+	color: #FFFFFF;
 	font-family: 'quarklight';
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 1.5em; 
 	background-color: #303030;
 	background-repeat: repeat;
@@ -41,9 +41,7 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 24px;
-	color: #1C1C1C; 
+	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
 }
@@ -99,10 +97,10 @@ em {
 
 h1, h2, h3, h4, h5, h6 { color: #e5a923; font-weight: normal; 	font-family: 'quarkbold';}
 h1 { font-size: 48px; margin: 0 0 30px; padding: 5px 0; }
-h2 { font-size: 30px; margin: 0 0 25px; padding: 5px 0; }
-h3 { font-size: 36px; margin: 0 0 20px; padding: 0; }
+h2 { font-size: 36px; margin: 0 0 25px; padding: 5px 0; color: #e5a923 }
+h3 { font-size: 30px; margin: 0 0 20px; padding: 0; }
 h4 { font-size: 22px; margin: 0 0 15px; padding: 0; }
-h5 { font-size: 18px; margin: 0 0 10px; padding: 0;  }
+h5 { font-size: 18px; margin: 0 0 30px; padding: 0;  }
 h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .cleaner { clear: both }
@@ -172,7 +170,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_top {
 	height: 42px;
-	width: 100%;
 }
 
 
@@ -210,11 +207,21 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
-
+#tooplate_user{
+	margin-top:11px;
+	width:800px;
+	float:left;
+}
+#tooplate_user label{
+	float: right;
+	font-family: 'quarklight';
+	font-size: 19px;
+	color: #FACC2E;
+}
 
 #site_title { 
 	float: left; 
-	width: 100%; 
+	margin-top: 6px; 
 }
 
 #site_title h1 { 
@@ -222,8 +229,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	padding: 0; 
 }
 
- #site_title h1 a {
- 		float: left; 
+#site_title h1 a {
         display: block;
         width: 220px;
         height: 100px;
@@ -235,8 +241,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
  
 #tooplate_menu { 
-	float: right;
+	float:left;
+	margin-left: 100px;
 }
+
+#tooplate_menu ul li a{
+	font-family: 'quarkbold';
+	font-size: 20px;
+}
+
 
 #tooplate_fw { 
 	width: 960px; 
@@ -246,7 +259,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #tooplate_main {
 	clear: both;
 	width: 960px;
-	margin-left: 120px;
+	margin-left: 180px;
 	padding: 30px 0 20px;
 
 }
@@ -287,36 +300,37 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .col_w240 h4 {
 	font-family: 'quarkbold';
-	margin-left: 350px;
+	margin-left: 380px;
 }
 
 .col_w630 { 
-	width: 630px; 
+	width: 700px; 
 	margin-bottom: 30px;
 }
-.col_w630 p span { 
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
 
+#btnEdit{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
 }
 
-
-
 #table2{
-	width: 820px;
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
-	margin-bottom: 30px;
 }
 #table2 th {
 	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #4B088A;
-	background-color: #E6E6E6;
+	font-size: 22px;
+	color: #e5a923;
+	background-color: #262424;
 	text-align: center;
-    border: 2px solid #6E6E6E;
+    border: 2px solid #333232;
     padding: 5px;
  }  
 
@@ -325,19 +339,16 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 18px;
 	color: #000000;
 	text-align: center;
-	 border: 2px solid #6E6E6E;
+	 border: 2px solid #333232;
 	 height: 30px;
 } 
-#btnEdit, #btnDetail a{
-	color: black;
-}
-
 
 
 /* footer */
 #tooplate_footer_wrapper {
 	clear: both;
 	width: 100%;
+	height: 80%;
 	background: #000000 url(../images/tooplate_footer.png) top repeat-x;
 }
 
@@ -347,6 +358,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #876926;
 	margin-top: 0;
 	margin-right: 50px;
+	margin-bottom: 0;
 	margin-left: 50px;
 	padding-top: 30px;
 	padding-right: 10px;
@@ -362,7 +374,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .footer_link { 
-	margin: 0; 
+	margin-left: 100px;
 	padding: 0; 
 	list-style: none; 
 }
@@ -377,92 +389,80 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	text-align: center;
 }
 
-#tooplate_user{
-	margin-top:11px;
-	width:720px;
-	float:left;
+.fp_service { 
+	width: 600px; 
+	background: #262424; 
+	border: 1px solid #333232;
+	margin-left: 40px;
+	padding: 10px 9px 4px; 
+	color: #ccc; 
 }
-#tooplate_user label{
-	float: right;
+
+.fp_service_box { 
+	vertical-align: middle;
+	padding: 10px 10px 10px; 
+	margin-bottom: 5px; 
+}
+
+.fp_service_box p { 
 	font-family: 'quarklight';
-	font-size: 19px;
-	color: #FACC2E;
-}
-#imageMenuOrder{
-	float:left;
-	width:100px;
-	height:40px;
+	float: right; 
+	width: 300px;
+	font-size: 20px; 
 }
 
-.nav-tabs{
-	width: 790px;
+.fp_service_box label { 
+	color: #e5a923;
+	font-size: 22px; 
+	font-family: 'quarkbold';
 }
 
-#btnDetail {
-	font-size: 20px;
+.fp_service_box label span { 
+	color: #e5a923;
+	font-size: 20px; 
 	font-family: 'quarklight';
-	color: #000000;
+}
+.fp_service_box img { 
+	float: left; 
+	margin-left: 20px;
 }
 
-#btnDelete {
-	font-size: 20px;
-	font-family: 'quarklight';
-	color: #000000;
+.fp_c1 { 
+	background: #545454; 
+}
+.fp_lp img { 
+	border-bottom: 5px solid #fff; 
 }
 
-#labelDate , #labelID{
-	font-size: 18px;
-	font-family: 'quarkbold';
-	color: #FACC2E;
-}
 
-#claimDD{
-	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #000000;
-}
-#claimCM{
-	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #000000;
-}
-
-#dateCM{
+#button-basket{
 	border: none;
-	background: url(../images/tooplate_body.png);
+	width: 53px;
+	height: 51px;
+	background:url(../images/basket.png);
+	margin-left: 590px;
+	margin-bottom: 5px;
+}
+#numberLevel{
 	width: 30px;
-	height: 30px;
-	font-family: 'quarkbold';
-	font-size: 18px;
-	color: #FACC2E;
+	height: 20px;
+}
 
+.imageProduct{
+	width: 128px;
 }
-#btnDate{
-	width: 80px;
-	height: 30px;
-	background-color: #f0ad4e;
-    border-radius: 5px;
-    border-color: #eea236;
-}
-#btnDate a{
+
+.btn {
 	font-family: 'quarklight';
-	font-size: 20px;
 	color: #FFFFFF;
+	font-size: 22px;	
 }
-
-#claimdate{
+input{
 	width: 50px;
 }
 
-#btnEmail{
-	width: 150px;
-	height: 30px;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    border-radius: 5px;
-}
-#btnEmail a{
-	font-family: 'quarklight';
-	font-size: 20px;
-	color: #FFFFFF;
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
 }
