@@ -57,6 +57,7 @@
 					require 'dbManagement.php';
 					$dbManagement = new dbManagement();
 					$product = $dbManagement->select("SELECT *FROM product");
+					$Orders = $dbManagement->select("SELECT *FROM orders");
 
 					$ddProduct = 0;
 					if (mysqli_num_rows($product) > 0) {
@@ -66,7 +67,18 @@
 					        $ddProduct++;
 					    }
 					   
+					}	
+
+
+					$ddOrders = 0;
+					if (mysqli_num_rows($Orders) > 0) {
+					    while($row = mysqli_fetch_assoc($Orders)) {
+					        $OrderID[$ddOrders] = $row["OrderID"];
+					        $ddOrders++;
+					    }
+					   
 					}		
+	
 
 				?>
 	<form action="claimAddSQL.php">
@@ -91,7 +103,18 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>เลขที่ใบสั่งซื้อ:</label></td>
-                                <td><input type="text" id="txtOrderID" name="txtOrderID" required></td>
+                                <td><select id="txtOrderID" name="txtOrderID" >
+                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
+                                	 	<?php
+                        					for($j=0;$j<$ddOrders;$j++){ 
+                        				?>	
+                                		<option value="<?php echo $OrderID[$j]; ?>"><?php echo $OrderID[$j]; ?></option>
+                                		<?php
+                        					}
+                        				?>
+                                	</select>
+                                </td>	
+                                
                             </tr>
 
                             <tr>

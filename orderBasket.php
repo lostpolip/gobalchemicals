@@ -310,8 +310,8 @@
 							<br>
 							 <tr>
                             	<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าแรก</button></a></td>
-                            	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
-                                 <td><button type="submit" id="btnOK">บันทึก</button></td>     
+                            	<!-- <td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td> -->
+                                 <td><button type="submit" id="btnOK">สั่งพิมพ์</button></td>     
                             </tr>
                     	</div>
                     </div>

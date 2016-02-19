@@ -134,6 +134,7 @@
 			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $ClaimAmount[$i] = $row["ClaimAmount"];
+			        $State[$i] = $row["State"];
 			        $ClaimSendDate[$i] = $row["ClaimSendDate"];
 			        $i++;
 			    }
@@ -187,7 +188,7 @@
 
 					    </div><!--- แจ้งซื้อสินค้า -->
 
-					<form action="approveAddSQL.php">
+
 					    <div role="tabpanel" class="tab-pane" id="approveClaim">
 					    	<br>
 					    	<?php
@@ -204,7 +205,8 @@
 		                                <th>ชื่อสินค้า</th>
 		                                <th>จำนวน</th>
 		                                <th>กำหนดวันที่ส่ง</th>
-		                                <!-- <th>กำหนด</th> -->
+		                                <th>สถานะ</th>
+		                                <th>Email</th>
 		                                <th>คำสั่ง</th>
 		                                
 		                        	</tr>
@@ -214,15 +216,11 @@
 		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
 		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
 		                        		<td id="claimamount"><?php echo $ClaimAmount[$j]; ?>&nbsp;&nbsp;ถุง</td>
-		                        		
+		                        		<td><input type="date" id="claimDate" name="claimDate" ></td>
+		                        		<td><label id="stateid"><?php echo $State[$j]; ?></label></td>
+		                        		<td><button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j] ?>CustomerID=<?php echo $CustomerID[$j] ?> ">ส่งEmail</a></button></td>
 		                        		<td>
-			                        		<input type="date" id="claimDate" name="claimDate" >
-
-		                        		</td>
-
-		                        		<!-- <td><button type="submit" id="btnDate">กำหนด</button></td> -->
-		                        		<td>
-		                        			<button type="submit" id="btnEmail">ยืนยันการแจ้ง</button>
+		                        			<button type="submit" id="btnConfirm" >ยืนยันการแจ้ง</button>
 		                        		</td>
 		                        	</tr>
 							</table>					 
@@ -230,12 +228,11 @@
 		                        }
 		                    ?>        
 					    </div>
-					    </form>
 					</div>
 				</div>
 			</div>	
 		</div><!--end of tooplate_main-->
-	
+ </form>	
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

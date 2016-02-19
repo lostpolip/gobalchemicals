@@ -23,6 +23,7 @@ $result=$dbManagement->select("SELECT * FROM claim
 					        $CustomerName[$i] = $row["CustomerName"];
 					        $CustomerEmail[$i] = $row["CustomerEmail"];
 					        $CustomerTel[$i] = $row["CustomerTel"];
+					        $CustomerSendDate[$i] = $row["CustomerSendDate"];
 					        $i++;
 					    }
 					}

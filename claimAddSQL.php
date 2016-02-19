@@ -12,7 +12,7 @@ $product=$dbManagement->select("SELECT product.ProductAmount FROM product WHERE 
 	 		    		}
 	 				}
 
-$dbManagement->insert("INSERT INTO claim(ClaimDate, OrderID, ClaimAmount, ProductID, State, CustomerID, ClaimDetail,ClaimSendDate) VALUES ('".$_REQUEST['txtDateClaim']."','".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtClaimState']."','".$_REQUEST['txtCustomerID']."','".$_REQUEST['txtClaimDetail']."','".date("Y-m-d")."')");
+$dbManagement->insert("INSERT INTO claim(ClaimDate, OrderID, ClaimAmount, ProductID, State, CustomerID, ClaimDetail,ClaimSendDate) VALUES ('".$_REQUEST['txtDateClaim']."','".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount']."','".$_REQUEST['ddProduct']."','processing','".$_REQUEST['txtCustomerID']."','".$_REQUEST['txtClaimDetail']."','".date("Y-m-d")."')");
 
 $totalProduct = $ProductAmount[0]-$_REQUEST['txtClaimAmount'];
 

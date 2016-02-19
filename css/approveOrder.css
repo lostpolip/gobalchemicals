@@ -437,32 +437,37 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #FACC2E;
 
 }
-#btnDate{
+#btnEmail{
 	width: 80px;
-	height: 30px;
+	height: 40px;
 	background-color: #f0ad4e;
     border-radius: 5px;
     border-color: #eea236;
 }
-#btnDate a{
+#btnEmail a{
 	font-family: 'quarklight';
 	font-size: 20px;
-	color: #FFFFFF;
+	color: #000000;
 }
 
 #claimdate{
 	width: 50px;
 }
 
-#btnEmail{
-	width: 150px;
-	height: 30px;
+#btnConfirm{
+	width: 100px;
+	height: 40px;
     background-color: #5cb85c;
     border-color: #4cae4c;
-    border-radius: 5px;
+    border-radius: 3px;
 }
-#btnEmail a{
+#btnConfirm a{
 	font-family: 'quarklight';
 	font-size: 20px;
 	color: #FFFFFF;
+}
+#stateid{
+	font-family: 'quarkbold';
+	font-size: 20px;
+	color: red;
 }
