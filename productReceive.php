@@ -73,13 +73,13 @@
 										</ul>
 			                        </li>
 									
-<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
+									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
-												<li><a href="#">การสั่งซื้อสินค้า</a></li>
-												<li><a href="#">การเคลมสินค้า</a></li>
+												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
+												<li><a href="claimList.php">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li> -->
+			                        </li>
 									
 									<li><a href="#" class="selected">คลังสินค้า</a>
 										<ul>
@@ -130,7 +130,7 @@
 			    }
 			}
 		?>
-	<form action="editProductReceiveSQL.php">
+
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -149,7 +149,7 @@
                                 <th>วันหมดอายุ</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>จำนวน(ตัน)</th>
-                                <th>คำสั่ง</th>
+                                <!-- <th>คำสั่ง</th> -->
                                 
                         	</tr>
 
@@ -165,9 +165,9 @@
                         		<td id="<?php echo $ProductID[$j] ?>"><?php echo $ProductName[$j] ?></td>
                         		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
                         		
-                        		<td>
+<!--                         		<td>
                         			<button id="btnDelete"><a href="deleteProductReceiveSQL.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">ลบ</a></button>             
-                        		</td>
+                        		</td> -->
                         	</tr>
                         	<?php
                         	}
@@ -175,7 +175,7 @@
 
                         </table>       
 		</div><!--end of tooplate_main-->
-	</form>
+	
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

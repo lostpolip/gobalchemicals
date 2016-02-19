@@ -14,12 +14,14 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/supplier.css" rel="stylesheet" type="text/css" />
+		<link href="css/investigateOrder.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 
 		<script language="javascript" type="text/javascript">
@@ -46,30 +48,73 @@
 	</head>
 	<body>
 			<div id="tooplate_body_wrapper">
-				<div id="tooplate_wrapper">				
+				<div id="tooplate_wrapper">	
 					<div id="tooplate_header">	
                     	<div id="tooplate_user">
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
-                        	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+
+						<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-lg" id="menuAlert" data-toggle="modal" data-target="#myModal">
+							</button>
+						<!-- Button trigger modal -->
+
+						<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
+							      </div>
+							      <div class="modal-body">
+
+             						 <table  class="table table-bordred table-striped">
+             						 	<thead>
+				                        		<th>ชื่อสินค้า</th>
+				                                <th>จำนวนคงเหลือ</th>
+							                    <th>สั่งซื้อ</th>
+										</thead>
+	   									<tbody id="showOrder">
+											    <td><label></label></td>
+											    <td><label></label></td>
+											    <td>
+											    		<a href="productPurchaseAdd.php"><button class="btnAlert" data-title="delete" data-toggle="modal" data-target="#delete" >สั่งซื้อสินค้า</button>
+											    	
+											    </td>
+											</tr>
+										</tbody>
+        							</table>
+
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
+							        
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						<!-- Modal -->
+
                             <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
-                        </div>					
+                        </div>
+                        		
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
 		  							<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
 							</div>
 					  </div>						
-						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
+						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
-									<li><a href="#" class="selected">จัดการข้อมูล</a>
+									<li><a href="#">จัดการข้อมูล</a>
 				                        <ul>
-												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
+												<li><a href="product.php">ข้อมูลสินค้า</a></li>
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
 												<li><a href="employee.php">ข้อมูลพนักงาน</a></li>
 				                                <li><a href="truck.php">ข้อมูลรถ</a></li>
-				                        </ul>
+										</ul>
 			                        </li>
 									
 									<li><a href="#">ตรวจสอบข้อมูล</a>
@@ -105,88 +150,73 @@
 									</li>
 								</ul>
 							</div> <!-- end of tooplate_menu -->
+						</div>
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
-			</div><!--end of tooplate_body_wrapper-->
-
+		</div><!--end of tooplate_body_wrapper-->
 
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT SupplierID,SupplierName,SupplierTel,SupplierEmail 
-											 FROM supplier
-											 WHERE StateSupplier = 'confirm'
+			$result = $dbManagement->select("SELECT * FROM orders
+											 WHERE CustomerID='".$_SESSION['CustomerID']."'
+											 AND State='complete'
 											 ");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
-			        $SupplierID[$i] = $row["SupplierID"];
-			        $SupplierName[$i] = $row["SupplierName"];
-			        $SupplierTel[$i] = $row["SupplierTel"];
-			        $SupplierEmail[$i] = $row["SupplierEmail"];
+			        $OrderID[$i] = $row["OrderID"];
+			        $OrderDate[$i] = $row["OrderDate"];
+			        $ExtendedPrice[$i] = $row["ExtendedPrice"];
 			        $i++;
 			    }
 			}
-		?>	
+		?>
 
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
+						<label id="label1">รายการสั่งซื้อ&nbsp;</label>
 
-					<h2>ผู้จัดจำหน่าย</h2>
-                        <p>
-                            <button id="btnAdd"><a href="supplierAdd.php">เพิ่มผู้จัดจำหน่าย</a></button>
-                        </p>
-                        <table id="table" style="width: 100%">
-                            <tr>
-                                <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
-                                    <input ID="txtSearch"></input>
-                                &nbsp;&nbsp;
-                                   <Button id="btnOK">ตกลง</Button>
-                                </td>
-                            </tr>                           
-                        </table>  
-
-				</div>
-			</div>	
 						<table id="table2" width="100%">
-			        		<tr>
-                        		<th>รหัสผู้จัดจำหน่าย</th>
-                                <th>ชื่อผู้จัดจำหน่าย</th>
-                                <th>เบอร์โทรศัพท์</th>
-                                <th>Email</th>
+                        	<tr>
+                        		<th>เลขที่ใบสั่งซื้อ</th>
+                                <th>วันที่สั่งซื้อ</th>
+                                <th>ยอดสุทธิ</th>
                                 <th>คำสั่ง</th>
                                 
                         	</tr>
-
                         	<?php
                         	for($j=0;$j<$i;$j++){ 
-                        	?>		
+                        	?>
                         	<tr>
-
-                        	<tr>
-                        		<td id="supplierid"><?php echo $SupplierID[$j] ?></td>
-                        		<td id="suppliername"><?php echo $SupplierName[$j] ?></td>
-                        		<td id="suppliertel"><?php echo $SupplierTel[$j] ?></td>
-                        		<td id="supplieremail"><?php echo $SupplierEmail[$j] ?></td>
+                        		<td id="productid"><?php echo $OrderID[$j]; ?></td>
+                        			<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[$j]; ?>">
+                        		<td id="productname"><?php echo $OrderDate[$j]; ?></td>
+                        		<td id="productprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
                         		<td>
-                        			<button id="btnDetail"><a href="supplierDetail.php?SupplierID=<?php echo $SupplierID[$j]; ?>">รายละเอียด</a></button>
-                        			<button id="btnEdit"><a href="supplierEdit.php?SupplierID=<?php echo $SupplierID[$j]; ?>">แก้ไข</a></button>
-                        			<button id="btnDelete"><a href="deleteSupplierSQL.php?SupplierID=<?php echo $SupplierID[$j]; ?>">ลบ</a></button>
+                        			<button id="btnDetail"><a href="investigateOrderDetail.php?OrderID=<?php echo $OrderID[$j]; ?>"> รายละเอียด</a></button>
+ 
                         		</td>
+
                         	</tr>
-                        	<?php 
+                        	<?php
                         	}
                         	?>
-                        </table>       
+
+                        </table>     
+				</div>   
+			</div>
+		</div><!--end of tooplate_main-->				
+				</div>
+			</div>
 		</div><!--end of tooplate_main-->
 
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
 					Copyright © 2016 <a href="#">The GobalChemicals CO.,LTD.</a>
-				<div class="cleaner"></div><!--end of tooplate_footer-->
 			</div><!--end of tooplate_footer-->
 		</div> <!--end of tooplate_footer_wrapper-->
 

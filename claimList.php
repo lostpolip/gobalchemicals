@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/indexEmployee.css" rel="stylesheet" type="text/css" />
+		<link href="css/claimList.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
@@ -155,25 +155,82 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+			$result = $dbManagement->select("SELECT * FROM claim
+											JOIN product ON claim.ProductID=product.ProductID
+											JOIN customer on claim.CustomerID=customer.CustomerID
+											WHERE StateClaim = 'confirm'
+											");
+
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$ClaimID[$i] = $row["ClaimID"];
+			        $ClaimDate[$i] = $row["ClaimDate"]; 
+			        $ClaimAmount[$i] = $row["ClaimAmount"]; 
+			        $ProductID[$i] = $row["ProductID"]; 
+			        $ProductName[$i] = $row["ProductName"]; 
+			        $CustomerID[$i] = $row["CustomerID"]; 
+			        $CustomerName[$i] = $row["CustomerName"];
+			        $ClaimDetail[$i] = $row["ClaimDetail"];
+			        $ClaimSendDate[$i] = $row["ClaimSendDate"];
+			        $i++;
+			    }
+			}
+		?>
+	
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
 
-						<h2>ยินดีต้อนรับ&nbsp;</h2>
-                        <p><span>Cellulose Fiber</span></p>
-						<img src="images/fiber1.jpg" alt="Image 01" class="image_fl" />
-						<p><span>Spice and Flavor Carriers</span></p>
+					 <!-- Nav tabs -->
+					  <ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการเคลมสินค้า</a></li>
+					  </ul>
 
-                        <p>The unique inert characteristics of Solka-Floc&nbsp; and Justfiber brand powdered cellulose make it an excellent spice and flavor carrier. Neutral in color,odor and taste - Solka-Floc and Justfiber serve as an ideal functional ingredient in spice or nutritional blends while contributing 99% dietary fiber and zero calories. </p>
+					  <!-- Tab panes -->
+					  <div class="tab-content">
+					    <div role="tabpanel" class="tab-pane active">
+					    	<br>
 
-                        <p>&nbsp;</p>
-                        <img src="images/fiber2.jpg" alt="Image 02" class="image_fr" />
-						<p> The superior flowability characteristics of cellulose provide anti-caking effectiveness in dry seasonings, spices and mixes. Improved flowability can enhance packaging and manufacturing efficiencies.</p>
-						<div class="cleaner h20"></div>
-				
+					    	<table id="table2" width="100%">
+
+
+		                        	<tr>
+		                        		<th>เลขที่ใบเคลม</th>
+		                        		<th>วันที่แจ้งเคลม</th>
+		                        		<th>ชื่อลูกค้า</th>
+		                        		<th>ชื่อสินค้า</th>
+		                                <th>จำนวน(ถุง)</th>
+		                                <th>วันจัดส่ง</th>
+		                                <th>รายละเอียด</th>
+		                        	</tr>
+
+					    			<?php
+		                        		for($j=0;$j<$i;$j++){ 
+		                   			 ?>	
+
+		                        	<tr>
+		                        		<td id="claimid"><?php echo $ClaimID[$j]; ?></td>
+		                        		<td id="claimdate"><?php echo $ClaimDate[$j]; ?></td>
+		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="claimamount"><?php echo $ClaimAmount[$j]; ?></td>
+		                        		<td id="claimdetail"><?php echo $ClaimSendDate[$j]; ?></td>
+		                        		<td id="claimdetail"><?php echo $ClaimDetail[$j]; ?></td>
+		                        	</tr>
+		                        	<?php
+		                        		}
+		                    		?>        
+							</table> 
+					    </div><!--- แจ้งซื้อสินค้า -->
+                    </div>
 				</div>
-			</div>
-		</div><!--end of tooplate_main-->
+			</div>   
+		</div>
+	</div><!--end of tooplate_main-->
 
 
 		<div id="tooplate_footer_wrapper">

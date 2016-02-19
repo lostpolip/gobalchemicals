@@ -75,13 +75,13 @@
 										</ul>
 			                        </li>
 									
-<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
+									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
-												<li><a href="#">การสั่งซื้อสินค้า</a></li>
-												<li><a href="#">การเคลมสินค้า</a></li>
+												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
+												<li><a href="claimList.php">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li> -->
+			                        </li>
 									
 									<li><a href="#">คลังสินค้า</a>
 										<ul>

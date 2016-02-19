@@ -128,8 +128,8 @@
 						<br>
 
 						<tr>
-	                        <td><label id="OrderDate">วันที่สั่งซื้อ: <?php echo $OrderDate[0]; ?></label></td>
-	                        
+	                        <td><label id="OrderDate">วันที่สั่งซื้อ: </label></td>
+	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo $OrderDate[0]; ?></label>
 
 
 	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>

@@ -41,9 +41,7 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 24px;
-	color: #1C1C1C; 
+	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
 }
@@ -267,9 +265,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border-bottom: 1px solid #a3a3a3; 
 }
 
-.col_fw_last { 
-	padding-bottom: 20px; 
-    padding-left: 165px;
+.col_fw_last {
+    padding-bottom: 20px;
+    padding-left: 230px;
 }
 
 .col_fw_last1 { 
@@ -291,16 +289,40 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .col_w630 { 
-	width: 630px; 
+	width: 700px; 
 	margin-bottom: 30px;
 }
-.col_w630 p span { 
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
-
+.float_l {
+    float: left;
 }
 
+
+#table4 td{
+	width: 400px;
+	font-family: 'quarkbold';
+	color: #0B6121;
+	font-size: 22px;
+}
+
+#table4 label{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 20px;
+}
+
+
+#table5 td{
+	width: 400px;
+	font-family: 'quarkbold';
+	color: #0B6121;
+	font-size: 22px;
+}
+
+#table5 label{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 20px;
+}
 
 
 #table2{
@@ -331,8 +353,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #btnEdit, #btnDetail a{
 	color: black;
 }
-
-
 
 /* footer */
 #tooplate_footer_wrapper {
@@ -411,23 +431,90 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 #labelDate , #labelID{
-	font-size: 18px;
-	font-family: 'quarkbold';
-	color: #FACC2E;
+	font-size: 22px;
+	font-family: 'quarklight';
 }
 
-#claimDD{
-	font-family: 'quarkbold';
-	font-size: 24px;
-	color: #000000;
+
+
+#menuAlert{
+	border:none;
+	background:url(../images/order.png);
+	width: 35px;
+	height: 35px;
+	margin-bottom: 25px;
+
 }
-#claimCM{
+
+.btnAlert{
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	border-color: #088A4B;
+    background-color: #04B45F;
+	font-size: 18px;
+	font-family: 'quarklight';
+	color: #FFFFFF;
+}
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
+}
+
+
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
+}
+
+#txtDateOrder{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 18px;
+}
+
+#OrderDate{
+	margin: 20px 0 20px 0;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
+}
+
+#OrderID{
+	margin: 20px 0 20px 250px;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
+}
+
+#totalOther{
+	color: red;
+	text-align: right;
+}
+#totalPrice{
+	text-align: right;
+}
+#orderListDD{
 	font-family: 'quarkbold';
 	font-size: 22px;
 	color: #000000;
 }
+#btnDate{
+	width: 80px;
+	height: 30px;
+	background-color: #f0ad4e;
+    border-radius: 5px;
+    border-color: #eea236;
+}
+#btnDate a{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
+}
 
-#dateCM{
+#dateOR{
 	border: none;
 	background: url(../images/tooplate_body.png);
 	width: 30px;
@@ -437,90 +524,68 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #FACC2E;
 
 }
-#btnEmail{
-	width: 80px;
-	height: 40px;
-	background-color: #f0ad4e;
-    border-radius: 5px;
-    border-color: #eea236;
-}
-#btnEmail a{
+#labelDate , #labelID{
+	font-size: 18px;
 	font-family: 'quarkbold';
+	color: #FACC2E;
+}
+
+#btnBack{
+	font-family: 'quarklight';
 	font-size: 20px;
-	color: #000000;
-}
-
-#claimdate{
-	width: 50px;
-}
-
-#btnConfirm{
-	width: 120px;
-	height: 40px;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    border-radius: 3px;
-
-}
-#btnConfirm a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
-	color: #000000;
-}
-#stateid{
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: red;
-}
-
-#btnSet{
-	width: 80px;
-	height: 40px;
-	background-color: #5bc0de;
-    border-color: #46b8da;
-    border-radius: 5px;
-   
-}
-#btnSet a{
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #000000;
-}
-#btnApprove{
-	margin-left: 30px;
-}
-#labelState{
-	margin-left: 150px;
+	border-color: #DF0101;
+	background-color: #FE2E2E;
 	color: #FFFFFF;
-	font-family: 'quarkbold';
-	font-size: 20px;	
-}
-#claimST{
-	font-family: 'quarkbold';
-	font-size: 23px;
-	color: #000000;
-}
-#btnApprove{
-	width: 80px;
+	border-style: solid;
 	height: 40px;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    border-radius: 3px;
+	width: 120px;
+	margin-left: 200px;
 }
-#btnApprove a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
+
+.boxPayment{
+	float: left;
+	width: 350px;
+	font-family: 'quarklight';
+	font-size: 19px;
+	color: #FFFFFF;	
+}
+.boxPayment label{
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #e5a923;	
+}
+
+.boxSummaryPrice{
+	width: 380px;
+	margin-left: 510px;
+	font-family: 'quarklight';
+	font-size: 19px;
+	color: #000000;	
+}
+
+
+#totalPrice{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
 	color: #000000;
 }
-#btnNonApprove{
-	width: 80px;
-	height: 40px;
-	background-color: #d9534f;
-    border-color: #d43f3a;
-    border-radius: 3px;
+
+#totalTransaction{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #000000;	
 }
-#btnNonApprove a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
-	color: #000000;
+#totalOther{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #000000;		
 }

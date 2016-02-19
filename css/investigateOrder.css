@@ -41,9 +41,7 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 24px;
-	color: #1C1C1C; 
+	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
 }
@@ -267,9 +265,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border-bottom: 1px solid #a3a3a3; 
 }
 
-.col_fw_last { 
-	padding-bottom: 20px; 
-    padding-left: 165px;
+.col_fw_last {
+    padding-bottom: 20px;
+    padding-left: 230px;
 }
 
 .col_fw_last1 { 
@@ -291,32 +289,26 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .col_w630 { 
-	width: 630px; 
+	width: 700px; 
 	margin-bottom: 30px;
 }
-.col_w630 p span { 
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
-
+.float_l {
+    float: left;
 }
-
 
 
 #table2{
-	width: 820px;
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
-	margin-bottom: 30px;
 }
 #table2 th {
 	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #4B088A;
-	background-color: #E6E6E6;
+	font-size: 22px;
+	color: #e5a923;
+	background-color: #262424;
 	text-align: center;
-    border: 2px solid #6E6E6E;
+    border: 2px solid #333232;
     padding: 5px;
  }  
 
@@ -325,14 +317,13 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 18px;
 	color: #000000;
 	text-align: center;
-	 border: 2px solid #6E6E6E;
+	 border: 2px solid #333232;
 	 height: 30px;
 } 
+
 #btnEdit, #btnDetail a{
 	color: black;
 }
-
-
 
 /* footer */
 #tooplate_footer_wrapper {
@@ -411,116 +402,33 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 #labelDate , #labelID{
-	font-size: 18px;
-	font-family: 'quarkbold';
-	color: #FACC2E;
-}
-
-#claimDD{
-	font-family: 'quarkbold';
-	font-size: 24px;
-	color: #000000;
-}
-#claimCM{
-	font-family: 'quarkbold';
 	font-size: 22px;
-	color: #000000;
+	font-family: 'quarklight';
 }
 
-#dateCM{
-	border: none;
-	background: url(../images/tooplate_body.png);
-	width: 30px;
+
+
+#menuAlert{
+	border:none;
+	background:url(../images/order.png);
+	width: 35px;
+	height: 35px;
+	margin-bottom: 25px;
+
+}
+
+.btnAlert{
+	width: 100px;
 	height: 30px;
-	font-family: 'quarkbold';
+	border-radius: 5px;
+	border-color: #088A4B;
+    background-color: #04B45F;
 	font-size: 18px;
-	color: #FACC2E;
-
-}
-#btnEmail{
-	width: 80px;
-	height: 40px;
-	background-color: #f0ad4e;
-    border-radius: 5px;
-    border-color: #eea236;
-}
-#btnEmail a{
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #000000;
-}
-
-#claimdate{
-	width: 50px;
-}
-
-#btnConfirm{
-	width: 120px;
-	height: 40px;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    border-radius: 3px;
-
-}
-#btnConfirm a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
-	color: #000000;
-}
-#stateid{
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: red;
-}
-
-#btnSet{
-	width: 80px;
-	height: 40px;
-	background-color: #5bc0de;
-    border-color: #46b8da;
-    border-radius: 5px;
-   
-}
-#btnSet a{
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #000000;
-}
-#btnApprove{
-	margin-left: 30px;
-}
-#labelState{
-	margin-left: 150px;
+	font-family: 'quarklight';
 	color: #FFFFFF;
+}
+#label1{
 	font-family: 'quarkbold';
-	font-size: 20px;	
-}
-#claimST{
-	font-family: 'quarkbold';
-	font-size: 23px;
-	color: #000000;
-}
-#btnApprove{
-	width: 80px;
-	height: 40px;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    border-radius: 3px;
-}
-#btnApprove a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
-	color: #000000;
-}
-#btnNonApprove{
-	width: 80px;
-	height: 40px;
-	background-color: #d9534f;
-    border-color: #d43f3a;
-    border-radius: 3px;
-}
-#btnNonApprove a{
-	font-family: 'quarkbold';	
-    font-size: 20px;
-	color: #000000;
+	color: #e5a923;
+	font-size: 36px;	
 }

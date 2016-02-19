@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/indexEmployee.css" rel="stylesheet" type="text/css" />
+		<link href="css/investigateOrderDetail.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
@@ -155,26 +155,122 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+
+			$result = $dbManagement->select("SELECT * FROM `orderdetail` 
+												JOIN product ON orderdetail.ProductID=product.ProductID
+												JOIN orders ON orderdetail.OrderID=orders.OrderID
+												WHERE CustomerID='".$_SESSION['CustomerID']."' AND orders.OrderID='".$_REQUEST['OrderID']."'
+											");
+			
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$ProductID[$i] = $row["ProductID"];
+			    	$ProductName[$i] = $row["ProductName"];
+			    	$Cost[$i] = $row["Cost"];
+			    	$OrderAmount[$i] = $row["OrderAmount"];
+			    	$TotalVolumn[$i] = $row["TotalVolumn"];
+			    	$TotalCost[$i] = $row["TotalCost"];
+			    	$OrderID[$i] = $row["OrderID"];
+			    	$OrderDate[$i] = $row["OrderDate"];
+			    	$TotalPrice[$i] = $row["TotalPrice"];
+			    	$TotalPriceOrder[$i] = $row["TotalPriceOrder"];
+			    	$TotalTransport[$i] = $row["TotalTransport"];
+			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
+			        $i++;
+			    }
+			}
+		?>
+
 		<div id="tooplate_main">
 			<div class="col_fw_last">
-				<div class="col_w630 float_l">
+				<div class="col_w630 float_l"><br>
 
-						<h2>ยินดีต้อนรับ&nbsp;</h2>
-                        <p><span>Cellulose Fiber</span></p>
-						<img src="images/fiber1.jpg" alt="Image 01" class="image_fl" />
-						<p><span>Spice and Flavor Carriers</span></p>
+					 <!-- Nav tabs -->
+					  <ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการสั่งซื้อ</a></li>
+					  </ul>
 
-                        <p>The unique inert characteristics of Solka-Floc&nbsp; and Justfiber brand powdered cellulose make it an excellent spice and flavor carrier. Neutral in color,odor and taste - Solka-Floc and Justfiber serve as an ideal functional ingredient in spice or nutritional blends while contributing 99% dietary fiber and zero calories. </p>
+					  <!-- Tab panes -->
+					  <div class="tab-content">
+					    <div role="tabpanel" class="tab-pane active">
+					    	<br>
 
-                        <p>&nbsp;</p>
-                        <img src="images/fiber2.jpg" alt="Image 02" class="image_fr" />
-						<p> The superior flowability characteristics of cellulose provide anti-caking effectiveness in dry seasonings, spices and mixes. Improved flowability can enhance packaging and manufacturing efficiencies.</p>
-						<div class="cleaner h20"></div>
-				
-				</div>
+					    	<table id="table2" width="100%">
+
+
+		                        	<tr>
+		                        		<th>วันที่</th>
+		                        		<th>เลขที่ใบสั่งซื้อ</th>
+		                        		<th>รหัสสินค้า</th>
+		                                <th>ชื่อสินค้า</th>
+		                                <th>จำนวน</th>
+		                                <th>ราคาสินค้า</th>
+		                        	</tr>
+
+					    			<?php
+		                        		for($j=0;$j<$i;$j++){ 
+		                   			 ?>	
+
+		                        	<tr>
+		                        		<td id="date"><?php echo $OrderDate[$j]; ?></td>
+		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+		                        		<td id="productid"><?php echo $ProductID[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="productamount"><?php echo $OrderAmount[$j]; ?></td>
+		                        		<td id="productprice"><?php echo number_format($TotalPrice[$j]); ?></td>
+		                        	</tr>
+		                        	<?php
+		                        		}
+		                    		?>        
+							</table> 
+					    </div><!--- แจ้งซื้อสินค้า -->
+
+                    	<div class="boxPayment">
+                    		<label><span id="star">*</span>การชำระเงิน : เครดิต 30 วัน</label>   		
+                    	</div>
+
+                    	<div class="boxSummaryPrice">
+                    		<table id="table3">
+                    			<tr>
+	                    			<td>
+	                    				<label>ราคาสินค้าทั้งหมด :</label>
+	                    			</td>
+	                    			<td>
+		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPriceOrder[0]); ?>" disabled> 
+		                        		<label>บาท</label>
+		                        	</td>
+		                        </tr>
+
+		                        <tr>
+		                        	<td>
+	                    				<label>รวมยอดสุทธิ :</label>
+	                    			</td>
+	                    			<td>
+		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]); ?>" disabled> 
+		                        		<label>บาท</label>
+		                        	</td>
+		                        </tr>
+                    		</table>
+
+                    		<div>
+                    			<table id="table4">
+                    				<tr>
+                    					<td><a href="investigateOrder.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                    					</td>
+                    					<br>
+
+                    				</tr>
+                    			</table>
+							</div>
+                    	</div>
+					</div>
+				</div>   
 			</div>
 		</div><!--end of tooplate_main-->
-
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

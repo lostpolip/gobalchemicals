@@ -74,13 +74,13 @@
 										</ul>
 			                        </li>
 									
-<!-- 									<li><a href="#">ตรวจสอบข้อมูล</a>
+									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
-												<li><a href="#">การสั่งซื้อสินค้า</a></li>
-												<li><a href="#">การเคลมสินค้า</a></li>
+												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
+												<li><a href="claimList.php">การเคลมสินค้า</a></li>
 												
 										</ul>
-			                        </li> -->
+			                        </li>
 									
 									<li><a href="warehouse.php" class="selected">คลังสินค้า</a>
 										<ul>
@@ -180,7 +180,7 @@
 
 							<tr>
                                 <td><label><span class="red-star">* </span>วันหมดอายุ :</label></td>
-                                <td><input type="date" id="txtExpiryDate" name="txtExpiryDate"></td>
+                                <td><input type="date" id="txtExpiryDate" name="txtExpiryDate" min="<?php echo date('Y-m-d');?>"></td>
 
                             </tr> 
 

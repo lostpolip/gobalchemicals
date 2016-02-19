@@ -2,7 +2,7 @@
 require 'dbManagement.php';
 $dbManagement = new dbManagement();
 
-$dbManagement->delete("DELETE FROM employee WHERE EmployeeID='".$_REQUEST['EmployeeID']."'");
+$dbManagement->update("UPDATE employee SET StateEmployee='cancle' WHERE EmployeeID='".$_REQUEST['EmployeeID']."'");
 
 header( "location: /gobalchemicals/employee.php" );
 
