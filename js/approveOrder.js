@@ -5,17 +5,12 @@ $( document ).ready(function() {
 	});
 
 	$('#btnEmail').click(function() {
-			alert('ส่งemailเรียบร้อยแล้วค่ะ');
+			alert('ส่งemailเรียบร้อย');
 	});
 
-	// $(':button[name=btnConfirm]').click(function() {
-	// 	$('#claimDate').addClass('hide');
-	// 	$('#claim').addClass('hide');
-	// 	$('#btnConfirm').addClass('hide');
-	// 	$('#btnCF').addClass('hide');
-
-
-	// });
+		$('#btnConfirm').click(function() {
+			alert('ยืนยันข้อมูลเรียบร้อย');
+	});
 
 });
 

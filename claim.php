@@ -95,11 +95,11 @@
                             <tr>
                                 <td><input type="hidden" id="txtCustomerID" name="txtCustomerID" value="<?php echo $_SESSION['CustomerID']?>"></td>
                             </tr>
-
-                        	<tr>
+                            <br>
+ <!--                        	<tr>
                                 <td><label><span class="red-star">* </span>วันที่เคลมสินค้า:</label></td>
                                 <td><input type="date" id="txtDateClaim" name="txtDateClaim" required></td>
-                            </tr>
+                            </tr> -->
 
                             <tr>
                                 <td><label><span class="red-star">* </span>เลขที่ใบสั่งซื้อ:</label></td>

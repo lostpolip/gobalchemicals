@@ -96,7 +96,7 @@
                         		<td id="productname"><?php echo $OrderDate[$j]; ?></td>
                         		<td id="productprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
                         		<td>
-                        			<button id="btnDetail" type="submit"><a href="orderListDetail.php?$OrderID=<?php echo $OrderID[$j]; ?>"> รายละเอียด</a></button>
+                        			<button id="btnDetail"><a href="orderListDetail.php?OrderID=<?php echo $OrderID[$j]; ?>"> รายละเอียด</a></button>
  
                         		</td>
 

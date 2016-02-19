@@ -101,12 +101,14 @@
 			    	$ProductID[$i] = $row["ProductID"];
 			    	$ProductName[$i] = $row["ProductName"];
 			    	$Cost[$i] = $row["Cost"];
+			    	$Price[$i] = $row["Price"];
 			    	$OrderAmount[$i] = $row["OrderAmount"];
 			    	$TotalVolumn[$i] = $row["TotalVolumn"];
 			    	$TotalCost[$i] = $row["TotalCost"];
 			    	$OrderID[$i] = $row["OrderID"];
 			    	$OrderDate[$i] = $row["OrderDate"];
 			    	$TotalPrice[$i] = $row["TotalPrice"];
+			    	$TotalPriceOrder[$i] = $row["TotalPriceOrder"];
 			    	$TotalVat[$i] = $row["TotalVat"];
 			    	$TotalTransport[$i] = $row["TotalTransport"];
 			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
@@ -160,8 +162,8 @@
                         		<td id="productname"><?php echo ($ProductName[$j]); ?></td>
                         		<td id="orderamount"><?php echo ($OrderAmount[$j]); ?></td>
                         		<td id="totalUnit"><?php echo ($TotalVolumn[$j]); ?></td>
-                        		<td id="productcost"><?php echo number_format($Cost[$j]); ?></td>
-                        		<td id="totalcost"><?php echo number_format($TotalCost[$j]); ?></td>
+                        		<td id="productcost"><?php echo number_format($Price[$j]); ?></td>
+                        		<td id="totalcost"><?php echo number_format($TotalPrice[$j]); ?></td>
 
                         	</tr>
                         	<?php
@@ -183,7 +185,7 @@
 	                    				<label>ราคาสินค้า :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPrice[0]); ?>" disabled> 
+		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPriceOrder[0]); ?>" disabled> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -309,9 +311,9 @@
 							</div>
 							<br>
 							 <tr>
-                            	<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าแรก</button></a></td>
-                            	<!-- <td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td> -->
-                                 <td><button type="submit" id="btnOK">สั่งพิมพ์</button></td>     
+                            	<td><button type="button" id="btnBack"><a href="deleteOrder.php?OrderID=<?php echo $OrderID[0]; ?>">ยกเลิก</a></button></td>
+                            	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
+                                 <td><button type="submit" id="btnOK">ตกลง</button></td>     
                             </tr>
                     	</div>
                     </div>

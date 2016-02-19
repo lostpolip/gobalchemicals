@@ -117,11 +117,15 @@
 		</div><!--end of tooplate_body_wrapper-->
 
 		<?php
+			date_default_timezone_set('Asia/Bangkok');
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM  claim
 												JOIN product ON claim.ProductID=product.ProductID
-												JOIN customer ON claim.CustomerID=customer.CustomerID");
+												JOIN customer ON claim.CustomerID=customer.CustomerID
+												WHERE State='processing'
+												ORDER BY ClaimID
+												");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
@@ -140,7 +144,7 @@
 			    }
 			}
 		?>
-	<form action="approveAddSQL.php">
+	<form action="approveAddDateSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -216,11 +220,22 @@
 		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
 		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
 		                        		<td id="claimamount"><?php echo $ClaimAmount[$j]; ?>&nbsp;&nbsp;ถุง</td>
-		                        		<td><input type="date" id="claimDate" name="claimDate" ></td>
-		                        		<td><label id="stateid"><?php echo $State[$j]; ?></label></td>
-		                        		<td><button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j] ?>CustomerID=<?php echo $CustomerID[$j] ?> ">ส่งEmail</a></button></td>
 		                        		<td>
-		                        			<button type="submit" id="btnConfirm" >ยืนยันการแจ้ง</button>
+		                        			<input type="date" id="claimDate" name="claimDate" min="<?php echo date('Y-m-d');?>" <?php if ($ClaimSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> value="<?php echo $ClaimSendDate[$j]; ?>">
+
+		                        			<button type="submit" id="btnSet" <?php if ($ClaimSendDate[$j]!='0000-00-00') { echo 'disabled';} ?>>กำหนด</button>
+		                        		</td>
+
+		                        		<td><label id="stateid"><?php echo $State[$j]; ?></label></td>
+
+		                        		<td>
+		                        			<button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j]; ?>CustomerID=<?php echo $CustomerID[$j] ?> ">ส่งEmail</a></button>
+		                        		</td>
+
+		                        		<td>
+		                        			
+		                        			<button id="btnConfirm"><a href="approveAddStateSQL.php?ClaimID=<?php echo $ClaimID[$j]; ?>">ยืนยันการแจ้ง</a></button>
+		                        			
 		                        		</td>
 		                        	</tr>
 							</table>					 

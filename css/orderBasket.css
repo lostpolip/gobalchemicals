@@ -599,7 +599,17 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #totalOther{
 	color: red;
+	text-align: right;
 }
 #star{
 	color: red;
+}
+#totalTransaction {
+	text-align: right;
+}
+#totalPrice{
+	text-align: right;
+}
+#totalPrice{
+	text-align: right;	
 }

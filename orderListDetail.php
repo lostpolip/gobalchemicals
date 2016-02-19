@@ -59,19 +59,21 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 
-			$orderdetail=$dbManagement->select("SELECT * FROM `orders` 
-												WHERE OrderID='".$_REQUEST['OrderID']."'
-												AND CustomerID = '".$_SESSION['CustomerID']."' ");
-
+			$result = $dbManagement->select("SELECT * FROM `orderdetail` 
+												JOIN product ON orderdetail.ProductID=product.ProductID
+												JOIN orders ON orderdetail.OrderID=orders.OrderID
+												WHERE CustomerID='".$_SESSION['CustomerID']."' AND orders.OrderID='".$_REQUEST['OrderID']."'
+											");
+			
 			$i = 0;
-			if (mysqli_num_rows($orderdetail) > 0) {
-			    while($row = mysqli_fetch_assoc($orderdetail)) {
-			    	// $ProductID[$i] = $row["ProductID"];
-			    	// $ProductName[$i] = $row["ProductName"];
-			    	// $Cost[$i] = $row["Cost"];
-			    	// $OrderAmount[$i] = $row["OrderAmount"];
-			    	// $TotalVolumn[$i] = $row["TotalVolumn"];
-			    	// $TotalCost[$i] = $row["TotalCost"];
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$ProductID[$i] = $row["ProductID"];
+			    	$ProductName[$i] = $row["ProductName"];
+			    	$Cost[$i] = $row["Cost"];
+			    	$OrderAmount[$i] = $row["OrderAmount"];
+			    	$TotalVolumn[$i] = $row["TotalVolumn"];
+			    	$TotalCost[$i] = $row["TotalCost"];
 			    	$OrderID[$i] = $row["OrderID"];
 			    	$OrderDate[$i] = $row["OrderDate"];
 			    	$TotalPrice[$i] = $row["TotalPrice"];
@@ -79,9 +81,8 @@
 			    	$TotalTransport[$i] = $row["TotalTransport"];
 			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
 			        $i++;
-			    } 
-			} 	
-
+			    }
+			}
 		?>
 
 		<div id="tooplate_main">
@@ -129,7 +130,7 @@
 					    </div><!--- แจ้งซื้อสินค้า -->
 
                     	<div class="boxPayment">
-                    		<label><span id="star">*</span>เงื่อนไขในการชำระเงิน : เครดิต 30 วัน</label>   		
+                    		<label><span id="star">*</span>การชำระเงิน : เครดิต 30 วัน</label>   		
                     	</div>
 
                     	<div class="boxSummaryPrice">
@@ -153,8 +154,18 @@
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
-
                     		</table>
+
+                    		<div>
+                    			<table id="table4">
+                    				<tr>
+                    					<td><a href="orderList.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                    					</td>
+                    					<br>
+
+                    				</tr>
+                    			</table>
+							</div>
                     	</div>
 					</div>
 				</div>   
