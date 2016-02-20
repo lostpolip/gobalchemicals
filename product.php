@@ -138,7 +138,7 @@
                         <p>
                             <button type="submit" id="btnAdd"><a href="productAdd.php">เพิ่มสินค้า</a></button>
                         </p>
-                        <table id="table" style="width: 80%">
+<!--                         <table id="table" style="width: 80%">
                             <tr>
                                 <td><label>ค้นหาสินค้า</label> &nbsp;&nbsp;
                                     <input type="text" ID="txtSearch">
@@ -146,8 +146,7 @@
                                    <button id="btnOK">ตกลง</button>
                                 </td>
                             </tr>
-                        </table>  
-                            	
+                        </table>   -->   	
 				</div>
 			</div>	  
 						<table id="table2" width="100%">
@@ -165,8 +164,8 @@
                         	<tr>
                         		<td id="productid"><?php echo $ProductID[$j]; ?></td>
                         		<td id="productname"><?php echo $ProductName[$j]; ?></td>
-                        		<td id="productcost"><?php echo $Cost[$j]; ?></td>
-                        		<td id="productprice"><?php echo $Price[$j]; ?></td>
+                        		<td id="productcost"><?php echo number_format($Cost[$j]); ?></td>
+                        		<td id="productprice"><?php echo number_format($Price[$j]); ?></td>
                         		<td>
                         			<button id="btnDetail"> <a href="productDetail.php?ProductID=<?php echo $ProductID[$j]; ?>">รายละเอียด</a></button>
                         			<button id="btnEdit"><a href="productEdit.php?ProductID=<?php echo $ProductID[$j]; ?>">แก้ไข</a></button>

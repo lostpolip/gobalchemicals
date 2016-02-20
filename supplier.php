@@ -138,7 +138,7 @@
                         <p>
                             <button id="btnAdd"><a href="supplierAdd.php">เพิ่มผู้จัดจำหน่าย</a></button>
                         </p>
-                        <table id="table" style="width: 100%">
+<!--                         <table id="table" style="width: 100%">
                             <tr>
                                 <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
                                     <input ID="txtSearch"></input>
@@ -146,7 +146,7 @@
                                    <Button id="btnOK">ตกลง</Button>
                                 </td>
                             </tr>                           
-                        </table>  
+                        </table>   -->
 
 				</div>
 			</div>	

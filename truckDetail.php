@@ -161,7 +161,7 @@
                            <tr>
                                 <td>น้ำหนักรถ :</td>
                                 <td>
-                                	<Label id="Label37"><?php echo $TruckWeight[0]; ?></Label>
+                                	<Label id="Label37"><?php echo number_format($TruckWeight[0]); ?></Label>
                                 	<label>กิโลกรัม</label>
                                 </td>
                             </tr>
@@ -169,7 +169,7 @@
 							<tr>
                                 <td>บรรจุน้ำหนัก :</td>
                                 <td>
-                                	<Label id="Label38"><?php echo $WeightCapacity[0]; ?></Label>
+                                	<Label id="Label38"><?php echo number_format($WeightCapacity[0]); ?></Label>
                                 	<label>ตัน</label>
                                 </td>
 
@@ -178,7 +178,7 @@
                             <tr>
                                 <td>ปริมาณสินค้า :</td>
                                 <td>
-                                	<Label id="Label39"><?php echo $WeightQuantity[0]; ?></Label>
+                                	<Label id="Label39"><?php echo number_format($WeightQuantity[0]); ?></Label>
                                 	<label>ถุง</label>
                                 </td>
                             </tr>

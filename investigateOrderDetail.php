@@ -162,7 +162,7 @@
 			$result = $dbManagement->select("SELECT * FROM `orderdetail` 
 												JOIN product ON orderdetail.ProductID=product.ProductID
 												JOIN orders ON orderdetail.OrderID=orders.OrderID
-												WHERE CustomerID='".$_SESSION['CustomerID']."' AND orders.OrderID='".$_REQUEST['OrderID']."'
+												WHERE orders.OrderID='".$_REQUEST['OrderID']."'
 											");
 			
 			$i = 0;

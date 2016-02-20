@@ -142,7 +142,7 @@
                         <p>
                             <button id="btnAdd"><a href="truckAdd.php">เพิ่มรถบรรทุก</a></button>
                         </p>
-                        <table id="table" style="width: 100%">
+<!--                         <table id="table" style="width: 100%">
                             <tr>
                                 <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
                                     <input ID="txtSearch">
@@ -150,7 +150,7 @@
                                    <button id="btnOK">ตกลง</button>
                                 </td>
                             </tr>                           
-                        </table>  
+                        </table>   -->
 
 				</div>
 			</div>	
@@ -170,12 +170,12 @@
                         	for($j=0;$j<$i;$j++){ 
                         	?>
                         	<tr>
-                        		<td id="carid"><?php echo $TruckName[$j] ?></td>
-                        		<td id="cartype"><?php echo $TruckTypeID[$j] ?></td>
-                        		<td id="carfuel"><?php echo $FuelID[$j] ?></td>
-                        		<td id="carweight"><?php echo $TruckWeight[$j] ?></td>
-                        		<td id="carcapaity"><?php echo $WeightCapacity[$j] ?></td>
-                        		<td id="carquantity"><?php echo $WeightQuantity[$j] ?></td>
+                        		<td id="carid"><?php echo $TruckName[$j]; ?></td>
+                        		<td id="cartype"><?php echo $TruckTypeID[$j]; ?></td>
+                        		<td id="carfuel"><?php echo $FuelID[$j]; ?></td>
+                        		<td id="carweight"><?php echo number_format($TruckWeight[$j]); ?></td>
+                        		<td id="carcapaity"><?php echo number_format($WeightCapacity[$j]); ?></td>
+                        		<td id="carquantity"><?php echo number_format($WeightQuantity[$j]); ?></td>
                         		<td>
                         			<button id="btnDetail"><a href="truckDetail.php?TruckID=<?php echo $TruckID[$j]; ?>">รายละเอียด</a></button>
                         			<button id="btnEdit"><a href="truckEdit.php?TruckID=<?php echo $TruckID[$j]; ?>">แก้ไข</a></button>

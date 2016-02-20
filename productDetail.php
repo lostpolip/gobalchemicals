@@ -187,7 +187,7 @@
                             <tr>
                                 <td>ราคาทุน :</td>
                                 <td>
-                                	<Label id="Label14"><?php echo $Cost[0]; ?></Label>
+                                	<Label id="Label14"><?php echo number_format($Cost[0]); ?></Label>
                                 	<label>บาท</label>
                                 </td>
                             </tr>
@@ -195,7 +195,7 @@
                             <tr>
                                 <td>ราคาขาย :</td>
                                 <td>
-                                	<Label id="Label15"><?php echo $Price[0]; ?></Label>
+                                	<Label id="Label15"><?php echo number_format($Price[0]); ?></Label>
                                 	<label>บาท</label>
                                 </td>
                             </tr>

@@ -159,8 +159,7 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM orders
-											 WHERE CustomerID='".$_SESSION['CustomerID']."'
-											 AND State='complete'
+											 WHERE State='complete'
 											 ");
 
 			$i = 0;

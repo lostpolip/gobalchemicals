@@ -144,7 +144,7 @@
                         <p>
                             <button id="btnAdd"><a href="employeeAdd.php">เพิ่มพนักงาน</a></button>
                         </p>
-                        <table id="table" style="width: 100%">
+<!--                         <table id="table" style="width: 100%">
                             <tr>
                                 <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
                                     <input type="text" ID="txtSearch">
@@ -152,7 +152,7 @@
                                    <button type="submit" id="btnOK">ตกลง</button>
                                 </td>
                             </tr>                           
-                        </table>  
+                        </table>  --> 
 
 				</div>
 			</div>	
