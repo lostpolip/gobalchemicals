@@ -3,7 +3,9 @@ session_start();
 
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$result = $dbManagement->select("SELECT EmployeeID,EmployeeName,EmployeeUsername,EmployeePassword FROM employee");
+	$result = $dbManagement->select("SELECT EmployeeID,EmployeeName,EmployeeUsername,EmployeePassword 
+		FROM employee
+		WHERE StateEmployee = 'confirm'");
 
 	$i = 0;
 	if (mysqli_num_rows($result) > 0) {

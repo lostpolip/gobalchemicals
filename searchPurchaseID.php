@@ -2,7 +2,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  purchase 
-									JOIN supplier ON purchase.SupplierID = supplier.SupplierID
+									-- JOIN supplier ON purchase.SupplierID = supplier.SupplierID
 									JOIN product ON purchase.ProductID = product.ProductID
 									WHERE PurchaseID = '".$_REQUEST['purchaseID']."'
 									");
@@ -13,10 +13,10 @@
 	    	$PurchaseDate = $row["PurchaseDate"];
 	    	$ProductID = $row["ProductID"];
 	    	$ProductName = $row["ProductName"];
-	    	$SupplierName = $row["SupplierName"];
+	    	// $SupplierName = $row["SupplierName"];
 	    }
 	}
-	
+print_r($PurchaseDate)	;
 ?>                        	
 
    <table id="table" style="width: 100%">
