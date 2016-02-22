@@ -1,8 +1,9 @@
 $( document ).ready(function() {
-
-	$('#row_productType').hide();
-	$('#row-brandName').hide();
-
+// var orderId = $('#orderID').val();
+//     $( "#searchID" ).autocomplete({
+//       source: JSON.parse(orderId)
+//     });
+// console.log (JSON.parse(orderId));
 	$('#btnCF').click(function() {
 		var patt= /[-+]?(\d*[.])?\d+/;
 
@@ -14,28 +15,16 @@ $( document ).ready(function() {
 	});
 
 
-	$('#ddProduct').change(function(){
-
-		var productID = $('#ddProduct').val();
+	$('#btnSearch').click(function(){
+		var orderID = ($('#searchID').val());
 		$.ajax({
-			url: "productPurchaseProducttype.php", 
+			url: "searchOrderID.php", 
 			method: "GET",
 			data: { 
-				productID : productID 
+				orderID : orderID 
 			},
 			success: function(result){
-				$('#ddProductType').empty();
-				$('#ddBrandName').empty();
-		    	var detailProduct = jQuery.parseJSON(result);
-
-		    	for (var x in detailProduct['nameProductType']) {
-					$('#ddProductType').append('<input type="text" value=" '+detailProduct['nameProductType'][x]+' ">');
-					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' ">');			
-
-				}
-				$('#row_productType').show();
-				$('#row-brandName').show();
-
+				$('#detailOrderID').html(result);
 		    }
 		});
 	});

@@ -350,9 +350,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	 border: 2px solid #6E6E6E;
 	 height: 30px;
 } 
-#btnEdit, #btnDetail a{
-	color: black;
-}
+
 
 /* footer */
 #tooplate_footer_wrapper {

@@ -312,7 +312,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 }
 #table { 
-	margin-left: 160px;
+	margin-left: 10px;
 }
 #table tr td label { 
 	font-family: 'quarkbold';
@@ -403,3 +403,13 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	text-align: center;
 }
 
+#btnSearch{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #e5a923;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+	height: 40px;
+	width: 80px;	
+}

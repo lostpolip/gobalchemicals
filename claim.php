@@ -16,10 +16,13 @@
 
 		<link href="css/claim.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/jquery-ui.css">
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/claim.js"></script>
 
 	</head>
@@ -54,33 +57,21 @@
 		</div><!--end of tooplate_body_wrapper-->
 
 		<?php
-					require 'dbManagement.php';
-					$dbManagement = new dbManagement();
-					$product = $dbManagement->select("SELECT *FROM product");
-					$Orders = $dbManagement->select("SELECT *FROM orders");
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+			$Orders = $dbManagement->select("SELECT *FROM orders
+											WHERE CustomerID ='".$_SESSION['CustomerID']."' ");
 
-					$ddProduct = 0;
-					if (mysqli_num_rows($product) > 0) {
-					    while($row = mysqli_fetch_assoc($product)) {
-					        $ProductID[$ddProduct] = $row["ProductID"];
-					        $ProductName[$ddProduct] = $row["ProductName"];
-					        $ddProduct++;
-					    }
-					   
-					}	
+			$orders = 0;
+			if (mysqli_num_rows($Orders) > 0) {
+			    while($row = mysqli_fetch_assoc($Orders)) {
+			        $OrderID[$orders] = $row["OrderID"];
+			        $orders++;
+			    }
+			   
+			}		
 
-
-					$ddOrders = 0;
-					if (mysqli_num_rows($Orders) > 0) {
-					    while($row = mysqli_fetch_assoc($Orders)) {
-					        $OrderID[$ddOrders] = $row["OrderID"];
-					        $ddOrders++;
-					    }
-					   
-					}		
-	
-
-				?>
+		?>
 	<form action="claimAddSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
@@ -88,85 +79,26 @@
 					<div class="col_w630 float_l">
 
 					<h2>เคลมสินค้า</h2>
-                    <table id="table" style="width: 100%">
-                            <tr>
-                                <td><input type="hidden" id="txtClaimID" name="txtClaimID"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="hidden" id="txtCustomerID" name="txtCustomerID" value="<?php echo $_SESSION['CustomerID']?>"></td>
-                            </tr>
-                            <br>
- <!--                        	<tr>
-                                <td><label><span class="red-star">* </span>วันที่เคลมสินค้า:</label></td>
-                                <td><input type="date" id="txtDateClaim" name="txtDateClaim" required></td>
-                            </tr> -->
+					<div class="row">
+					  <div class="col-lg-6">
+					    <div class="input-group" class="ui-widget">		    
+<!-- 					      <input type="hidden" id="orderID" name="orderID" value='<?php echo json_encode($OrderID); ?>'> -->
+					      <input type="text" id="searchID" class="form-control" placeholder="ค้นหาเลขที่ใบสั่งซื้อ"
+							style="font-family: 'quarklight';
+							    font-size: 18px;
+							    color: #FFFFFF;
+							    border-color: #333232;
+							    background-color: #262424;
+								">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button" id="btnSearch">Go!</button>
+					      </span>
+					    </div><!-- /input-group -->
+					  </div><!-- /.col-lg-6 -->
+					</div><!-- /.row -->
+					
+					<div id="detailOrderID"></div>
 
-                            <tr>
-                                <td><label><span class="red-star">* </span>เลขที่ใบสั่งซื้อ:</label></td>
-                                <td><select id="txtOrderID" name="txtOrderID" >
-                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
-                                	 	<?php
-                        					for($j=0;$j<$ddOrders;$j++){ 
-                        				?>	
-                                		<option value="<?php echo $OrderID[$j]; ?>"><?php echo $OrderID[$j]; ?></option>
-                                		<?php
-                        					}
-                        				?>
-                                	</select>
-                                </td>	
-                                
-                            </tr>
-
-                            <tr>
-                                <td><label><span class="red-star">* </span>ชื่อสินค้า :</label></td>                       
-                                <td><select id="ddProduct" name="ddProduct" >
-                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
-                                	 	<?php
-                        					for($p=0;$p<$ddProduct;$p++){ 
-                        				?>	
-                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
-                                		<?php
-                        					}
-                        				?>
-                                	</select>
-                                </td>
-                            </tr>
-
-                            <tr id="row_productType">
-                                <td><label>ประเภทสินค้า:</label></td>
-                                <td><label id="ddProductType" name="ddProductType"></label></td>
-                            </tr>
-
-                            <tr id="row-brandName">
-                                <td><label>ยี่ห้อ:</label></td>
-                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
-                            </tr>
-
-
-                            <tr>
-                                <td><label><span class="red-star">* </span>จำนวน :</label></td>
-                                <td><input type="text" id="txtClaimAmount" name="txtClaimAmount" required>
-                                <label>ถุง</label></td>
-                            </tr>
-
-                            <tr>
-                                <td><label>รายละเอียดเพิ่มเติม :</label></td>
-                                <td><textarea id="txtClaimDetail" name="txtClaimDetail"></textarea>
-                               
-                            </tr>
-
-                            <tr> <td>&nbsp;</td></tr>
-                            <tr>
-                                <td><input type="hidden" id="txtClaimState" name="txtClaimState"></td>
-                            </tr>
-
-                            <tr>
-                            		<td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
-                                    <td><button type="submit" id="btnCF">บันทึก</button></td>
-                                    
-                            </tr>
-
-                        </table>
 
 					</div>
 				</div>

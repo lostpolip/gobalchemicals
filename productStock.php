@@ -113,7 +113,8 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM product");
+			$result = $dbManagement->select("SELECT * FROM product
+											WHERE StateProduct ='Confirm'");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {

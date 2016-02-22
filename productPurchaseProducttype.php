@@ -27,6 +27,7 @@
 		'ID'	=> $ProductID,
 		'nameProductType'	=> $ProductTypeName,
 		'nameBrand'	=> $BrandName,
+		'nameSupplierID'	=> $SupplierID,
 		'nameSupplier'	=> $SupplierName,
 		'email'	=> $SupplierEmail,
 	];

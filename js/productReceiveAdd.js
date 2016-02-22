@@ -1,8 +1,8 @@
 $( document ).ready(function() {
-
-	$('#row-supplierName').hide();
-	$('#row_productType').hide();
-	$('#row-brandName').hide();
+var purchaseId = $('#purchaseID').val();
+    $( "#searchID" ).autocomplete({
+      source: JSON.parse(purchaseId)
+    });
 
 
 	$('#btnCF').click(function() {
@@ -15,34 +15,21 @@ $( document ).ready(function() {
 		alert('บันทึกข้อมูลเรียบร้อย');
 	});
 
-	$('#ddProduct').change(function(){
 
-		var productID = $('#ddProduct').val();
+	$('#btnSearch').click(function(){
+		var purchaseID = ($('#searchID').val());
 		$.ajax({
-			url: "productPurchaseProducttype.php", 
+			url: "searchPurchaseID.php", 
 			method: "GET",
 			data: { 
-				productID : productID 
+				purchaseID : purchaseID 
 			},
 			success: function(result){
-				$('#ddProductType').empty();
-				$('#ddBrandName').empty();
-				$('#txtsupplierName').empty();
-				
-		    	var detailProduct = jQuery.parseJSON(result);
-
-		    	for (var x in detailProduct['nameProductType']) {
-					$('#ddProductType').append('<input type="text" value=" '+detailProduct['nameProductType'][x]+' ">');
-					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' ">');
-					$('#txtsupplierName').append('<input type="text" value=" '+detailProduct['nameSupplier'][x]+' ">');
-
-				}
-				$('#row_productType').show();
-				$('#row-brandName').show();
-				$('#row-supplierName').show();
+				$('#detailPurchaseID').html(result);
 		    }
 		});
 	});
+
 
 	$(':button[name=receive]').click(function() {
 		var productAmount = $(this).data('productamount');

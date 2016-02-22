@@ -1,8 +1,8 @@
 $( document ).ready(function() {	
 	$('#row-supplierEmail').hide();
 	$('#row_productType').hide();
-	$('#row-brandName').hide();
-
+	$('#row-brandName').hide();				
+	$('#row-supplier').hide();
 
 	$('#btnCF').click(function() {
 
@@ -19,27 +19,27 @@ $( document ).ready(function() {
 			alert('ส่งemailเรียบร้อยแล้วค่ะ');
 		});
 
-	$('#ddSupplier').change(function(){
+	// $('#ddSupplier').change(function(){
 
-		var supplierID = $('#ddSupplier').val();
-		$.ajax({
-			url: "productPurchaseSupplier.php", 
-			method: "GET",
-			data: { 
-				supplierID : supplierID 
-			},
-			success: function(result){
-				$('#txtSupplierEmail').empty();
-		    	var detailSupplier = jQuery.parseJSON(result);
+	// 	var supplierID = $('#ddSupplier').val();
+	// 	$.ajax({
+	// 		url: "productPurchaseSupplier.php", 
+	// 		method: "GET",
+	// 		data: { 
+	// 			supplierID : supplierID 
+	// 		},
+	// 		success: function(result){
+	// 			$('#txtSupplierEmail').empty();
+	// 	    	var detailSupplier = jQuery.parseJSON(result);
 
-		    	for (var x in detailSupplier['email']) {
-					$('#txtSupplierEmail').append('<input type="text" value=" '+detailSupplier['email'][x]+' ">');
-				}
+	// 	    	for (var x in detailSupplier['email']) {
+	// 				$('#txtSupplierEmail').append('<input type="text" value=" '+detailSupplier['email'][x]+' ">');
+	// 			}
 
-				$('#row-supplierEmail').show();
-		    }
-		});
-	});
+	// 			$('#row-supplierEmail').show();
+	// 	    }
+	// 	});
+	// });
 
 
 	$('#ddProduct').change(function(){
@@ -59,10 +59,17 @@ $( document ).ready(function() {
 		    	for (var x in detailProduct['nameProductType']) {
 					$('#ddProductType').append('<input type="text" value=" '+detailProduct['nameProductType'][x]+' ">');
 					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' ">');
+					$('#supplierId').append('<input type="hidden" id="IdSupplier" value=" '+detailProduct['nameSupplierID'][x]+' ">');
+					$('#ddSupplier').append('<input type="text" value=" '+detailProduct['nameSupplier'][x]+' ">');
+					$('#txtSupplierEmail').append('<input type="text" value=" '+detailProduct['email'][x]+' ">');
+					
 
 				}
 				$('#row_productType').show();
 				$('#row-brandName').show();
+				$('#row-supplier').show();
+				$('#row-supplierEmail').show();
+				
 		    }
 		});
 	});

@@ -322,6 +322,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-family: 'quarkbold';
 	font-size: 22px;
 	color: #1C1C1C;
+
 }
 #table tr td input{
 	width: 200px;
@@ -354,6 +355,49 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border-style: solid;
 }
 
+#table2{
+	width: 820px;
+	border: 2px solid #333232;
+	border-collapse: collapse;
+	background-color: #FFFFFF;
+	margin-bottom: 30px;
+}
+#table2 th {
+	font-family: 'quarkbold';
+	font-size: 20px;
+	color: #4B088A;
+	background-color: #E6E6E6;
+	text-align: center;
+    border: 2px solid #6E6E6E;
+    padding: 5px;
+ }  
+
+#table2 td{
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+	text-align: center;
+	 border: 2px solid #6E6E6E;
+	 height: 30px;
+} 
+#table3 { 
+	padding-left: 120px;
+}
+#table3 tr td label { 
+	font-family: 'quarkbold';
+	font-size: 22px;
+	color: #1C1C1C;
+}
+#table3 tr td input{
+	width: 200px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+}
 
 
 /* footer */
@@ -413,4 +457,37 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border-color: #333232;
 	background-color: #262424;
 	border-style: solid;
+}
+#txtClaimAmount{
+	width: 100px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+
+}
+#btnBack{
+	font-family: 'quarklight';
+	font-size: 20px;
+	border-color: #DF0101;
+	background-color: #FE2E2E;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+	margin-left: 200px;
+}
+#btnCF{
+	font-family: 'quarklight';
+	font-size: 20px;
+    border-color: #088A4B;
+    background-color: #04B45F;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+
+}
+#orderid{
+	width: 100px;
 }

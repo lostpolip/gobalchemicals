@@ -113,8 +113,7 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM productreceive
-												LEFT JOIN product ON productreceive.ProductID=product.ProductID");
+			$result = $dbManagement->select("SELECT * FROM productreceive");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
@@ -123,8 +122,6 @@
 			        $Lot[$i] = $row["Lot"];
 			        $ExpiryDate[$i] = $row["ExpiryDate"];
 			        $ReceiveDate[$i] = $row["ReceiveDate"];
-			        $ProductID[$i] = $row["ProductID"];
-			        $ProductName[$i] = $row["ProductName"];
 			        $ReceiveAmount[$i] = $row["ReceiveAmount"];	
 			        $i++;
 			    }
@@ -147,7 +144,6 @@
                         		<th>Lot</th>
                                 <th>วันรับสินค้า</th>
                                 <th>วันหมดอายุ</th>
-                                <th>ชื่อสินค้า</th>
                                 <th>จำนวน(ตัน)</th>
                                 <!-- <th>คำสั่ง</th> -->
                                 
@@ -162,7 +158,6 @@
                         		<td id="lot"><?php echo $Lot[$j] ?></td>
                         		<td id="receiveDate"><?php echo $ReceiveDate[$j] ?></td>
                         		<td id="expiryDate"><?php echo $ExpiryDate[$j] ?></td>
-                        		<td id="<?php echo $ProductID[$j] ?>"><?php echo $ProductName[$j] ?></td>
                         		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
                         		
 <!--                         		<td>

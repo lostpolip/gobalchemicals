@@ -149,33 +149,6 @@
                         	<tr>
                                 <td><input type="hidden" id="txtPurchaseID" name="txtPurchaseID"></td>
                             </tr>
-
-<!--                         	<tr>
-                                <td><label>วันที่สั่งซื้อ:</label></td>
-                                <td><input type="date" id="txtDatePurchase" name="txtDatePurchase"></td>
-                            </tr> -->
-
-                            <tr>
-                                <td><label><span class="red-star">* </span>ผู้จัดจำหน่าย:</label></td>
-                                <td>
-                               	<select id="ddSupplier" name="ddSupplier">
-                                	<option value="" selected>-------- กรุณาเลือก --------</option>
-                               	 	<?php
-                        					for($s=0;$s<$ddSupplier;$s++){ 
-                        			?>	
-                                		<option value="<?php echo $SupplierID[$s]; ?>"><?php echo $SupplierName[$s]; ?></option>
-                                	<?php
-                        					}
-                        			?>
-									</select>                                 	
-                                </td>
-                            </tr>
-
-                            <tr id="row-supplierEmail">
-                            	<td><label>Email:</label></td>
-                                <td><label id="txtSupplierEmail" name="txtSupplierEmail"></label></td>      
-                            </tr>
-
                             <tr>
                                 <td><label><span class="red-star">* </span>ชื่อสินค้า :</label></td>                       
                                 <td><select id="ddProduct" name="ddProduct" >
@@ -201,6 +174,19 @@
                                 <td><label>ยี่ห้อ:</label></td>
                                 <td><label id="ddBrandName" name="ddBrandName"></label></td>
                             </tr>
+
+                            <tr id="row-supplier">
+                                <td><label>ผู้จัดจำหน่าย:</label></td>
+                                <td><label id="ddSupplier" name="ddSupplier"></label>
+                         			<!-- <input type="hidden" id="supplierId" name="supplierId"> -->
+                                </td>
+                            </tr>
+
+                            <tr id="row-supplierEmail">
+                            	<td><label>Email:</label></td>
+                                <td><label id="txtSupplierEmail" name="txtSupplierEmail"></label></td>      
+                            </tr>
+
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>

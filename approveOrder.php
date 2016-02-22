@@ -234,7 +234,9 @@
 
 		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
 		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
-		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?>
+		                        			<input type="hidden" id="productId" name="productId" value="<?php echo $ProductID[$j]; ?>">
+		                        		</td>
 		                        		<td id="claimamount"><?php echo $ClaimAmount[$j]; ?>&nbsp;&nbsp;ถุง</td>
 		                        		<td>
 		                        			<input type="date" id="claimDate" name="claimDate" min="<?php echo date('Y-m-d');?>" <?php if ($ClaimSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> value="<?php echo $ClaimSendDate[$j]; ?>">
