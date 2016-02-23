@@ -3,7 +3,7 @@
 	require 'dbManagement.php';
 	date_default_timezone_set('Asia/Bangkok');
 	$dbManagement = new dbManagement();
-	$order=$dbManagement->select("SELECT `OrderID` FROM `orders` ");
+	$order=$dbManagement->select("SELECT OrderID FROM orders ");
 	$i = 0;
 	$maxID = 0;
 	if (mysqli_num_rows($order) > 0) {

@@ -15,8 +15,11 @@
 	    	$ProductName = $row["ProductName"];
 	    	// $SupplierName = $row["SupplierName"];
 	    }
-	}
-print_r($PurchaseDate)	;
+	}else{
+        echo('ไม่พบข้อมูลที่ค้นหา');
+        exit();
+    }
+
 ?>                        	
 
    <table id="table" style="width: 100%">

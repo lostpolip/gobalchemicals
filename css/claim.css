@@ -449,13 +449,11 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 16px;
 }
 #txtClaimDetail{
-	width: 220px;
-	height: 80px;
+	width: 150px;
+	height: 50px;
 	font-family: 'quarklight';
 	font-size: 18px;
-	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
+	color: #000000;
 	border-style: solid;
 }
 #txtClaimAmount{

@@ -87,7 +87,7 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="warehouse.php" class="selected">คลังสินค้า</a>
+									<li><a href="#" class="selected">คลังสินค้า</a>
 										<ul>
 											<li><a href="productReceiveAdd.php" >รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>

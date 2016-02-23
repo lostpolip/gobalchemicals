@@ -75,6 +75,8 @@
 			        $i++;
 			    }
 			}
+
+			$max=$ProductAmount;
 		?>
 	
 		<div id="tooplate_main">
@@ -95,7 +97,7 @@
 							  <div class="modal-dialog" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
 							      </div>
 							      <div class="modal-body">
@@ -157,7 +159,7 @@
         							</table>						
 							      </div>
 							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
+							        <button type="button" id="btnBack" class="btn btn-default" data-dismiss="modal">กลับไปหน้าสินค้า</button>
 							        <button type="submit" id="btnCF"  class="btn btn-primary">สั่งซื้อสินค้า</button>
 							      </div>
 							    </div>
@@ -188,7 +190,7 @@
 										<input type="hidden" id="<?php echo 'productCost' . $ProductID[$j]; ?>">
 									<br>
 										<span>จำนวน :</span>	
-										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0" requried>	
+										<input type="text" id="<?php echo 'totalProduct' . $ProductID[$j]; ?>" name="numberLevel" value="0" data-max="<?php echo $ProductAmount[$j]; ?>" requried>	
 										<span>ตัน</span>	
 
 										&nbsp; &nbsp;<button id="btnBasket" name="order" data-productname="<?php echo $ProductName[$j]; ?>" data-productid="<?php echo $ProductID[$j]; ?>" data-productprice="<?php echo $Price[$j]; ?>" data-productweight="<?php echo $ProductWeight[$j]; ?>" data-productcost="<?php echo $Cost[$j]; ?>" class="btn btn-success">หยิบใส่ตะกร้า</button>	

@@ -10,12 +10,18 @@ $( document ).ready(function() {
 		var productName = $(this).data('productname');
 		var productPrice = $(this).data('productprice');
 		var productWeight = $(this).data('productweight');
+		var productAmount = $('#totalProduct' + productID).data('max');
 		var productCost = $(this).data('productcost');
 		var totalProduct = $('#totalProduct' + productID).val();
 		var totalUnit = (totalProduct*1000)/productWeight;
 		var totalPrice = productPrice*totalUnit;
 		var totalCost = productCost*totalUnit;
 		var orderIDVal =  $('#order-id').val();
+
+		if (totalProduct > productAmount ) {
+			alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');
+			return false;
+		}
 
 		if(totalProduct <= 0){
 			alert('กรุณากรอกจำนวนสินค้า');
@@ -96,5 +102,14 @@ $( document ).ready(function() {
 			$('#btnCF').removeAttr('disabled');
 		}
 	});
+
+	$('#btnBack').click(function() {
+		$(':input[name=numberLevel]').val(0) ;	
+	});
+	
+	$('#btnClose').click(function() {
+		$(':input[name=numberLevel]').val(0) ;	
+	});
+
 });
 

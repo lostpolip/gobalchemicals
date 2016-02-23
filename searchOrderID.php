@@ -21,7 +21,10 @@
 
             $i++;
 	    }
-	}
+	}else{
+        echo('ไม่พบข้อมูลที่ค้นหา');
+        exit();
+    }
 ?>                        	
          
 <table id="table" style="width: 100%">
@@ -50,36 +53,34 @@
                     <th>ชื่อสินค้า</th>
                     <th>จำนวนที่สั่งซื้อ</th>
                     <th>จำนวนสินค้าชำรุด</th>
+                    <th>รายละเอียดเพิ่มเติม</th>
+ 
                 </tr>
 
                 <?php
+                $claimId='';
                     for($j=0;$j<$i;$j++){ 
+
+                        $claimId=$claimId.$ProductID[$j].',';
                  ?> 
 
                 <tr>
                     <td id="productid"><?php echo $ProductID[$j]; ?></td>
                     <td id="productname"><?php echo $ProductName[$j]; ?></td>
-                        <input type="hidden" id="productID" name="productID" value="<?php echo $ProductID[$j]; ?>">
+                        <input type="hidden" id="<?php echo 'productID'. $ProductID[$j]; ?>" name="<?php echo 'productID'. $ProductID[$j]; ?>">
                     <td id="orderamount"><?php echo $OrderAmount[$j]; ?></td>
-                    <td id="claimamount"><input id="txtClaimAmount" name="txtClaimAmount"></td>
+                    <td id="claimamount"><input id="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>"></td>
+                    <td><textarea id="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>"></textarea></td>
+
                 </tr>
                 <?php
+
                     }
-                ?>        
+                ?> 
+                  <input type="hidden" id="claim-id" name="claim-id" value="<?php echo $claimId ?>">     
         </table> 
     </div><!--- แจ้งซื้อสินค้า -->
-<table id="table3" style="width: 100%">
-        <tr>
-            <td><label>รายละเอียดเพิ่มเติม :</label></td>
-            <td><textarea id="txtClaimDetail" name="txtClaimDetail"></textarea></td>
-           
-        </tr>
 
-        <tr> <td>&nbsp;</td></tr>
-        <tr>
-            <td><input type="hidden" id="txtClaimState" name="txtClaimState"></td>
-        </tr>
-</table>
         <tr>
                 <td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
                 <td><button type="submit" id="btnCF">บันทึก</button></td>
