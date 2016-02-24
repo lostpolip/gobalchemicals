@@ -67,7 +67,7 @@
                 <tr>
                     <td id="productid"><?php echo $ProductID[$j]; ?></td>
                     <td id="productname"><?php echo $ProductName[$j]; ?></td>
-                        <input type="hidden" id="<?php echo 'productID'. $ProductID[$j]; ?>" name="<?php echo 'productID'. $ProductID[$j]; ?>">
+                        <input type="hidden" id="<?php echo 'productID'. $ProductID[$j]; ?>" name="<?php echo 'productID'. $ProductID[$j]; ?>" value="<?php echo $ProductID[$j]; ?>">
                     <td id="orderamount"><?php echo $OrderAmount[$j]; ?></td>
                     <td id="claimamount"><input id="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>"></td>
                     <td><textarea id="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>"></textarea></td>

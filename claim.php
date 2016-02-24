@@ -17,6 +17,7 @@
 		<link href="css/claim.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>		
+		<link rel="stylesheet" type="text/css" href="fonts/fonts.css"/>		
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="css/jquery-ui.css">
 
@@ -60,7 +61,8 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$Orders = $dbManagement->select("SELECT *FROM orders
-											WHERE CustomerID ='".$_SESSION['CustomerID']."' ");
+											WHERE CustomerID ='".$_SESSION['CustomerID']."' 
+											");
 
 			$orders = 0;
 			if (mysqli_num_rows($Orders) > 0) {

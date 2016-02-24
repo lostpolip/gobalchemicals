@@ -1,32 +1,44 @@
 <?php
-require_once('mail.php');
-$mail = new mail;
-$or= "OR";
-require 'dbManagement.php';
-$dbManagement = new dbManagement();
-$result=$dbManagement->select("SELECT * FROM claim
-						JOIN product  ON claim.ProductID = product.ProductID
-						JOIN customer ON claim.CustomerID = customer.CustomerID
-						WHERE ClaimID ='".$_REQUEST['ClaimID']."'");
+	require_once('mail.php');
+	$mail = new mail;
+	$or= "OR";
+	require 'dbManagement.php';
+	$dbManagement = new dbManagement();
+	$result=$dbManagement->select("SELECT * FROM claimdetail
+							JOIN product  ON claimdetail.ProductID = product.ProductID
+							JOIN orders  ON claimdetail.OrderID = orders.OrderID
+							WHERE ClaimID ='".$_REQUEST['ClaimID']."'
+							");
+	$claim=$dbManagement->select("SELECT * FROM claim
+							JOIN customer  ON claim.CustomerID = customer.CustomerID
+							WHERE ClaimID ='".$_REQUEST['ClaimID']."'
+							");
 
-					$i = 0;
-					if (mysqli_num_rows($result) > 0) {
-					    while($row = mysqli_fetch_assoc($result)) {
-					        $ClaimID[$i] = $row["ClaimID"];
-					        $ClaimDate[$i] = $row["ClaimDate"];
-					        $ClaimSendDate[$i] = $row["ClaimSendDate"];
-					        $ProductID[$i] = $row["ProductID"];
-					        $ProductName[$i] = $row["ProductName"];
-					        $ClaimAmount[$i] = $row["ClaimAmount"];
-					        $ClaimDetail[$i] = $row["ClaimDetail"];
-					        $CustomerID[$i] = $row["CustomerID"];
-					        $CustomerName[$i] = $row["CustomerName"];
-					        $CustomerEmail[$i] = $row["CustomerEmail"];
-					        $CustomerTel[$i] = $row["CustomerTel"];
-					        $CustomerSendDate[$i] = $row["CustomerSendDate"];
-					        $i++;
-					    }
-					}
+		$i = 0;
+		if (mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_assoc($result)) {
+				$ClaimID[$i] = $row["ClaimID"];
+				$OrderID[$i] = $row["OrderID"];
+				$ProductID[$i] = $row["ProductID"];
+				$ProductName[$i] = $row["ProductName"];
+				$ClaimAmount[$i] = $row["ClaimAmount"];
+				$ClaimProductDetail[$i] = $row["ClaimProductDetail"];
+				$i++;
+			}
+		}
+
+		$i = 0;
+		if (mysqli_num_rows($claim) > 0) {
+			while($row = mysqli_fetch_assoc($claim)) {
+				$CustomerID[$i] = $row["CustomerID"];
+				$CustomerName[$i] = $row["CustomerName"];
+				$CustomerEmail[$i] = $row["CustomerEmail"];
+				$CustomerTel[$i] = $row["CustomerTel"];
+				$ClaimDate[$i] = $row["ClaimDate"];
+				$ClaimSendDate[$i] = $row["ClaimSendDate"];
+				$i++;
+			}
+		}
 
 $body = '<!DOCTYPE html>
 			<html>
@@ -64,16 +76,13 @@ $body = '<!DOCTYPE html>
 			                        	<tr>
 			                        		<th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">รหัสสินค้า</th>
 			                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">ชื่อสินค้า</th>
-			                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน</th>
-			                                
+			                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน</th>   
 			                        	</tr>
 			 
 			                        	<tr>
 			                        		<td id="productid" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;">'.$ProductID[0].'</td>
 			                        		<td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;">'.$ProductName[0].'</td>
 			                        		<td id="productamount" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; text-align: right;">'.$ClaimAmount[0].'</td>
-
-
 			                        	</tr>
 			                        </table>   
 			                    </div>
@@ -86,7 +95,7 @@ $body = '<!DOCTYPE html>
 				                            </tr>    
 										</table>  
 										<br>
-										<label id="detail">รายละเอียดการแจ้งเคลม :'.$ClaimDetail[0].' </label> 
+										<label id="detail">รายละเอียดการแจ้งเคลม :'.$ClaimProductDetail[0].' </label> 
 										<br>
 			                    </div>
 			                    <br>
@@ -118,6 +127,6 @@ $body = '<!DOCTYPE html>
 			';
 
 $mail->sendmail($body,$CustomerEmail[0]);
-header( "location: /gobalchemicals/approveOrder.php" );
+header( "location: /gobalchemicals/approveClaim.php" );
 
 ?>

@@ -27,5 +27,5 @@
 
 	$upProduct=$dbManagement->update("UPDATE product SET ProductAmount='".$totalProduct."' WHERE ProductID='".$_REQUEST['productId']."'");
 
-	header( "location: /gobalchemicals/approveOrder.php" );
+	header( "location: /gobalchemicals/approveClaim.php" );
 ?>

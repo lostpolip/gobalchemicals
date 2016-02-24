@@ -57,8 +57,8 @@
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
-                        	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
-                            <input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+                        	<a href="#"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
+                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
 
 					  <div id="tooplate_top">
@@ -123,12 +123,7 @@
 			$result = $dbManagement->select("SELECT * FROM `claimdetail`  
 											JOIN product ON claimdetail.ProductID=product.ProductID 
 											JOIN claim ON claimdetail.ClaimID=claim.ClaimID
-											WHERE StateClaim='Processing'
-											-- ORDER BY ClaimID
-											");
-			$Order = $dbManagement->select("SELECT * FROM orders 
-											JOIN customer ON orders.CustomerID=customer.CustomerID
-											WHERE State='processing'
+											WHERE claim.ClaimID='".$_REQUEST['ClaimID']."'
 											");
 
 			$i = 0;
@@ -136,30 +131,13 @@
 			    while($row = mysqli_fetch_assoc($result)) {
 			        $ClaimID[$i] = $row["ClaimID"];
 			        $ClaimDate[$i] = $row["ClaimDate"];
-			        $OrderID[$i] = $row["OrderID"];
-			        $CustomerID[$i] = $row["CustomerID"];
-			        // $CustomerName[$i] = $row["CustomerName"];
 			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $ClaimAmount[$i] = $row["ClaimAmount"];
 			        $StateClaim[$i] = $row["StateClaim"];
 			        $ClaimSendDate[$i] = $row["ClaimSendDate"];
+			        $OrderID[$i] = $row["OrderID"];
 			        $i++;
-			    }
-			}
-
-			$r = 0;
-			if (mysqli_num_rows($Order) > 0) {
-			    while($row = mysqli_fetch_assoc($Order)) {
-			    	$CustomerID[$r] = $row["CustomerID"];
-			    	$CustomerName[$r] = $row["CustomerName"];
-			    	$OrderID[$r] = $row["OrderID"];
-			    	$OrderDate[$r] = $row["OrderDate"];
-			    	$TotalPriceOrder[$r] = $row["TotalPriceOrder"];
-			    	$TotalTransport[$r] = $row["TotalTransport"];
-			    	$ExtendedPrice[$r] = $row["ExtendedPrice"];
-			    	$State[$r] = $row["State"];
-			        $r++;
 			    }
 			}
 
@@ -168,48 +146,58 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
-					 <!-- Nav tabs -->
+					<!-- Nav tabs -->
 					  <ul class="nav nav-tabs" role="tablist">
-					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">แจ้งการสั่งซื้อ</a></li>
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการเคลมสินค้า</a></li>
 					  </ul>
 
 					  <!-- Tab panes -->
 					  <div class="tab-content">
-					    <div role="tabpanel" class="tab-pane active" id="approveOrder">
+					    <div role="tabpanel" class="tab-pane active">
 					    	<br>
-					    	<?php
-		                        for($j=0;$j<$r;$j++){ 
-		                    ?>
 					    	<table id="table2" width="100%">
-					    		<label id="labelDate"><span id="claimDD">วันที่สั่งซื้อสินค้า :&nbsp;&nbsp;</span><?php echo $OrderDate[$j]; ?></label>
-					    		&nbsp;&nbsp;				   				    		
-					    		<label id="labelState"><span id="claimST">สถานะ :&nbsp;&nbsp;</span><?php echo $State[$j]; ?></label>
-					    		<button id="btnApprove" class="btn btn-success"><a href="approveOrderSQL.php?OrderID=<?php echo $OrderID[$j]; ?>">อนุมัติ</a></button>&nbsp;
-								<button id="btnNonApprove" class="btn btn-danger"><a href="approveCancleOrderSQL.php?OrderID=<?php echo $OrderID[$j]; ?>">ไม่อนุมัติ</a></button>
+
 
 		                        	<tr>
+		                        		<th>วันที่</th>
 		                        		<th>เลขที่ใบสั่งซื้อ</th>
-		                                <th>ชื่อลูกค้า</th>
-		                                <th>รวมทั้งสิ้น</th>
+		                        		<th>รหัสสินค้า</th>
+		                                <th>ชื่อสินค้า</th>
+		                                <th>จำนวนแจ้งเคลม(ถุง)</th>
 		                                
 		                        	</tr>
 
-		                        	<tr>
-		                        		<td id="ordertid"><?php echo $OrderID[$j]; ?></td>
-		                        		<td id="productname"><?php echo $CustomerName[$j]; ?></td>
-		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
+					    			<?php
+		                        		for($j=0;$j<$i;$j++){ 
+		                   			 ?>	
 
+		                        	<tr>
+		                        		<td id="date"><?php echo $ClaimDate[$j]; ?></td>
+		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+		                        		<td id="productid"><?php echo $ProductID[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="productamount"><?php echo $ClaimAmount[$j]; ?></td>
 		                        	</tr>
+		                        	<?php
+		                        		}
+		                    		?>        
 							</table> 
-							<?php
-		                        }
-		                    ?>        							
 					    </div><!--- แจ้งซื้อสินค้า -->
-					</div>
-				</div>
+                    	<div>
+                			<table id="table4">
+                				<tr>
+                					<td><a href="approveClaim.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                					</td>
+                					<br>
+
+                				</tr>
+                			</table>
+						</div>
+                    </div>
+				</div>	  
 			</div>	
 		</div><!--end of tooplate_main-->
- </form>	
+ 	</form>	
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
