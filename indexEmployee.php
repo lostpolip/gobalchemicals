@@ -117,18 +117,11 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
-
-						<h2>ยินดีต้อนรับ&nbsp;</h2>
-                        <p><span>Cellulose Fiber</span></p>
-						<img src="images/fiber1.jpg" alt="Image 01" class="image_fl" />
-						<p><span>Spice and Flavor Carriers</span></p>
-
-                        <p>The unique inert characteristics of Solka-Floc&nbsp; and Justfiber brand powdered cellulose make it an excellent spice and flavor carrier. Neutral in color,odor and taste - Solka-Floc and Justfiber serve as an ideal functional ingredient in spice or nutritional blends while contributing 99% dietary fiber and zero calories. </p>
-
-                        <p>&nbsp;</p>
-                        <img src="images/fiber2.jpg" alt="Image 02" class="image_fr" />
-						<p> The superior flowability characteristics of cellulose provide anti-caking effectiveness in dry seasonings, spices and mixes. Improved flowability can enhance packaging and manufacturing efficiencies.</p>
-						<div class="cleaner h20"></div>
+					<h2>สินค้าในคลัง</h2>
+					  	<div class="panel panel-default">
+		    				<div class="panel-heading">Panel Heading</div>
+		    				<div class="panel-body">Panel Content</div>
+	 				 	</div>
 				
 				</div>
 			</div>

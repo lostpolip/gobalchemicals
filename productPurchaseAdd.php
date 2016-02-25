@@ -178,7 +178,7 @@
                             <tr id="row-supplier">
                                 <td><label>ผู้จัดจำหน่าย:</label></td>
                                 <td><label id="ddSupplier" name="ddSupplier"></label>
-                         			<!-- <input type="hidden" id="supplierId" name="supplierId"> -->
+                         			<input type="hidden" id="supplierId" name="supplierId" value="<?php echo $SupplierID[0]; ?>">
                                 </td>
                             </tr>
 

@@ -18,8 +18,8 @@
 	}
 	$newID = $maxID + 1;
 
-	$dbManagement->insert("INSERT INTO `purchase`(`PurchaseID`, `PurchaseDate`, `SupplierID`, `ProductID`, `PurchaseAmount`, `StatePurchase`,`PurchaseDetail`) VALUES ('PO' '".$newID."','".date("Y-m-d")."','".$_REQUEST['IDSupplier']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtProductAmount']."','processing','".$_REQUEST['txtPurchaseDetail']."')");
-print_r("INSERT INTO `purchase`(`PurchaseID`, `PurchaseDate`, `SupplierID`, `ProductID`, `PurchaseAmount`, `StatePurchase`,`PurchaseDetail`) VALUES ('PO' '".$newID."','".date("Y-m-d")."','".$_REQUEST['supplierId']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtProductAmount']."','processing','".$_REQUEST['txtPurchaseDetail']."')");
-	// header( "location: /gobalchemicals/productPurchase.php" );
+	$dbManagement->insert("INSERT INTO purchase(PurchaseID, PurchaseDate, SupplierID, ProductID, PurchaseAmount, StatePurchase,PurchaseDetail) VALUES ('PO' '".$newID."','".date("Y-m-d")."','".$_REQUEST['supplierId']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtProductAmount']."','processing','".$_REQUEST['txtPurchaseDetail']."')");
+
+	header( "location: /gobalchemicals/productPurchase.php" );
 
 ?>
