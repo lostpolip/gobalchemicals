@@ -1,9 +1,8 @@
 <?php
 session_start();
-	require 'dbManagement.php';
-	$dbManagement = new dbManagement();
 
-	
+	require 'dbManagement.php';
+	$dbManagement = new dbManagement();	
     $customer = $dbManagement->select("SELECT * FROM customer");
     $i = 0;
     if (mysqli_num_rows($customer) > 0) {
@@ -25,10 +24,9 @@ session_start();
 		}
 	}
 		if (!$x== $username) {
-			$dbManagement->insert("INSERT INTO customer(CustomerID, CustomerName, CustomerAddress, AumphurID, ProvinceID, ZipcodeID, CustomerTel, CustomerFax, CustomerEmail, CustomerUsername, CustomerPassword, DistrictID, Latitude, Longitude)  VALUES ('".$_REQUEST['txtCustomerID']."','".$_REQUEST['txtName']."','".$_REQUEST['txtAddress']."','".$_REQUEST['txtDistrict']."','".$_REQUEST['province']."','".$_REQUEST['txtZipcode']."','".$_REQUEST['txtTel']."','".$_REQUEST['txtFax']."','".$_REQUEST['txtEmail']."','".$username."','".$_REQUEST['txtPassword']."','".$_REQUEST['txtSubDistrict']."','".$_REQUEST['txtLatitude']."','".$_REQUEST['txtLongitude']."')");
+			$dbManagement->insert("INSERT INTO customer(CustomerName, CustomerAddress, AumphurID, ProvinceID, ZipcodeID, CustomerTel, CustomerFax, CustomerEmail, CustomerUsername, CustomerPassword, DistrictID, Latitude, Longitude)  VALUES ('".$_REQUEST['txtName']."','".$_REQUEST['txtAddress']."','".$_REQUEST['txtDistrict']."','".$_REQUEST['province']."','".$_REQUEST['txtZipcode']."','".$_REQUEST['txtTel']."','".$_REQUEST['txtFax']."','".$_REQUEST['txtEmail']."','".$username."','".$_REQUEST['txtPassword']."','".$_REQUEST['txtSubDistrict']."','".$_REQUEST['txtLatitude']."','".$_REQUEST['txtLongitude']."')");
 
 		}
-	
-	         
-	// header( "location: /gobalchemicals/register.php" );
+         
+	header( "location: /gobalchemicals/register.php" );
 ?>

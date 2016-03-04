@@ -49,7 +49,6 @@
 
 	</head>
 	<body>
-
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">
 					<div id="tooplate_header">	
@@ -124,6 +123,8 @@
 											JOIN customer ON claim.CustomerID=customer.CustomerID
 											WHERE StateClaim='Processing'		
 											");
+
+
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
@@ -189,6 +190,7 @@
 		                        			
 		                        		</td>
 		                        	</tr>
+		                        	
 							</table>					 
 							<?php
 		                        }

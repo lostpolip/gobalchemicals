@@ -51,7 +51,7 @@
                         	<tr>
                                 <td><label><span class="red-star">* </span>ชื่อผู้ใช้งาน :</label></td>
                                 <td>
-                                    <input type="text" id="txtUsername" name="txtUsername"placeholder="สำหรับเป็น Login" ></td>
+                                    <input type="text" id="txtUsername" name="txtUsername"placeholder="สำหรับเป็น Login" required></td>
                             </tr>
 
                             <tr>
@@ -66,18 +66,18 @@
                             </tr> -->
                             <tr>
                                 <td><label>ชื่อบริษัท :</label></td>
-                                <td><input id="txtName" name="txtName"></td>
+                                <td><input id="txtName" name="txtName"required></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">* </span>ที่อยู่ เลขที่:</label></td>
-                                <td><input type="text" id="txtAddress" name="txtAddress" ></td>
+                                <td><input type="text" id="txtAddress" name="txtAddress" required></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จังหวัด :</label></td>
                                 <td>
-                                	<select id="province" name="province" >
+                                	<select id="province" name="province" required>
                                 	<option value="" selected>------ เลือกจังหวัด ------</option>
                                 	 	<?php
                         					for($j=0;$j<$i;$j++){ 
@@ -119,7 +119,7 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>โทรศัพท์ :</label></td>
-                                <td><input type="tel" id="txtTel" name="txtTel" ></td>
+                                <td><input type="tel" id="txtTel" name="txtTel" required></td>
                             </tr>
 
                             <tr>
@@ -129,7 +129,7 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>Email :</label></td>
-                                <td><input type="email" id="txtEmail" name="txtEmail" ></td>
+                                <td><input type="email" id="txtEmail" name="txtEmail" required></td>
                             </tr>
 
                             <tr> <td><input type="hidden" id="txtLatitude" name="txtLatitude" ></td></tr>
