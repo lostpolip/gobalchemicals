@@ -41,7 +41,7 @@
 
 		?>
 
-	<form action="registerAdd.php">
+	<form id="registerAddForm" action="registerAdd.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -133,14 +133,17 @@
                             </tr>
 
                             <tr> <td><input type="hidden" id="txtLatitude" name="txtLatitude" ></td></tr>
+
                             <tr> <td><input type="hidden" id="txtLongitude" name="txtLongitude" ></td></tr>
+
+                            <tr> <td><input type="hidden" id="txtDistance" name="txtDistance" ></td></tr>
 
                             <tr> <td>&nbsp;</td></tr>
                             <tr> <td>&nbsp;</td></tr>
 
                             <tr>
                                      <td><a href="index.html"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
-                                     <td><button type="submit" id="btnCF">บันทึก</button></td>
+                                     <td><button type="button" id="btnCF">บันทึก</button></td>
                                    
                             </tr>
 

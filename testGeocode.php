@@ -30,24 +30,22 @@
   </head>
   <body>
     <div id="floating-panel">
-      <input id="address" type="textbox" value="Sydney, NSW">
-      <input id="submit" type="button" value="Geocode">
+      <input id="address" type="textbox" value="">
+      <input id="submit" type="button" value="บันทึก">
     </div>
     <div id="map"></div>
     <script>
-
-function getQueryVariable(variable, url) {
-  var query = url.split('?');
-  query = query[1].split('&');
-  query = query[0].replace('ll=', '');
-  query = query.split(',');
-  return query;
-}
-
+      function getQueryVariable(variable, url) {
+        var query = url.split('?');
+        query = query[1].split('&');
+        query = query[0].replace('ll=', '');
+        query = query.split(',');
+        return query;
+      }
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 17.970619, lng: 102.618526},
+          center: {lat: 13.7469068, lng: 100.5347162},
           zoom: 15
         });
         var geocoder = new google.maps.Geocoder();
@@ -57,9 +55,11 @@ function getQueryVariable(variable, url) {
         });
       }
 
+
       function geocodeAddress(geocoder, resultsMap) {
+        console.log(geocoder);
         var geocode = getQueryVariable("ll", resultsMap.mapUrl);
-        console.log(resultsMap.mapUrl);
+        console.log(geocode);
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
@@ -76,7 +76,7 @@ function getQueryVariable(variable, url) {
       }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgSRcTdsVpnAkUacPJpJdk2TU9nz7qSIo&callback=initMap&language=th">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
     </script>
   </body>
 </html>

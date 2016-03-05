@@ -1,3 +1,7 @@
+<!-- <?php 
+echo $_REQUEST['lat']; 
+ echo $_REQUEST['lng'];
+?> -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -77,14 +81,11 @@
     </style>
   </head>
   <body>
-    <?php 
-      $lat = $_REQUEST["lat"]; 
-      $lng = $_REQUEST["lng"]; 
-    ?>
+
     <div id="floating-panel">
       <strong>Start:</strong>
       <input id="start" value="<?php echo 'lat:13.9221481, lng:100.465985'; ?>">
-      <input id="end" value="<?php echo $lat . ',' . $lng; ?>">
+      <input id="end" value="<?php echo 'lat:8.215278, lng:99.213333'; ?>">
     </div>
     <div id="right-panel"></div>
     <div id="map"></div>
@@ -112,13 +113,13 @@ calculateAndDisplayRoute(directionsService, directionsDisplay);
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var start = document.getElementById('start').value;
-        var end = document.getElementById('end').value;
-        var end = end.split(',');
-        console.log(parseFloat(end[0]));
+        // var start = document.getElementById('start').value;
+        // var end = document.getElementById('end').value;
+        // var end = end.split(',');
+        // console.log(parseFloat(end[0]));
         directionsService.route({
-          origin: {lat: 13.7475021, lng: 100.5336839},
-          destination: {lat: parseFloat(end[0]), lng: parseFloat(end[1])},
+          origin: {lat:13.9221481, lng:100.465985},
+          destination: {lat:8.215278, lng:99.213333},
           travelMode: google.maps.TravelMode.DRIVING
         }, function(response, status) {
           

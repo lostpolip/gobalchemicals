@@ -75,6 +75,8 @@
                                                 AND State = 'no'
 												");
 
+			$rate=$dbManagement->select("SELECT * FROM rate");
+
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
@@ -95,24 +97,40 @@
 			    }
 			}
 
-			$i = 0;
+			$r = 0;
+			if (mysqli_num_rows($rate) > 0) {
+			    while($row = mysqli_fetch_assoc($rate)) {
+			    	$RateID[$r] = $row["RateID"];
+			    	$WeightOfProduct[$r] = $row["WeightOfProduct"];
+			    	$RatePerKm[$r] = $row["RatePerKm"];
+			        $r++;
+			    }
+			}
+
+			// for ($j=0; $j < $r ; $j++) { 
+			// 	if(){
+
+			// 	}
+			// }
+
+			$or = 0;
 			if (mysqli_num_rows($orderdetail) > 0) {
 			    while($row = mysqli_fetch_assoc($orderdetail)) {
-			    	$ProductID[$i] = $row["ProductID"];
-			    	$ProductName[$i] = $row["ProductName"];
-			    	$Cost[$i] = $row["Cost"];
-			    	$Price[$i] = $row["Price"];
-			    	$OrderAmount[$i] = $row["OrderAmount"];
-			    	$TotalVolumn[$i] = $row["TotalVolumn"];
-			    	$TotalCost[$i] = $row["TotalCost"];
-			    	$OrderID[$i] = $row["OrderID"];
-			    	$OrderDate[$i] = $row["OrderDate"];
-			    	$TotalPrice[$i] = $row["TotalPrice"];
-			    	$TotalPriceOrder[$i] = $row["TotalPriceOrder"];
-			    	$TotalVat[$i] = $row["TotalVat"];
-			    	$TotalTransport[$i] = $row["TotalTransport"];
-			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
-			        $i++;
+			    	$ProductID[$or] = $row["ProductID"];
+			    	$ProductName[$or] = $row["ProductName"];
+			    	$Cost[$or] = $row["Cost"];
+			    	$Price[$or] = $row["Price"];
+			    	$OrderAmount[$or] = $row["OrderAmount"];
+			    	$TotalVolumn[$or] = $row["TotalVolumn"];
+			    	$TotalCost[$or] = $row["TotalCost"];
+			    	$OrderID[$or] = $row["OrderID"];
+			    	$OrderDate[$or] = $row["OrderDate"];
+			    	$TotalPrice[$or] = $row["TotalPrice"];
+			    	$TotalPriceOrder[$or] = $row["TotalPriceOrder"];
+			    	$TotalVat[$or] = $row["TotalVat"];
+			    	$TotalTransport[$or] = $row["TotalTransport"];
+			    	$ExtendedPrice[$or] = $row["ExtendedPrice"];
+			        $or++;
 			    } 
 			} else {
 			    header( "location: /gobalchemicals/order.php" );
@@ -205,7 +223,8 @@
 	                    				<label>ค่าขนส่ง :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo number_format($TotalTransport[0]); ?>"> 
+		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo number_format($TotalTransport[0]); ?>"
+		                        		disabled> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>

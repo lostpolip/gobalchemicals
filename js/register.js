@@ -11,6 +11,44 @@ $( document ).ready(function() {
 
 	    	return false;
 		}
+		var customerName = $('#txtName').val().trim();
+		var address = $('#txtAddress').val().trim();
+		var province = $('#province option:selected').text().trim();
+		var district = $('#txtDistrict option:selected').text().trim();
+		var supDistrict = $('#txtSubDistrict option:selected').text().trim();
+		var zipCode = $('#txtZipcode option:selected').text().trim();
+		var locationAddress=address+'+'+province+'+'+district+'+'+supDistrict+'+'+zipCode;
+		$.ajax({
+			url: "https://maps.googleapis.com/maps/api/geocode/json", 
+			method: "GET",
+			data: { 
+				address : locationAddress,
+				key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
+			},
+			success: function(result){
+				var lat = result.results[0].geometry.location.lat;
+				var lng = result.results[0].geometry.location.lng;
+				$('#txtLatitude').val(lat);
+				$('#txtLongitude').val(lng);
+			},
+			complete: function(){
+				$.ajax({
+					url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=13.9221481,100.465985&destinations=8.215278%2C99.213333&key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8", 
+					method: "GET",
+					// data: { 
+					// 	units : 'imperial',
+					// 	origins :'13.93662,100.459377',
+					// 	destinations :lat+'%2C'+lng,
+					// 	key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
+					// },
+					success: function(resultDistance){
+						console.log(resultDistance);
+						// $( "#registerAddForm" ).submit();
+					}
+				});
+			}
+		});
+	
 		alert('สมัครสมาชิกเรียบร้อยแล้วค่ะ');
 	});
 	
