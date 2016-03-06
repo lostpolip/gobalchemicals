@@ -21,6 +21,7 @@ $( document ).ready(function() {
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json", 
 			method: "GET",
+			crossDomain: true,
 			data: { 
 				address : locationAddress,
 				key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
@@ -30,20 +31,21 @@ $( document ).ready(function() {
 				var lng = result.results[0].geometry.location.lng;
 				$('#txtLatitude').val(lat);
 				$('#txtLongitude').val(lng);
-			},
-			complete: function(){
+	
 				$.ajax({
-					url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=13.9221481,100.465985&destinations=8.215278%2C99.213333&key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8", 
+					url: "https://maps.googleapis.com/maps/api/distancematrix/json", 
 					method: "GET",
-					// data: { 
-					// 	units : 'imperial',
-					// 	origins :'13.93662,100.459377',
-					// 	destinations :lat+'%2C'+lng,
-					// 	key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
-					// },
+					crossDomain: true,
+					data: { 
+						units : 'imperial',
+						origins :'13.9221232,100.4680988',
+						destinations :lat+','+lng,
+						key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
+					},
 					success: function(resultDistance){
-						console.log(resultDistance);
-						// $( "#registerAddForm" ).submit();
+						var distance = resultDistance.rows[0].elements[0].distance.text;
+						$('#txtDistance').val(distance);						
+						$( "#registerAddForm" ).submit();
 					}
 				});
 			}

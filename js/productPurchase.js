@@ -19,27 +19,6 @@ $( document ).ready(function() {
 			alert('ส่งemailเรียบร้อยแล้วค่ะ');
 		});
 
-	// $('#ddSupplier').change(function(){
-
-	// 	var supplierID = $('#ddSupplier').val();
-	// 	$.ajax({
-	// 		url: "productPurchaseSupplier.php", 
-	// 		method: "GET",
-	// 		data: { 
-	// 			supplierID : supplierID 
-	// 		},
-	// 		success: function(result){
-	// 			$('#txtSupplierEmail').empty();
-	// 	    	var detailSupplier = jQuery.parseJSON(result);
-
-	// 	    	for (var x in detailSupplier['email']) {
-	// 				$('#txtSupplierEmail').append('<input type="text" value=" '+detailSupplier['email'][x]+' ">');
-	// 			}
-
-	// 			$('#row-supplierEmail').show();
-	// 	    }
-	// 	});
-	// });
 
 
 	$('#ddProduct').change(function(){

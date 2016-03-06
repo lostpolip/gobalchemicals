@@ -58,6 +58,7 @@
 
 		<?php
 			require 'dbManagement.php';
+			setlocale(LC_MONETARY, 'en_US');
 			$dbManagement = new dbManagement();
 			$result=$dbManagement->select("SELECT * FROM customer
 											JOIN province ON customer.ProvinceID=province.ProvinceID
@@ -92,26 +93,11 @@
 			        $ProvinceName[$i] = $row["ProvinceName"];
 			        $ZipcodeID[$i] = $row["ZipcodeID"];
 			        $Zipcode[$i] = $row["Zipcode"];	
+			        $Distance[$i] = $row["Distance"];	
 
 			        $i++;
 			    }
 			}
-
-			$r = 0;
-			if (mysqli_num_rows($rate) > 0) {
-			    while($row = mysqli_fetch_assoc($rate)) {
-			    	$RateID[$r] = $row["RateID"];
-			    	$WeightOfProduct[$r] = $row["WeightOfProduct"];
-			    	$RatePerKm[$r] = $row["RatePerKm"];
-			        $r++;
-			    }
-			}
-
-			// for ($j=0; $j < $r ; $j++) { 
-			// 	if(){
-
-			// 	}
-			// }
 
 			$or = 0;
 			if (mysqli_num_rows($orderdetail) > 0) {
@@ -130,14 +116,31 @@
 			    	$TotalVat[$or] = $row["TotalVat"];
 			    	$TotalTransport[$or] = $row["TotalTransport"];
 			    	$ExtendedPrice[$or] = $row["ExtendedPrice"];
+			    	$UnitProduct[$or] = $row["UnitProduct"];
 			        $or++;
 			    } 
 			} else {
 			    header( "location: /gobalchemicals/order.php" );
-			}		
+			}	
+
+			$r = 0;
+			if (mysqli_num_rows($rate) > 0) {
+			    while($row = mysqli_fetch_assoc($rate)) {
+			    	$RateID[$r] = $row["RateID"];
+			    	$WeightOfProduct[$r] = $row["WeightOfProduct"];
+			    	$RatePerKm[$r] = $row["RatePerKm"];
+			        $r++;
+			    }
+			}
+
+			for ($x=0; $x < $r ; $x++) { 
+				if ($UnitProduct[0]<=$WeightOfProduct[$x]) {
+					break;
+				}
+			}
 
 		?>
-	<form action="orderupdateSQL.php">
+	<form action="orderUpdateSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
@@ -172,7 +175,7 @@
                         	</tr>
 
                        		<?php
-                        	for($j=0;$j<$i;$j++){ 
+                        	for($j=0;$j<$or;$j++){ 
                         	?>  
 
                         	<tr id="orderList">
@@ -223,8 +226,8 @@
 	                    				<label>ค่าขนส่ง :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo number_format($TotalTransport[0]); ?>"
-		                        		disabled> 
+		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo ($RatePerKm[$x]*$Distance[0]);?>"
+		                        		readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -234,7 +237,7 @@
 	                    				<label>รวมทั้งหมด :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]); ?>" disabled> 
+		                        		<input id="totalOther" name="totalOther" value="<?php echo ($ExtendedPrice[0]+$RatePerKm[$x]*$Distance[0]); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>

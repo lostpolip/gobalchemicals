@@ -13,7 +13,7 @@ session_start();
             $i++;
         }              
     }	
-    
+    $distance=$_REQUEST['txtDistance']*1.61;
 	$username=$_REQUEST['txtUsername'];
 	$x=0;
 	for($j=0; $j<$i; $j++){
@@ -24,7 +24,7 @@ session_start();
 		}
 	}
 		if (!$x== $username) {
-			$dbManagement->insert("INSERT INTO customer(CustomerName, CustomerAddress, AumphurID, ProvinceID, ZipcodeID, CustomerTel, CustomerFax, CustomerEmail, CustomerUsername, CustomerPassword, DistrictID, Latitude, Longitude,Distance)  VALUES ('".$_REQUEST['txtName']."','".$_REQUEST['txtAddress']."','".$_REQUEST['txtDistrict']."','".$_REQUEST['province']."','".$_REQUEST['txtZipcode']."','".$_REQUEST['txtTel']."','".$_REQUEST['txtFax']."','".$_REQUEST['txtEmail']."','".$username."','".$_REQUEST['txtPassword']."','".$_REQUEST['txtSubDistrict']."','".$_REQUEST['txtLatitude']."','".$_REQUEST['txtLongitude']."','".$_REQUEST['txtDistance']."')");
+			$dbManagement->insert("INSERT INTO customer(CustomerName, CustomerAddress, AumphurID, ProvinceID, ZipcodeID, CustomerTel, CustomerFax, CustomerEmail, CustomerUsername, CustomerPassword, DistrictID, Latitude, Longitude,Distance)  VALUES ('".$_REQUEST['txtName']."','".$_REQUEST['txtAddress']."','".$_REQUEST['txtDistrict']."','".$_REQUEST['province']."','".$_REQUEST['txtZipcode']."','".$_REQUEST['txtTel']."','".$_REQUEST['txtFax']."','".$_REQUEST['txtEmail']."','".$username."','".$_REQUEST['txtPassword']."','".$_REQUEST['txtSubDistrict']."','".$_REQUEST['txtLatitude']."','".$_REQUEST['txtLongitude']."','".$distance."')");
 		}
-	header( "location: /gobalchemicals/register.php" );
+	header( "location: /gobalchemicals/index.html" );
 ?>

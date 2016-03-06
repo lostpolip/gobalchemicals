@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/approveOrder.js"></script>
+		<script type="text/javascript" src="js/transport.js"></script>
 		
 		
 
@@ -116,6 +116,28 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();			
+			$truck = $dbManagement->select("SELECT * FROM truck");
+
+			$ddtruck = 0;
+			if (mysqli_num_rows($truck) > 0) {
+			    while($row = mysqli_fetch_assoc($truck)) {
+			        $TruckID[$ddtruck] = $row["TruckID"];
+			        $TruckName[$ddtruck] = $row["TruckName"];
+			        $TruckTypeID[$ddtruck] = $row["TruckTypeID"];
+			        $FuelID[$ddtruck] = $row["FuelID"];
+			        $TruckWeight[$ddtruck] = $row["TruckWeight"];
+			        $WeightQuantity[$ddtruck] = $row["WeightQuantity"];
+			        $WeightCapacity[$ddtruck] = $row["WeightCapacity"];
+			        $StateTruck[$ddtruck] = $row["StateTruck"];
+			        $ddtruck++;
+			    }
+			   
+			}
+		?>
+
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -158,7 +180,7 @@
 															    <td><label></label></td>
 															    <td><label></label></td>
 															    <td>
-															    		<button class="btnAlert" data-title="delete" data-toggle="modal" type="submit" class="btn btn-default">เลือก</button>
+															    	<button class="btnAlert" data-title="delete" data-toggle="modal" type="submit" class="btn btn-default">เลือก</button>
 															    	
 															    </td>
 															</tr>
@@ -167,8 +189,8 @@
 
 										      </div>
 										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
-										        
+										        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก
+										        </button>
 										      </div>
 										    </div>
 										  </div>
@@ -191,15 +213,63 @@
 	                        		<td id="customerName"></td>
 	                        		<td id="productWeight"></td>
 	                        		<td id="productVolunm"></td>
-	                        		<td>
-	                        		
-	                        			<button id="btnDelete" class="btn btn-default"><a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a></button>
+	                        		<td>                     
+	                        			<button id="btnDelete" class="btn btn-default">
+	                        			<a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a>
+	                        			</button>
 	                        		</td>
 	                        	</tr>
                         	</table>     	
+                        	<br>
 
-	                            <tr> <td>&nbsp;</td></tr>
-	                            <tr> <td>&nbsp;</td></tr>
+								<tr> 
+									<td><label id="labelWeight">รวมน้ำหนักสินค้าทั้งหมด :</label>
+										<input type="text" id="txtWeightProduct" name="txtWeightProduct" value="0" disabled> 
+										<label id="labelWeight">ตัน</label>
+									</td>
+								</tr>
+								<br>
+								<p>รถบรรทุก</p>
+								<tr> 
+									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
+										<select id="ddTruck" name="ddTruck" >
+                                	 		<option value="" selected>เลือก</option>
+		                                	 	<?php
+		                        					for($j=0;$j<$ddtruck;$j++){ 
+		                        				?>	
+                                			<option value="<?php echo $TruckID[$j]; ?>"><?php echo $WeightCapacity[$j]; ?></option>
+                                				<?php
+                        							}
+                        						?>
+                                		</select>
+                                		<label id="labelWeight">ตัน</label>
+									</td>
+								</tr>
+								<br>
+								<br>
+								<table id="table" width="100%">
+									<tr id="row-truck">
+		                                <td>
+		                                	<label id="label">ประเภทรถบรรทุก:</label>	
+		                                	<label id="txtTruckType" name="txtTruckType"></label>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<label id="label">หมายเลขทะเบียน :</label> 
+		                                	<label id="txtTruckName" name="txtTruckName" ></label>
+	                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<label id="label">เชื้อเพลิง :</label> 
+		                                	<label id="txtFuel" name="txtFuel" ></label>
+											<br>
+		                                	<label id="label">น้ำหนักรถ:</label>	
+		                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
+		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<label id="label">บรรจุน้ำหนัก :</label> 
+		                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
+
+		                                </td>
+	                            	</tr>
+                            	</table>
+	                            <br>
+	                            <br>
 	                            <br>
 	                            <tr id="button-command">
 	                            		<td><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></td>

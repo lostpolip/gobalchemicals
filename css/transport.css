@@ -42,7 +42,7 @@ body {
 
 a, a:link, a:visited { 
 	font-family: 'quarkbold';
-	font-size: 24px;
+	font-size: 18px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -291,7 +291,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 .col_w630 { 
 	width: 830px; 
-	margin:0 0 30px 200px;
+	margin:0 0 30px 100px;
 }
 .col_w630 p span { 
 	font-family: 'quarklight';
@@ -442,5 +442,45 @@ p{
 	margin-left: 20px;
 	font-family: 'quarklight';
 	font-size: 20px;
+}
+#labelWeight{
+	font-size: 22px;
+	font-family: 'quarkbold';
+	color: #000000;		
+}
+#txtWeightProduct{
+	font-size: 20px;
+	font-family: 'quarkbold';
+	color: #DF0101;
+	width: 100px;
+	text-align: center;
+}
+#label{
+	font-size: 20px;
+	font-family: 'quarkbold';
+	color: #000000;
+}
 
+#table tr td input{
+	width: 150px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+}
+#labelTruck{
+	font-size: 20px;
+	font-family: 'quarkbold';
+	color: #000000;	
+}
+#ddTruck{
+	width: 60px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+	border-style: solid;
 }
