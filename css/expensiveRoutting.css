@@ -432,22 +432,10 @@ p{
 #addPr{
 	margin-left: 50px;
 	font-family: 'quarklight';
-	font-size: 22px;
+	font-size: 20px;
 	margin-left: 280px;
 }
 
-#btnBack{
-	margin-left: 100px;
-	font-family: 'quarklight';
-	font-size: 20px;
-
-}
-#btnCF{
-	margin-left: 20px;
-	font-family: 'quarklight';
-	font-size: 20px;
-
-}
 #bill{
 	margin-left: 150px;
 	width: 300px;
@@ -480,4 +468,14 @@ p{
 } 
 #date{
 	width: 150px;
+}
+#btnBack{
+	margin-left: 260px;
+	font-family: 'quarklight';
+	font-size: 20px;
+
+}
+#btnCF{
+	font-family: 'quarklight';
+	font-size: 20px;
 }

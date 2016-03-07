@@ -95,9 +95,9 @@
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
-												<li ><a href="#">จัดเส้นทาง</a></li>
+												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="#">ค่าใช้จ่าย</a></li>
+												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
 										</ul>
 			                        </li>
 			                        

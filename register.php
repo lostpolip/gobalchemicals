@@ -1,6 +1,11 @@
+<!-- <?php
+header('Access-Control-Request-Headers: x-requested-with');
+?> -->
 <!DOCTYPE html>
 <html>
+
 	<head>
+       
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>The GobalChemicals CO.,LTD.</title> 
 		<meta charset="utf-8">

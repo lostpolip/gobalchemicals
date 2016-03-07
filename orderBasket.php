@@ -226,7 +226,7 @@
 	                    				<label>ค่าขนส่ง :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo ($RatePerKm[$x]*$Distance[0]);?>"
+		                        		<input id="totalTransaction" name="totalTransaction" value="<?php echo sprintf('%0.2f',$RatePerKm[$x]*$Distance[0]);?>"
 		                        		readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
@@ -237,7 +237,7 @@
 	                    				<label>รวมทั้งหมด :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalOther" name="totalOther" value="<?php echo ($ExtendedPrice[0]+$RatePerKm[$x]*$Distance[0]); ?>" readonly> 
+		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]+$RatePerKm[$x]*$Distance[0]); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>

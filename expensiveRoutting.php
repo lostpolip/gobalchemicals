@@ -96,9 +96,9 @@
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
-												<li ><a href="#">จัดเส้นทาง</a></li>
+												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="#">ค่าใช้จ่าย</a></li>
+												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
 										</ul>
 			                        </li>
 			                        
@@ -237,14 +237,13 @@
                             <tr> <td><label>สรุปค่าใช้จ่าย :</label></td></tr>
                             <tr> <td>&nbsp;</td></tr>
                             <tr> <td>&nbsp;</td></tr>
-
+                        </table>
+                        <table id="table3" width="80%">
 	                            <tr id="button-command">
 	                            		<td><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></td>
-	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
-	                                    
+	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกค่าใช้จ่าย</button></td>           
 	                            </tr>
-
-                        </table>
+                       	</table>
 	                        
 				</div>
 			</div>	

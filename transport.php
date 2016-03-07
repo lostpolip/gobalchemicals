@@ -45,9 +45,8 @@
 		})
 
 	</script>
-
-
 	</head>
+
 	<body>
 
 			<div id="tooplate_body_wrapper">
@@ -96,9 +95,9 @@
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
-												<li ><a href="#">จัดเส้นทาง</a></li>
+												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="#">ค่าใช้จ่าย</a></li>
+												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
 										</ul>
 			                        </li>
 			                        
@@ -117,6 +116,7 @@
 		</div><!--end of tooplate_body_wrapper-->
 
 		<?php
+			date_default_timezone_set('Asia/Bangkok');
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$truck = $dbManagement->select("SELECT * FROM truck");
@@ -136,6 +136,24 @@
 			    }
 			   
 			}
+
+			$order = $dbManagement->select("SELECT * FROM orders
+											JOIN customer ON orders.CustomerID=customer.CustomerID
+											WHERE State='complete'
+											");
+
+			$popupOrder = 0;
+			if (mysqli_num_rows($order) > 0) {
+			    while($row = mysqli_fetch_assoc($order)) {
+			        $OrderID[$popupOrder] = $row["OrderID"];
+			        $OrderDate[$popupOrder] = $row["OrderDate"];
+			        $CustomerID[$popupOrder] = $row["CustomerID"];
+			        $CustomerName[$popupOrder] = $row["CustomerName"];
+			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
+			        $popupOrder++;
+			    }
+			   
+			}
 		?>
 
 		<div id="tooplate_main">
@@ -146,7 +164,8 @@
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
 	                    <label id="labelDate">วันที่จัดเส้นทาง:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport">
+	                    <input type="date" id="txtDateTransport" name="txtDateTransport" 
+	                    min="<?php echo date('Y-m-d');?>">
 	                    
 
 	                                <!-- Button trigger modal -->
@@ -164,27 +183,45 @@
 										      <div class="modal-body">
 
 			             						 <table  class="table table-bordred table-striped">
+
 							                        	<tr>
-							                        		<th>รหัสสินค้า</th>
-							                                <th>ชื่อสินค้า</th>
+							                        		<th>เลขที่ใบสั่งซื้อ</th>
+							                                <th>วันที่สั่งซื้อ</th>
 							                                <th>ชื่อลูกค้า</th>
 							                                <th>จำนวน</th>
 							                                <th>เลือก</th>
 							                                
 							                        	</tr>
-
+							                        	<?php
+                        									for($j=0;$j<$popupOrder;$j++){ 
+                        								?>	
 							                        	<tbody id="showOrder">
 										                    <tr>    	
-															    <td><label></label></td>
-															    <td><label></label></td>
-															    <td><label></label></td>
-															    <td><label></label></td>
+															    <td>
+															    	<label><?php echo $OrderID[$j] ?>
+															    	</label>
+															    </td>
+															    <td>
+															    	<label><?php echo $OrderDate[$j] ?>
+															    	</label>
+															    </td>
+															    <td>
+															    	<label><?php echo $CustomerName[$j] ?>
+															    	</label>
+															    </td>
+															    <td>
+															    	<label><?php echo $UnitProduct[$j] ?>
+															    	</label>
+															    </td>
 															    <td>
 															    	<button class="btnAlert" data-title="delete" data-toggle="modal" type="submit" class="btn btn-default">เลือก</button>
 															    	
 															    </td>
 															</tr>
 														</tbody>
+														<?php
+															}
+														?>
 			        							</table>
 
 										      </div>
@@ -200,19 +237,21 @@
 							<br>
 
 							<table id="table2" width="100%">
-	                        	<tr>
+	                        	<tr>	                                
+	                        		<th>วันที่สั่งซื้อ</th>
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                                <th>จำนวนสินค้า(ถุง)</th>
+
 	                                <th>ลบ</th>
 	                                
 	                        	</tr>
 	                        	<tr>
+	                        		<td id="orderDate"></td>
 	                        		<td id="orderId"></td>
 	                        		<td id="customerName"></td>
 	                        		<td id="productWeight"></td>
-	                        		<td id="productVolunm"></td>
+	                        		
 	                        		<td>                     
 	                        			<button id="btnDelete" class="btn btn-default">
 	                        			<a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a>
@@ -262,8 +301,9 @@
 		                                	<label id="label">น้ำหนักรถ:</label>	
 		                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
 		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<label id="label">บรรจุน้ำหนัก :</label> 
+		                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
 		                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
+		                                	<label id="labelWeight">ตัน</label>
 
 		                                </td>
 	                            	</tr>
