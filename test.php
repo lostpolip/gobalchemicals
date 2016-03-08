@@ -1,162 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Place Autocomplete</title>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <style>
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            #map {
-                height: 100%;
-            }
-            .controls {
-                margin-top: 10px;
-                border: 1px solid transparent;
-                border-radius: 2px 0 0 2px;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                height: 32px;
-                outline: none;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            }
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Waypoints in directions</title>
+    <style>
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
 
-            #pac-input {
-                background-color: #fff;
-                font-family: Roboto;
-                font-size: 15px;
-                font-weight: 300;
-                margin-left: 12px;
-                padding: 0 11px 0 13px;
-                text-overflow: ellipsis;
-                width: 300px;
-            }
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
 
-            #pac-input:focus {
-                border-color: #4d90fe;
-            }
+      #right-panel select {
+        width: 100%;
+      }
 
-            .pac-container {
-                font-family: Roboto;
-            }
+      #right-panel i {
+        font-size: 12px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+        float: left;
+        width: 70%;
+        height: 100%;
+      }
+      #right-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+        float: left;
+        text-align: left;
+        padding-top: 20px;
+      }
+      #directions-panel {
+        margin-top: 20px;
+        background-color: #FFEE77;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="right-panel">
+    <div>
+    <b>Start:</b>
+    <input id="start" value="13.9221481,100.465985">
+    <br>
+    <b>Waypoints:</b> <br>
+    <i>(Ctrl-Click for multiple selection)</i> <br>
+    <select multiple id="waypoints">
+      <option value="13.7212725,100.5810641">สุขุมวิท</option>
+      <option value="13.7176151,100.5699896">มาลีนนท์</option>
+      <option value="13.7540787,100.6255052">ABAC</option>
+      <option value="13.7283135,100.5328698">Silom Complex</option>
+      <option value="calgary, ab">Calgary</option>
+      <option value="spokane, wa">Spokane</option>
+    </select>
+    <br>
+    <b>End:</b>
+    <select id="end">
+      <option value="13.7376651,100.5582062">Terminal</option>
+      <option value="13.6735645,100.626538">บางนา</option>
+      <option value="13.9221481,100.465985">บริษัทเรา</option>
+      <option value="Los Angeles, CA">Los Angeles, CA</option>
+    </select>
+    <br>
+      <input type="submit" id="submit">
+    </div>
+    <div id="directions-panel"></div>
+    </div>
+    <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 13.7627284, lng: 100.5349091}
+        });
+        directionsDisplay.setMap(map);
 
-            #type-selector {
-                color: #fff;
-                background-color: #4d90fe;
-                padding: 5px 11px 0px 11px;
-            }
+        document.getElementById('submit').addEventListener('click', function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+      }
 
-            #type-selector label {
-                font-family: Roboto;
-                font-size: 13px;
-                font-weight: 300;
-            }
-        </style>
-    </head>
-    <body>
-        <input id="pac-input" class="controls" type="text"
-        placeholder="Enter a location">
-        <div id="type-selector" class="controls">
-            <input type="radio" name="type" id="changetype-all" checked="checked">
-            <label for="changetype-all">All</label>
-
-            <input type="radio" name="type" id="changetype-establishment">
-            <label for="changetype-establishment">Establishments</label>
-
-            <input type="radio" name="type" id="changetype-address">
-            <label for="changetype-address">Addresses</label>
-
-            <input type="radio" name="type" id="changetype-geocode">
-            <label for="changetype-geocode">Geocodes</label>
-        </div>
-        <div id="map"></div>
-
-        <script>
-            function initMap() {
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 13.7469068, lng: 100.5347162},
-                    zoom: 13
-                });
-                var input = (document.getElementById('pac-input'));
-                var types = document.getElementById('type-selector');
-
-                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-                map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
-
-                var infowindow = new google.maps.InfoWindow();
-                var marker = new google.maps.Marker({
-                    map: map,
-                    anchorPoint: new google.maps.Point(0, -29)
-                });
-
-                autocomplete.addListener('place_changed', function() {
-                    infowindow.close();
-                    marker.setVisible(false);
-                    var place = autocomplete.getPlace();
-
-                    if (!place.geometry) {
-                        window.alert("Autocomplete's returned place contains no geometry");
-                        return;
-                    }
-
-                    // If the place has a geometry, then present it on a map.
-                    if (place.geometry.viewport) {
-                        map.fitBounds(place.geometry.viewport);
-                    } else {
-                        map.setCenter(place.geometry.location);
-                        map.setZoom(17);  // Why 17? Because it looks good.
-                    }
-                    marker.setIcon(/** @type {google.maps.Icon} */({
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(35, 35)
-                    }));
-                    marker.setPosition(place.geometry.location);
-                    marker.setVisible(true);
-
-                    var address = '';
-                    if (place.address_components) {
-                        address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                        ].join(' ');
-                    }
-
-                    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-                    console.log(place);
-                    infowindow.open(map, marker);
-                });
-
-                // Sets a listener on a radio button to change the filter type on Places
-                // Autocomplete.
-                function setupClickListener(id, types) {
-                    var radioButton = document.getElementById(id);
-                    radioButton.addEventListener('click', function() {
-                        autocomplete.setTypes(types);
-                    });
-                }
-
-                setupClickListener('changetype-all', []);
-                setupClickListener('changetype-address', ['address']);
-                setupClickListener('changetype-establishment', ['establishment']);
-                setupClickListener('changetype-geocode', ['geocode']);
-            }
-
-            $(document).ready(function() {
-                $('#type-selector').hide();
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+        var checkboxArray = document.getElementById('waypoints');
+        for (var i = 0; i < checkboxArray.length; i++) {
+          if (checkboxArray.options[i].selected) {
+            waypts.push({
+              location: checkboxArray[i].value,
+              stopover: true
             });
-        </script>
+          }
+        }
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgSRcTdsVpnAkUacPJpJdk2TU9nz7qSIo&libraries=places&callback=initMap&language=th"></script>
-    </body>
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            }
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
+    </script>
+  </body>
 </html>

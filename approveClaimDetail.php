@@ -57,7 +57,8 @@
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
-                        	<a href="#"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
+
+							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
                             <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
 

@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<!-- <script type="text/javascript" src="js/orderBasket.js"></script> -->
+		<script type="text/javascript" src="js/orderBasket.js"></script>
 		
 
 	</head>

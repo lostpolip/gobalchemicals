@@ -55,48 +55,7 @@
                         </div>
                         <div id="imageMenuOrder">
 
-						<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-lg" id="menuAlert" data-toggle="modal" data-target="#myModal">
-							</button>
-						<!-- Button trigger modal -->
-
-						<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
-							      </div>
-							      <div class="modal-body">
-
-             						 <table  class="table table-bordred table-striped">
-             						 	<thead>
-				                        		<th>ชื่อสินค้า</th>
-				                                <th>จำนวนคงเหลือ</th>
-							                    <th>สั่งซื้อ</th>
-										</thead>
-	   									<tbody id="showOrder">
-											    <td><label></label></td>
-											    <td><label></label></td>
-											    <td>
-											    		<a href="productPurchaseAdd.php"><button class="btnAlert" data-title="delete" data-toggle="modal" data-target="#delete" >สั่งซื้อสินค้า</button>
-											    	
-											    </td>
-											</tr>
-										</tbody>
-        							</table>
-
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
-							        
-							      </div>
-							    </div>
-							  </div>
-							</div>
-						<!-- Modal -->
-
+							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
                             <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
                         		
@@ -229,9 +188,7 @@
 							</table> 
 					    </div><!--- แจ้งซื้อสินค้า -->
 
-                    	<div class="boxPayment">
-                    		<label><span id="star">*</span>การชำระเงิน : เครดิต 30 วัน</label>   		
-                    	</div>
+
 
                     	<div class="boxSummaryPrice">
                     		<table id="table3">

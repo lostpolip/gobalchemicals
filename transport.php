@@ -56,7 +56,7 @@
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
                         <div id="imageMenuOrder">
-                        	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
                             <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
 
@@ -149,6 +149,9 @@
 			        $OrderDate[$popupOrder] = $row["OrderDate"];
 			        $CustomerID[$popupOrder] = $row["CustomerID"];
 			        $CustomerName[$popupOrder] = $row["CustomerName"];
+			        $Latitude[$popupOrder] = $row["Latitude"];
+			        $Longitude[$popupOrder] = $row["Longitude"];
+			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $popupOrder++;
 			    }
@@ -167,97 +170,27 @@
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" 
 	                    min="<?php echo date('Y-m-d');?>">
 	                    
-
-	                                <!-- Button trigger modal -->
-										<button type="button" class="btn btn-primary btn-lg" id="addPr" data-toggle="modal" data-target="#myModal">เพิ่มใบสั่งซื้อ</button>
-									<!-- Button trigger modal -->
-
-									<!-- Modal -->
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-										  <div class="modal-dialog" role="document">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">ใบสั่งซื้อ</h4>
-										      </div>
-										      <div class="modal-body">
-
-			             						 <table  class="table table-bordred table-striped">
-
-							                        	<tr>
-							                        		<th>เลขที่ใบสั่งซื้อ</th>
-							                                <th>วันที่สั่งซื้อ</th>
-							                                <th>ชื่อลูกค้า</th>
-							                                <th>จำนวน</th>
-							                                <th>เลือก</th>
-							                                
-							                        	</tr>
-							                        	<?php
-                        									for($j=0;$j<$popupOrder;$j++){ 
-                        								?>	
-							                        	<tbody id="showOrder">
-										                    <tr>    	
-															    <td>
-															    	<label><?php echo $OrderID[$j] ?>
-															    	</label>
-															    </td>
-															    <td>
-															    	<label><?php echo $OrderDate[$j] ?>
-															    	</label>
-															    </td>
-															    <td>
-															    	<label><?php echo $CustomerName[$j] ?>
-															    	</label>
-															    </td>
-															    <td>
-															    	<label><?php echo $UnitProduct[$j] ?>
-															    	</label>
-															    </td>
-															    <td>
-															    	<button class="btnAlert" data-title="delete" data-toggle="modal" type="submit" class="btn btn-default">เลือก</button>
-															    	
-															    </td>
-															</tr>
-														</tbody>
-														<?php
-															}
-														?>
-			        							</table>
-
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก
-										        </button>
-										      </div>
-										    </div>
-										  </div>
-										</div>
-									<!-- Modal -->
-							<br>
-							<br>
-
 							<table id="table2" width="100%">
-	                        	<tr>	                                
+	                        	<tr> 
+	                        		<th>เลือก</th>	                                
 	                        		<th>วันที่สั่งซื้อ</th>
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
-
-	                                <th>ลบ</th>
-	                                
 	                        	</tr>
+	                        	<?php 
+	   								for($j=0; $j<$popupOrder; $j++){
+	   							?>
 	                        	<tr>
-	                        		<td id="orderDate"></td>
-	                        		<td id="orderId"></td>
-	                        		<td id="customerName"></td>
-	                        		<td id="productWeight"></td>
-	                        		
-	                        		<td>                     
-	                        			<button id="btnDelete" class="btn btn-default">
-	                        			<a href="deleteProductSQL.php?ProductID=<?php echo $ProductID[$j]; ?>">ลบ</a>
-	                        			</button>
-	                        		</td>
+	                        		<td><input type="checkbox" name="choose" value="<?php echo $CustomerID[$j]; ?>"></td>
+	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
+	                        		<td id="orderId"><?php echo $OrderID[$j]; ?></td>
+	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
+	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
+	                        	<?php
+                        			}
+                        		?>
                         	</table>     	
                         	<br>
 
