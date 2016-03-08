@@ -467,3 +467,6 @@ p{
 	font-family: 'quarkbold';
 	color: #000000;		
  }
+ .hide{
+ 	display: none;
+ }

@@ -154,11 +154,22 @@
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $popupOrder++;
-			    }
-			   
+			    }		   
+			}
+
+			$employee = $dbManagement->select("SELECT * FROM employee WHERE `PositionID`=2");
+
+			$ddemployee = 0;
+			if (mysqli_num_rows($employee) > 0) {
+			    while($row = mysqli_fetch_assoc($employee)) {
+			        $EmployeeID[$ddemployee] = $row["EmployeeID"];
+			        $EmployeeName[$ddemployee] = $row["EmployeeName"];
+			        $ddemployee++;
+
+			    }		   
 			}
 		?>
-
+	<form action="transportMap.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -182,7 +193,7 @@
 	   								for($j=0; $j<$popupOrder; $j++){
 	   							?>
 	                        	<tr>
-	                        		<td><input type="checkbox" name="choose" value="<?php echo $CustomerID[$j]; ?>"></td>
+	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j] ?>"></td>
 	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
 	                        		<td id="orderId"><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
@@ -201,6 +212,7 @@
 									</td>
 								</tr>
 								<br>
+
 								<p>รถบรรทุก</p>
 								<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
@@ -233,7 +245,7 @@
 											<br>
 		                                	<label id="label">น้ำหนักรถ:</label>	
 		                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
-		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
 		                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
 		                                	<label id="labelWeight">ตัน</label>
@@ -241,7 +253,22 @@
 		                                </td>
 	                            	</tr>
                             	</table>
-	                            <br>
+                            	<p>พนักงานขับ</p>
+	                            	<tr> 
+									<td><label id="labelEmployee">เลือพนักงานขับรถ :</label>
+										<select id="ddEmployee" name="ddEmployee" >
+                                	 		<option value="" selected>เลือก</option>
+		                                	 	<?php
+		                        					for($j=0;$j<$ddemployee;$j++){ 
+		                        				?>	
+                                			<option value="<?php echo $EmployeeID[$j]; ?>"><?php echo $EmployeeName[$j]; ?></option>
+                                				<?php
+                        							}
+                        						?>
+                                		</select>
+									</td>
+								</tr>
+
 	                            <br>
 	                            <br>
 	                            <tr id="button-command">
@@ -254,7 +281,7 @@
 				</div>
 			</div>	
 		</div><!--end of tooplate_main-->
-
+	</form>
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">

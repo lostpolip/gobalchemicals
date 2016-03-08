@@ -2,7 +2,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  purchase 
-									-- JOIN supplier ON purchase.SupplierID = supplier.SupplierID
+									JOIN supplier ON purchase.SupplierID = supplier.SupplierID
 									JOIN product ON purchase.ProductID = product.ProductID
 									WHERE PurchaseID = '".$_REQUEST['purchaseID']."'
 									");
@@ -13,7 +13,8 @@
 	    	$PurchaseDate = $row["PurchaseDate"];
 	    	$ProductID = $row["ProductID"];
 	    	$ProductName = $row["ProductName"];
-	    	// $SupplierName = $row["SupplierName"];
+            $SupplierName = $row["SupplierName"];
+	    	$SupplierID = $row["SupplierID"];
 	    }
 	}else{
         echo('ไม่พบข้อมูลที่ค้นหา');
@@ -49,7 +50,7 @@
 
         	<tr>
                 <td><label>วันที่รับสินค้า:</label></td>
-                <td><input type="date" id="txtDateReceive" name="txtDateReceive"></td>
+                <td><input type="date" id="txtDateReceive" name="txtDateReceive" min="<?php echo date('Y-m-d');?>"></td>
             </tr>
 			<tr>
                 <td><label><span class="red-star">* </span>วันหมดอายุ :</label></td>

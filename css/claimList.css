@@ -41,8 +41,8 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 16px;
+	font-family: 'quarklight';
+	font-size: 20px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -397,11 +397,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 790px;
 }
 
-#btnDetail {
-	font-size: 20px;
-	font-family: 'quarklight';
-	color: #000000;
-}
+
 
 #btnDelete {
 	font-size: 20px;
@@ -435,3 +431,4 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-family: 'quarklight';
 	color: #FFFFFF;
 }
+#

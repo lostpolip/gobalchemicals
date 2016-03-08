@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/transport.js"></script>
+		<script type="text/javascript" src="js/transportMap.js"></script>
 		
 		
 
@@ -116,33 +116,29 @@
 				</div><!--end of tooplate_wrapper-->
 			</div><!--end of tooplate_body_wrapper-->
 
+			<?php
+			$destination =$_REQUEST['destination'];
+			?>
+
 		    <div id="map"></div>
 		    	<div id="right-panel">
 		    		<div>
 		    			<br>
-		    			<b>เริ่มต้น:</b>
-		    				<input id="start" value="13.9221481,100.465985">
+		    				<input type="hidden" id="start" value="13.9220992,100.4680291">
 		    			<br>
-		    			<b>จุดส่งสินค้า:</b> <br>
-		    				<i>(Ctrl-Click for multiple selection)</i> <br>
-							    <select multiple id="waypoints">
-							      <option value="13.7212725,100.5810641">สุขุมวิท</option>
-							      <option value="13.7176151,100.5699896">มาลีนนท์</option>
-							      <option value="13.7540787,100.6255052">ABAC</option>
-							      <option value="13.7283135,100.5328698">Silom Complex</option>
-							      <option value="calgary, ab">Calgary</option>
-							      <option value="spokane, wa">Spokane</option>
-							    </select>
+						    <select multiple id="waypoints" class="hide">
+							    <?php
+							    	foreach ($destination as $key => $value) {
+							    ?>
+						     		<option value="<?php echo $value; ?>" selected></option>
+						    	<?php
+						    	}
+						    	?>
+						    </select>
 		    			<br>
-		   				<b>ปลายทาง:</b>
-							    <select id="end">
-							      <option value="13.7376651,100.5582062">Terminal</option>
-							      <option value="13.6735645,100.626538">บางนา</option>
-							      <option value="13.9221481,100.465985">บริษัทเรา</option>
-							      <option value="Los Angeles, CA">Los Angeles, CA</option>
-							    </select>
+		    				<input type="hidden" id="end" value="13.922157, 100.468176">
 		   				<br>
-		      				<input type="submit" id="submit" class="btn btn-primary">
+		      				<input type="submit" id="submit" class="hide">
 		      			<br>
 		      			<br>
 		      				<label id="totalDistance">รวมระยะทางทั้งหมด :</label>
@@ -152,12 +148,15 @@
 				<div id="directions-panel"></div>
 
 		    <script>
+		    	$( document ).ready(function() {	
+					$( "#submit" ).trigger( "click" );
+				});
 
 			      function initMap() {
 			        var directionsService = new google.maps.DirectionsService;
 			        var directionsDisplay = new google.maps.DirectionsRenderer;
 			        var map = new google.maps.Map(document.getElementById('map'), {
-			          zoom: 6,
+			          zoom: 13,
 			          center: {lat: 13.7627284, lng: 100.5349091}
 			        });
 			        directionsDisplay.setMap(map);
@@ -178,7 +177,6 @@
 			            });
 			          }
 			        }
-
 			        directionsService.route({
 			          origin: document.getElementById('start').value,
 			          destination: document.getElementById('end').value,
@@ -191,6 +189,7 @@
 			            var route = response.routes[0];
 			            var summaryPanel = document.getElementById('directions-panel');
 			            summaryPanel.innerHTML = '';
+			            var totalDistance = 0;
 			            // For each route, display summary information.
 			            for (var i = 0; i < route.legs.length; i++) {
 			              var routeSegment = i + 1;
@@ -199,15 +198,20 @@
 			              summaryPanel.innerHTML += '<b>จาก</b> '+route.legs[i].start_address + '<br><b> ถึง</b>';
 			              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
 			              summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
+			              ////////// here
+			              totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
+
 			            }
 			          } else {
 			            window.alert('Directions request failed due to ' + status);
 			          }
 			        });
 			      }
+
+
 		    </script>
 
-		    <script async defer
+		    <script 
 		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
 		    </script>
 

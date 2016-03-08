@@ -33,14 +33,9 @@ var purchaseId = $('#purchaseID').val();
 
 	$(':button[name=receive]').click(function() {
 		var productAmount = $(this).data('productamount');
-
 		var totalReceive = $('#totalreceiveAmount' + productID).val();
 		var totalAmountProduct = totalReceive+productAmount;
-		// var totalPrice = productPrice*totalUnit;
-		// var orderIDVal =  $('#order-id').val();
-
 		$('#totalAmountProduct' + productID).text(totalAmountProduct);
-		// $('#totalPriceOrder' + productID).text(totalPrice);
-		// $('#totalUnitOrder' + productID).text(totalUnit);
+
 	});
 });

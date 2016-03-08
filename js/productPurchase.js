@@ -33,6 +33,8 @@ $( document ).ready(function() {
 			success: function(result){
 				$('#ddProductType').empty();
 				$('#ddBrandName').empty();
+				$('#ddSupplier').empty();
+				$('#txtSupplierEmail').empty();
 		    	var detailProduct = jQuery.parseJSON(result);
 
 		    	for (var x in detailProduct['nameProductType']) {

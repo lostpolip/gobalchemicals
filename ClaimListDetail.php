@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/claimList.css" rel="stylesheet" type="text/css" />
+		<link href="css/investigateOrderDetail.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
@@ -55,48 +55,7 @@
                         </div>
                         <div id="imageMenuOrder">
 
-						<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-lg" id="menuAlert" data-toggle="modal" data-target="#myModal">
-							</button>
-						<!-- Button trigger modal -->
-
-						<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title" id="myModalLabel">รายการสั่งซื้อ</h4>
-							      </div>
-							      <div class="modal-body">
-
-             						 <table  class="table table-bordred table-striped">
-             						 	<thead>
-				                        		<th>ชื่อสินค้า</th>
-				                                <th>จำนวนคงเหลือ</th>
-							                    <th>สั่งซื้อ</th>
-										</thead>
-	   									<tbody id="showOrder">
-											    <td><label></label></td>
-											    <td><label></label></td>
-											    <td>
-											    		<a href="productPurchaseAdd.php"><button class="btnAlert" data-title="delete" data-toggle="modal" data-target="#delete" >สั่งซื้อสินค้า</button>
-											    	
-											    </td>
-											</tr>
-										</tbody>
-        							</table>
-
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
-							        
-							      </div>
-							    </div>
-							  </div>
-							</div>
-						<!-- Modal -->
-
+							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
                             <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
                         </div>
                         		
@@ -135,9 +94,9 @@
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
-												<li ><a href="#">จัดเส้นทาง</a></li>
+												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="#">ค่าใช้จ่าย</a></li>
+												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
 										</ul>
 			                        </li>
 			                        
@@ -158,47 +117,55 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM claim
-											JOIN customer on claim.CustomerID=customer.CustomerID
-											WHERE StateClaim = 'confirm'
-											");
 
-			$i = 0;
+			$result = $dbManagement->select("SELECT * FROM claimdetail 
+												JOIN product ON claimdetail.ProductID=product.ProductID
+												WHERE ClaimID='".$_REQUEST['ClaimID']."'
+											");
+			
+		
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
-			    	$ClaimID[$i] = $row["ClaimID"];
-			        $ClaimDate[$i] = $row["ClaimDate"]; 
-			        $CustomerID[$i] = $row["CustomerID"]; 
-			        $CustomerName[$i] = $row["CustomerName"];
-			        $ClaimSendDate[$i] = $row["ClaimSendDate"];
-			        $i++;
+			    	$ProductID = $row["ProductID"];
+			    	$ProductName = $row["ProductName"];
+			    	$ClaimAmount = $row["ClaimAmount"];
+			    	$ClaimProductDetail = $row["ClaimProductDetail"];
+			    	$OrderID = $row["OrderID"];
+			    	$ClaimID = $row["ClaimID"];
+		
 			    }
 			}
 		?>
-	
+
 		<div id="tooplate_main">
 			<div class="col_fw_last">
-				<div class="col_w630 float_l">
+				<div class="col_w630 float_l"><br>
 
 					 <!-- Nav tabs -->
 					  <ul class="nav nav-tabs" role="tablist">
-					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการเคลมสินค้า</a></li>
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการสั่งซื้อ</a></li>
 					  </ul>
 
 					  <!-- Tab panes -->
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane active">
 					    	<br>
+					    						    		
+					    	<label id="labelCM"><span id="claimDD">รหัสการเคลมสินค้า:&nbsp;&nbsp;</span><?php echo $ClaimID[0]; ?></label>
+
+					    	<label id="labelDate"><span id="claimDD">เลขที่ใบสั่งซื้อ :&nbsp;&nbsp;</span><?php echo $OrderID[0]; ?></label>&nbsp;&nbsp;
+
 
 					    	<table id="table2" width="100%">
 
 
 		                        	<tr>
-		                        		<th>เลขที่ใบเคลม</th>
-		                        		<th>วันที่แจ้งเคลม</th>
-		                        		<th>ชื่อสินค้า</th>
-		                                <th>วันจัดส่ง</th>
-		                                <th>คำสั่ง</th>
+		                        		<th>วันที่</th>
+		                        		<th>เลขที่ใบสั่งซื้อ</th>
+		                        		<th>รหัสสินค้า</th>
+		                                <th>ชื่อสินค้า</th>
+		                                <th>จำนวน</th>
+		                                <th>ราคาสินค้า</th>
 		                        	</tr>
 
 					    			<?php
@@ -206,26 +173,59 @@
 		                   			 ?>	
 
 		                        	<tr>
-		                        		<td id="claimid"><?php echo $ClaimID[$j]; ?></td>
-		                        			<input type="hidden" id="claimID" name="claimID" value="<?php echo $ClaimID[$j]; ?>">
-		                        		
-		                        		<td id="claimdate"><?php echo $ClaimDate[$j]; ?></td>
-		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
-		                        		<td id="claimdetail"><?php echo $ClaimSendDate[$j]; ?></td>
-		                        		<td id="claimdetail">
-		                        			<button id="btnDetail"><a href="ClaimListDetail.php?ClaimID=<?php echo $ClaimID[$j]; ?>"> รายละเอียด</a></button></td>
+		                        		<td id="date"><?php echo $OrderDate[$j]; ?></td>
+		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+		                        		<td id="productid"><?php echo $ProductID[$j]; ?></td>
+		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
+		                        		<td id="productamount"><?php echo $OrderAmount[$j]; ?></td>
+		                        		<td id="productprice"><?php echo number_format($TotalPrice[$j]); ?></td>
 		                        	</tr>
 		                        	<?php
 		                        		}
 		                    		?>        
 							</table> 
 					    </div><!--- แจ้งซื้อสินค้า -->
-                    </div>
-				</div>
-			</div>   
-		</div>
-	</div><!--end of tooplate_main-->
 
+
+
+                    	<div class="boxSummaryPrice">
+                    		<table id="table3">
+                    			<tr>
+	                    			<td>
+	                    				<label>ราคาสินค้าทั้งหมด :</label>
+	                    			</td>
+	                    			<td>
+		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPriceOrder[0]); ?>" disabled> 
+		                        		<label>บาท</label>
+		                        	</td>
+		                        </tr>
+
+		                        <tr>
+		                        	<td>
+	                    				<label>รวมยอดสุทธิ :</label>
+	                    			</td>
+	                    			<td>
+		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]); ?>" disabled> 
+		                        		<label>บาท</label>
+		                        	</td>
+		                        </tr>
+                    		</table>
+
+                    		<div>
+                    			<table id="table4">
+                    				<tr>
+                    					<td><a href="investigateOrder.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                    					</td>
+                    					<br>
+
+                    				</tr>
+                    			</table>
+							</div>
+                    	</div>
+					</div>
+				</div>   
+			</div>
+		</div><!--end of tooplate_main-->
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
