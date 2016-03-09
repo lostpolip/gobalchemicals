@@ -121,7 +121,7 @@
 			?>
 
 		    <div id="map"></div>
-		    	<div id="right-panel">
+		    	
 		    		<div>
 		    			<br>
 		    				<input type="hidden" id="start" value="13.9220992,100.4680291">
@@ -140,13 +140,25 @@
 		   				<br>
 		      				<input type="submit" id="submit" class="hide">
 		      			<br>
-		      			<br>
-		      				<label id="totalDistance">รวมระยะทางทั้งหมด :</label>
-		      				<b>กิโลเมตร</b>
+		      			<br>		      				
 		    		</div>	
-		    	</div>
-				<div id="directions-panel"></div>
+		    	<label id="Distance">รวมระยะทางทั้งหมด :</label>
+		    		<input id="totalDistance">
+		      	<b>กิโลเมตร</b>
 
+				<div id="directions-panel"></div>
+	            <br>
+	            <div id="btnCB">
+	                <tr id="button-command">
+	                    <td>
+	                    	<a href="indexEmployee.php">
+	                    	<button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
+	                    	</a>
+	                    </td>
+	                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกเส้นทาง</button></td>
+	                                    
+	                </tr>
+	            </div>
 		    <script>
 		    	$( document ).ready(function() {	
 					$( "#submit" ).trigger( "click" );
@@ -200,6 +212,7 @@
 			              summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
 			              ////////// here
 			              totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
+			              $('#totalDistance').val(totalDistance);
 
 			            }
 			          } else {

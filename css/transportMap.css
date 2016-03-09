@@ -440,8 +440,8 @@ p{
  #map {
     height: 60%;
     float: left;
-    width: 50%;
-    margin: 30px 0 30px 180px;
+    width: 68%;
+    margin: 30px 0 30px 210px;
  }
  #right-panel {
     margin: 20px;
@@ -452,21 +452,40 @@ p{
     padding-top: 20px;
  }
  #directions-panel {
- 	width: 73%;
- 	margin: 450px 0 30px 180px;
+ 	width: 68%;
+ 	margin: 10px 0 30px 210px;
     background-color: #FFEE77;
     padding: 10px;
+    border-radius: 2px;
  }
  b{
  	font-size: 21px;
 	font-family: 'quarkbold';
 	color: #000000;	
  }
- #totalDistance{
+ #Distance{
+ 	margin: 0 0 0 490px;
   	font-size: 21px;
 	font-family: 'quarkbold';
-	color: #000000;		
+	color: #000000;	
+ }
+ #totalDistance{
+  	font-size: 18px;
+	font-family: 'quarkbold';
+	color: #000000;	
+	width: 120px;	
  }
  .hide{
  	display: none;
  }
+
+ #btnCB{
+ 	margin-bottom: 30px;
+ 	margin-left: 545px;
+
+ }	
+ #btnBack,#btnCF{
+ 	font-family: 'quarklight';
+	font-size: 20px;	
+ }
+ 

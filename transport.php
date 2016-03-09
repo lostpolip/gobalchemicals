@@ -193,7 +193,9 @@
 	   								for($j=0; $j<$popupOrder; $j++){
 	   							?>
 	                        	<tr>
-	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j] ?>"></td>
+	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j] ?>" 
+	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>">
+	                        		</td>
 	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
 	                        		<td id="orderId"><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
@@ -206,14 +208,16 @@
                         	<br>
 
 								<tr> 
+									<input id="example" type="button" value="คำนวณ" class="btn btn-primary"/>
 									<td><label id="labelWeight">รวมน้ำหนักสินค้าทั้งหมด :</label>
-										<input type="text" id="txtWeightProduct" name="txtWeightProduct" value="0" disabled> 
+										<input type="text" id="txtWeightProduct" name="txtWeightProduct" readonly> 
 										<label id="labelWeight">ตัน</label>
 									</td>
 								</tr>
 								<br>
+								<br>
 
-								<p>รถบรรทุก</p>
+								<label id="title">รถบรรทุก</label>
 								<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
 										<select id="ddTruck" name="ddTruck" >
@@ -229,7 +233,6 @@
                                 		<label id="labelWeight">ตัน</label>
 									</td>
 								</tr>
-								<br>
 								<br>
 								<table id="table" width="100%">
 									<tr id="row-truck">
@@ -253,21 +256,38 @@
 		                                </td>
 	                            	</tr>
                             	</table>
-                            	<p>พนักงานขับ</p>
-	                            	<tr> 
-									<td><label id="labelEmployee">เลือพนักงานขับรถ :</label>
-										<select id="ddEmployee" name="ddEmployee" >
-                                	 		<option value="" selected>เลือก</option>
-		                                	 	<?php
-		                        					for($j=0;$j<$ddemployee;$j++){ 
-		                        				?>	
-                                			<option value="<?php echo $EmployeeID[$j]; ?>"><?php echo $EmployeeName[$j]; ?></option>
-                                				<?php
-                        							}
-                        						?>
-                                		</select>
-									</td>
-								</tr>
+
+                            	<label id="title">พนักงานขับ</label>
+		                            <tr> 
+										<td><label id="labelEmployee">เลือพนักงานขับรถ :</label>
+											<select id="ddEmployee" name="ddEmployee" >
+	                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
+			                                	 	<?php
+			                        					for($j=0;$j<$ddemployee;$j++){ 
+			                        				?>	
+	                                			<option value="<?php echo $EmployeeID[$j]; ?>"><?php echo $EmployeeName[$j]; ?></option>
+	                                				<?php
+	                        							}
+	                        						?>
+	                                		</select>
+										</td>
+									</tr>
+
+								<table id="table3" width="100%">
+									<tr id="row-employee">
+		                                <td>
+		                                	<label id="label">เบอร์โทรศัพท์:</label>	
+		                                	<label id="txtTelEmployee" name="txtTelEmployee"></label>
+		                       			 </td>	
+		                       		</tr>
+		                       	</table>
+ 
+		                       	<label id="title">ช่วงเวลาเดินทาง</label>
+		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                       	<input name="rdoDate" type="radio" value="09:00-15:00">
+			                       	<label id="rdoDate" >09:00-15:00 น.</label>
+									<input name="rdoDate" type="radio" value="21:00-05:00">
+									<label id="rdoDate" >21:00-05:00 น.</label>
 
 	                            <br>
 	                            <br>

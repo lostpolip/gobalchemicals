@@ -443,7 +443,8 @@ p{
 	font-family: 'quarklight';
 	font-size: 20px;
 }
-#labelWeight{
+#labelWeight ,#labelEmployee{
+	margin-left: 20px;
 	font-size: 22px;
 	font-family: 'quarkbold';
 	color: #000000;		
@@ -472,15 +473,50 @@ p{
 	border-style: solid;
 }
 #labelTruck{
+	margin-left: 20px;
 	font-size: 20px;
 	font-family: 'quarkbold';
 	color: #000000;	
 }
-#ddTruck{
+#ddTruck ,#ddEmployee{
 	width: 60px;
 	height: 30px;
 	font-family: 'quarklight';
 	font-size: 18px;
 	color: #000000;
 	border-style: solid;
+}
+#title{
+	font-family: 'quarkbold';
+	font-size: 26px;
+	color: #e5a923;	
+}
+#ddEmployee{
+	width: 170px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #000000;
+	border-style: solid;
+}
+#table3 tr td input{
+	width: 150px;
+	height: 30px;
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+}
+#rdoDate{
+	margin-left: ๅ0px;
+	font-size: 18px;
+	font-family: 'quarkbold';
+	color: #000000;	
+}
+#example{
+	margin-left: 200px;
+	font-family: 'quarklight';
+	font-size: 20px;	
 }

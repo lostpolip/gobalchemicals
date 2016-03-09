@@ -1,5 +1,6 @@
 $( document ).ready(function() {	
 	$('#row-truck').hide();
+	$('#row-employee').hide();
 
 	$('#ddTruck').change(function(){
 
@@ -33,4 +34,42 @@ $( document ).ready(function() {
 		    }
 		});
 	});
+
+	$('#ddEmployee').change(function(){
+
+		var employeeID = $('#ddEmployee').val();
+		$.ajax({
+			url: "transportEmployee.php", 
+			method: "GET",
+			data: { 
+				employeeID : employeeID 
+			},
+			success: function(result){
+				$('#txtTelEmployee').empty();
+
+		    	var detailEmployee = jQuery.parseJSON(result);
+
+		    	for (var x in detailEmployee['name']) {
+					$('#txtTelEmployee').append('<input type="text" value=" '+detailEmployee['tel'][x]+' ">');
+				}
+				$('#row-employee').show();
+				
+		    }
+		});
+	});
+
+	function recalculate(){
+	    var sum = 0;
+	    $("input[type=checkbox]:checked").each(function(){
+	      sum += parseInt($(this).data('unitproduct'));
+	    });
+		$('#txtWeightProduct').val(sum); 
+	}
+		
+	$(function(){
+	    $('#example').click(function(){	         
+	        recalculate()
+	    });
+	});
+
 });
