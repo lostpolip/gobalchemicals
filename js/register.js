@@ -38,7 +38,7 @@ $( document ).ready(function() {
 					crossDomain: true,
 					data: { 
 						units : 'imperial',
-						origins :'13.9221232,100.4680988',
+						origins :'13.922174, 100.468186',
 						destinations :lat+','+lng,
 						key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
 					},

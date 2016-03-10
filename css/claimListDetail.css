@@ -41,8 +41,6 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 18px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -246,7 +244,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #tooplate_main {
 	clear: both;
 	width: 960px;
-	padding: 30px 0 80px;
+	margin-left: 120px;
+	padding: 30px 0 20px;
 
 }
 
@@ -266,9 +265,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	border-bottom: 1px solid #a3a3a3; 
 }
 
-.col_fw_last { 
-	padding-bottom: 20px; 
-    padding-left: 165px;
+.col_fw_last {
+    padding-bottom: 20px;
+    padding-left: 230px;
 }
 
 .col_fw_last1 { 
@@ -290,34 +289,56 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .col_w630 { 
-	width: 830px; 
-	margin:0 0 30px 100px;
+	width: 700px; 
+	margin-bottom: 30px;
 }
-.col_w630 p span { 
+.float_l {
+    float: left;
+}
+
+
+#table4 td{
+	width: 400px;
+	font-family: 'quarkbold';
+	color: #0B6121;
+	font-size: 22px;
+}
+
+#table4 label{
 	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
-
+	color: #000000;
+	font-size: 20px;
 }
 
-.col_w630  td{ 
-	width: 20px; 
-	padding: 0;
+
+#table5 td{
+	width: 400px;
+	font-family: 'quarkbold';
+	color: #0B6121;
+	font-size: 22px;
+}
+
+#table5 label{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 20px;
 }
 
 
 #table2{
+	width: 820px;
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
+	margin-bottom: 30px;
 }
 #table2 th {
 	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #e5a923;
-	background-color: #262424;
+	font-size: 20px;
+	color: #4B088A;
+	background-color: #E6E6E6;
 	text-align: center;
-    border: 2px solid #333232;
+    border: 2px solid #6E6E6E;
     padding: 5px;
  }  
 
@@ -326,10 +347,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 18px;
 	color: #000000;
 	text-align: center;
-	 border: 2px solid #333232;
+	 border: 2px solid #6E6E6E;
 	 height: 30px;
 } 
-
 
 
 /* footer */
@@ -408,118 +428,162 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #000000;
 }
 
-
-p{
-	font-family: 'quarkbold';
-	font-size: 32px;
-	color: #e5a923;
+#labelDate , #labelID{
+	font-size: 22px;
+	font-family: 'quarklight';
 }
-#txtDateTransport{
+
+
+
+#menuAlert{
+	border:none;
+	background:url(../images/order.png);
+	width: 35px;
+	height: 35px;
+	margin-bottom: 25px;
+
+}
+
+.btnAlert{
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	border-color: #088A4B;
+    background-color: #04B45F;
 	font-size: 18px;
 	font-family: 'quarklight';
+	color: #FFFFFF;
+}
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
+}
+
+
+#label1{
+	font-family: 'quarkbold';
+	color: #e5a923;
+	font-size: 36px;	
+}
+
+#txtDateOrder{
+	font-family: 'quarklight';
+	color: #000000;
+	font-size: 18px;
+}
+
+#OrderDate{
+	margin: 20px 0 20px 0;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
+}
+
+#OrderID{
+	margin: 20px 0 20px 250px;
+	font-family: 'quarkbold';
+	color: #FFFFFF;
+	font-size: 24px;	
+}
+
+#totalOther{
+	color: red;
+	text-align: right;
+}
+#totalPrice{
+	text-align: right;
+}
+#orderListDD{
+	font-family: 'quarkbold';
+	font-size: 22px;
 	color: #000000;
 }
-
-#labelDate{
-	font-size: 22px;
-	font-family: 'quarkbold';
-	color: #000000;	
+#btnDate{
+	width: 80px;
+	height: 30px;
+	background-color: #f0ad4e;
+    border-radius: 5px;
+    border-color: #eea236;
+}
+#btnDate a{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
 }
 
-#addPr{
-	margin-left: 410px;
-	font-family: 'quarklight';
-	font-size: 22px;
+#dateOR{
+	border: none;
+	background: url(../images/tooplate_body.png);
+	width: 30px;
+	height: 30px;
+	font-family: 'quarkbold';
+	font-size: 18px;
+	color: #FACC2E;
+
+}
+#labelDate , #labelID{
+	font-size: 18px;
+	font-family: 'quarkbold';
+	color: #FACC2E;
 }
 
 #btnBack{
-	margin-left: 270px;
 	font-family: 'quarklight';
 	font-size: 20px;
-
-}
-#btnCF{
-	margin-left: 20px;
-	font-family: 'quarklight';
-	font-size: 20px;
-}
-#labelWeight ,#labelEmployee{
-	margin-left: 20px;
-	font-size: 22px;
-	font-family: 'quarkbold';
-	color: #000000;		
-}
-#txtWeightProduct{
-	font-size: 20px;
-	font-family: 'quarkbold';
-	color: #DF0101;
-	width: 100px;
-	text-align: center;
-}
-#label{
-	font-size: 20px;
-	font-family: 'quarkbold';
-	color: #000000;
-}
-
-#table tr td input{
-	width: 150px;
-	height: 30px;
-	font-family: 'quarklight';
-	font-size: 18px;
+	border-color: #DF0101;
+	background-color: #FE2E2E;
 	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
 	border-style: solid;
+	height: 40px;
+	width: 120px;
+	margin-left: 650px;
 }
-#labelTruck{
-	margin-left: 20px;
-	font-size: 20px;
-	font-family: 'quarkbold';
-	color: #000000;	
-}
-#ddTruck ,#ddEmployee{
-	width: 60px;
-	height: 30px;
+
+.boxPayment{
+	float: left;
+	width: 350px;
 	font-family: 'quarklight';
-	font-size: 18px;
-	color: #000000;
-	border-style: solid;
+	font-size: 19px;
+	color: #FFFFFF;	
 }
-#title{
+.boxPayment label{
 	font-family: 'quarkbold';
-	font-size: 26px;
+	font-size: 22px;
 	color: #e5a923;	
 }
-#ddEmployee{
-	width: 170px;
-	height: 30px;
+
+.boxSummaryPrice{
+	width: 380px;
+	margin-left: 510px;
 	font-family: 'quarklight';
-	font-size: 18px;
-	color: #000000;
-	border-style: solid;
-}
-#table3 tr td input{
-	width: 150px;
-	height: 30px;
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #FFFFFF;
-	border-color: #333232;
-	background-color: #262424;
-	border-style: solid;
-}
-#rdoDate{
-	margin-left: ๅ0px;
-	font-size: 18px;
-	font-family: 'quarkbold';
+	font-size: 19px;
 	color: #000000;	
 }
-#example{
-	margin-left: 200px;
-	font-family: 'quarklight';
-	font-size: 20px;	
+
+
+#totalPrice{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #000000;
 }
-.hide{
-	display: none;
+
+#totalTransaction{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #000000;	
+}
+#totalOther{
+	border:#FFFFFF;
+	background: #FFFFFF;
+	width: 140px;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #000000;		
 }

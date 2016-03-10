@@ -62,7 +62,7 @@
                     for($j=0;$j<$i;$j++){ 
 
                         $claimId=$claimId.$ProductID[$j].',';
-                 ?> 
+                 ?>
 
                 <tr>
                     <td id="productid"><?php echo $ProductID[$j]; ?></td>

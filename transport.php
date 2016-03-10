@@ -194,16 +194,20 @@
 	   							?>
 	                        	<tr>
 	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j] ?>" 
-	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>">
+	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
+	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
 	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
-	                        		<td id="orderId"><?php echo $OrderID[$j]; ?></td>
+	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
+	                        			<!-- <input type="checkbox" id="Order" name="Order[]" value="<?php echo $OrderID[$j]; ?>" class="hide"> -->
+	                        		    <input type="hidden" id="<?php echo 'orderID'. $OrderID[$j]; ?>" name="<?php echo 'orderID'. $OrderID[$j]; ?>" value="<?php echo $OrderID[$j]; ?>">
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
 	                        	<?php
                         			}
                         		?>
+                        		
                         	</table>     	
                         	<br>
 

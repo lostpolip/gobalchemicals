@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/investigateOrderDetail.css" rel="stylesheet" type="text/css" />
+		<link href="css/claimListDetail.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
@@ -123,16 +123,16 @@
 												WHERE ClaimID='".$_REQUEST['ClaimID']."'
 											");
 			
-		
+			$i=0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
-			    	$ProductID = $row["ProductID"];
-			    	$ProductName = $row["ProductName"];
-			    	$ClaimAmount = $row["ClaimAmount"];
-			    	$ClaimProductDetail = $row["ClaimProductDetail"];
-			    	$OrderID = $row["OrderID"];
-			    	$ClaimID = $row["ClaimID"];
-		
+			    	$ProductID[$i]= $row["ProductID"];
+			    	$ProductName[$i] = $row["ProductName"];
+			    	$ClaimAmount[$i] = $row["ClaimAmount"];
+			    	$ClaimProductDetail[$i] = $row["ClaimProductDetail"];
+			    	$OrderID[$i] = $row["OrderID"];
+			    	$ClaimID[$i] = $row["ClaimID"];
+				$i++;
 			    }
 			}
 		?>
@@ -160,8 +160,6 @@
 
 
 		                        	<tr>
-		                        		<th>วันที่</th>
-		                        		<th>เลขที่ใบสั่งซื้อ</th>
 		                        		<th>รหัสสินค้า</th>
 		                                <th>ชื่อสินค้า</th>
 		                                <th>จำนวน</th>
@@ -173,12 +171,11 @@
 		                   			 ?>	
 
 		                        	<tr>
-		                        		<td id="date"><?php echo $OrderDate[$j]; ?></td>
-		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+		                       
 		                        		<td id="productid"><?php echo $ProductID[$j]; ?></td>
 		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
-		                        		<td id="productamount"><?php echo $OrderAmount[$j]; ?></td>
-		                        		<td id="productprice"><?php echo number_format($TotalPrice[$j]); ?></td>
+		                        		<td id="productamount"><?php echo $ClaimAmount[$j]; ?></td>
+		                        		<td id="productprice"><?php echo $ClaimProductDetail[$j]; ?></td>
 		                        	</tr>
 		                        	<?php
 		                        		}
@@ -186,35 +183,9 @@
 							</table> 
 					    </div><!--- แจ้งซื้อสินค้า -->
 
-
-
-                    	<div class="boxSummaryPrice">
-                    		<table id="table3">
-                    			<tr>
-	                    			<td>
-	                    				<label>ราคาสินค้าทั้งหมด :</label>
-	                    			</td>
-	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice" value="<?php echo number_format($TotalPriceOrder[0]); ?>" disabled> 
-		                        		<label>บาท</label>
-		                        	</td>
-		                        </tr>
-
-		                        <tr>
-		                        	<td>
-	                    				<label>รวมยอดสุทธิ :</label>
-	                    			</td>
-	                    			<td>
-		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice[0]); ?>" disabled> 
-		                        		<label>บาท</label>
-		                        	</td>
-		                        </tr>
-                    		</table>
-
-                    		<div>
                     			<table id="table4">
                     				<tr>
-                    					<td><a href="investigateOrder.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                    					<td><a href="claimList.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
                     					</td>
                     					<br>
 

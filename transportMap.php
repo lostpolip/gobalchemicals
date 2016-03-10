@@ -117,14 +117,36 @@
 			</div><!--end of tooplate_body_wrapper-->
 
 			<?php
-			$destination =$_REQUEST['destination'];
-			?>
+				require 'dbManagement.php';
+				$dbManagement = new dbManagement();
+				$result = $dbManagement->select("SELECT * FROM  orders
+									WHERE State='complete'
+									");
 
+			   $i=0; 
+				if (mysqli_num_rows($result) > 0) {
+				    while($row = mysqli_fetch_assoc($result)) {
+				    	$OrderID[$i] = $row["OrderID"];
+			            $i++;
+				    }
+				}
+				$destination =$_REQUEST['destination'];
+				$date =$_REQUEST['txtDateTransport'];
+				// $order=$_REQUEST['orderid'.$OrderID];
+				$totalWeight=$_REQUEST['txtWeightProduct'];
+				$truck=$_REQUEST['ddTruck'];
+				$employee=$_REQUEST['ddEmployee'];
+				$routeTime=$_REQUEST['rdoDate'];
+				print_r($_REQUEST);
+
+
+			?>
+			
 		    <div id="map"></div>
 		    	
 		    		<div>
 		    			<br>
-		    				<input type="hidden" id="start" value="13.9220992,100.4680291">
+		    				<input type="hidden" id="start" value="13.922174, 100.468186">
 		    			<br>
 						    <select multiple id="waypoints" class="hide">
 							    <?php
@@ -136,16 +158,17 @@
 						    	?>
 						    </select>
 		    			<br>
-		    				<input type="hidden" id="end" value="13.922157, 100.468176">
+		    				<input type="hidden" id="end" value="13.922208, 100.468212">
 		   				<br>
 		      				<input type="submit" id="submit" class="hide">
+
 		      			<br>
 		      			<br>		      				
 		    		</div>	
 		    	<label id="Distance">รวมระยะทางทั้งหมด :</label>
 		    		<input id="totalDistance">
 		      	<b>กิโลเมตร</b>
-
+			<form action="transportAddSQL.php" method="POST">
 				<div id="directions-panel"></div>
 	            <br>
 	            <div id="btnCB">
@@ -155,10 +178,19 @@
 	                    	<button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
 	                    	</a>
 	                    </td>
+
+	                    <!-- <input type="hidden" id="transport-id" name="transport-id" value="<?php echo $order ?>"> -->
+	                    <input type="hidden" id="hiddenDate" name="hiddenDate" value="<?php echo $date ?>" >  
+	                    <input type="hidden" id="hiddenWeightProduct" name="hiddenWeightProduct" value="<?php echo $totalWeight ?>" >  
+	                    <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo $truck ?>" >  
+	                    <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo $employee ?>" >  
+	                    <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
+	                  
 	                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกเส้นทาง</button></td>
-	                                    
+					
 	                </tr>
 	            </div>
+	        </form>
 		    <script>
 		    	$( document ).ready(function() {	
 					$( "#submit" ).trigger( "click" );
