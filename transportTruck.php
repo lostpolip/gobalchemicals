@@ -1,7 +1,7 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$result = $dbManagement->select("SELECT * FROM  truck WHERE TruckID = '".$_REQUEST['truckID']."'");
+	$result = $dbManagement->select("SELECT * FROM  truck WHERE WeightCapacity = ".$_REQUEST['truckWeight']."");
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
 	    while($row = mysqli_fetch_assoc($result)) {

@@ -179,7 +179,7 @@
 	                    
 	                    <label id="labelDate">วันที่จัดเส้นทาง:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" 
-	                    min="<?php echo date('Y-m-d');?>" required>
+	                    min="<?php echo date('Y-m-d');?>" value="<?php echo date("Y-m-d")?>" required>
 	                    
 							<table id="table2" width="100%">
 	                        	<tr> 
@@ -210,29 +210,21 @@
                         	<br>
 
 								<tr> 
-									<input id="example" type="button" value="คำนวณ" class="btn btn-primary"/>
+								
 									<td><label id="labelWeight">รวมน้ำหนักสินค้าทั้งหมด :</label>
-										<input type="text" id="txtWeightProduct" name="txtWeightProduct" readonly> 
+										<input type="text" id="txtWeightProduct" name="txtWeightProduct" value="0" readonly> 
 										<label id="labelWeight">ตัน</label>
 									</td>
 								</tr>
 								<br>
 								<br>
 
+								<div id="truckInfo">
 								<label id="title">รถบรรทุก</label>
 								<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
-										<select id="ddTruck" name="ddTruck" >
-                                	 		<option value="" selected>เลือก</option>
-		                                	 	<?php
-		                        					for($j=0;$j<$ddtruck;$j++){ 
-		                        				?>	
-                                			<option value="<?php echo $TruckID[$j]; ?>"><?php echo $WeightCapacity[$j]; ?></option>
-                                				<?php
-                        							}
-                        						?>
-                                		</select>
-                                		<label id="labelWeight">ตัน</label>
+									<input id="txtTruck" readonly>
+                                	<label id="labelWeight">ตัน</label>
 									</td>
 								</tr>
 								<br>
@@ -258,10 +250,17 @@
 		                                </td>
 	                            	</tr>
                             	</table>
+                          		<label id="title">ช่วงเวลาเดินทาง</label>
+		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" required>
+			                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
+									<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" required>
+									<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
 
+								<br>	
                             	<label id="title">พนักงานขับ</label>
 		                            <tr> 
-										<td><label id="labelEmployee">เลือพนักงานขับรถ :</label>
+										<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
 											<select id="ddEmployee" name="ddEmployee" >
 	                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
 			                                	 	<?php
@@ -284,18 +283,15 @@
 		                       		</tr>
 		                       	</table>
  
-		                       	<label id="title">ช่วงเวลาเดินทาง</label>
-		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                       	<input name="rdoDate" type="radio" value="09:00-15:00" required>
-			                       	<label id="rdoDate" >09:00-15:00 น.</label>
-									<input name="rdoDate" type="radio" value="21:00-05:00" required>
-									<label id="rdoDate" >21:00-05:00 น.</label>
+
 
 	                            <br>
 	                            <br>
+	                            </div>
+
 	                            <tr id="button-command">
 	                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
-	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
+	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md" disabled>สร้างเส้นทาง</button></td>
 	                                    
 	                            </tr>
 
