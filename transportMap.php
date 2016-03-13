@@ -124,9 +124,7 @@
 					$order[$key] = $destinationLatlng[$key][1];
 				}
 				$order = implode(',', $order);
-				// echo $destinationLatlng[0][0];
 				$date =$_REQUEST['txtDateTransport'];
-				// $order=$_REQUEST['orderid'.$OrderID];
 				$totalWeight=$_REQUEST['txtWeightProduct'];
 				$truck=$_REQUEST['ddTruck'];
 				$employee=$_REQUEST['ddEmployee'];
@@ -153,13 +151,13 @@
 		    			<br>
 		    				<input type="hidden" id="end" value="13.922208, 100.468212">
 		   				<br>
-		      				<input type="submit" id="submit" class="hide">
+		      				<input type="button" id="submit" class="hide">
 
 		      			<br>
 		      			<br>		      				
 		    		</div>	
 		    	<label id="Distance">รวมระยะทางทั้งหมด :</label>
-		    		<input id="totalDistance">
+		    		<input id="totalDistance" readonly>
 		      	<b>กิโลเมตร</b>
 			<form action="transportAddSQL.php" method="POST">
 				<div id="directions-panel"></div>
@@ -172,12 +170,13 @@
 	                    	</a>
 	                    </td>
 
-	                    <input type="hidden" id="transport-id" name="transport-id" value="<?php echo $order ?>">
+	                    <input type="hidden" id="transport-orderid" name="transport-orderid" value="<?php echo $order ?>">
 	                    <input type="hidden" id="hiddenDate" name="hiddenDate" value="<?php echo $date ?>" >  
 	                    <input type="hidden" id="hiddenWeightProduct" name="hiddenWeightProduct" value="<?php echo $totalWeight ?>" >  
 	                    <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo $truck ?>" >  
 	                    <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo $employee ?>" >  
 	                    <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
+
 	                  
 	                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกเส้นทาง</button></td>
 					
@@ -185,7 +184,7 @@
 	            </div>
 	        </form>
 		    <script>
-		    	$( document ).ready(function() {	
+		    	$( document ).ready(function() {
 					$( "#submit" ).trigger( "click" );
 				});
 
@@ -237,9 +236,31 @@
 			              summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
 			              ////////// here
 			              totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
-			              $('#totalDistance').val(totalDistance);
 
+								
 			            }
+			            if ($('#totalDistance').val() != '') {
+			            	$.ajax({
+								url: "transportAddSQL.php", 
+								method: "GET",
+								data: { 
+									totalDistance : totalDistance,
+									orderid : $('#transport-orderid').val(),
+									hiddenDate : $('#hiddenDate').val(),
+									hiddenWeightProduct : $('#hiddenWeightProduct').val(),
+									hiddenTruck : $('#hiddenTruck').val(),
+									hiddenEmployee : $('#hiddenEmployee').val(),
+									hiddenRouteTime : $('#hiddenRouteTime').val()
+
+								},
+								success: function(results){
+									console.log(results);
+									
+							    }
+							});
+			            }
+			            $('#totalDistance').val(totalDistance);
+
 			          } else {
 			            window.alert('Directions request failed due to ' + status);
 			          }

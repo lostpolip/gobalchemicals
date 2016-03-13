@@ -179,7 +179,7 @@
 	                    
 	                    <label id="labelDate">วันที่จัดเส้นทาง:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" 
-	                    min="<?php echo date('Y-m-d');?>">
+	                    min="<?php echo date('Y-m-d');?>" required>
 	                    
 							<table id="table2" width="100%">
 	                        	<tr> 
@@ -199,8 +199,6 @@
 	                        		</td>
 	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
-	                        			<!-- <input type="checkbox" id="Order" name="Order[]" value="<?php echo $OrderID[$j]; ?>" class="hide"> -->
-	                        		    <input type="hidden" id="<?php echo 'orderID'. $OrderID[$j]; ?>" name="<?php echo 'orderID'. $OrderID[$j]; ?>" value="<?php echo $OrderID[$j]; ?>">
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
@@ -288,9 +286,9 @@
  
 		                       	<label id="title">ช่วงเวลาเดินทาง</label>
 		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                       	<input name="rdoDate" type="radio" value="09:00-15:00">
+			                       	<input name="rdoDate" type="radio" value="09:00-15:00" required>
 			                       	<label id="rdoDate" >09:00-15:00 น.</label>
-									<input name="rdoDate" type="radio" value="21:00-05:00">
+									<input name="rdoDate" type="radio" value="21:00-05:00" required>
 									<label id="rdoDate" >21:00-05:00 น.</label>
 
 	                            <br>

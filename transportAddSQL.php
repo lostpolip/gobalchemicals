@@ -17,18 +17,23 @@ if (mysqli_num_rows($Transport) > 0) {
 }
 
 $newID = $maxID + 1;
-$transportID = $_REQUEST['transport-id'];
-$transportIDArray = explode(',',$transportID);
+$orderID = $_REQUEST['orderid'];
+$transportIDArray = explode(',',$orderID);
 $transportIDArray = array_filter($transportIDArray);
 
-	if ($transportID != '') {
-	foreach ($transportIDArray as $transportID) {
-		$dbManagement->insert("INSERT INTO transportdetail(TransportID, OrderID) VALUES ('TS' '".$newID."','".$_REQUEST['orderID'.$transportID]."')");
-		// print_r("INSERT INTO transportdetail(TransportID, OrderID) VALUES ('TS' '".$newID."','".$_REQUEST['orderID'.$transportID]."')");
+	if ($orderID != '') {
+	foreach ($transportIDArray as $orderID) {
+		$dbManagement->insert("INSERT INTO transportdetail(TransportID, OrderID) VALUES ('TS' '".$newID."','".$orderID."')");
+
+		$dbManagement->update("UPDATE orders SET State='sending' WHERE OrderID='".$orderID."'");
+
 		}
 
-		$dbManagement->insert("INSERT INTO transport(TransportID, TransportDate, TruckID, EmployeeID, TimeAction, TransportStatus, TotalWeightProduct) VALUES ('TS' '".$newID."','".$_REQUEST['hiddenDate']."','".$_REQUEST['hiddenTruck']."','".$_REQUEST['hiddenEmployee']."','".$_REQUEST['hiddenRouteTime']."','processing','".$_REQUEST['hiddenWeightProduct']."')");	
-		// print_r("INSERT INTO transport(TransportID, TransportDate, TruckID, EmployeeID, TimeAction, TransportStatusID, TotalWeightProduct) VALUES ('TS' '".$newID."','".$_REQUEST['hiddenDate']."','".$_REQUEST['hiddenTruck']."','".$_REQUEST['hiddenEmployee']."','".$_REQUEST['hiddenRouteTime']."','processing','".$_REQUEST['hiddenWeightProduct']."')");
+		$dbManagement->insert("INSERT INTO transport(TransportID, TransportDate, TruckID, EmployeeID, TimeAction, TransportStatus, TotalWeightProduct,AmountDistance) VALUES ('TS' '".$newID."','".$_REQUEST['hiddenDate']."','".$_REQUEST['hiddenTruck']."','".$_REQUEST['hiddenEmployee']."','".$_REQUEST['hiddenRouteTime']."','processing','".$_REQUEST['hiddenWeightProduct']."','".$_REQUEST['totalDistance']."')");	
+
+		
 	}
-// header( "location: /gobalchemicals/indexCustomer.php" );
+
+	
+
 ?>
