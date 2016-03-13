@@ -6,8 +6,8 @@
 	$result = $dbManagement->select("SELECT * FROM  orderdetail 
 									JOIN orders ON orderdetail.OrderID = orders.OrderID
 									JOIN product ON orderdetail.ProductID = product.ProductID
-									WHERE orders.OrderID= '".$_REQUEST['orderID']."' 
-                                    AND CustomerID ='".$_SESSION['CustomerID']."'
+									WHERE CustomerID ='".$_SESSION['CustomerID']."'
+                                    AND orders.OrderID= '".$_REQUEST['orderID']."'   
 									");
 
    $i=0; 

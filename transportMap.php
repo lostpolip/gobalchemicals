@@ -117,27 +117,20 @@
 			</div><!--end of tooplate_body_wrapper-->
 
 			<?php
-				require 'dbManagement.php';
-				$dbManagement = new dbManagement();
-				$result = $dbManagement->select("SELECT * FROM  orders
-									WHERE State='complete'
-									");
-
-			   $i=0; 
-				if (mysqli_num_rows($result) > 0) {
-				    while($row = mysqli_fetch_assoc($result)) {
-				    	$OrderID[$i] = $row["OrderID"];
-			            $i++;
-				    }
-				}
 				$destination =$_REQUEST['destination'];
+				$order = '';
+				foreach ($destination as $key => $value) {
+					$destinationLatlng[$key] = explode('&',$value);
+					$order[$key] = $destinationLatlng[$key][1];
+				}
+				$order = implode(',', $order);
+				// echo $destinationLatlng[0][0];
 				$date =$_REQUEST['txtDateTransport'];
 				// $order=$_REQUEST['orderid'.$OrderID];
 				$totalWeight=$_REQUEST['txtWeightProduct'];
 				$truck=$_REQUEST['ddTruck'];
 				$employee=$_REQUEST['ddEmployee'];
 				$routeTime=$_REQUEST['rdoDate'];
-				print_r($_REQUEST);
 
 
 			?>
@@ -150,9 +143,9 @@
 		    			<br>
 						    <select multiple id="waypoints" class="hide">
 							    <?php
-							    	foreach ($destination as $key => $value) {
+							    	foreach ($destinationLatlng as $key => $value) {
 							    ?>
-						     		<option value="<?php echo $value; ?>" selected></option>
+						     		<option value="<?php echo $value[0]; ?>" selected></option>
 						    	<?php
 						    	}
 						    	?>
@@ -179,7 +172,7 @@
 	                    	</a>
 	                    </td>
 
-	                    <!-- <input type="hidden" id="transport-id" name="transport-id" value="<?php echo $order ?>"> -->
+	                    <input type="hidden" id="transport-id" name="transport-id" value="<?php echo $order ?>">
 	                    <input type="hidden" id="hiddenDate" name="hiddenDate" value="<?php echo $date ?>" >  
 	                    <input type="hidden" id="hiddenWeightProduct" name="hiddenWeightProduct" value="<?php echo $totalWeight ?>" >  
 	                    <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo $truck ?>" >  

@@ -23,6 +23,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/claim.js"></script>
 
@@ -84,7 +85,7 @@
 					<div class="row">
 					  <div class="col-lg-6">
 					    <div class="input-group" class="ui-widget">		    
-<!-- 					      <input type="hidden" id="orderID" name="orderID" value='<?php echo json_encode($OrderID); ?>'> -->
+					      <input type="hidden" id="orderID" name="orderID" value='<?php echo json_encode($OrderID); ?>'>
 					      <input type="text" id="searchID" class="form-control" placeholder="ค้นหาเลขที่ใบสั่งซื้อ"
 							style="font-family: 'quarklight';
 							    font-size: 18px;

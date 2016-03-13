@@ -1,9 +1,10 @@
 $( document ).ready(function() {
-// var orderId = $('#orderID').val();
-//     $( "#searchID" ).autocomplete({
-//       source: JSON.parse(orderId)
-//     });
-// console.log (JSON.parse(orderId));
+var orderId = $('#orderID').val();
+    $( "#searchID" ).autocomplete({
+      source: JSON.parse(orderId)
+
+    });
+   
 	$('#btnCF').click(function() {
 		var patt= /[-+]?(\d*[.])?\d+/;
 

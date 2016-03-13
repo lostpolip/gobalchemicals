@@ -193,7 +193,7 @@
 	   								for($j=0; $j<$popupOrder; $j++){
 	   							?>
 	                        	<tr>
-	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j] ?>" 
+	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j].'&'. $OrderID[$j] ?>" 
 	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
 	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
@@ -296,7 +296,7 @@
 	                            <br>
 	                            <br>
 	                            <tr id="button-command">
-	                            		<td><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></td>
+	                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
 	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
 	                                    
 	                            </tr>

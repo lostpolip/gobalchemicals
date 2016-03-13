@@ -60,7 +60,7 @@ header('Access-Control-Request-Headers: x-requested-with');
 
                             <tr>
                                 <td><label><span class="red-star">* </span>รหัสผ่าน:</label></td>
-                                <td><input type="password" id="txtPassword" name="txtPassword" placeholder="a-z หรือ A-Z หรือ 0-9" ></td>
+                                <td><input type="password" id="txtPassword" name="txtPassword" placeholder="a-z หรือ A-Z หรือ 0-9" required></td>
                             </tr>
           
                             <tr> <td>&nbsp;</td></tr>  
