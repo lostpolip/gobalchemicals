@@ -126,10 +126,9 @@
 				$order = implode(',', $order);
 				$date =$_REQUEST['txtDateTransport'];
 				$totalWeight=$_REQUEST['txtWeightProduct'];
-				$truck=$_REQUEST['ddTruck'];
+				$truck=$_REQUEST['hiddenTruckID'];
 				$employee=$_REQUEST['ddEmployee'];
 				$routeTime=$_REQUEST['rdoDate'];
-
 
 			?>
 			

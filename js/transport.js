@@ -3,29 +3,6 @@ $( document ).ready(function() {
 	$('#row-employee').hide();
 	$('#truckInfo').hide();
 
-	$('#ddEmployee').change(function(){
-
-		var employeeID = $('#ddEmployee').val();
-		$.ajax({
-			url: "transportEmployee.php", 
-			method: "GET",
-			data: { 
-				employeeID : employeeID 
-			},
-			success: function(result){
-				$('#txtTelEmployee').empty();
-
-		    	var detailEmployee = jQuery.parseJSON(result);
-
-		    	for (var x in detailEmployee['name']) {
-					$('#txtTelEmployee').append('<input type="text" value=" '+detailEmployee['tel'][x]+' ">');
-				}
-				$('#row-employee').show();
-				
-		    }
-		});
-	});
-
 	$("input[name='destination[]'").on('change', function() {
 		var sum = 0;
 	    $("input[type=checkbox]:checked").each(function(){
@@ -69,8 +46,8 @@ $( document ).ready(function() {
 					$('#txtTruckName').append('<input type="text" value=" '+detailTruck['name'][x]+' ">');
 					$('#txtFuel').append('<input type="text" value=" '+detailTruck['fuel'][x]+' ">');
 					$('#txtTruckWeight').append('<input type="text" value=" '+detailTruck['truckweight'][x]+' ">');
-					$('#txtTruckCapacity').append('<input type="text" value=" '+detailTruck['weightcapacity'][x]+' ">');
-					
+					$('#txtTruckCapacity').append('<input type="text" value=" '+detailTruck['weightcapacity'][x]+' ">');	
+					$('#txtTruckID').append('<input type="text" id="hiddenTruckID" name="hiddenTruckID" value=" '+detailTruck['ID'][x]+' ">');	
 
 				}
 				$('#row-truck').show();
@@ -94,6 +71,7 @@ $( document ).ready(function() {
 	} else {
 		var timeaction = $("#rdoDate2").val();
 	}
+	$('#ddEmployee').empty();
 	$.ajax({
 		url: "transportTimeAction.php", 
 		method: "GET",
@@ -102,7 +80,24 @@ $( document ).ready(function() {
 			datetransport : $('#txtDateTransport').val(),
 		},
 		success: function(result){
-			console.log(result);
+			id = jQuery.grep(jQuery.parseJSON(result).id, function(n, i){
+			  return (n !== "" && n != null);
+			});
+			
+			text = jQuery.grep(jQuery.parseJSON(result).name, function(n, i){
+			  return (n !== "" && n != null);
+			});
+
+			$('#ddEmployee').append($('<option>', { 
+			        value: '',
+			        text : '--------กรุณาเลือก--------' 
+			    }));
+			$.each(text, function (i, item) {
+			    $('#ddEmployee').append($('<option>', { 
+			        value: id[i],
+			        text : text[i] 
+			    }));
+			});
 
 			}
 	    });

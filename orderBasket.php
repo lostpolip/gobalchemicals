@@ -175,7 +175,16 @@
                         	</tr>
 
                        		<?php
+                       		$orderIdAll = '';
+                       		$totalUnit = '';
                         	for($j=0;$j<$or;$j++){ 
+                        		if ($j == 0) {
+                       				$orderIdAll = $orderIdAll.$ProductID[$j];
+                       				$totalUnit = $totalUnit.$OrderAmount[$j];
+                        		} else {
+                        			$orderIdAll = $orderIdAll.','.$ProductID[$j];
+                        			$totalUnit = $totalUnit.','.$OrderAmount[$j];
+                        		}
                         	?>  
 
                         	<tr id="orderList">
@@ -189,7 +198,9 @@
                         	</tr>
                         	<?php
                         		}
-                        	?>                           
+                        	?> 
+                        	<input type="hidden" name="orderIdAll" value="<?php echo $orderIdAll; ?>"></input>                          
+                        	<input type="hidden" name="totalUnit" value="<?php echo $totalUnit; ?>"></input>                          
                         </table> 
  
 

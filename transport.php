@@ -157,17 +157,6 @@
 			    }		   
 			}
 
-			$employee = $dbManagement->select("SELECT * FROM employee WHERE `PositionID`=2");
-
-			$ddemployee = 0;
-			if (mysqli_num_rows($employee) > 0) {
-			    while($row = mysqli_fetch_assoc($employee)) {
-			        $EmployeeID[$ddemployee] = $row["EmployeeID"];
-			        $EmployeeName[$ddemployee] = $row["EmployeeName"];
-			        $ddemployee++;
-
-			    }		   
-			}
 		?>
 	<form action="transportMap.php">
 		<div id="tooplate_main">
@@ -231,6 +220,7 @@
 								<table id="table" width="100%">
 									<tr id="row-truck">
 		                                <td>
+		                                	<input type="hidden" id="txtTruckID" >
 		                                	<label id="label">ประเภทรถบรรทุก:</label>	
 		                                	<label id="txtTruckType" name="txtTruckType"></label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -263,13 +253,6 @@
 										<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
 											<select id="ddEmployee" name="ddEmployee" >
 	                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
-			                                	 	<?php
-			                        					for($j=0;$j<$ddemployee;$j++){ 
-			                        				?>	
-	                                			<option value="<?php echo $EmployeeID[$j]; ?>"><?php echo $EmployeeName[$j]; ?></option>
-	                                				<?php
-	                        							}
-	                        						?>
 	                                		</select>
 										</td>
 									</tr>

@@ -23,9 +23,10 @@ $claimIDArray = array_filter($claimIDArray);
 
 	if ($claimID != '') {
 	foreach ($claimIDArray as $claimID) {
-		$dbManagement->insert("INSERT INTO claimDetail(OrderID, ClaimAmount, ProductID, ClaimProductDetail, ClaimID) VALUES ('".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount' . $claimID]."','".$_REQUEST['productID'.$claimID]."','".$_REQUEST['txtClaimDetail'.$claimID]."','CL' '".$newID."')");
+		if ($_REQUEST['txtClaimAmount' . $claimID] != 0) {
+			$dbManagement->insert("INSERT INTO claimDetail(OrderID, ClaimAmount, ProductID, ClaimProductDetail, ClaimID) VALUES ('".$_REQUEST['txtOrderID']."','".$_REQUEST['txtClaimAmount' . $claimID]."','".$_REQUEST['productID'.$claimID]."','".$_REQUEST['txtClaimDetail'.$claimID]."','CL' '".$newID."')");
+			}
 		}
-
 		$dbManagement->insert("INSERT INTO claim(ClaimID, CustomerID ,StateClaim,ClaimDate, ClaimSendDate) VALUES ('CL' '".$newID."','".$_REQUEST['txtCustomerID']."','processing','".date("Y-m-d")."','0000-00-00')");	
 	}
 header( "location: /gobalchemicals/indexCustomer.php" );
