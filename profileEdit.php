@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/profileDetail.css" rel="stylesheet" type="text/css" />
+		<link href="css/profileEdit.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 

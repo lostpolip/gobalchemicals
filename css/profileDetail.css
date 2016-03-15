@@ -353,8 +353,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #table tr td button{
 	font-family: 'quarklight';
 	font-size: 20px;
-	border-color: #088A4B;
-	background-color: #04B45F;
+    border-color: #DF0101;
+    background-color: #FE2E2E;
 	color: #FFFFFF;
 	border-style: solid;
 	height: 40px;

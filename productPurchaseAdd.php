@@ -190,7 +190,7 @@
 
                             <tr>
                                 <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
-                                <td><input type="text" id="txtProductAmount" name="txtProductAmount" required>&nbsp;&nbsp;
+                                <td><input type="text" id="txtProductAmount" name="txtProductAmount" value="0" required>&nbsp;&nbsp;
                                 	<label>ตัน</label> 
                                 </td>
                             </tr>

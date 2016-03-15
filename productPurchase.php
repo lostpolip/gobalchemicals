@@ -176,7 +176,7 @@
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
                         		<td>
                         			<form action="testmail.php">
-                        			<button type="submit" id="btnEmail" ><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
+                        			<button type="submit" id="btnEmail"><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
                         			</form>
                         		</td>
                         		<td>

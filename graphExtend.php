@@ -2,22 +2,19 @@
 		require 'dbManagement.php';
 		$dbManagement = new dbManagement();
 
-		$reportOrder=$dbManagement->select("SELECT * FROM orders WHERE OrderDate >'2016-3-14'");
-
-		$sumOrder=$dbManagement->select("SELECT orders.OrderDate,SUM(orders.ExtendedPrice) FROM orders
+		$sumOrder=$dbManagement->select("SELECT OrderDate,SUM(TotalPriceOrder) AS TotalPriceOrder FROM orders
 										 WHERE OrderDate between '".$_REQUEST['startdate']."' and '".$_REQUEST['enddate']."'
 										 	GROUP BY OrderDate
 										 ");
-
 		$i = 0;
 		if (mysqli_num_rows($sumOrder) > 0) {
 			while($row = mysqli_fetch_assoc($sumOrder)) {
 		        if ($i == 0) {
 					$OrderDate = $row["OrderDate"];
-			        $ExtendedPrice = $row["ExtendedPrice"];
+			        $TotalPriceOrder = $row["TotalPriceOrder"];
 		        } else {
 		        	$OrderDate = $OrderDate.','.$row["OrderDate"];
-			        $ExtendedPrice = $ExtendedPrice.','.$row["ExtendedPrice"];
+			        $TotalPriceOrder = $TotalPriceOrder.','.$row["TotalPriceOrder"];
 		        }
 		        
 		        $i++;
@@ -25,7 +22,8 @@
 		}
 	$info = [
 		'date' => $OrderDate,
-		'price' => $ExtendedPrice,
+		'price' => $TotalPriceOrder,
 	];
+	
 	echo json_encode($info);
 ?>

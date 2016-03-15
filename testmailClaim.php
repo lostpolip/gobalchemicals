@@ -6,9 +6,11 @@
 	$dbManagement = new dbManagement();
 	$result=$dbManagement->select("SELECT * FROM claimdetail
 							JOIN product  ON claimdetail.ProductID = product.ProductID
+                            JOIN claim ON claimdetail.ClaimID=claim.ClaimID
 							JOIN orders  ON claimdetail.OrderID = orders.OrderID
-							WHERE ClaimID ='".$_REQUEST['ClaimID']."'
+							WHERE claim.ClaimID ='".$_REQUEST['ClaimID']."'
 							");
+
 	$claim=$dbManagement->select("SELECT * FROM claim
 							JOIN customer  ON claim.CustomerID = customer.CustomerID
 							WHERE ClaimID ='".$_REQUEST['ClaimID']."'
@@ -70,7 +72,7 @@ $body = '<!DOCTYPE html>
 	
 
 								</div>
-							
+								
 								<div class="box-Detail" style="width: 1040px; margin: 50px 0 0 100px;">
 									<table id="table1" width="100%">
 			                        	<tr>

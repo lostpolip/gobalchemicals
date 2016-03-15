@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/approveOrder.css" rel="stylesheet" type="text/css" />
+		<link href="css/approveClaimDetail.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
@@ -143,7 +143,7 @@
 			}
 
 		?>
-	<form action="approveAddDateSQL.php">
+	<form action="approveAddStateSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -151,7 +151,7 @@
 					  <ul class="nav nav-tabs" role="tablist">
 					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการเคลมสินค้า</a></li>
 					  </ul>
-
+					  <input type="hidden" id="claimId" name="claimId" value="<?php echo $ClaimID[0]; ?>">
 					  <!-- Tab panes -->
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane active">
@@ -169,8 +169,17 @@
 		                        	</tr>
 
 					    			<?php
-		                        		for($j=0;$j<$i;$j++){ 
-		                   			 ?>	
+								    	$claimIdAll = '';
+			                       		$totalUnit = '';
+					                        for($j=0;$j<$i;$j++){ 
+					                        if ($j == 0) {
+			                       				$claimIdAll = $claimIdAll.$ProductID[$j];
+			                       				$totalUnit = $totalUnit.$ClaimAmount[$j];
+			                        		} else {
+			                        			$claimIdAll = $claimIdAll.','.$ProductID[$j];
+			                        			$totalUnit = $totalUnit.','.$ClaimAmount[$j];
+			                        		}
+					                ?>	
 
 		                        	<tr>
 		                        		<td id="date"><?php echo $ClaimDate[$j]; ?></td>
@@ -181,16 +190,21 @@
 		                        	</tr>
 		                        	<?php
 		                        		}
-		                    		?>        
+		                    		?> 
+
+		                    		<input type="hidden" name="claimIdAll" value="<?php echo $claimIdAll; ?>"></input>                          
+                        			<input type="hidden" name="totalUnit" value="<?php echo $totalUnit; ?>"></input>
+
 							</table> 
 					    </div><!--- แจ้งซื้อสินค้า -->
                     	<div>
                 			<table id="table4">
                 				<tr>
-                					<td><a href="approveClaim.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
+                					<td><a href="approveClaim.php"><button type="button" id="btnBack" class="btn btn-danger">กลับไปหน้าหลัก</button></a>
+                					
+                					&nbsp;&nbsp;&nbsp;&nbsp;
+                					<button type="submit" id="btnCF" class="btn btn-success">ยืนยันการแจ้งเคลม</button>
                 					</td>
-                					<br>
-
                 				</tr>
                 			</table>
 						</div>

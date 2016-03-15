@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/approveOrder.css" rel="stylesheet" type="text/css" />
+		<link href="css/reportAll.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
@@ -118,43 +118,20 @@
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
-		<?php
-		require 'dbManagement.php';
-		$dbManagement = new dbManagement();
 
-		$reportOrder=$dbManagement->select("SELECT * FROM orders WHERE OrderDate >'2016-3-14'");
-
-		$sumOrder=$dbManagement->select("SELECT SUM(ExtendedPrice) AS TotalExtended
-										 FROM orders
-										 WHERE OrderDate > '2016-3-00'");
-
-		$i = 0;
-		if (mysqli_num_rows($reportOrder) > 0) {
-			while($row = mysqli_fetch_assoc($reportOrder)) {
-		        if ($i == 0) {
-					$OrderDate = $row["OrderDate"];
-			        $ExtendedPrice = $row["ExtendedPrice"];
-		        } else {
-		        	$OrderDate = $OrderDate.','.$row["OrderDate"];
-			        $ExtendedPrice = $ExtendedPrice.','.$row["ExtendedPrice"];
-		        }
-		        
-		        $i++;
-			}
-		}
-
-		?>
 		<input type="hidden" id="OrderDate" value="<?php echo $OrderDate; ?>"></input>
 		<input type="hidden" id="ExtendedPrice" value="<?php echo $ExtendedPrice; ?>"></input>
 
 		<div id="tooplate_main">
+				<td><label id="labelTittle">รายงานรายได้</label></td>
+				<br>		
 			    <tr>
-			    	<td><label>วันที่ :</label></td>
+			    	<td><label id="labelDate">วันที่ :</label></td>
                     <td><input type="date" id="startDate" name="startDate"></td>
-                    <td><label>ถึง</label></td>
-			    	<td><label>วันที่ :</label></td> 
+                    <td><label id="labelDate1">ถึง</label></td>
+			    	<td><label id="labelDate1">วันที่ :</label></td> 
                     <td><input type="date" id="endDate" name="endDate"></td>
-                    <td><button type="button" id="btnView">view</button></td>
+                    <td><button type="button" id="btnView" class="btn btn-primary">view</button></td>
     			</tr>
     			<br>
 			<canvas id="myChart" width="400" height="400"></canvas>

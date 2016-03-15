@@ -35,6 +35,7 @@ $( document ).ready(function() {
 				$('#ddBrandName').empty();
 				$('#ddSupplier').empty();
 				$('#txtSupplierEmail').empty();
+				
 		    	var detailProduct = jQuery.parseJSON(result);
 
 		    	for (var x in detailProduct['nameProductType']) {
@@ -42,8 +43,7 @@ $( document ).ready(function() {
 					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' ">');
 					$('#supplierId').append('<input type="hidden" id="IdSupplier" value=" '+detailProduct['nameSupplierID'][x]+' ">');
 					$('#ddSupplier').append('<input type="text" value=" '+detailProduct['nameSupplier'][x]+' ">');
-					$('#txtSupplierEmail').append('<input type="text" value=" '+detailProduct['email'][x]+' ">');
-					
+					$('#txtSupplierEmail').append('<input type="text" value=" '+detailProduct['email'][x]+' ">');					
 
 				}
 				$('#row_productType').show();

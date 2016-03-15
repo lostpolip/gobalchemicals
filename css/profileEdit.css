@@ -250,7 +250,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 20px;
 }
 
- 
+
+
 #tooplate_fw { 
 	width: 960px; 
 	height: 500px; 
@@ -264,6 +265,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 }
 
+#content { 
+	float: left; 
+	width: 630px; 
+}
+
+#sidebar { 
+	float: right; 
+	width: 300px; 
+}
 
 .col_fw { 
 	margin-bottom: 40px; 
@@ -298,11 +308,34 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 630px; 
 	margin-bottom: 30px;
 }
+.col_w630 p span { 
+	font-family: 'quarklight';
+	font-size: 18px;
+	color: #FFFFFF;
+
+}
+
+#btnEdit{
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
+	border-color: #333232;
+	background-color: #262424;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+}
 
 #table { 
 	padding-left: 120px;
 }
-#table tr td label { 
+#table tr td label{ 
+	font-family: 'quarklight';
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#table tr td { 
+
 	font-family: 'quarkbold';
 	font-size: 22px;
 	color: #1C1C1C;
@@ -317,12 +350,22 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background-color: #262424;
 	border-style: solid;
 }
-#table tr td button{
+#btnBack{
+	font-family: 'quarklight';
+	font-size: 20px;
+    border-color: #DF0101;
+    background-color: #FE2E2E;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+}
+#btnCF{
 	font-family: 'quarklight';
 	font-size: 20px;
 	border-color: #088A4B;
-	background-color: #04B45F;
-	color: #fff;
+    background-color: #04B45F;
+	color: #FFFFFF;
 	border-style: solid;
 	height: 40px;
 	width: 120px;

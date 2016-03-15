@@ -15,6 +15,7 @@
 			$ProductName[$ddProduct] = $row["ProductName"];
 			$ProductTypeID[$ddProduct] = $row["ProductTypeID"];
 			$ProductTypeName[$ddProduct] = $row["ProductTypeName"];
+			$Cost[$ddProduct] = $row["Cost"];
 			$BrandID[$ddProduct] = $row["BrandID"];
 			$BrandName[$ddProduct] = $row["BrandName"];
 	    	$SupplierID[$ddProduct] = $row["SupplierID"];

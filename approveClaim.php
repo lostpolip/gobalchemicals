@@ -163,7 +163,7 @@
 		                                <th>สถานะ</th>
 		                                <th>รายละเอียด</th>
 		                                <th>Email</th>
-		                                <th>คำสั่ง</th>
+		                                <!-- <th>คำสั่ง</th> -->
 		                                
 		                        	</tr>
 		                        	<tr>
@@ -175,8 +175,9 @@
 		                        			<button type="submit" id="btnSet" <?php if ($ClaimSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> >กำหนด</button>
 		                        		</td>
 
-		                        		<td><label id="stateid"><?php echo $StateClaim[$j]; ?></label></td>
-
+		                        		<td><label id="stateid"><?php echo $StateClaim[$j]; ?></label>
+		                        		</td>
+		                        		
 		                        		<td>
 		                        			<button type="submit" id="btnDetail"><a href="approveClaimDetail.php?ClaimID=<?php echo $ClaimID[$j]; ?> ">เลือก</a></button>
 		                        		</td>
@@ -185,17 +186,17 @@
 		                        			<button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j]; ?> ">ส่งEmail</a></button>
 		                        		</td>
 
-		                        		<td>
+<!-- 		                        		<td>		
+		                        			<button type="submit" id="btnConfirm"><a href="approveAddStateSQL.php?ClaimID=<?php echo $ClaimID[$j]; ?>">ยืนยันการแจ้ง</a></button>
 		                        			
-		                        			<button id="btnConfirm"><a href="approveAddStateSQL.php?ClaimID=<?php echo $ClaimID[$j]; ?>">ยืนยันการแจ้ง</a></button>
-		                        			
-		                        		</td>
+		                        		</td> -->
 		                        	</tr>
 		                        	
 							</table>					 
 							<?php
 		                        }
-		                    ?>        
+		                    ?> 
+		                    
 					    </div>
 					</div>
 				</div>
