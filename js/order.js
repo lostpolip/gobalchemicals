@@ -1,5 +1,5 @@
-$( document ).ready(function() {
 
+$( document ).ready(function() {
 	$(':button[name=order]').click(function() {		
 		var patt= /[-+]?(\d*[.])?\d+/;
 			if(!patt.test($(':input[name=numberLevel]').val())) {
@@ -76,11 +76,11 @@ $( document ).ready(function() {
 
 	});
 
-	$('#btnCF').click(function() {
-		if (!confirm('ยืนยันการสั่งซื้อ')) {
-			return false;	
-		}
-	});
+	// $('#btnCF').click(function() {
+	// 	if (!confirm('ยืนยันการสั่งซื้อ')) {
+	// 		return false;	
+	// 	}
+	// });
 
 	$(':button[name=btnDelete]').click(function() {
 		var productID = $(this).data('productid');

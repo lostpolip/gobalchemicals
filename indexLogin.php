@@ -3,9 +3,8 @@ session_start();
 
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$result = $dbManagement->select("SELECT EmployeeID,EmployeeName,EmployeeUsername,EmployeePassword 
-		FROM employee
-		WHERE StateEmployee = 'confirm'");
+	$result = $dbManagement->select("SELECT * FROM employee
+									WHERE StateEmployee = 'confirm'");
 
 	$i = 0;
 	if (mysqli_num_rows($result) > 0) {
@@ -14,6 +13,7 @@ session_start();
 	    	$EmployeeName[$i] = $row["EmployeeName"];
 	        $EmployeeUsername[$i] = $row["EmployeeUsername"];
 	        $EmployeePassword[$i] = $row["EmployeePassword"];	
+	        $PositionID[$i] = $row["PositionID"];	
 
 	        $i++;
 	    }
@@ -23,6 +23,7 @@ session_start();
 		if($EmployeeUsername[$j] ==  $_REQUEST['username'] && $EmployeePassword[$j] == $_REQUEST['password']){
 			$_SESSION['EmployeeID'] = $EmployeeID[$j];
 			$_SESSION['EmployeeName'] = $EmployeeName[$j];
+			$_SESSION['PositionID'] = $PositionID[$j];
 			
 		}
 	}

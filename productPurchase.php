@@ -126,6 +126,7 @@
 			        $SupplierName[$i] = $row["SupplierName"];
 			        $SupplierEmail[$i] = $row["SupplierEmail"];
 			        $PurchaseAmount[$i] = $row["PurchaseAmount"];
+			        $StateMail[$i] = $row["StateMail"];
 			        $i++;
 			    }
 			}
@@ -176,7 +177,8 @@
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
                         		<td>
                         			<form action="testmail.php">
-                        			<button type="submit" id="btnEmail"><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>">ส่งEmail</a></button>
+                        			<button type="submit" id="btnEmail" <?php if ($StateMail[$j] == 'complete') {echo 'disabled';} ?>><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>" <?php if ($StateMail[$j] == 'complete') {echo "style='opacity: .4; cursor: default !important;
+  pointer-events: none;'";} ?>>ส่งEmail</a></button>
                         			</form>
                         		</td>
                         		<td>

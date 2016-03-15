@@ -134,7 +134,7 @@
                     <td><button type="button" id="btnView" class="btn btn-primary">view</button></td>
     			</tr>
     			<br>
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="myChart" width="800" height="400"></canvas>
 		</div><!--end of tooplate_main-->
  	
 

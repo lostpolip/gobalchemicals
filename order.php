@@ -86,7 +86,7 @@
 						<tr>
 							<td>
 							
-					<form action="orderAddSQL.php" method="POST">		
+					<form action="orderBasket.php" method="POST">		
 						<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
@@ -136,9 +136,6 @@
 											
 											<input type="hidden" id="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductID' . $ProductID[$j]; ?>" value="<?php echo $ProductID[$j];?>" disabled>
 											
-<!-- 											
-											<input type="hidden" id="<?php echo 'hiddenproductName' . $ProductID[$j]; ?>" name="<?php echo 'hiddenproductName' . $ProductID[$j]; ?>" value="<?php echo $ProductName[$j];?>" disabled> -->
-
 											<input type="hidden" id="<?php echo 'hiddenProductOrder' . $ProductID[$j];?>" name="<?php echo 'hiddenProductOrder' . $ProductID[$j];?>" disabled>
 
 											<input type="hidden" id="<?php echo 'hiddentotalUnitOrder'. $ProductID[$j]; ?>" name="<?php echo 'hiddentotalUnitOrder'. $ProductID[$j]; ?>" disabled>
