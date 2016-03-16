@@ -4,7 +4,7 @@
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
-		header( "location: /gobalchemicals/permission.html" );
+		header( "location: /gobalchemicals/permission.php" );
 
 	}
 ?>

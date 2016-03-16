@@ -119,66 +119,8 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
-					<p>จัดเส้นทาง</p>
-	           
-                        <table id="table" style="width: 100%">
-                                <input type="hidden" id="txtExpensiveID" name="txtExpensiveID">
-							<tr>
-                                <td><label id="date">ชื่อผู้จัดจำหน่าย:</label></td>
-                                <td><input type="date" id="txtExpensiveDate" name="txtExpensiveDate" ></td>
-                            
 
-                          
-                               
-                               	<td>   <!-- Button trigger modal -->
-										<button type="button" class="btn btn-primary btn-lg" id="addPr" data-toggle="modal" data-target="#myModal">เลือกใบส่งสินค้า</button>
-									<!-- Button trigger modal -->
-
-									<!-- Modal -->
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-										  <div class="modal-dialog" role="document">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">ใบส่งสินค้า</h4>
-										      </div>
-										      <div class="modal-body">
-
-			             						 <table  class="table table-bordred table-striped">
-							                        	<tr>
-							                        		<th>รหัสใบส่งสินค้า</th>
-							                                <th>วันที่จัดเส้นทาง</th>
-							                                <th>จำนวนระยะทาง</th>
-							                                <th>เลือก</th>
-							                                
-							                        	</tr>
-
-							                        	<tbody id="showOrder">
-										                    <tr>    	
-															    <td><label></label></td>
-															    <td><label></label></td>
-															    <td><label></label></td>
-															    <td>
-															    		<button class="btnAlert" data-title="delete" data-toggle="modal" type="submit" class="btn btn-default">เลือก</button>
-															    	
-															    </td>
-															</tr>
-														</tbody>
-			        							</table>
-
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">กลับไปหน้าแรก</button>
-										        
-										      </div>
-										    </div>
-										  </div>
-										</div>
-									<!-- Modal -->
-								</td>	
-                            </tr>
-                        </table>    
- 
+  						<p>ค่าใช้จ่ายต่างๆ</p> 
                             <tr>
 					    	<table id="table2" width="100%">
 
@@ -200,7 +142,7 @@
 		                        	</tr>
 							</table>
                             </tr>
-                        <p>ค่าใช้จ่ายต่างๆ</p>    
+                          
                         <table id="table" style="width: 100%">
 
                             <tr>
@@ -238,12 +180,7 @@
                             <tr> <td>&nbsp;</td></tr>
                             <tr> <td>&nbsp;</td></tr>
                         </table>
-                        <table id="table3" width="80%">
-	                            <tr id="button-command">
-	                            		<td><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></td>
-	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกค่าใช้จ่าย</button></td>           
-	                            </tr>
-                       	</table>
+
 	                        
 				</div>
 			</div>	

@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -184,7 +188,31 @@
 									</select> 
                                 </td>
                             </tr>
- 
+
+                           <tr>
+                                <td><label><span class="red-star">*</span>อัตราสิ้นเปลืองเชื้อเพลิง :</label></td>
+                                <td>
+                                	<input id="consumptionFuel" name="consumptionFuel" >
+                                	<label>กม./ลิตร</label>
+                                </td>
+                            </tr> 
+
+                           <tr>
+                                <td><label><span class="red-star">*</span>ต้นทุนค่ารถ :</label></td>
+                                <td>
+                                	<input id="costTruck" name="costTruck" >
+                                	<label>บาท</label>
+                                </td>
+                            </tr>                            
+
+                          	<tr>
+                                <td><label><span class="red-star">*</span>มูลค่าซาก :</label></td>
+                                <td>
+                                	<input id="residualValue" name="residualValue" >
+                                	<label>บาท</label>
+                                </td>
+                            </tr>   
+
                            <tr>
                                 <td><label><span class="red-star">*</span>น้ำหนักรถ :</label></td>
                                 <td>

@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 2 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -134,7 +138,6 @@
 			    	$ProductID[$i] = $row["ProductID"];
 			    	$ProductName[$i] = $row["ProductName"];
 			    	$PurchaseAmount[$i] = $row["PurchaseAmount"];
-			    	$State[$i] = $row["State"];
 			    	$PurchaseDetail[$i] = $row["PurchaseDetail"];
 
 			        $i++;

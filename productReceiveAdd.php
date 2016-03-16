@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeID'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 2 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 

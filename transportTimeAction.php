@@ -1,7 +1,7 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$employee = $dbManagement->select("SELECT * FROM employee WHERE `PositionID`=2"); 
+	$employee = $dbManagement->select("SELECT * FROM employee WHERE `PositionID`=3"); 
 	$transport = $dbManagement->select("SELECT * FROM transport 
 									WHERE TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");

@@ -59,28 +59,39 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 
-			$result = $dbManagement->select("SELECT * FROM `orderdetail` 
+			$orderDetail = $dbManagement->select("SELECT * FROM orderdetail 
 												JOIN product ON orderdetail.ProductID=product.ProductID
-												JOIN orders ON orderdetail.OrderID=orders.OrderID
-												WHERE CustomerID='".$_SESSION['CustomerID']."' AND orders.OrderID='".$_REQUEST['OrderID']."'
+												WHERE OrderID='".$_REQUEST['OrderID']."'
+											");
+
+			$order = $dbManagement->select("SELECT * FROM orders 
+												WHERE OrderID='".$_REQUEST['OrderID']."'
 											");
 			
 			$i = 0;
-			if (mysqli_num_rows($result) > 0) {
-			    while($row = mysqli_fetch_assoc($result)) {
+			if (mysqli_num_rows($orderDetail) > 0) {
+			    while($row = mysqli_fetch_assoc($orderDetail)) {
 			    	$ProductID[$i] = $row["ProductID"];
 			    	$ProductName[$i] = $row["ProductName"];
 			    	$Cost[$i] = $row["Cost"];
 			    	$OrderAmount[$i] = $row["OrderAmount"];
 			    	$TotalVolumn[$i] = $row["TotalVolumn"];
 			    	$TotalCost[$i] = $row["TotalCost"];
-			    	$OrderID[$i] = $row["OrderID"];
-			    	$OrderDate[$i] = $row["OrderDate"];
 			    	$TotalPrice[$i] = $row["TotalPrice"];
-			    	$TotalPriceOrder[$i] = $row["TotalPriceOrder"];
-			    	$TotalTransport[$i] = $row["TotalTransport"];
-			    	$ExtendedPrice[$i] = $row["ExtendedPrice"];
+			    	$OrderID[$i] = $row["OrderID"];
 			        $i++;
+			    }
+			}
+
+			$or = 0;
+			if (mysqli_num_rows($order) > 0) {
+			    while($row = mysqli_fetch_assoc($order)) {
+			    	$OrderID[$or] = $row["OrderID"];
+			    	$OrderDate[$or] = $row["OrderDate"];
+			    	$TotalPriceOrder[$or] = $row["TotalPriceOrder"];
+			    	$TotalTransport[$or] = $row["TotalTransport"];
+			    	$ExtendedPrice[$or] = $row["ExtendedPrice"];
+			        $or++;
 			    }
 			}
 		?>
@@ -98,13 +109,19 @@
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane active">
 					    	<br>
+						<tr>
+	                        <td><label id="OrderDate">วันที่สั่งซื้อ: </label></td>
+	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo $OrderDate[0]; ?></label>
 
+	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>
+	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo $OrderID[0]; ?></label>
+	                        </td>
+
+	                    </tr>
 					    	<table id="table2" width="100%">
 
 
 		                        	<tr>
-		                        		<th>วันที่</th>
-		                        		<th>เลขที่ใบสั่งซื้อ</th>
 		                        		<th>รหัสสินค้า</th>
 		                                <th>ชื่อสินค้า</th>
 		                                <th>จำนวน</th>
@@ -115,9 +132,6 @@
 		                        		for($j=0;$j<$i;$j++){ 
 		                   			 ?>	
 
-		                        	<tr>
-		                        		<td id="date"><?php echo $OrderDate[$j]; ?></td>
-		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
 		                        		<td id="productid"><?php echo $ProductID[$j]; ?></td>
 		                        		<td id="productname"><?php echo $ProductName[$j]; ?></td>
 		                        		<td id="productamount"><?php echo $OrderAmount[$j]; ?></td>

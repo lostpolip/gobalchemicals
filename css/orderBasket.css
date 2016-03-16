@@ -331,9 +331,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 .boxSummaryPrice{
 	width: 380px;
 	margin-left: 510px;
-	font-family: 'quarklight';
-	font-size: 19px;
-	color: #000000;	
 }
 
 
@@ -597,7 +594,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 24px;	
 }
 
-#totalOther{
+#totalExtendPrice{
 	color: red;
 	text-align: right;
 }
@@ -607,10 +604,10 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #totalTransaction {
 	text-align: right;
 }
-#totalPrice{
+#totalVat{
 	text-align: right;
 }
-#totalPrice{
+#totalPriceAll{
 	text-align: right;	
 }
 

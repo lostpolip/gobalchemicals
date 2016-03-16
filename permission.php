@@ -3,10 +3,6 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
-	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
-		header( "location: /gobalchemicals/permission.php" );
-
-	}
 ?>
 <!DOCTYPE html>
 
@@ -18,13 +14,14 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/supplier.css" rel="stylesheet" type="text/css" />
+		<link href="css/permission.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-
+	
+		
 
 		<script language="javascript" type="text/javascript">
 		function clearText(field)
@@ -61,7 +58,9 @@
                         </div>					
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
+		                       <form action="index.html" method="get">
 		  							<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
+								</form>
 							</div>
 					  </div>						
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
@@ -73,7 +72,7 @@
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
 												<li><a href="employee.php">ข้อมูลพนักงาน</a></li>
 				                                <li><a href="truck.php">ข้อมูลรถ</a></li>
-				                        </ul>
+										</ul>
 			                        </li>
 									
 									<li><a href="#">ตรวจสอบข้อมูล</a>
@@ -111,79 +110,25 @@
 							</div> <!-- end of tooplate_menu -->
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
-			</div><!--end of tooplate_body_wrapper-->
-
-
-		<?php
-			require 'dbManagement.php';
-			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT SupplierID,SupplierName,SupplierTel,SupplierEmail 
-											 FROM supplier
-											 WHERE StateSupplier = 'confirm'
-											 ");
-
-			$i = 0;
-			if (mysqli_num_rows($result) > 0) {
-			    while($row = mysqli_fetch_assoc($result)) {
-			        $SupplierID[$i] = $row["SupplierID"];
-			        $SupplierName[$i] = $row["SupplierName"];
-			        $SupplierTel[$i] = $row["SupplierTel"];
-			        $SupplierEmail[$i] = $row["SupplierEmail"];
-			        $i++;
-			    }
-			}
-		?>	
+		</div><!--end of tooplate_body_wrapper-->
 
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
-
-					<h2>ผู้จัดจำหน่าย</h2>
-                        <p>
-                            <button id="btnAdd"><a href="supplierAdd.php">เพิ่มผู้จัดจำหน่าย</a></button>
-                        </p>
-<!--                         <table id="table" style="width: 100%">
-                            <tr>
-                                <td><label>ค้นหาข้อมูล</label> &nbsp;&nbsp;
-                                    <input ID="txtSearch"></input>
-                                &nbsp;&nbsp;
-                                   <Button id="btnOK">ตกลง</Button>
-                                </td>
-                            </tr>                           
-                        </table>   -->
-
+					<br>	
+					<br>	
+					<br>	
+					<br>	
+					<br>	
+					<br>		
+					<br>		
+					<label id="tittle">ท่านไม่สามารถเข้าสู่หน้านี้ได้</label>
+					<br>
+					<label id="tittle2">"กรุณาติดต่อผู้ดูแลระบบหรือเจ้าของบริษัทของท่าน ขอบคุณนะคะ"</label>
+					<br>
+					<a href="indexEmployee.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a>
 				</div>
-			</div>	
-						<table id="table2" width="100%">
-			        		<tr>
-                        		<th>รหัสผู้จัดจำหน่าย</th>
-                                <th>ชื่อผู้จัดจำหน่าย</th>
-                                <th>เบอร์โทรศัพท์</th>
-                                <th>Email</th>
-                                <th>คำสั่ง</th>
-                                
-                        	</tr>
-
-                        	<?php
-                        	for($j=0;$j<$i;$j++){ 
-                        	?>		
-                        	<tr>
-
-                        	<tr>
-                        		<td id="supplierid"><?php echo $SupplierID[$j] ?></td>
-                        		<td id="suppliername"><?php echo $SupplierName[$j] ?></td>
-                        		<td id="suppliertel"><?php echo $SupplierTel[$j] ?></td>
-                        		<td id="supplieremail"><?php echo $SupplierEmail[$j] ?></td>
-                        		<td>
-                        			<button id="btnDetail"><a href="supplierDetail.php?SupplierID=<?php echo $SupplierID[$j]; ?>">รายละเอียด</a></button>
-                        			<button id="btnEdit"><a href="supplierEdit.php?SupplierID=<?php echo $SupplierID[$j]; ?>">แก้ไข</a></button>
-                        			<button id="btnDelete"><a href="deleteSupplierSQL.php?SupplierID=<?php echo $SupplierID[$j]; ?>">ลบ</a></button>
-                        		</td>
-                        	</tr>
-                        	<?php 
-                        	}
-                        	?>
-                        </table>       
+			</div>
 		</div><!--end of tooplate_main-->
 
 

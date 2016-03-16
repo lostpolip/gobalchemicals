@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -139,7 +143,7 @@
 
 			$order = $dbManagement->select("SELECT * FROM orders
 											JOIN customer ON orders.CustomerID=customer.CustomerID
-											WHERE State='complete'
+											WHERE State='processing'
 											");
 
 			$popupOrder = 0;

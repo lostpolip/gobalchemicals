@@ -640,4 +640,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 120px;
 	margin-left: 200px;
 }
-
+#txtOrderID{
+	font-family: 'quarkbold';
+	color: #F7D358;
+	font-size: 22px;
+}

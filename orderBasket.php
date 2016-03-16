@@ -158,11 +158,12 @@
 						<tr>
 	                        <td><label id="OrderDate">วันที่สั่งซื้อ: </label></td>
 	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo date("Y-m-d"); ?></label>
+	                        	<input type="hidden" id="hiddenOrderDate" name="hiddenOrderDate" value="<?php echo date("Y-m-d"); ?>" >
 
 
 	                        <td><label id="OrderID">รหัสการสั่งซื้อ:</label></td>
 	                        <td><label id="txtOrderID" name="txtOrderID" ><?php echo $newID ?></label>
-	                        	<input type="hidden" id="orderID" name="orderID" value="">
+	                        	<input type="hidden" id="hiddenOrderID" name="hiddenOrderID" value="<?php echo $newID ?>">
 	                        </td>
 
 	                    </tr>
@@ -184,20 +185,37 @@
 
                         	<?php 
                         		$totalPrice = 0;
+                        		$totalCost = 0;
                         		$ExtendedPrice = 0;
                         		$unitProduct = 0;
+                        		$productIdAll = '';
                         		foreach ($orderId as $key => $value) {
                         			$totalPrice = $totalPrice+$_REQUEST["hiddentotalPriceOrder$value"];
+                        			$totalCost = $totalCost+$_REQUEST["hiddentotalCostOrder$value"];
                         			$unitProduct = $unitProduct+$_REQUEST["hiddenProductOrder$value"];
+                        			if ($key == 0) {
+                        				$productIdAll = $productIdAll.$value;
+                        			} else {
+                        				$productIdAll = $productIdAll.','.$value;
+                        			}
                         	?>
                         	<tr id="orderList">
                         		<td id="productid"><?php echo $value ?></td>
                         		<td id="productname"><?php echo $ProductName[array_search($value ,$ProductID)] ?></td>
                         		<td id="orderamount"><?php echo $_REQUEST["hiddenProductOrder$value"] ?></td>
                         		<td id="totalUnit"><?php echo $_REQUEST["hiddentotalUnitOrder$value"] ?></td>
-                        		<td id="productcost"><?php echo $Price[array_search($value ,$ProductID)] ?></td>
-                        		<td id="totalcost"><?php echo $_REQUEST["hiddentotalPriceOrder$value"] ?></td>
-                        		<input name=""></input>
+                        		<td id="productprice"><?php echo $Price[array_search($value ,$ProductID)] ?></td>
+                        		<td id="totalprice"><?php echo $_REQUEST["hiddentotalPriceOrder$value"] ?></td>
+
+
+                        		<input type="hidden" name="<?php echo 'hiddenProductId' ?>" value="<?php echo $productIdAll ?>">
+                        		<input type="hidden" name="<?php echo 'hiddenOrderAmount'.$value ?>" value="<?php echo $_REQUEST["hiddenProductOrder$value"] ?>">
+                        		<input type="hidden" name="<?php echo 'hiddenTotalUnit'.$value ?>" value="<?php echo $_REQUEST["hiddentotalUnitOrder$value"] ?>">
+                        		<input type="hidden" name="<?php echo 'hiddenTotalPrice'.$value ?>" value="<?php echo $_REQUEST["hiddentotalPriceOrder$value"] ?>">
+                        		<input type="hidden" name="<?php echo 'hiddenTotalCost'.$value ?>" value="<?php echo $_REQUEST["hiddentotalCostOrder$value"] ?>">
+                        		<input type="hidden" name="hiddenUnitProductAll" value="<?php echo $unitProduct ?>">
+                        		<input type="hidden" name="hiddenTotalCostAll" value="<?php echo $totalCost ?>">
+
                         	</tr>
                         	<?php
                         		}
@@ -210,9 +228,7 @@
 								
 								$ExtendedPrice= $totalPrice+$vat;
                         	?>
-
-                        	<input type="hidden" name="orderIdAll" value=""></input>                          
-                        	<input type="hidden" name="totalUnit" value=""></input>                          
+                          
                         </table> 
  
 
@@ -229,7 +245,7 @@
 	                    				<label>ราคาสินค้า :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice" value="<?php echo $totalPrice; ?>" disabled> 
+		                        		<input id="totalPriceAll" name="totalPriceAll" value="<?php echo number_format($totalPrice); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -239,7 +255,7 @@
 	                    				<label>ภาษีมูลค่าเพิ่ม 7% :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPrice" name="totalPrice" value="<?php echo $vat; ?>" disabled> 
+		                        		<input id="totalVat" name="totalVat" value="<?php echo number_format($vat); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>		                      
@@ -260,7 +276,7 @@
 	                    				<label>รวมทั้งหมด :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalOther" name="totalOther" value="<?php echo number_format($ExtendedPrice+$RatePerKm[$x]*$Distance[0]); ?>" readonly> 
+		                        		<input id="totalExtendPrice" name="totalExtendPrice" value="<?php echo number_format($ExtendedPrice+$RatePerKm[$x]*$Distance[0]); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -356,7 +372,7 @@
 							</div>
 							<br>
 							 <tr>
-                            	<td><button type="button" id="btnBack"><a href="deleteOrder.php?">ยกเลิก</a></button></td>
+                            	<td><button type="button" id="btnBack"><a href="indexCustomer.php?">ยกเลิก</a></button></td>
                             	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
                                  <td><button type="submit" id="btnOK">ตกลง</button></td>     
                             </tr>

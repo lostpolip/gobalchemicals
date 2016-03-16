@@ -25,11 +25,8 @@
 }
 
 /*---font---*/
-html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-}
+
+
 
 body {
 	margin: 0;
@@ -44,8 +41,6 @@ body {
 }
 
 a, a:link, a:visited { 
-	font-family: 'quarkbold';
-	font-size: 18px;
 	color: #e5a923; 
 	font-weight: normal; 
 	text-decoration: none; 
@@ -175,7 +170,6 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_top {
 	height: 42px;
-	width: 100%;
 }
 
 
@@ -213,20 +207,33 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/tooplate_logout_btn.png);
 }
 
-
+#tooplate_user{
+	margin-top:11px;
+	width:750px;
+	float:left;
+}
+#tooplate_user label{
+	float: right;
+	font-family: 'quarkbold';
+	font-size: 19px;
+	color: #FACC2E;
+}
+#imageMenuOrder{
+	float:left;
+	width:100px;
+	height:40px;
+}
 
 #site_title { 
 	float: left; 
-	width: 100%; 
+	margin-top: 6px; 
 }
 
 #site_title h1 { 
 	margin: 0; 
 	padding: 0; 
 }
-
- #site_title h1 a {
- 		float: left; 
+#site_title h1 a {
         display: block;
         width: 220px;
         height: 100px;
@@ -249,7 +256,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #tooplate_main {
 	clear: both;
 	width: 960px;
-	padding: 30px 0 80px;
+	margin-left: 180px;
+	padding: 30px 0 20px;
 
 }
 
@@ -293,8 +301,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 .col_w630 { 
-	width: 830px; 
-	margin:0 0 30px 100px;
+	width: 630px; 
+	margin-bottom: 30px;
 }
 .col_w630 p span { 
 	font-family: 'quarklight';
@@ -302,37 +310,19 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #FFFFFF;
 
 }
-
-.col_w630  td{ 
-	width: 20px; 
-	padding: 0;
-}
-
-
-#table2{
-	border: 2px solid #333232;
-	border-collapse: collapse;
-	background-color: #FFFFFF;
-}
-#table2 th {
+#tittle{
 	font-family: 'quarkbold';
-	font-size: 22px;
+	font-size: 32px;
 	color: #e5a923;
-	background-color: #262424;
 	text-align: center;
-    border: 2px solid #333232;
-    padding: 5px;
- }  
-
-#table2 td{
+	margin-left: 220px;	
+}
+#tittle2{
 	font-family: 'quarklight';
-	font-size: 18px;
-	color: #000000;
-	text-align: center;
-	 border: 2px solid #333232;
-	 height: 30px;
-} 
-
+	font-size: 20px;
+	color: white;
+	margin-left: 160px;
+}
 
 
 /* footer */
@@ -346,8 +336,9 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	clear: both;
 	width: 960px;
 	color: #876926;
-	margin-top: 0;
+	margin-top: 355px;
 	margin-right: 50px;
+	margin-bottom: 0;
 	margin-left: 50px;
 	padding-top: 30px;
 	padding-right: 10px;
@@ -377,224 +368,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 20px;
 	text-align: center;
 }
-
-#tooplate_user{
-	margin-top:11px;
-	width:720px;
-	float:left;
-}
-#tooplate_user label{
-	float: right;
-	font-family: 'quarklight';
-	font-size: 19px;
-	color: #FACC2E;
-}
-#imageMenuOrder{
-	float:left;
-	width:100px;
-	height:40px;
-}
-
-.nav-tabs{
-	width: 790px;
-}
-
-#btnDetail {
-	font-size: 20px;
-	font-family: 'quarklight';
-	color: #000000;
-}
-
-#btnDelete {
-	font-size: 20px;
-	font-family: 'quarklight';
-	color: #000000;
-}
-p{
-	font-family: 'quarkbold';
-	font-size: 32px;
-	color: #e5a923;
-	margin-left: 300px;
-}
-
-
- #right-panel {
-    font-family: 'Roboto','sans-serif';
-    line-height: 30px;
-    padding-left: 10px;
- }
-
- #right-panel select, #right-panel input {
-    font-size: 15px;
- }
-
- #right-panel select {
-    width: 100%;
- }
-
- #right-panel i {
-    font-size: 12px;
- }
- 
- #map {
-    height: 60%;
-    float: left;
-    width: 68%;
-    margin: 30px 0 30px 210px;
- }
- #right-panel {
-    margin: 20px;
-    border-width: 2px;
-    width: 20%;
-    float: left;
-    text-align: left;
-    padding-top: 20px;
- }
- #directions-panel {
- 	width: 68%;
- 	margin: 10px 0 30px 210px;
-    background-color: #FFEE77;
-    padding: 10px;
-    border-radius: 2px;
- }
- b{
- 	font-size: 21px;
-	font-family: 'quarkbold';
-	color: #000000;	
- }
- #Distance{
- 	margin: 0 0 0 490px;
-  	font-size: 21px;
-	font-family: 'quarkbold';
-	color: #000000;	
- }
- #totalDistance{
-  	font-size: 18px;
-	font-family: 'quarkbold';
-	color: #000000;	
-	width: 120px;	
- }
- .hide{
- 	display: none;
- }
-
- #btnCB{
- 	margin-bottom: 30px;
- 	margin-left: 545px;
-
- }	
- #btnBack,#btnCF{
- 	font-family: 'quarklight';
-	font-size: 20px;	
- }
-#txtDateTransport{
-	font-size: 18px;
-	font-family: 'quarklight';
-	color: #000000;
-}
-
-#labelDate{
-	font-size: 22px;
-	font-family: 'quarkbold';
-	color: #000000;	
-}
-
-#addPr{
-	margin-left: 50px;
+#btnBack{
 	font-family: 'quarklight';
 	font-size: 20px;
-	margin-left: 280px;
+    border-color: #DF0101;
+    background-color: #FE2E2E;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+	margin-left: 285px;
 }
 
-#bill{
-	margin-left: 150px;
-	width: 300px;
-}
-
-#table2{
-	width: 790px;
-	border: 2px solid #333232;
-	border-collapse: collapse;
-	background-color: #FFFFFF;
-	margin-bottom: 30px;
-}
-#table2 th {
-	font-family: 'quarkbold';
-	font-size: 20px;
-	color: #4B088A;
-	background-color: #E6E6E6;
-	text-align: center;
-    border: 2px solid #6E6E6E;
-    padding: 5px;
- }  
-
-#table2 td{
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #000000;
-	text-align: center;
-	 border: 2px solid #6E6E6E;
-	 height: 30px;
-} 
-#date{
-	width: 150px;
-}
-.expensive{
-	margin-left: 215px;
-}
-#LaborExpensive{
-	font-family: 'quarklight';
-	font-size: 16px;
-	color: #000000;
-}
-
-#CarryingExpensive{
-	font-family: 'quarklight';
-	font-size: 16px;
-	color: #000000;
-}
-
-#PassThroughExpensive{
-	font-family: 'quarklight';
-	font-size: 16px;
-	color: #000000;
-}
-
-#AnotherExpensive{
-	font-family: 'quarklight';
-	font-size: 16px;
-	color: #000000;
-}
-#table label{
-	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #3B0B17;	
-}
-
-.Fixedcosts{
-	width: 500px;
-	height: 250px;
-	float: left;
-	margin-left: 200px;
-}
-.Variablecosts{
-	width: 500px;
-	height: 250px;
-	float: left;
-}
-#btnCB{
-	float: left;
-}
-.ExpensesAll{
-	float: left;
-	margin-left: 200px;
-	width: 960px;
-}
-#fuelId, #labelDistance, #DepreciationDay,
-#LoborExpDay, #FixedcostsDay, #FixedcostsAround,
-#FuelCost, #MaintenanceCost, #ExpensesAllKm,
-#ExpensesPerDay, #ExpensesPerAround{
-	color: #F2F2F2;
-	font-family: 'quarkbold';
-	font-size: 18px;
-}

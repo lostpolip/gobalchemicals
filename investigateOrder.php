@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -117,7 +121,7 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM orders
-											 WHERE State='complete'
+											 WHERE State='sending'
 											 ");
 
 			$i = 0;

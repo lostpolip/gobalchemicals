@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -124,12 +128,12 @@
 			$result = $dbManagement->select("SELECT * FROM `claimdetail`  
 											JOIN product ON claimdetail.ProductID=product.ProductID 
 											JOIN claim ON claimdetail.ClaimID=claim.ClaimID
-											WHERE StateClaim='Processing'
+											WHERE StateClaim='no'
 											-- ORDER BY ClaimID
 											");
 			$Order = $dbManagement->select("SELECT * FROM orders 
 											JOIN customer ON orders.CustomerID=customer.CustomerID
-											WHERE State='processing'
+											WHERE State='no'
 											");
 
 			$i = 0;
