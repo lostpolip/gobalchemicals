@@ -209,7 +209,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #tooplate_user{
 	margin-top:11px;
-	width:750px;
+	width:742px;
 	float:left;
 }
 #tooplate_user label{
@@ -397,6 +397,15 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	margin-bottom: 5px;
 	font-size: 20px;
 	text-align: center;
+}
+#imageMenuOrder{
+	float:left;
+	width:100px;
+	height:40px;
+}
+
+.nav-tabs{
+	width: 790px;
 }
 
 .red-star{

@@ -129,6 +129,8 @@ $body = '<!DOCTYPE html>
 			';
 
 $mail->sendmail($body,$CustomerEmail[0]);
+
+$dbManagement->update("UPDATE claim SET StateClaim='complete' WHERE ClaimID='".$_REQUEST['ClaimID']."'");
 header( "location: /gobalchemicals/approveClaim.php" );
 
 ?>

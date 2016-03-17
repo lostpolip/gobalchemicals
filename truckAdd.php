@@ -20,9 +20,11 @@
 
 		<link href="css/truckAdd.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/truckAdd.js"></script>
 
@@ -47,7 +49,27 @@
 
 	</script>
 
-
+	<style>
+		a.alert {
+			display: inline-block;
+			position: relative;
+		    padding: 2px 0px 0 4px;
+		}
+		span.alert {
+		    position: absolute;
+		    padding: 1px;
+		    top: 0px;
+		    color: white;
+		    background-color: red;
+		    font-size: 12px;
+		    border-radius: 25px;
+		    height: auto;
+		    width: auto;
+		    left: 28px;
+		    display: none;
+		}
+	</style>
+	
 	</head>
 	<body>
 			<div id="tooplate_body_wrapper">
@@ -56,9 +78,15 @@
                     	<div id="tooplate_user">
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
-                        <div id="imageMenuOrder">
-							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
-                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
+                        <div id="imageMenuOrder" style="">
+
+							<a href="approveClaim.php" class="alert">
+								<input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+								<span class="alert" id="txtClaim"></span>
+							</a>
+                            <a class="alert" href="approveOrder.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+                            	<span class="alert" id="txtOrder"></span>
+                            </a>
                         </div>					
 					  <div id="tooplate_top">
 							<div id="tooplate_login">

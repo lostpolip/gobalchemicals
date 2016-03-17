@@ -53,7 +53,7 @@
 		a.alert {
 			display: inline-block;
 			position: relative;
-		    padding: 2px 0px 0 10px;
+		    padding: 2px 0px 0 4px;
 		}
 		span.alert {
 		    position: absolute;
@@ -65,7 +65,7 @@
 		    border-radius: 25px;
 		    height: auto;
 		    width: auto;
-		    left: 36px;
+		    left: 28px;
 		    display: none;
 		}
 	</style>
@@ -82,10 +82,11 @@
                         <div id="imageMenuOrder" style="">
 
 							<a href="approveClaim.php" class="alert">
-								<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+								<input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
 								<span class="alert" id="txtClaim"></span>
 							</a>
-                            <a class="alert" href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+                            <a class="alert" href="approveOrder.php">
+                            	<input type="image" src="images/order.png" alt="Submit" id="menu0rder">
                             	<span class="alert" id="txtOrder"></span>
                             </a>
                         </div>
