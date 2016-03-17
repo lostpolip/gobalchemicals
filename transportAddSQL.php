@@ -34,4 +34,6 @@ $transportIDArray = array_filter($transportIDArray);
 		
 	}
 
+	echo 'TS'.$newID;
+
 ?>

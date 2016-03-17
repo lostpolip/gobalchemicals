@@ -24,7 +24,7 @@ class dbManagement {
 
 	public function insert($sql) {
 		if (mysqli_query($this->conn, $sql)) {
-			echo 'New record created successfully';
+			// echo 'New record created successfully';
 		} else {
 		    echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
 		}
@@ -33,7 +33,7 @@ class dbManagement {
 
 	public function update($sql) {
 		if (mysqli_query($this->conn, $sql)) {
-			echo 'New record updateก successfully';
+			// echo 'New record updateก successfully';
 		} else {
 		    echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
 		}
@@ -48,13 +48,6 @@ class dbManagement {
 		}
 	}
 
-	// public function sql($sql) {
-	// 	if (mysqli_query($this->conn, $sql)) {
-	// 		echo 'New record created successfully';
-	// 	} else {
-	// 	    echo "Error: " . $sql . "<br>" . mysqli_error($this->conn);
-	// 	}
-	// }	
 
 	public function select($sql) {
 		return mysqli_query($this->conn, $sql);

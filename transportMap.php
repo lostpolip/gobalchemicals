@@ -72,7 +72,7 @@
 
 	</head>
 	<body>
-	<?php print_r($_REQUEST); ?>
+
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">
 					<div id="tooplate_header">	
@@ -161,14 +161,12 @@
 
 				require 'dbManagement.php';
 				$dbManagement = new dbManagement();			
-				$transport = $dbManagement->select("SELECT * FROM transport
-													JOIN truck ON transport.TruckID=truck.TruckID");
+				$Truck = $dbManagement->select("SELECT * FROM truck
+													WHERE TruckID= ".$_REQUEST['hiddenTruckID']."
+													");
 
-				
-				if (mysqli_num_rows($transport) > 0) {
-				    while($row = mysqli_fetch_assoc($transport)) {
-				        $TransportID = $row["TransportID"];
-				        $AmountDistance = $row["AmountDistance"];
+				if (mysqli_num_rows($Truck) > 0) {
+				    while($row = mysqli_fetch_assoc($Truck)) {
 				        $TruckID = $row["TruckID"];
 				        $ConsumptionFuel = $row["ConsumptionFuel"];
 				        $FuelID = $row["FuelID"];
@@ -218,7 +216,7 @@
 				<div id="directions-panel"></div>
 
 	 			<form action="expensiveAddSQL.php">
-					<input type="hidden" id="transportId" name="transportId" value="<?php echo $TransportID ?>">
+					<input type="hidden" id="transportId" name="transportId" value="0">
 					<input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel ?>">
 					<input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost ?>">
 					<input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue ?>">
@@ -229,14 +227,14 @@
 		                        <table id="table" style="width: 100%">
 
 		                            <tr>
-		                                <td><label id="fuelId">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID ?></label></td>
+		                                <td><label id="fuelId">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID ?></label></td>
 										
 		                            </tr>
 
 		                            <tr>
 		                                <td><label>ค่าน้ำมันเชื้อเพลิง:</label>
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="FuelExpensive" name="FuelExpensive" value="35" required>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<input type="text" id="FuelExpensive" name="FuelExpensive" value="0" required>
 		                               		 &nbsp;&nbsp;<label>บาท/ลิตร</label>
 		                               		
 										</td>
@@ -244,51 +242,54 @@
 
 									<tr>
 		                                <td><label>ระยะเวลาค่าเสื่อมราคา :</label>
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;
-		                               		<input type="text" id="ConsumptionExp" name="ConsumptionExp" value="7" required>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                               		<input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" required>
 		                                	&nbsp;&nbsp;<label>ปี</label>
 		                                </td>
 		                            </tr>
 
 		                            <tr>
 		                                <td><label>ค่าแรงงาน(ต่อคน) :</label>
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="LaborExpensive" name="LaborExpensive" value="300" required>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<input type="text" id="LaborExpensive" name="LaborExpensive" value="0" required>
 		                                	<label>บาท/วัน</label>
 		                                </td>
 		                            </tr>
 
 		                            <tr>
 		                                <td><label>จำนวนพนักงาน :</label>
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="AmountExployee" name="AmountExployee" value="2" required>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<input type="text" id="AmountExployee" name="AmountExployee" value="0" required>
 		                                	&nbsp;&nbsp;<label>คน</label>
 		                                </td>
 		                            </tr>
 
 		                            <tr>
 		                                <td><label>ค่าซ่อมบำรุง :</label>
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="MaintenanceExp" name="MaintenanceExp" value="4" required>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" required>
 		                                	&nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
 		                                </td>
 		                            </tr>
 
 		                          	<tr>
-		                                <td><label>จำนวนวันทำงานต่อเดือน :</label>
-		                                	<input type="text" id="AmountDate" name="AmountDate" value="25" required>
+		                                <td><label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
+		                                	<input type="text" id="AmountDate" name="AmountDate" value="0" required>
 		                                	&nbsp;&nbsp;<label>วัน</label>
 		                                </td>
 		                            </tr>	
 
 		                            <tr>
-		                                <td><label id="labelDistance">ระยะทางที่วิ่ง :&nbsp;&nbsp; <?php echo $AmountDistance ?></label>
+		                                <td><label>ระยะทางที่วิ่ง :</label>
+		                                	&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<label label id="labelDistance"></label>
 		                                	&nbsp;&nbsp;<label>กิโลเมตร</label> 
+
 		                                </td>
 		                            </tr> 
 		                            <br>
 		                            <tr>
-		                            	<td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" data-distance="<?php echo $AmountDistance ?>">คำนวณ</button></td>
+		                            	<td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" >คำนวณ</button></td>
 		                            </tr>                           	                            
 								</table>
 							</div>
@@ -385,25 +386,14 @@
 				                    </td>
 				                    
 				                  
-				                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกเส้นทาง</button></td>
+				                    <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md">บันทึกข้อมูล</button></td>
 								
 				                </tr>
 		            		</div>                
 			        </form>           
 
-
-
-
  				<br>
  				<br>
-
-	            <div id="btnCB">
-	                <tr id="button-command">
-	                    <td>
-	                    	<a href="indexEmployee.php">
-	                    	<button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
-	                    	</a>
-	                    </td>
 
 	                    <input type="hidden" id="transport-orderid" name="transport-orderid" value="<?php echo $order ?>">
 
@@ -417,11 +407,7 @@
 
 	                    <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
 
-	                  
-	                    <td><a href="indexEmployee.php"><button type="button" id="btnCF" name="btnCF" class="btn btn-success btn-md">ตกลง</button></a></td>
-					
-	                </tr>
-	            </div>
+	                 
 	      
 		    <script>
 		    	$( document ).ready(function() {
@@ -497,8 +483,7 @@
 			              summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
 			              ////////// here
 			              totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
-
-								
+	
 			            }
 			            if ($('#totalDistance').val() != '') {
 			            	$.ajax({
@@ -515,12 +500,13 @@
 
 								},
 								success: function(results){
-									
+									$('#transportId').val(results);
 							    }
 							});
 			            }
 			            $('#totalDistance').val(totalDistance);
-
+			            $('#labelDistance').text(totalDistance);
+			          
 			          } else {
 			            window.alert('Directions request failed due to ' + status);
 			          }

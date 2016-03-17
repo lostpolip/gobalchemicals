@@ -309,29 +309,14 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 
 
-#table2{
+#table input{
 	border: 2px solid #333232;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
-}
-#table2 th {
 	font-family: 'quarkbold';
-	font-size: 22px;
-	color: #e5a923;
-	background-color: #262424;
-	text-align: center;
-    border: 2px solid #333232;
-    padding: 5px;
- }  
-
-#table2 td{
-	font-family: 'quarklight';
-	font-size: 18px;
-	color: #000000;
-	text-align: center;
-	 border: 2px solid #333232;
-	 height: 30px;
-} 
+	font-size: 20px;
+	color: #b68e34;
+}
 
 
 
