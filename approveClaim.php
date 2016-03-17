@@ -129,13 +129,13 @@
 				                        <ul>
 												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
+
 										</ul>
 			                        </li>
 			                        
 									<li ><a href="#">สรุปรายงาน</a>
 			                            <ul>
-											<li><a href="#">รายงานรายได้</a></li>
+											<li><a href="reportAll.php">รายงานรายได้</a></li>
 											<li><a href="#">รายงานค่าใช้จ่าย</a></li>
 											
 									  </ul>
@@ -153,6 +153,7 @@
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM  claim  
 											JOIN customer ON claim.CustomerID=customer.CustomerID
+											JOIN claimdetail ON claim.ClaimID=claimdetail.ClaimID
 											WHERE StateClaim='Processing'		
 											");
 
@@ -166,6 +167,7 @@
 			        $CustomerName[$i] = $row["CustomerName"];
 			        $StateClaim[$i] = $row["StateClaim"];
 			        $ClaimSendDate[$i] = $row["ClaimSendDate"];
+			        $OrderID[$i] = $row["OrderID"];
 			        $i++;
 			    }
 			}
@@ -214,6 +216,7 @@
 		                        		</td>
 
 		                        		<td>
+		                        			<input type="hidden" id="hiddenOrderId" name="hiddenOrderId" value="<?php echo $OrderID[$j]; ?>">
 		                        			<button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j]; ?> ">ส่งEmail</a></button>
 		                        		</td>
 

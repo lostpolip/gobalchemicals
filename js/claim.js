@@ -12,7 +12,6 @@ var orderId = $('#orderID').val();
 	    	alert('กรุณากรอกจำนวนเป็นตัวเลข');
 	    	return false;
 		}
-		alert('บันทึกข้อมูลเรียบร้อย');
 	});
 
 
@@ -30,6 +29,8 @@ var orderId = $('#orderID').val();
 		});
 	});
 
-
+	$(':button[name=btnCF]').click(function() {		
+		alert('สร้างเส้นทางเรียบร้อยแล้วค่ะ');
+	});
 	
 });

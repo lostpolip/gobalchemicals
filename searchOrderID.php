@@ -7,7 +7,8 @@
 									JOIN orders ON orderdetail.OrderID = orders.OrderID
 									JOIN product ON orderdetail.ProductID = product.ProductID
 									WHERE CustomerID ='".$_SESSION['CustomerID']."'
-                                    AND orders.OrderID= '".$_REQUEST['orderID']."'   
+                                    AND orders.OrderID= '".$_REQUEST['orderID']."'
+                                    AND orders.State = 'complete'   
 									");
 
    $i=0; 
@@ -83,7 +84,7 @@
 
         <tr>
                 <td><a href="indexCustomer.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
-                <td><button type="submit" id="btnCF">บันทึก</button></td>
+                <td><button type="submit" id="btnCF" name="btnCF">บันทึก</button></td>
         </tr>
     
 </div>

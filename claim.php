@@ -63,6 +63,7 @@
 			$dbManagement = new dbManagement();
 			$Orders = $dbManagement->select("SELECT *FROM orders
 											WHERE CustomerID ='".$_SESSION['CustomerID']."' 
+											AND State = 'complete'
 											");
 
 			$orders = 0;
