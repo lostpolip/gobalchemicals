@@ -13,8 +13,8 @@ html {
 }
 
 body {
-  background-color: #2c3338;
-  color: #606468;
+  background-color: #F2F2F2;
+  color: #FFFFFF;
   font: 400 0.875rem/1.5 "Open Sans", sans-serif;
   margin: 0;
   min-height: 100%;
@@ -77,13 +77,13 @@ input {
   background-color: #434A52;
 }
 .form--login input[type="submit"] {
-  background-color: #ea4c88;
+  background-color: #04B45F;
   color: #eee;
   font-weight: bold;
   text-transform: uppercase;
 }
 .form--login input[type="submit"]:focus, .form--login input[type="submit"]:hover {
-  background-color: #d44179;
+  background-color: #01DF74;
 }
 .form__field {
   display: -webkit-box;
@@ -135,3 +135,5 @@ input {
   max-width: 20rem;
   width: 90%;
 }
+#photo{
+	margin-left:20px;

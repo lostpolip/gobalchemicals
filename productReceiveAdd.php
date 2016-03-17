@@ -122,7 +122,7 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
-			$product = $dbManagement->select("SELECT * FROM purchase");
+			$product = $dbManagement->select("SELECT * FROM purchase WHERE StatePurchase='processing'");
 			$ddPurchase = 0;
 			if (mysqli_num_rows($product) > 0) {
 			    while($row = mysqli_fetch_assoc($product)) {

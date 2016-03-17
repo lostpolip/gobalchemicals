@@ -1,6 +1,5 @@
 $( document ).ready(function() {	
-	$( "#submit" ).trigger( "click" );
-
+	
 	$(':button[name=calculator]').click(function() {		
 		
 		var consumptionExp = $('#consumptionExp').val();
@@ -27,7 +26,6 @@ $( document ).ready(function() {
 		var ExpensesAllKm = FuelCost+MaintenanceCost;
 
 		var ExpensesPerDay = parseFloat(FixedcostsDay+ExpensesAllKm)*Distance;
-		alert(ExpensesPerDay);
 		var ExpensesPerAround = ExpensesPerDay/1;
 
 				
@@ -48,4 +46,17 @@ $( document ).ready(function() {
 
 	});
 
+	// $("input[name='calculator'").on('change', function() {
+
+	// 		if ($('#txtWeightProduct').val() > 0) {
+	// 			$('#truckInfo').show();
+	// 			$('#btnCF').prop("disabled", false);
+	// 		} else {
+	// 			$('#truckInfo').hide();
+	// 			$('#btnCF').prop("disabled", true);
+	// 		}
+	// });
 });
+
+
+

@@ -5,12 +5,14 @@
 									JOIN supplier ON purchase.SupplierID = supplier.SupplierID
 									JOIN product ON purchase.ProductID = product.ProductID
 									WHERE PurchaseID = '".$_REQUEST['purchaseID']."'
+                                    AND StatePurchase='processing'
 									");
 
 	if (mysqli_num_rows($result) > 0) {
 	    while($row = mysqli_fetch_assoc($result)) {
 	    	$PurchaseID = $row["PurchaseID"];
-	    	$PurchaseDate = $row["PurchaseDate"];
+            $PurchaseDate = $row["PurchaseDate"];
+	    	$PurchaseAmount = $row["PurchaseAmount"];
 	    	$ProductID = $row["ProductID"];
 	    	$ProductName = $row["ProductName"];
             $SupplierName = $row["SupplierName"];
@@ -63,7 +65,14 @@
             </tr>
 
             <tr>
-                <td><label><span class="red-star">* </span>จำนวนสินค้า :</label></td>
+                <td><label><span class="red-star">* </span>จำนวนสินค้าสั่งซื้อ :</label></td>
+                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" value="<?php echo $PurchaseAmount ?>" readonly>&nbsp;&nbsp;
+                    <label>ตัน</label> 
+                </td>
+            </tr>
+
+            <tr>
+                <td><label><span class="red-star">* </span>จำนวนสินค้าที่รับ :</label></td>
                 <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" required>&nbsp;&nbsp;
                 	<label>ตัน</label> 
                 </td>

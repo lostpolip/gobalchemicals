@@ -24,11 +24,13 @@
 		}
 	}
 
-	$receive=$dbManagement->insert("INSERT INTO productreceive (ReceiveID,ReceiveDate, Lot, ExpiryDate, ReceiveAmount, State,PurchaseID)  VALUES ('RE' '".$newID."','".$_REQUEST['txtDateReceive']."','".$_REQUEST['txtLotReceive']."','".$_REQUEST['txtExpiryDate']."','".$_REQUEST['txtReceiveAmount']."','".$_REQUEST['txtReceiveState']."','".$_REQUEST['txtPurchasseID']."')");
+	$receive=$dbManagement->insert("INSERT INTO productreceive (ReceiveID,ReceiveDate, Lot, ExpiryDate, ReceiveAmount, StateReceive,PurchaseID)  VALUES ('RE' '".$newID."','".$_REQUEST['txtDateReceive']."','".$_REQUEST['txtLotReceive']."','".$_REQUEST['txtExpiryDate']."','".$_REQUEST['txtReceiveAmount']."','complete','".$_REQUEST['txtPurchasseID']."')");
 
 	$totalProduct = $_REQUEST['txtReceiveAmount']+$ProductAmount;
 
 	$dbManagement->update("UPDATE product SET ProductAmount='".$totalProduct."' WHERE ProductID='".$_REQUEST['txtProductID']."'");
+
+	$dbManagement->update("UPDATE purchase SET StatePurchase='complete' WHERE PurchaseID ='".$_REQUEST['txtPurchasseID']."'");
 
 	header( "location: /gobalchemicals/productReceive.php" );
 

@@ -220,6 +220,14 @@
                             </tr>
 
 							<tr>
+                                <td><label><span class="red-star">* </span>จุดสั่งซื้อ :</label></td>
+                                <td>
+                                	<input type="text" id="txtProductPoint" name="txtProductPoint" >
+                                	<label>ตัน</label>
+                                </td>
+                            </tr>
+
+							<tr>
                                 <td><label><span class="red-star">* </span>น้ำหนักสินค้า :</label></td>
                                 <td>
                                 	<input type="text" id="txtProductWeight" name="txtProductWeight" >

@@ -39,11 +39,11 @@ $( document ).ready(function() {
 		    	var detailProduct = jQuery.parseJSON(result);
 
 		    	for (var x in detailProduct['nameProductType']) {
-					$('#ddProductType').append('<input type="text" value=" '+detailProduct['nameProductType'][x]+' ">');
-					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' ">');
-					$('#supplierId').append('<input type="hidden" id="IdSupplier" value=" '+detailProduct['nameSupplierID'][x]+' ">');
-					$('#ddSupplier').append('<input type="text" value=" '+detailProduct['nameSupplier'][x]+' ">');
-					$('#txtSupplierEmail').append('<input type="text" value=" '+detailProduct['email'][x]+' ">');					
+					$('#ddProductType').append('<input type="text" value=" '+detailProduct['nameProductType'][x]+' " readonly>');
+					$('#ddBrandName').append('<input type="text" value=" '+detailProduct['nameBrand'][x]+' " readonly>');
+					$('#supplierId').append('<input type="hidden" id="IdSupplier" value=" '+detailProduct['nameSupplierID'][x]+' " readonly>');
+					$('#ddSupplier').append('<input type="text" value=" '+detailProduct['nameSupplier'][x]+' " readonly>');
+					$('#txtSupplierEmail').append('<input type="text" value=" '+detailProduct['email'][x]+' " readonly>');					
 
 				}
 				$('#row_productType').show();

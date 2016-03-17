@@ -17,7 +17,7 @@ $( document ).ready(function() {
 		var district = $('#txtDistrict option:selected').text().trim();
 		var supDistrict = $('#txtSubDistrict option:selected').text().trim();
 		var zipCode = $('#txtZipcode option:selected').text().trim();
-		var locationAddress=address+'+'+province+'+'+district+'+'+supDistrict+'+'+zipCode;
+		var locationAddress=province+'+'+district+'+'+supDistrict+'+'+zipCode;
 		$.ajax({
 			url: "https://maps.googleapis.com/maps/api/geocode/json", 
 			method: "GET",

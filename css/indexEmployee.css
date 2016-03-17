@@ -293,7 +293,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 .col_w630 { 
 	width: 630px; 
 	margin-bottom: 30px;
-	margin-left: 100px;
+	margin-left: 0px;
 }
 .col_w630 p span { 
 	font-family: 'quarklight';

@@ -51,7 +51,7 @@
 	</head>
 
 	<body>
-
+<?php print_r($_REQUEST); ?>
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">
 					<div id="tooplate_header">	
@@ -152,7 +152,15 @@
 				}
 				
 			?>
-			
+			<?php 
+				$jsonDestination = json_encode($_REQUEST['destination']);
+				$jsonDestination = str_replace('"',"'",$jsonDestination);
+				$jsonDestination = str_replace('[',"",$jsonDestination);
+				$jsonDestination = str_replace(']',"",$jsonDestination);
+				$jsonDestination = str_replace("','","+",$jsonDestination);
+				$jsonDestination = str_replace("'","",$jsonDestination);
+			?>
+			<input id="arrayDestination" type="hidden" value="<?php echo $jsonDestination; ?>"></input>
 		    <div id="map"></div>
 		    	
 		    		<div>
@@ -182,166 +190,9 @@
 			
 				<div id="directions-panel"></div>
 
-				<input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel ?>">
-				<input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost ?>">
-				<input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue ?>">
-	            <br>
-	            
-		            <div class="expensive">
-		              	<p>ค่าใช้จ่ายต่างๆ</p> 
-	                        <table id="table" style="width: 100%">
-
-	                            <tr>
-	                                <td><label id="fuelId">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID ?></label></td>
-									
-	                            </tr>
-
-	                            <tr>
-	                                <td><label>ค่าน้ำมันเชื้อเพลิง:</label>
-	                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                	<input type="text" id="FuelExpensive" name="FuelExpensive" value="0" required>
-	                               		 &nbsp;&nbsp;<label>บาท/ลิตร</label>
-	                               		
-									</td>
-	                            </tr>
-
-								<tr>
-	                                <td><label>ระยะเวลาค่าเสื่อมราคา :</label>
-	                                	&nbsp;&nbsp;&nbsp;&nbsp;
-	                               		<input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" required>
-	                                	&nbsp;&nbsp;<label>ปี</label>
-	                                </td>
-	                            </tr>
-
-	                            <tr>
-	                                <td><label>ค่าแรงงาน(ต่อคน) :</label>
-	                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                	<input type="text" id="LaborExpensive" name="LaborExpensive" value="0" required>
-	                                	<label>บาท/วัน</label>
-	                                </td>
-	                            </tr>
-
-	                            <tr>
-	                                <td><label>จำนวนพนักงาน :</label>
-	                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                	<input type="text" id="AmountExployee" name="AmountExployee" value="0" required>
-	                                	&nbsp;&nbsp;<label>คน</label>
-	                                </td>
-	                            </tr>
-
-	                            <tr>
-	                                <td><label>ค่าซ่อมบำรุง :</label>
-	                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                	<input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" required>
-	                                	&nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
-	                                </td>
-	                            </tr>
-
-	                          	<tr>
-	                                <td><label>จำนวนวันทำงานต่อเดือน :</label>
-	                                	<input type="text" id="AmountDate" name="AmountDate" value="0" required>
-	                                	&nbsp;&nbsp;<label>วัน</label>
-	                                </td>
-	                            </tr>	
-
-	                            <tr>
-	                                <td><label id="labelDistance">ระยะทางที่วิ่ง :&nbsp;&nbsp; <?php echo $AmountDistance ?></label>
-	                                	&nbsp;&nbsp;<label>กิโลเมตร</label> 
-	                                </td>
-	                            </tr> 
-	                            <br>
-	                            <tr>
-	                            	<td><button id="btnCalculator" name="calculator" class="btn btn-primary" data-distance="<?php echo $AmountDistance ?>">คำนวณ</button></td>
-	                            </tr>                           	                            
-							</table>
-						</div>
-						<br>
-						<br>
-                        <div class="Fixedcosts">
-                        	<p>ต้นทุนคงที่</p>
-                        	 <table id="table" style="width: 100%">
-	                            <tr> 
-	                            	<td><label>ค่าเสื่อมราคา :</label>
-	                            		<label id="DepreciationDay"></label>
-	                            		<label>(บาท/วัน)</label>
-	                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ค่าแรงงาน :</label>
-	                            		<label id="LoborExpDay"></label>
-	                            		<label>(บาท/วัน)</label>
-	                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ต้นทุนคงที่ต่อวัน :</label>
-	                            		<label id="FixedcostsDay"></label>
-	                            		<label>(บาท/วัน)</label>
-	                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ต้นทุนคงที่ต่อรอบ :</label>
-	                            		<label id="FixedcostsAround"></label>
-	                            		<label>(บาท/รอบ)</label>
-	                            	</td>
-	                            </tr>
-	                            <tr> <td>&nbsp;</td></tr>
-                            </table>
-                        </div>
-
-                        <div class="Variablecosts">
-                        	<p>ต้นทุนผันแปร</p>
-                        	 <table id="table" style="width: 100%">
-	                            <tr> 
-	                            	<td><label>ค่าน้ำมันเชื้อเพลิง :</label>
-	                            		<label id="FuelCost"></label>
-	                            		<label>(บาท/กม.)</label>
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ค่าซ่อมบำรุง :</label>
-	                            		<label id="MaintenanceCost"></label>
-	                            		<label>(บาท/กม.)</label>
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ค่าใช้จ่ายแปรผันรวมต่อกิโลเมตร :</label>
-	                            		<label id="ExpensesAllKm"></label>
-	                            		<label>(บาท/กม.)</label>
-	                            	</td>
-	                            </tr>
-
-	                            <tr> <td>&nbsp;</td></tr>
-                            </table>
-                        </div>   
-
-		                <div class="ExpensesAll">
-                        	<p>ค่าใช้จ่าย</p>
-                        	 <table id="table" style="width: 100%">
-	                            <tr> 
-	                            	<td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
-	                            		<label id="ExpensesPerDay"></label>
-	                            		<input type="hidden" id="ExpensesPerDay" name="ExpensesPerDay" readonly>
-	                            		<label>บาท</label>
-	                            	</td>
-	                            </tr>
-	                            <tr> 
-	                            	<td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
-	                            		<label id="ExpensesPerAround"></label>
-	                            		<input type="hidden" id="ExpensesPerAround" name="ExpensesPerAround" readonly>
-	                            		<label>บาท</label>
-	                            	</td>
-	                            </tr>
-
-	                            <tr> <td>&nbsp;</td></tr>
-                            </table>
-                        </div>                  
-		                    
  				<br>
  				<br>
- 				<br>
+
 	            <div id="btnCB">
 	                <tr id="button-command">
 	                    <td>
@@ -363,7 +214,7 @@
 	                    <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
 
 	                  
-	                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md">บันทึกเส้นทาง</button></td>
+	                    <td><a href="indexEmployee.php"><button id="btnCF" class="btn btn-success btn-md">ตกลง</button></a></td>
 					
 	                </tr>
 	            </div>
@@ -405,6 +256,27 @@
 			          optimizeWaypoints: true,
 			          travelMode: google.maps.TravelMode.DRIVING
 			        }, function(response, status) {
+			        	console.log(response);
+			        	var arrayDestination = $('#arrayDestination').val().split('+');
+
+			        	var temp = [];
+			        	var a = [];
+			       		var count = response.request.waypoints.length;
+			       		for (i = 0; i<count;i++) {
+			       			temp[i]	=	arrayDestination[i].split('&');
+			       		}
+
+			       		// jQuery.inArray( temp[0][0], response.request.waypoints );
+			       		for (i = 0; i<count;i++) {
+			       			for (j=0;j<count;j++) {
+			       				if (temp[j][0] == response.request.waypoints[i].location) {
+			       					a[i] = j;
+			       				}
+			       			}
+			       		}
+			       		// console.log(a);
+			       		// console.log(response.request.waypoints[0].location);
+			       		// console.log(jQuery.inArray( temp[0][0], response.request.waypoints ));
 			          if (status === google.maps.DirectionsStatus.OK) {
 			            directionsDisplay.setDirections(response);
 			            var route = response.routes[0];
@@ -439,7 +311,6 @@
 
 								},
 								success: function(results){
-									console.log(results);
 									
 							    }
 							});

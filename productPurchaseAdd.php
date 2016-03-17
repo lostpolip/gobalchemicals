@@ -160,7 +160,7 @@
                                 	 	<?php
                         					for($p=0;$p<$ddProduct;$p++){ 
                         				?>	
-                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
+                                		<option <?php if ($_REQUEST['productId'] == $ProductName[$p]) { echo 'selected'; } ?> value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
                                 		<?php
                         					}
                         				?>

@@ -27,13 +27,11 @@ $transportIDArray = array_filter($transportIDArray);
 
 		$dbManagement->update("UPDATE orders SET State='sending' WHERE OrderID='".$orderID."'");
 
-		}
+	}
 
 		$dbManagement->insert("INSERT INTO transport(TransportID, TransportDate, TruckID, EmployeeID, TimeAction, TransportStatus, TotalWeightProduct,AmountDistance) VALUES ('TS' '".$newID."','".$_REQUEST['hiddenDate']."','".$_REQUEST['hiddenTruck']."','".$_REQUEST['hiddenEmployee']."','".$_REQUEST['hiddenRouteTime']."','processing','".$_REQUEST['hiddenWeightProduct']."','".$_REQUEST['totalDistance']."')");	
 
 		
 	}
-
-	
 
 ?>

@@ -26,7 +26,7 @@ $( document ).ready(function() {
 		var MaintenanceCost = MaintenanceExp;
 		var ExpensesAllKm = FuelCost+MaintenanceCost;
 
-		var ExpensesPerDay = parseFloat(FixedcostsDay+ExpensesAllKm)*Distance;
+		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 		alert(ExpensesPerDay);
 		var ExpensesPerAround = ExpensesPerDay/1;
 
@@ -45,6 +45,9 @@ $( document ).ready(function() {
 
 		$('#ExpensesPerDay').text(ExpensesPerDay);
 		$('#ExpensesPerAround').text(ExpensesPerAround);
+
+		$('#hiddenExpensesPerDay').val(ExpensesPerDay);
+		$('#hiddenExpensesPerAround').val(ExpensesPerAround);
 
 	});
 

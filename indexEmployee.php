@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/indexEmployee.js"></script>
 
 
 		<script language="javascript" type="text/javascript">
@@ -113,17 +114,75 @@
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+			$result = $dbManagement->select("SELECT * FROM product
+											WHERE StateProduct ='Confirm'");
 
+			$i = 0;
+			$z =0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			        $ProductID[$i] = $row["ProductID"];
+			        $ProductName[$i] = $row["ProductName"];
+			        $ProductAmount[$i] = $row["ProductAmount"];
+			        $OrderPoints[$i] = $row["OrderPoints"];
+			        if ($ProductAmount[$i] <= $OrderPoints[$i]) {
+			        	$alertProduct[$z]	= [
+			        		'name'	=> $ProductName[$i],
+			        		'amount'	=> $ProductAmount[$i],
+			        	];
+			        	$z++;
+			        }
+			        
+			        $i++;
+			    }
+			}
+			// if ($z > 0) {
+	  //       	print_r($alertProduct);exit;
+	  //       }
+		?>
 		<div id="tooplate_main">
 			<div class="col_fw_last">
+			<?php 
+				if ($z > 0) {
+			?>
 				<div class="col_w630 float_l">
-					<h2>สินค้าในคลัง</h2>
-					  	<div class="panel panel-default">
-		    				<div class="panel-heading">Panel Heading</div>
-		    				<div class="panel-body">Panel Content</div>
-	 				 	</div>
-				
+					<h2>แจ้งจุดสั่งซื้อ</h2>
+	    				<table id="table2" width="100%">
+                        	<tr>
+                                <th>ชื่อสินค้า</th>
+                                <th>จำนวนสินค้า</th>   
+                                <th>คำสั่ง</th>   
+                        	</tr>
+
+                        	<?php
+                        	for($j=0;$j<$z;$j++){ 
+
+                        	?>
+
+                        	<tr>
+                        		<td>
+                        			<label id="productName"><?php echo $alertProduct[$j]['name'] ?></label>
+                        		</td>
+                        		<td>
+                        			<label id="productAmount" style="color: red;"><?php echo $alertProduct[$j]['amount'] ?></label>
+                        		</td>
+                        		<td>
+	                        		<a href="productPurchaseAdd.php?productId=<?php echo $alertProduct[$j]['name']; ?>">
+	                        			<button id="btnPurchase" name="btnPurchase">สั่งซื้อสินค้า</button>
+	                        		</a>
+                        		</td>
+                        	</tr>
+                        	<?php
+                        	}
+                        	?>
+                    </table>      
 				</div>
+				<?php 
+					}
+				?>
 			</div>
 		</div><!--end of tooplate_main-->
 
