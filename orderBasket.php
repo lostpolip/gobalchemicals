@@ -373,8 +373,7 @@
 							<br>
 							 <tr>
                             	<td><button type="button" id="btnBack"><a href="indexCustomer.php?">ยกเลิก</a></button></td>
-                            	<td><a href="#"><button type="button" id="btnPrint">สั่งพิมพ์</button></a></td>
-                                 <td><button type="submit" id="btnOK">ตกลง</button></td>     
+                                <td><button type="submit" id="btnOK">ตกลง</button></td>     
                             </tr>
                     	</div>
                     </div>

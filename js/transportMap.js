@@ -36,8 +36,35 @@ $( document ).ready(function() {
 
 	$( "#submit" ).trigger( "click" );
 
-	$(':button[name=calculator]').click(function() {		
+	$('#truckInfo').hide();
+
+	
+
+	$(".txtExpenses").on('change',function() {
 		
+		var count = 0;
+		var patt= /[-+]?(\d*[.])?\d+/;
+		$("body").find(".txtExpenses").each(function() {
+			// alert(count);
+			if ($(this).val() == 0) {
+				count++;
+			}
+			if (!patt.test($(this).val())) {
+				count++;
+			}
+			
+		});
+		if (count==0) {
+				$('#btnCalculator').prop("disabled",false);
+			} else {
+				$('#btnCalculator').prop("disabled",true);
+			}
+		
+	});
+
+
+	$(':button[name=calculator]').click(function() {		
+		$('#truckInfo').show();
 		var consumptionExp = $('#consumptionExp').val();
 		var truckCost = $('#truckCost').val();
 		var residualValue = $('#residualValue').val();
@@ -81,13 +108,15 @@ $( document ).ready(function() {
 		$('#hiddenExpensesPerDay').val(ExpensesPerDay);
 		$('#hiddenExpensesPerAround').val(ExpensesPerAround);
 
+
+
+
 	});
-
-
 
 
 	$(':button[name=btnCF]').click(function() {		
 		alert('สร้างเส้นทางเรียบร้อยแล้วค่ะ');
 	});
+
 
 });

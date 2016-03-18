@@ -49,6 +49,11 @@ $( document ).ready(function() {
 	    	alert('กรุณากรอกจำนวนเป็นตัวเลข');
 	    	return false;
 		}
+
+		if($('#txtPurchaseDetail').val() =='') {
+	    	alert('กรณากรอกรายละเอียดสินค้าเคลม');
+	    	return false;
+		}
 			alert('บันทึกเรียบร้อย');
 		});
 

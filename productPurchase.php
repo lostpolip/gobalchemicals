@@ -183,7 +183,6 @@
                                 <th>ชื่อผู้จัดจำหน่าย</th>
                                 <th>Email</th>
                                 <th>จำนวนสั่งซื้อ</th> 
-                                <th>ส่งEmail</th>
                                 <th>คำสั่ง</th>
                                
                                 
@@ -199,12 +198,6 @@
                         		<td id="purchaseSupplier"><?php echo $SupplierName[$j] ?></td>
                         		<td id="purchaseSupplierEmail"><?php echo $SupplierEmail[$j] ?></td>
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>
-                        		<td>
-                        			<form action="testmail.php">
-                        			<button type="submit" id="btnEmail" <?php if ($StateMail[$j] == 'complete') {echo 'disabled';} ?>><a href="testmail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>" <?php if ($StateMail[$j] == 'complete') {echo "style='opacity: .4; cursor: default !important;
-  pointer-events: none;'";} ?>>ส่งEmail</a></button>
-                        			</form>
-                        		</td>
                         		<td>
                         			<a href="productPurchaseDetail.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>"><button id="btnDetail">รายละเอียด</button></a>
                         			<a href="deletePurchaseSQL.php?PurchaseID=<?php echo $PurchaseID[$j]; ?>"><button id="btnDelete">ลบ</button></a>

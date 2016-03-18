@@ -24,6 +24,7 @@ $( document ).ready(function() {
 			crossDomain: true,
 			data: { 
 				address : locationAddress,
+				zoom : 13,
 				key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
 			},
 			success: function(result){
@@ -38,7 +39,7 @@ $( document ).ready(function() {
 					crossDomain: true,
 					data: { 
 						units : 'imperial',
-						origins :'13.922174, 100.468186',
+						origins :'13.92209633583074, 100.46814747154713',
 						destinations :lat+','+lng,
 						key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
 					},

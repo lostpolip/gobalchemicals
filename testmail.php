@@ -92,5 +92,4 @@ $mail->sendmail($body,$SupplierEmail[0]);
 $dbManagement->update("UPDATE purchase SET StateMail='complete' WHERE PurchaseID='".$_REQUEST['PurchaseID']."'");
 
 header( "location: /gobalchemicals/productPurchase.php" );
-
 ?>

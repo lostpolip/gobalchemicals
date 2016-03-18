@@ -1,4 +1,5 @@
 <?php
+	date_default_timezone_set('Asia/Bangkok');
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 
@@ -17,7 +18,7 @@
 	}
 	$newID = $maxID + 1;
 
-	$dbManagement->insert("INSERT INTO expenses(ExpensesID, TransportID, ExpensesPerDay, ExpensesPerAround, StateExpenses) VALUES ('ES' '".$newID."','".$_REQUEST['transportId']."','".$_REQUEST['hiddenExpensesPerDay']."','".$_REQUEST['hiddenExpensesPerAround']."','complete')");
+	$dbManagement->insert("INSERT INTO expenses(ExpensesID, TransportID, ExpensesPerDay, ExpensesPerAround, StateExpenses, ExpensesDate) VALUES ('ES' '".$newID."','".$_REQUEST['transportId']."','".$_REQUEST['hiddenExpensesPerDay']."','".$_REQUEST['hiddenExpensesPerAround']."','complete','".date("Y-m-d")."')");
 
 	header( "location: /gobalchemicals/indexEmployee.php" );
 

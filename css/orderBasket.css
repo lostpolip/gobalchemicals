@@ -596,6 +596,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 
 #totalExtendPrice{
 	color: red;
+	width: 200px;
+	font-size: 19px;
 	text-align: right;
 }
 #star{
@@ -603,13 +605,17 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 }
 #totalTransaction {
 	text-align: right;
+	width: 200px;
 }
 #totalVat{
 	text-align: right;
+	width: 200px;
+	font-size: 19px;
 }
 #totalPriceAll{
-	text-align: right;	
-}
+	text-align: right;
+	width: 200px;
+	font-size: 19px;}
 
 #txtOrderID{
 	font-family: 'quarkbold';

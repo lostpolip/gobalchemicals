@@ -3,6 +3,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$orderID = $_REQUEST['hiddenProductId'];
+	$orderId = $_REQUEST['hiddenOrderID'];
 	$orderIDArray = explode(',',$orderID);
 
 	$totalPriceAll=$_REQUEST['totalPriceAll'];
@@ -22,6 +23,6 @@
 			$dbManagement->insert("INSERT INTO orders(OrderID, CustomerID, State, OrderDate, TotalPriceOrder, TotalVat, TotalTransport, ExtendedPrice,UnitProduct,TotalCostOrder) VALUES ('".$_REQUEST['hiddenOrderID']."','".$_SESSION['CustomerID']."','no','".$_REQUEST['hiddenOrderDate']."','".$TotalPriceAll."','".$TotalVat."','".$_REQUEST['totalTransaction']."','".$ExtendedPrice."','".$_REQUEST['hiddenUnitProductAll']."','".$_REQUEST['hiddenTotalCostAll']."')");
 	}
 
-	header( "location: /gobalchemicals/order.php" );
+	header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );
 
 ?>

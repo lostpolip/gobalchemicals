@@ -52,6 +52,28 @@ $( document ).ready(function() {
 	    	alert('กรุณากรอกน้ำหนักเป็นตัวเลข');
 	    	return false;
 		}
+
+		if(!patt.test($('#consumptionFuel').val())) {
+	    	alert('กรุณากรอกอัตราสิ้นเปลืองน้ำมันเป็นตัวเลข');
+	    	return false;
+		}
+
+		if(!patt.test($('#costTruck').val())) {
+	    	alert('กรุณากรอกต้นทุนค่ารถเป็นตัวเลข');
+	    	return false;
+		}
+
+		if(!patt.test($('#residualValue').val())) {
+	    	alert('กรุณากรอกมูลค่าซากรถเป็นตัวเลข');
+	    	return false;
+		}
+
+		if($('#txtTruckName').val() =='') {
+	    	alert('กรณากรอกเลขทะเบียนรถ');
+	    	return false;
+		}
+
+
 		alert('บันทึกข้อมูลเรียบร้อย');
 	});
 });

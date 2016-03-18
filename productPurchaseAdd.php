@@ -183,12 +183,12 @@
                             </tr>
                             <tr>
                                 <td><label><span class="red-star">* </span>ชื่อสินค้า :</label></td>                       
-                                <td><select id="ddProduct" name="ddProduct" >
+                                  <td><select id="ddProduct" name="ddProduct" >
                                 	 	<option value="" selected>-------- กรุณาเลือก --------</option>
                                 	 	<?php
                         					for($p=0;$p<$ddProduct;$p++){ 
                         				?>	
-                                		<option <?php if ($_REQUEST['productId'] == $ProductName[$p]) { echo 'selected'; } ?> value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
+                                		<option value="<?php echo $ProductID[$p]; ?>"><?php echo $ProductName[$p]; ?></option>
                                 		<?php
                         					}
                         				?>

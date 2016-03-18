@@ -195,8 +195,7 @@
 		                                <th>กำหนดวันที่ส่ง</th>
 		                                <th>สถานะ</th>
 		                                <th>รายละเอียด</th>
-		                                <th>Email</th>
-		                                <!-- <th>คำสั่ง</th> -->
+		                                
 		                                
 		                        	</tr>
 		                        	<tr>
@@ -215,15 +214,7 @@
 		                        			<button type="submit" id="btnDetail"><a href="approveClaimDetail.php?ClaimID=<?php echo $ClaimID[$j]; ?> ">เลือก</a></button>
 		                        		</td>
 
-		                        		<td>
 		                        			<input type="hidden" id="hiddenOrderId" name="hiddenOrderId" value="<?php echo $OrderID[$j]; ?>">
-		                        			<button type="submit" id="btnEmail"><a href="testmailClaim.php?ClaimID=<?php echo $ClaimID[$j]; ?> ">ส่งEmail</a></button>
-		                        		</td>
-
-<!-- 		                        		<td>		
-		                        			<button type="submit" id="btnConfirm"><a href="approveAddStateSQL.php?ClaimID=<?php echo $ClaimID[$j]; ?>">ยืนยันการแจ้ง</a></button>
-		                        			
-		                        		</td> -->
 		                        	</tr>
 		                        	
 							</table>					 

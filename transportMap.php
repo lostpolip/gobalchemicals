@@ -234,7 +234,7 @@
 		                            <tr>
 		                                <td><label>ค่าน้ำมันเชื้อเพลิง:</label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="FuelExpensive" name="FuelExpensive" value="0" required>
+		                                	<input type="text" id="FuelExpensive" name="FuelExpensive" value="0" class="txtExpenses" required>
 		                               		 &nbsp;&nbsp;<label>บาท/ลิตร</label>
 		                               		
 										</td>
@@ -243,7 +243,7 @@
 									<tr>
 		                                <td><label>ระยะเวลาค่าเสื่อมราคา :</label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                               		<input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" required>
+		                               		<input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" class="txtExpenses" required>
 		                                	&nbsp;&nbsp;<label>ปี</label>
 		                                </td>
 		                            </tr>
@@ -251,7 +251,7 @@
 		                            <tr>
 		                                <td><label>ค่าแรงงาน(ต่อคน) :</label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="LaborExpensive" name="LaborExpensive" value="0" required>
+		                                	<input type="text" id="LaborExpensive" name="LaborExpensive" value="0" class="txtExpenses" required>
 		                                	<label>บาท/วัน</label>
 		                                </td>
 		                            </tr>
@@ -259,7 +259,7 @@
 		                            <tr>
 		                                <td><label>จำนวนพนักงาน :</label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="AmountExployee" name="AmountExployee" value="0" required>
+		                                	<input type="text" id="AmountExployee" name="AmountExployee" value="0" class="txtExpenses" required>
 		                                	&nbsp;&nbsp;<label>คน</label>
 		                                </td>
 		                            </tr>
@@ -267,14 +267,14 @@
 		                            <tr>
 		                                <td><label>ค่าซ่อมบำรุง :</label>
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" required>
+		                                	<input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" class="txtExpenses" required>
 		                                	&nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
 		                                </td>
 		                            </tr>
 
 		                          	<tr>
 		                                <td><label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
-		                                	<input type="text" id="AmountDate" name="AmountDate" value="0" required>
+		                                	<input type="text" id="AmountDate" name="AmountDate" value="0" class="txtExpenses" required>
 		                                	&nbsp;&nbsp;<label>วัน</label>
 		                                </td>
 		                            </tr>	
@@ -289,94 +289,97 @@
 		                            </tr> 
 		                            <br>
 		                            <tr>
-		                            	<td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" >คำนวณ</button></td>
+		                            	<td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" disabled>คำนวณ</button></td>
 		                            </tr>                           	                            
 								</table>
 							</div>
 							<br>
 							<br>
-	                        <div class="Fixedcosts">
-	                        	<p>ต้นทุนคงที่</p>
-	                        	 <table id="table" style="width: 100%">
-		                            <tr> 
-		                            	<td><label>ค่าเสื่อมราคา :</label>
-		                            		<label id="DepreciationDay"></label>
-		                            		<label>(บาท/วัน)</label>
-		                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ค่าแรงงาน :</label>
-		                            		<label id="LoborExpDay"></label>
-		                            		<label>(บาท/วัน)</label>
-		                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ต้นทุนคงที่ต่อวัน :</label>
-		                            		<label id="FixedcostsDay"></label>
-		                            		<label>(บาท/วัน)</label>
-		                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ต้นทุนคงที่ต่อรอบ :</label>
-		                            		<label id="FixedcostsAround"></label>
-		                            		<label>(บาท/รอบ)</label>
-		                            	</td>
-		                            </tr>
-		                            <tr> <td>&nbsp;</td></tr>
-	                            </table>
-	                        </div>
+							<div id="truckInfo">
+		                        <div class="Fixedcosts">
+		                        	<p>ต้นทุนคงที่</p>
+		                        	 <table id="table" style="width: 100%">
+			                            <tr> 
+			                            	<td><label>ค่าเสื่อมราคา :</label>
+			                            		<label id="DepreciationDay"></label>
+			                            		<label>(บาท/วัน)</label>
+			                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ค่าแรงงาน :</label>
+			                            		<label id="LoborExpDay"></label>
+			                            		<label>(บาท/วัน)</label>
+			                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ต้นทุนคงที่ต่อวัน :</label>
+			                            		<label id="FixedcostsDay"></label>
+			                            		<label>(บาท/วัน)</label>
+			                            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ต้นทุนคงที่ต่อรอบ :</label>
+			                            		<label id="FixedcostsAround"></label>
+			                            		<label>(บาท/รอบ)</label>
+			                            	</td>
+			                            </tr>
+			                            <tr> <td>&nbsp;</td></tr>
+		                            </table>
+		                        </div>
 
-	                        <div class="Variablecosts">
-	                        	<p>ต้นทุนผันแปร</p>
-	                        	 <table id="table" style="width: 100%">
-		                            <tr> 
-		                            	<td><label>ค่าน้ำมันเชื้อเพลิง :</label>
-		                            		<label id="FuelCost"></label>
-		                            		<label>(บาท/กม.)</label>
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ค่าซ่อมบำรุง :</label>
-		                            		<label id="MaintenanceCost"></label>
-		                            		<label>(บาท/กม.)</label>
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ค่าใช้จ่ายแปรผันรวมต่อกิโลเมตร :</label>
-		                            		<label id="ExpensesAllKm"></label>
-		                            		<label>(บาท/กม.)</label>
-		                            	</td>
-		                            </tr>
+		                        <div class="Variablecosts">
+		                        	<p>ต้นทุนผันแปร</p>
+		                        	 <table id="table" style="width: 100%">
+			                            <tr> 
+			                            	<td><label>ค่าน้ำมันเชื้อเพลิง :</label>
+			                            		<label id="FuelCost"></label>
+			                            		<label>(บาท/กม.)</label>
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ค่าซ่อมบำรุง :</label>
+			                            		<label id="MaintenanceCost"></label>
+			                            		<label>(บาท/กม.)</label>
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ค่าใช้จ่ายแปรผันรวมต่อกิโลเมตร :</label>
+			                            		<label id="ExpensesAllKm"></label>
+			                            		<label>(บาท/กม.)</label>
+			                            	</td>
+			                            </tr>
 
-		                            <tr> <td>&nbsp;</td></tr>
-	                            </table>
-	                        </div>   
+			                            <tr> <td>&nbsp;</td></tr>
+		                            </table>
+		                        </div>   
 
-			                <div class="ExpensesAll">
-	                        	<p>ค่าใช้จ่าย</p>
-	                        	 <table id="table" style="width: 100%">
-		                            <tr> 
-		                            	<td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
-		                            		<label id="ExpensesPerDay"></label>
-		                            		<input type="hidden" id="hiddenExpensesPerDay" name="hiddenExpensesPerDay" value="0" >
-		                            		<label>บาท</label>
-		                            	</td>
-		                            </tr>
-		                            <tr> 
-		                            	<td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
-		                            		<label id="ExpensesPerAround"></label>
-		                            		<input type="hidden" id="hiddenExpensesPerAround" name="hiddenExpensesPerAround" value="0">
-		                            		<label>บาท</label>
-		                            	</td>
-		                            </tr>
+				                <div class="ExpensesAll">
+		                        	<p>ค่าใช้จ่าย</p>
+		                        	 <table id="table" style="width: 100%">
+			                            <tr> 
+			                            	<td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
+			                            		<label id="ExpensesPerDay"></label>
+			                            		<input type="hidden" id="hiddenExpensesPerDay" name="hiddenExpensesPerDay" value="0" >
+			                            		<label>บาท</label>
+			                            	</td>
+			                            </tr>
+			                            <tr> 
+			                            	<td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
+			                            		<label id="ExpensesPerAround"></label>
+			                            		<input type="hidden" id="hiddenExpensesPerAround" name="hiddenExpensesPerAround" value="0">
+			                            		<label>บาท</label>
+			                            	</td>
+			                            </tr>
 
-		                            <tr> <td>&nbsp;</td></tr>
-	                            </table>
-	                        </div>  
+			                            <tr> <td>&nbsp;</td></tr>
+		                            </table>
+		                        </div>  
+		                    </div>
 
+		                    
 	                        <div id="btnCB">
 				                <tr id="button-command">
 				                    <td>

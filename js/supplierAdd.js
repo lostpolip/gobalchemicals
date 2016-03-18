@@ -36,8 +36,33 @@ $( document ).ready(function() {
 	}, 5000);
 
 	$('#btnCF').click(function() {
+
+		if($('#txtSupplierName').val() =='') {
+	    	alert('กรณากรอกชื่ผู้จัดจำหน่าย');
+	    	return false;
+		}
+		if($('#txtSupplierAddress').val() =='') {
+	    	alert('กรณากรอกที่อยู่');
+	    	return false;
+		}
+		if($('#txtSupplierDistrict').val() =='') {
+	    	alert('กรณากรอกตำบล');
+	    	return false;
+		}
+		if($('#txtSupplierAumphur').val() =='') {
+	    	alert('กรณากรอกอำเภอ');
+	    	return false;
+		}
+		if($('#txtSupplierProvince').val() =='') {
+	    	alert('กรณากรอกจังหวัด');
+	    	return false;
+		}
+		if($('#txtSupplierZipcode').val() =='') {
+	    	alert('กรณากรอกรหัสไปรษณีย์');
+	    	return false;
+		}
+
 			alert('บันทึกเรียบร้อย');
 		});
-
 
 });

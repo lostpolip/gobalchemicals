@@ -45,9 +45,16 @@ $( document ).ready(function() {
 
 		if(patt.test($('#txtPassword').val())) {
 	    	alert('กรณากรอกa-z หรือ A-Z หรือ 0-9เท่านั้น');
-
 	    	return false;
+		}
 
+		if($('#txtEmployeeName').val() =='') {
+	    	alert('กรณากรอกชื่พนักงาน');
+	    	return false;
+		}
+		if($('#txtEmployeeAddress').val() =='') {
+	    	alert('กรณากรอกที่อยู่');
+	    	return false;
 		}
 
 			alert('บันทึกเรียบร้อย');

@@ -174,12 +174,11 @@
 				if ($z > 0) {
 			?>
 				<div class="col_w630 float_l">
-					<h2>แจ้งจุดสั่งซื้อ</h2>
+					<h2>แจ้งเตือน</h2>
 	    				<table id="table2" width="100%">
                         	<tr>
                                 <th>ชื่อสินค้า</th>
-                                <th>จำนวนสินค้า</th>   
-                                <th>คำสั่ง</th>   
+                                <th>จำนวนสินค้า</th>    
                         	</tr>
 
                         	<?php
@@ -193,11 +192,6 @@
                         		</td>
                         		<td>
                         			<label id="productAmount" style="color: red;"><?php echo $alertProduct[$j]['amount'] ?></label>
-                        		</td>
-                        		<td>
-	                        		<a href="productPurchaseAdd.php?productId=<?php echo $alertProduct[$j]['name']; ?>">
-	                        			<button id="btnPurchase" name="btnPurchase">สั่งซื้อสินค้า</button>
-	                        		</a>
                         		</td>
                         	</tr>
                         	<?php
