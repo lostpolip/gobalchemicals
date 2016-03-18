@@ -389,7 +389,7 @@
 				                    </td>
 				                    
 				                  
-				                    <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md">บันทึกข้อมูล</button></td>
+				                    <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md" disabled>บันทึกข้อมูล</button></td>
 								
 				                </tr>
 		            		</div>                

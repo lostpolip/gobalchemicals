@@ -72,23 +72,14 @@ $( document ).ready(function() {
 				truckWeight : truckWeight 
 			},
 			success: function(result){
-		    	
-				$('#txtTruckType').empty();
-				$('#txtTruckName').empty();
-				$('#txtFuel').empty();
-				$('#txtTruckWeight').empty();
-				$('#txtTruckCapacity').empty();
+		    	var arrResult = JSON.parse(result);
+		    	$('#position').empty();
+			    $("#position").append("<option value=''>------ กรุณาเลือก ------</option>");
 
-		    	var detailTruck = jQuery.parseJSON(result);
-		    	for (var x in detailTruck['weightcapacity']) {
-					$('#txtTruckType').append('<input type="text" value=" '+detailTruck['trucktype'][x]+' ">');
-					$('#txtTruckName').append('<input type="text" value=" '+detailTruck['name'][x]+' ">');
-					$('#txtFuel').append('<input type="text" value=" '+detailTruck['fuel'][x]+' ">');
-					$('#txtTruckWeight').append('<input type="text" value=" '+detailTruck['truckweight'][x]+' ">');
-					$('#txtTruckCapacity').append('<input type="text" value=" '+detailTruck['weightcapacity'][x]+' ">');	
-					$('#txtTruckID').append('<input type="text" id="hiddenTruckID" name="hiddenTruckID" value=" '+detailTruck['ID'][x]+' ">');	
-
+		    	for (x in arrResult.ID) {
+				    $("#position").append("<option value='"+arrResult.ID[x]+"'>"+arrResult.name[x]+"</option>");
 				}
+
 				$('#row-truck').show();
 				
 		    }
@@ -97,6 +88,8 @@ $( document ).ready(function() {
 		if ($('#txtWeightProduct').val() > 0) {
 			$('#truckInfo').show();
 			$('#btnCF').prop("disabled", false);
+			$('#rdoDate1').trigger('click');
+
 		} else {
 			$('#truckInfo').hide();
 			$('#btnCF').prop("disabled", true);
@@ -142,4 +135,31 @@ $( document ).ready(function() {
 	    });
 	});
 
+	$('#position').change(function () {
+
+		var truckDetail = $('#position').val(); 
+		$.ajax({
+			url: "searchTruck.php", 
+			method: "GET",
+			data: { 
+				truckDetail : truckDetail 
+			},
+			success: function(result){
+				$('#txtTruckType').empty();
+				$('#txtFuel').empty();
+				$('#txtTruckWeight').empty();
+				$('#txtTruckCapacity').empty();
+			
+		    	var detailTruck = jQuery.parseJSON(result);
+		    	for (var x in detailTruck['weightcapacity']) {
+					$('#txtTruckType').append('<input type="text" value=" '+detailTruck['trucktype'][x]+' ">');
+					$('#txtFuel').append('<input type="text" value=" '+detailTruck['fuel'][x]+' ">');
+					$('#txtTruckWeight').append('<input type="text" value=" '+detailTruck['truckweight'][x]+' ">');
+					$('#txtTruckCapacity').append('<input type="text" value=" '+detailTruck['weightcapacity'][x]+' ">');	
+					$('#txtTruckID').append('<input type="text" id="hiddenTruckID" name="hiddenTruckID" value=" '+detailTruck['ID'][x]+' ">');	
+
+				}
+			}
+		});
+	});
 });

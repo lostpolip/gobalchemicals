@@ -56,8 +56,10 @@ $( document ).ready(function() {
 		});
 		if (count==0) {
 				$('#btnCalculator').prop("disabled",false);
+				
 			} else {
 				$('#btnCalculator').prop("disabled",true);
+				
 			}
 		
 	});
@@ -109,7 +111,7 @@ $( document ).ready(function() {
 		$('#hiddenExpensesPerAround').val(ExpensesPerAround);
 
 
-
+		$('#btnCF').prop("disabled",false);
 
 	});
 

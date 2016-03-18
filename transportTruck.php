@@ -7,12 +7,9 @@
 	    while($row = mysqli_fetch_assoc($result)) {
 			        $TruckID[$i] = $row["TruckID"];
 			        $TruckName[$i] = $row["TruckName"];
-			        $TruckTypeID[$i] = $row["TruckTypeID"];
-			        $FuelID[$i] = $row["FuelID"];
-			        $TruckWeight[$i] = $row["TruckWeight"];
-			        $WeightQuantity[$i] = $row["WeightQuantity"];
 			        $WeightCapacity[$i] = $row["WeightCapacity"];
-			        $StateTruck[$i] = $row["StateTruck"];
+			       
+
 			        $i++;
 	    }
 	}
@@ -20,11 +17,9 @@
 	$Truck = [
 		'ID'	=> $TruckID,
 		'name'	=> $TruckName,
-		'trucktype'	=> $TruckTypeID,
-		'fuel'	=> $FuelID,
-		'truckweight'	=> $TruckWeight,
-		'weightcapacity'	=> $WeightCapacity,
+		'weightcapacity' => $WeightCapacity,
 	];
+
 	echo json_encode($Truck);
 
 ?>

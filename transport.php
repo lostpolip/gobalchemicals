@@ -240,30 +240,57 @@
 								<br>
 
 								<div id="truckInfo">
+                         		<label id="title">ช่วงเวลาเดินทาง</label>
+		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" class="time" required>
+			                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
+									<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" class="time" required>
+									<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
+								<br>
+
+								
 								<label id="title">รถบรรทุก</label>
 								<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
 									<input id="txtTruck" readonly>
                                 	<label id="labelWeight">ตัน</label>
+                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                	<label id="label">หมายเลขทะเบียน :</label> 
+		                                	<select id="position" name="positionEmployee">
+											  <option value="" >------ กรุณาเลือก ------</option>
+                                	 			<?php
+                        							for($p=0;$p<$ddPosition;$p++){ 
+                        						?>	
+                                					<option value="<?php echo $PositionID[$p]; ?>"><?php echo $PositionName[$p]; ?></option>
+                                				<?php
+                        							}
+                        						?>
+											</select> 
 									</td>
 								</tr>
+
 								<br>
 								<table id="table" width="100%">
 									<tr id="row-truck">
 		                                <td>
 		                                	<input type="hidden" id="txtTruckID" >
+
 		                                	<label id="label">ประเภทรถบรรทุก:</label>	
 		                                	<label id="txtTruckType" name="txtTruckType"></label>
+
 		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<label id="label">หมายเลขทะเบียน :</label> 
-		                                	<label id="txtTruckName" name="txtTruckName" ></label>
 	                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 		                                	<label id="label">เชื้อเพลิง :</label> 
 		                                	<label id="txtFuel" name="txtFuel" ></label>
+
 											<br>
+
 		                                	<label id="label">น้ำหนักรถ:</label>	
 		                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
+
 		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 		                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
 		                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
 		                                	<label id="labelWeight">ตัน</label>
@@ -271,12 +298,6 @@
 		                                </td>
 	                            	</tr>
                             	</table>
-                          		<label id="title">ช่วงเวลาเดินทาง</label>
-		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" required>
-			                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
-									<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" required>
-									<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
 
 								<br>	
                             	<label id="title">พนักงานขับ</label>
