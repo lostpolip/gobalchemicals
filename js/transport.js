@@ -64,6 +64,8 @@ $( document ).ready(function() {
 		}else{
 			$('#txtTruck').val('2');
 		}
+
+
 		var truckWeight = $('#txtTruck').val();
 		$.ajax({
 			url: "transportTruck.php", 
@@ -95,6 +97,7 @@ $( document ).ready(function() {
 			$('#btnCF').prop("disabled", true);
 		}
 	});
+
 
 
 	$("input[name='rdoDate']").change(function(){

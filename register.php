@@ -55,12 +55,12 @@ header('Access-Control-Request-Headers: x-requested-with');
                         	<tr>
                                 <td><label><span class="red-star">* </span>ชื่อผู้ใช้งาน :</label></td>
                                 <td>
-                                    <input type="text" id="txtUsername" name="txtUsername"placeholder="สำหรับเป็น Login" required></td>
+                                    <input type="text" id="txtUsername" name="txtUsername"placeholder="สำหรับเป็น Login" ></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">* </span>รหัสผ่าน:</label></td>
-                                <td><input type="password" id="txtPassword" name="txtPassword" placeholder="a-z หรือ A-Z หรือ 0-9" required></td>
+                                <td><input type="password" id="txtPassword" name="txtPassword" placeholder="a-z หรือ A-Z หรือ 0-9" ></td>
                             </tr>
           
                             <tr> <td>&nbsp;</td></tr>  
@@ -70,12 +70,12 @@ header('Access-Control-Request-Headers: x-requested-with');
                             </tr> -->
                             <tr>
                                 <td><label>ชื่อบริษัท :</label></td>
-                                <td><input id="txtName" name="txtName"required></td>
+                                <td><input id="txtName" name="txtName"></td>
                             </tr>
 
                             <tr>
                                 <td><label><span class="red-star">* </span>ที่อยู่ เลขที่:</label></td>
-                                <td><input type="text" id="txtAddress" name="txtAddress" required></td>
+                                <td><input type="text" id="txtAddress" name="txtAddress" ></td>
                             </tr>
 
                             <tr>
@@ -147,7 +147,7 @@ header('Access-Control-Request-Headers: x-requested-with');
 
                             <tr>
                                      <td><a href="index.html"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
-                                     <td><button type="button" id="btnCF">บันทึก</button></td>
+                                     <td><button type="button" id="btnCF" disabled>บันทึก</button></td>
                                    
                             </tr>
 

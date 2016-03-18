@@ -127,7 +127,7 @@
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
 												<li ><a href="transport.php">จัดเส้นทาง</a></li>
-												<li ><a href="#">ใบส่งสินค้า</a></li>
+												<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
 
 										</ul>
 			                        </li>
@@ -135,7 +135,7 @@
 									<li ><a href="#">สรุปรายงาน</a>
 			                            <ul>
 											<li><a href="reportAll.php">รายงานรายได้</a></li>
-											<li><a href="#">รายงานค่าใช้จ่าย</a></li>
+											<li><a href="reportExpensesAll.php">รายงานค่าใช้จ่าย</a></li>
 											
 									  </ul>
 									</li>

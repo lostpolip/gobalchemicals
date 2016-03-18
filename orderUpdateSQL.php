@@ -12,8 +12,8 @@
 			        $i++;
 			    }
 			}
-	$orderid = explode(',',$_REQUEST['orderIdAll']);
-	$totalunit = explode(',',$_REQUEST['totalUnit']);
+	$orderid = explode(',',$_REQUEST['hiddenProductId']);
+	$totalunit = explode(',',$_REQUEST['uniteachproduct']);
 	foreach ($orderid as $key => $value) {
 		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
 

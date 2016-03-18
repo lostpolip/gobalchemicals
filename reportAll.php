@@ -100,15 +100,15 @@
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
 												<li ><a href="transport.php">จัดเส้นทาง</a></li>
-												<li ><a href="#">ใบส่งสินค้า</a></li>
-												<li ><a href="expensiveRoutting.php">ค่าใช้จ่าย</a></li>
+												<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
+
 										</ul>
 			                        </li>
 			                        
 									<li ><a href="#">สรุปรายงาน</a>
 			                            <ul>
-											<li><a href="#">รายงานรายได้</a></li>
-											<li><a href="#">รายงานค่าใช้จ่าย</a></li>
+											<li><a href="reportAll.php">รายงานรายได้</a></li>
+											<li><a href="reportExpensesAll.php">รายงานค่าใช้จ่าย</a></li>
 											
 									  </ul>
 									</li>
@@ -135,6 +135,18 @@
     			</tr>
     			<br>
 			<canvas id="myChart" width="800" height="400"></canvas>
+			<br>
+			<br>
+			<div id="total">
+				<td><label>ราคาขาย :</label>
+					<label id="labelPrice"></label>
+				</td> 
+				<td><label >ราคาทุน :</label>
+					<label id="labelCost"></label>
+				</td>
+			</div>
+			<br>
+			<br> 
 		</div><!--end of tooplate_main-->
  	
 

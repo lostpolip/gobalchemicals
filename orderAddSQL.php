@@ -2,6 +2,25 @@
 	session_start();
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
+		$result = $dbManagement->select("SELECT * FROM product ");
+		$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			        $ProductID[$i] = $row["ProductID"];
+			        $ProductAmount[$i] = $row["ProductAmount"];
+			        $i++;
+			    }
+		}
+
+	$orderid = explode(',',$_REQUEST['hiddenProductId']);
+	$totalunit = explode(',',$_REQUEST['hiddenEachUnit']);
+	foreach ($orderid as $key => $value) {
+		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
+		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
+		}
+	 
+
+
 	$orderID = $_REQUEST['hiddenProductId'];
 	$orderId = $_REQUEST['hiddenOrderID'];
 	$orderIDArray = explode(',',$orderID);

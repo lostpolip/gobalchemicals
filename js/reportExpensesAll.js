@@ -1,4 +1,6 @@
 $( document ).ready(function() {
+	$('#total').hide();
+	
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
@@ -11,7 +13,15 @@ $( document ).ready(function() {
 			},
 			success: function(result){
     			var date = jQuery.parseJSON(result).date.split(',');
-    			var expenses = jQuery.parseJSON(result).expenses.split(',');	
+    			var expenses = jQuery.parseJSON(result).expenses.split(',');
+    			var totalExpenses = 0;
+				for (var i = 0; i < expenses.length; i++) {
+				    totalExpenses += parseInt(expenses[i]);
+				}
+
+				$('#labelPrice').text(totalExpenses);
+				$('#total').show();	
+
 				var ctx = $("#myChart").get(0).getContext("2d");
 			    var data = {
 			    	multiTooltipTemplate: "85858",
@@ -27,16 +37,6 @@ $( document ).ready(function() {
 				            pointHighlightStroke: "rgba(220,220,220,1)",
 				            data: expenses,
 				        },
-				        // {
-				        //     label: "out",
-				        //     fillColor: "rgba(208, 207, 96, 0.7)",
-				        //     strokeColor: "rgba(220,220,220,1)",
-				        //     pointColor: "rgba(208, 0, 55, 0.7)",
-				        //     pointStrokeColor: "#fff",
-				        //     pointHighlightFill: "#fff",
-				        //     pointHighlightStroke: "rgba(220,220,220,1)",
-				        //     data: cost
-				        // }
 
 				    ]
 				};

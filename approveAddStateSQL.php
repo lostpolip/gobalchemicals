@@ -19,7 +19,7 @@
 
 	}	
 
-	$dbManagement->update("UPDATE claim SET StateClaim='confirm' WHERE ClaimID='".$_REQUEST['claimId']."'");
+	$dbManagement->update("UPDATE claim SET StateClaim='complete' WHERE ClaimID='".$_REQUEST['claimId']."'");
 
 		header( "location: /gobalchemicals/approveClaim.php" );
 ?>

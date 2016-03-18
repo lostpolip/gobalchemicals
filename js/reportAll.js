@@ -1,4 +1,6 @@
 $( document ).ready(function() {
+	$('#total').hide();
+
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
@@ -12,7 +14,16 @@ $( document ).ready(function() {
 			success: function(result){
     			var date = jQuery.parseJSON(result).date.split(',');
     			var price = jQuery.parseJSON(result).price.split(',');	
-    			var cost = jQuery.parseJSON(result).cost.split(',');	
+    			var cost = jQuery.parseJSON(result).cost.split(',');
+    			var totalPrice = 0;
+    			var totalCost = 0;
+				for (var i = 0; i < price.length; i++) {
+				    totalPrice += parseInt(price[i]);
+				    totalCost += parseInt(cost[i]);
+				}
+				$('#labelPrice').text(totalPrice);
+				$('#labelCost').text(totalCost);
+				$('#total').show();
 				var ctx = $("#myChart").get(0).getContext("2d");
 			    var data = {
 			    	multiTooltipTemplate: "85858",
@@ -22,17 +33,17 @@ $( document ).ready(function() {
 				            label: "income",
 				            fillColor: "rgba(164, 242, 119, 0.5)",
 				            strokeColor: "rgba(220,220,220,1)",
-				            pointColor: "rgba(215, 145, 6, 0.9)",
+				            pointColor: "#000",
 				            pointStrokeColor: "#fff",
 				            pointHighlightFill: "#fff",
 				            pointHighlightStroke: "rgba(220,220,220,1)",
 				            data: price,
 				        },
 				        {
-				            label: "out",
+				            label: "outcome",
 				            fillColor: "rgba(208, 207, 96, 0.7)",
 				            strokeColor: "rgba(220,220,220,1)",
-				            pointColor: "rgba(208, 0, 55, 0.7)",
+				            pointColor: "#fff",
 				            pointStrokeColor: "#fff",
 				            pointHighlightFill: "#fff",
 				            pointHighlightStroke: "rgba(220,220,220,1)",
@@ -53,23 +64,4 @@ $( document ).ready(function() {
 		});
 	});
 
-	// var ctx = $("#myChart").get(0).getContext("2d");
- //    var data = {
-	//     labels: date,
-	//     datasets: [
-	//         {
-	//             label: "My First dataset",
-	//             fillColor: "rgba(220,220,220,0.2)",
-	//             strokeColor: "rgba(220,220,220,1)",
-	//             pointColor: "rgba(220,220,220,1)",
-	//             pointStrokeColor: "#fff",
-	//             pointHighlightFill: "#fff",
-	//             pointHighlightStroke: "rgba(220,220,220,1)",
-	//             data: income
-	//         },
-
-	//     ]
-	// };
-
- //    var myNewChart = new Chart(ctx).Line(data);
 });

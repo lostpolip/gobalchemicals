@@ -52,6 +52,19 @@ $( document ).ready(function() {
 			}
 		});
 	
+		if($('#txtUsername').val() =='') {
+	    	alert('กรณากรอกชื่อผู้ใช้งาน');
+	    	return false;
+		}
+		if($('#txtName').val() =='') {
+	    	alert('กรณากรอกชื่อบริษัท');
+	    	return false;
+		}
+		if($('#txtAddress').val() =='') {
+	    	alert('กรณากรอกที่อยู่');
+	    	return false;
+		}
+	
 		alert('สมัครสมาชิกเรียบร้อยแล้วค่ะ');
 	});
 	
@@ -127,7 +140,26 @@ $( document ).ready(function() {
 
 
 
-
+	$('#txtUsername').change(function(){
+		var name =$('#txtUsername').val();
+		$.ajax({
+			url: "searchUsername.php", 
+			method: "GET",
+			data: { 
+				name : name 
+			},
+			success: function(result){
+				console.log(result);
+				if (result==1) {
+					alert('duplicate name');
+					$('#btnCF').prop("disabled",true);
+				}else{
+					$('#btnCF').prop("disabled",false);
+				}
+			}
+			
+		});
+	});
 });
 
 

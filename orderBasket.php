@@ -189,14 +189,18 @@
                         		$ExtendedPrice = 0;
                         		$unitProduct = 0;
                         		$productIdAll = '';
+                        		$uniteachproduct='';
                         		foreach ($orderId as $key => $value) {
                         			$totalPrice = $totalPrice+$_REQUEST["hiddentotalPriceOrder$value"];
                         			$totalCost = $totalCost+$_REQUEST["hiddentotalCostOrder$value"];
                         			$unitProduct = $unitProduct+$_REQUEST["hiddenProductOrder$value"];
                         			if ($key == 0) {
                         				$productIdAll = $productIdAll.$value;
+                        				$uniteachproduct=$uniteachproduct.$_REQUEST["hiddenProductOrder$value"];
                         			} else {
                         				$productIdAll = $productIdAll.','.$value;
+                        				$uniteachproduct=$uniteachproduct.','.$_REQUEST["hiddenProductOrder$value"];
+
                         			}
                         	?>
                         	<tr id="orderList">
@@ -215,10 +219,11 @@
                         		<input type="hidden" name="<?php echo 'hiddenTotalCost'.$value ?>" value="<?php echo $_REQUEST["hiddentotalCostOrder$value"] ?>">
                         		<input type="hidden" name="hiddenUnitProductAll" value="<?php echo $unitProduct ?>">
                         		<input type="hidden" name="hiddenTotalCostAll" value="<?php echo $totalCost ?>">
-
+                        		<input type="hidden" name="hiddenEachUnit" value="<?php echo $uniteachproduct ?>"></input>
                         	</tr>
                         	<?php
                         		}
+
                         		$vat = $totalPrice*7/100;
                         		for ($x=0; $x < $r ; $x++) { 
 									if ($unitProduct<=$WeightOfProduct[$x]) {
