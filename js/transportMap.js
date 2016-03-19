@@ -93,22 +93,22 @@ $( document ).ready(function() {
 		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 		var ExpensesPerAround = ExpensesPerDay;
 
-		$('#DepreciationMonth').text(DepreciationMonth);
-		$('#DepreciationDay').text(DepreciationDay);
+		$('#DepreciationMonth').text(formatNumber(DepreciationMonth));
+		$('#DepreciationDay').text(formatNumber(DepreciationDay));
 		$('#LoborExpMonth').text(LaborExpMonth);
 		$('#LoborExpDay').text(LaborExpDay);
-		$('#FixedcostsDay').text(FixedcostsDay);
-		$('#FixedcostsMonth').text(FixedcostsMonth);
-		$('#FixedcostsAround').text(FixedcostsAround);
+		$('#FixedcostsDay').text(formatNumber(FixedcostsDay));
+		$('#FixedcostsMonth').text(formatNumber(FixedcostsMonth));
+		$('#FixedcostsAround').text(formatNumber(FixedcostsAround));
 
-		$('#FuelCost').text(FuelCost);
+		$('#FuelCost').text(formatNumber(FuelCost));
 		$('#MaintenanceCost').text(MaintenanceCost);
 		$('#ExpensesAllKm').text(ExpensesAllKm);
 
-		$('#ExpensesPerDay').text(ExpensesPerDay);
-		$('#ExpensesPerAround').text(ExpensesPerAround);
-		$('#hiddenExpensesPerDay').val(ExpensesPerDay);
-		$('#hiddenExpensesPerAround').val(ExpensesPerAround);
+		$('#ExpensesPerDay').text(formatNumber(ExpensesPerDay));
+		$('#ExpensesPerAround').text(formatNumber(ExpensesPerAround));
+		$('#hiddenExpensesPerDay').val(formatNumber(ExpensesPerDay));
+		$('#hiddenExpensesPerAround').val(formatNumber(ExpensesPerAround));
 
 
 		$('#btnCF').prop("disabled",false);
@@ -122,3 +122,8 @@ $( document ).ready(function() {
 
 
 });
+
+var formatNumber = function(temp) {
+	var temp = temp.toFixed(2);
+	return parseFloat(temp);
+}

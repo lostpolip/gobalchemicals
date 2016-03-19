@@ -260,7 +260,7 @@
 											</select> 
 									</td>
 								</tr>
-
+								<div id="truckDetail">
 								<br>
 								<table id="table" width="100%">
 									<tr id="row-truck">
@@ -309,7 +309,7 @@
 		                       			 </td>	
 		                       		</tr>
 		                       	</table>
- 
+ 							</div>
 
 
 	                            <br>

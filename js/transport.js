@@ -41,6 +41,7 @@ $( document ).ready(function() {
 	$('#row-truck').hide();
 	$('#row-employee').hide();
 	$('#truckInfo').hide();
+	$('#truckDetail').hide();
 
 	$("input[name='destination[]'").on('change', function() {
 		var sum = 0;
@@ -115,6 +116,7 @@ $( document ).ready(function() {
 			datetransport : $('#txtDateTransport').val(),
 		},
 		success: function(result){
+
 			id = jQuery.grep(jQuery.parseJSON(result).id, function(n, i){
 			  return (n !== "" && n != null);
 			});
@@ -134,11 +136,54 @@ $( document ).ready(function() {
 			    }));
 			});
 
-			}
-	    });
+
+
+		}
+    });
+
+    $.ajax({
+		url: "truckRequestDetail.php", 
+		method: "GET",
+		data: { 
+			timeaction : $("input[name='rdoDate']:checked").val(),
+			datetransport : $('#txtDateTransport').val(),
+		},
+		success: function(result2){
+			var unavailableCar = jQuery.parseJSON(result2);
+			console.log(unavailableCar);
+			$("#position option").each(function()
+			{
+			    console.log($(this).val());
+        		if (!jQuery.inArray($(this).val(),unavailableCar)) {
+	    			$(this).prop('disabled', true);
+			   	 	
+	    		} else {
+	    			$(this).prop('disabled', false);
+	    		}
+			});
+			// $("#position").append("<option value=''>------ กรุณาเลือก ------</option>");
+
+	  //   	for (x in arrResult.ID) {
+	  //   		// console.log(arrResult.ID[x]);
+	  //   		// console.log(unavailableCar);
+	  //   		if (jQuery.inArray(arrResult.ID[x],unavailableCar)) {
+			//    	 	$("#position").append("<option value='"+arrResult.ID[x]+"'>"+arrResult.name[x]+"</option>");
+	  //   		} else {
+	  //   			$("#position").append("<option value='"+arrResult.ID[x]+"' disabled>"+arrResult.name[x]+"</option>");
+	  //   		}
+			// }
+
+			$('#row-truck').show();
+
+    			}
+    });
+
+
 	});
 
 	$('#position').change(function () {
+		
+		$('#truckDetail').show();
 
 		var truckDetail = $('#position').val(); 
 		$.ajax({
