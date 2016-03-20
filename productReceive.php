@@ -146,7 +146,9 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM productreceive");
+			$result = $dbManagement->select("SELECT * FROM productreceive
+											ORDER BY ReceiveID
+											");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {

@@ -12,6 +12,11 @@ var orderId = $('#orderID').val();
 	    	alert('กรุณากรอกจำนวนเป็นตัวเลข');
 	    	return false;
 		}
+		
+		if($('#txtClaimDetail').val() =='') {
+	    	alert('กรณากรอกรายละเอียดสินค้าเคลม');
+	    	return false;
+		}
 	});
 
 

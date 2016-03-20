@@ -359,13 +359,13 @@
 				                <div class="ExpensesAll">
 		                        	<p>ค่าใช้จ่าย</p>
 		                        	 <table id="table" style="width: 100%">
-			                            <tr> 
+<!-- 			                            <tr> 
 			                            	<td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
 			                            		<label id="ExpensesPerDay"></label>
 			                            		<input type="hidden" id="hiddenExpensesPerDay" name="hiddenExpensesPerDay" value="0" >
 			                            		<label>บาท</label>
 			                            	</td>
-			                            </tr>
+			                            </tr> -->
 			                            <tr> 
 			                            	<td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
 			                            		<label id="ExpensesPerAround"></label>
@@ -421,8 +421,8 @@
 			        var directionsService = new google.maps.DirectionsService;
 			        var directionsDisplay = new google.maps.DirectionsRenderer;
 			        var map = new google.maps.Map(document.getElementById('map'), {
-			          zoom: 13,
-			          center: {lat: 13.7627284, lng: 100.5349091}
+			          zoom: 18,
+			          center: {lat: 13.922080715335339, lng: 100.46815484762192}
 			        });
 			        directionsDisplay.setMap(map);
 

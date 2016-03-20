@@ -52,7 +52,6 @@
                 <tr>
                     <th>รหัสสินค้า</th>
                     <th>ชื่อสินค้า</th>
-                    <th>จำนวนที่สั่งซื้อ</th>
                     <th>จำนวนสินค้าชำรุด</th>
                     <th>รายละเอียดเพิ่มเติม</th>
  
@@ -68,8 +67,7 @@
                 <tr>
                     <td id="productid"><?php echo $ProductID[$j]; ?></td>
                     <td id="productname"><?php echo $ProductName[$j]; ?></td>
-                        <input type="hidden" id="<?php echo 'productID'. $ProductID[$j]; ?>" name="<?php echo 'productID'. $ProductID[$j]; ?>" value="<?php echo $ProductID[$j]; ?>">
-                    <td id="orderamount"><?php echo $OrderAmount[$j]; ?></td>
+                        <input type="hidden" id="<?php echo 'productID'. $ProductID[$j]; ?>" name="<?php echo 'productID'. $ProductID[$j]; ?>" value="<?php echo $ProductID[$j]; ?>">                                                                                                                                                        
                     <td id="claimamount"><input id="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimAmount'. $ProductID[$j]; ?>"></td>
                     <td><textarea id="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>" name="<?php echo 'txtClaimDetail'. $ProductID[$j]; ?>"></textarea></td>
 

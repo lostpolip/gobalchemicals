@@ -130,4 +130,27 @@ $( document ).ready(function() {
 		});
 	});
 
+
+	$('#txtUsername').change(function(){
+		var nameEm =$('#txtUsername').val();
+		$.ajax({
+			url: "searchEmployeeUsername.php", 
+			method: "GET",
+			data: { 
+				nameEm : nameEm 
+			},
+			success: function(result){
+				// console.log(result);
+				if (result==1) {
+					alert('ชื่อผู้ใช้งานนี้ซ้ำ');
+					$('#btnCF').prop("disabled",true);
+				}else{
+					$('#btnCF').prop("disabled",false);
+				}
+			}
+			
+		});
+	});
+
+
 });

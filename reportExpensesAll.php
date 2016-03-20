@@ -47,7 +47,26 @@
 		})
 
 	</script>
-
+	<style>
+		a.alert {
+			display: inline-block;
+			position: relative;
+		    padding: 2px 0px 0 4px;
+		}
+		span.alert {
+		    position: absolute;
+		    padding: 1px;
+		    top: 0px;
+		    color: white;
+		    background-color: red;
+		    font-size: 12px;
+		    border-radius: 25px;
+		    height: auto;
+		    width: auto;
+		    left: 28px;
+		    display: none;
+		}
+	</style>
 
 	</head>
 	<body>
@@ -58,11 +77,16 @@
                     	<div id="tooplate_user">
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
-                        <div id="imageMenuOrder">
+                         <div id="imageMenuOrder" style="">
 
-							<a href="approveClaim.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder"></a>
-                            <a href="approveOrder.php"><input type="image" src="images/claim.png" alt="Submit" id="menu0rder"></a>
-                        </div>
+							<a href="approveClaim.php" class="alert">
+								<input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
+								<span class="alert" id="txtClaim"></span>
+							</a>
+                            <a class="alert" href="approveOrder.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder">
+                            	<span class="alert" id="txtOrder"></span>
+                            </a>
+                        </div>	
 
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
@@ -138,8 +162,9 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label>ราคาขาย :</label>
-					<label id="labelPrice"></label>
+				<td><label style="font-size: 24px; margin-left: 370px;">ราคาขาย :</label>
+					<label id="labelPrice" style="font-size: 22px;"></label>
+					<label style="font-size: 24px;">บาท</label>
 				</td> 
 			</div>
 			<br>

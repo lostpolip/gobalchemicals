@@ -3,6 +3,11 @@
 	if(!isset($_SESSION['EmployeeName'])){
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
+
+	if (!($_SESSION['PositionID'] == 4|| $_SESSION['PositionID'] == 1)) {
+		header( "location: /gobalchemicals/permission.php" );
+
+	}
 ?>
 <!DOCTYPE html>
 
@@ -14,19 +19,16 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/reportAll.css" rel="stylesheet" type="text/css" />
+		<link href="css/billTransport.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/approveOrder.js"></script>
-		<script type="text/javascript" src="js/chart.min.js"></script>
-		<script type="text/javascript" src="js/reportAll.js"></script>
-		
-		
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/claimList.js"></script>
+
 
 		<script language="javascript" type="text/javascript">
 		function clearText(field)
@@ -68,18 +70,17 @@
 		    display: none;
 		}
 	</style>
-	
 
 	</head>
 	<body>
-
 			<div id="tooplate_body_wrapper">
-				<div id="tooplate_wrapper">
+				<div id="tooplate_wrapper">	
 					<div id="tooplate_header">	
                     	<div id="tooplate_user">
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
-                         <div id="imageMenuOrder" style="">
+
+                       <div id="imageMenuOrder" style="">
 
 							<a href="approveClaim.php" class="alert">
 								<input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
@@ -88,11 +89,11 @@
                             <a class="alert" href="approveOrder.php"><input type="image" src="images/order.png" alt="Submit" id="menu0rder">
                             	<span class="alert" id="txtOrder"></span>
                             </a>
-                        </div>	
-
+                        </div>
+                        		
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
-						  		<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
+		  							<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
 							</div>
 					  </div>						
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
@@ -100,17 +101,18 @@
 								<ul >
 									<li><a href="#">จัดการข้อมูล</a>
 				                        <ul>
-												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
+												<li><a href="product.php">ข้อมูลสินค้า</a></li>
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
 												<li><a href="employee.php">ข้อมูลพนักงาน</a></li>
 				                                <li><a href="truck.php">ข้อมูลรถ</a></li>
 										</ul>
 			                        </li>
 									
-									<li><a href="#">ตรวจสอบข้อมูล</a>
+									<li><a href="#" class="selected">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
+												<li><a href="paymentCustomer.php">การชำระเงิน</a></li>
 												
 										</ul>
 			                        </li>
@@ -145,44 +147,93 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 
-		<input type="hidden" id="OrderDate" value="<?php echo $OrderDate; ?>"></input>
-		<input type="hidden" id="ExtendedPrice" value="<?php echo $ExtendedPrice; ?>"></input>
+		<?php
+			require 'dbManagement.php';
+			$dbManagement = new dbManagement();
+			$result = $dbManagement->select("SELECT * FROM orders
+											JOIN customer ON customer.CustomerID=orders.CustomerID
+											WHERE StatePayment = 'waitingConfirm'
+											");
 
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$OrderID[$i] = $row["OrderID"];
+			    	$CustomerID[$i] = $row["CustomerID"];
+			        $CustomerName[$i] = $row["CustomerName"]; 
+			        $CustomerTel[$i] = $row["CustomerTel"]; 
+			        $CustomerEmail[$i] = $row["CustomerEmail"]; 
+			        $i++;
+			    }
+			}
+		?>
+	
 		<div id="tooplate_main">
-				<td><label id="labelTittle">รายงานรายได้</label></td>
-				<br>		
-			    <tr>
-			    	<td><label id="labelDate">วันที่ :</label></td>
-                    <td><input type="date" id="startDate" name="startDate"></td>
-                    <td><label id="labelDate1">ถึง</label></td>
-			    	<td><label id="labelDate1">วันที่ :</label></td> 
-                    <td><input type="date" id="endDate" name="endDate"></td>
-                    <td><button type="button" id="btnView" class="btn btn-primary">view</button></td>
-    			</tr>
-    			<br>
-			<canvas id="myChart" width="800" height="400"></canvas>
-			<br>
-			<br>
-			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px;">ราคาขาย :</label>
-					<label id="labelPrice" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
-				</td> 
-				<br>
-				<td><label style="font-size: 24px; margin-left: 370px;">ราคาทุน :</label>
-					<label id="labelCost" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
-				</td>
-			</div>
-			<br>
-			<br> 
-		</div><!--end of tooplate_main-->
- 	
+			<div class="col_fw_last">
+				<div class="col_w630 float_l">
+					<form action="paymentUpdateState.php">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+						    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการชำระเงิน</a></li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+						    <div role="tabpanel" class="tab-pane active">
+						    	<br>
+
+						    	<table id="table2" width="100%">
+
+
+			                        	<tr>
+			                        		<th>เลขที่ใบสั่งซื้อ</th>
+			                        		<th>ชื่อลูกค้า</th>
+			                        		<th>เบอร์โทรศัพท์</th>
+			                                <th>ชำระเงิน</th>
+			                                <th>คำสั่ง</th>
+			                        	</tr>
+
+			                        	
+						    			<?php
+			                        		for($j=0;$j<$i;$j++){ 
+			                   			 ?>	
+
+			                        	<tr>
+			                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+			                        			<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[$j]; ?>">
+			                       
+
+			                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
+			                        			<input type="hidden" id="paymentCustomerID" name="paymentCustomerID" value="<?php echo $CustomerID[$j]; ?>">	
+			                        	
+
+			                        		<td id="customertel"><?php echo $CustomerTel[$j]; ?></td>
+			                        		<td>
+			                        			 <select id="payment" name="paymentType">
+													  <option value="" >------ กรุณาเลือก ------</option>
+												      <option value="approve">ชำระเงินแล้ว</option>
+												      <option value="nonapprove">ไม่ชำระเงิน</option>
+												</select> 
+			                        		</td>
+			                        		<td id="btn">
+			                        			<button type="submit" id="btnCF" name="btnCF">อัพเดท</button></td>
+
+			                        	</tr>
+			                        	<?php
+			                        		}
+			                    		?> 
+								</table> 
+						    </div><!--- แจ้งซื้อสินค้า -->
+	                    </div>
+	                </form>
+				</div>
+			</div>   
+		</div>
+
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
-					Copyright © 2016 &nbsp;&nbsp;The GobalChemicals CO.,LTD.
-				<div class="cleaner"></div><!--end of tooplate_footer-->
+					Copyright © 2016 <a href="#">The GobalChemicals CO.,LTD.</a>
 			</div><!--end of tooplate_footer-->
 		</div> <!--end of tooplate_footer_wrapper-->
 

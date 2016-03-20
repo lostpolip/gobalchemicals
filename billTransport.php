@@ -178,7 +178,7 @@
 
 					 <!-- Nav tabs -->
 					  <ul class="nav nav-tabs" role="tablist">
-					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการการเคลมสินค้า</a></li>
+					    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการส่งสินค้า</a></li>
 					  </ul>
 					  <!-- Tab panes -->
 					  <div class="tab-content">

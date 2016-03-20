@@ -11,27 +11,8 @@ $( document ).ready(function() {
 
 	    	return false;
 		}
-		var customerName = $('#txtName').val().trim();
-		var address = $('#txtAddress').val().trim();
-		var province = $('#province option:selected').text().trim();
-		var district = $('#txtDistrict option:selected').text().trim();
-		var supDistrict = $('#txtSubDistrict option:selected').text().trim();
-		var zipCode = $('#txtZipcode option:selected').text().trim();
-		var locationAddress=province+'+'+district+'+'+supDistrict+'+'+zipCode;
-		$.ajax({
-			url: "https://maps.googleapis.com/maps/api/geocode/json", 
-			method: "GET",
-			crossDomain: true,
-			data: { 
-				address : locationAddress,
-				zoom : 13,
-				key : 'AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8',
-			},
-			success: function(result){
-				var lat = result.results[0].geometry.location.lat;
-				var lng = result.results[0].geometry.location.lng;
-				$('#txtLatitude').val(lat);
-				$('#txtLongitude').val(lng);
+				var lat = $('#lat_value').val();
+				var lng = $('#lon_value').val();
 	
 				$.ajax({
 					url: "https://maps.googleapis.com/maps/api/distancematrix/json", 
@@ -49,9 +30,7 @@ $( document ).ready(function() {
 						$( "#registerAddForm" ).submit();
 					}
 				});
-			}
-		});
-	
+
 		if($('#txtUsername').val() =='') {
 	    	alert('กรณากรอกชื่อผู้ใช้งาน');
 	    	return false;
@@ -151,7 +130,7 @@ $( document ).ready(function() {
 			success: function(result){
 				console.log(result);
 				if (result==1) {
-					alert('duplicate name');
+					alert('ชื่อผู้ใช้งานนี้ซ้ำ');
 					$('#btnCF').prop("disabled",true);
 				}else{
 					$('#btnCF').prop("disabled",false);

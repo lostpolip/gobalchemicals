@@ -266,7 +266,7 @@
 
                             <tr>
                             		<td><a href="employee.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
-                                    <td><button type="submit" id="btnCF">บันทึก</button></td>
+                                    <td><button type="submit" id="btnCF" disabled>บันทึก</button></td>
                                     
                             </tr>
 

@@ -115,6 +115,14 @@
 												
 										</ul>
 			                        </li>
+			                        
+			                        <li><a href="#">คลังสินค้า</a>
+										<ul>
+											<li><a href="productReceive.php">รับสินค้า</a></li>
+											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
+											<li><a href="productStock.php">เช็คสินค้า</a></li>
+									  	</ul>
+									</li>
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
@@ -172,8 +180,8 @@
 			        $OrderDate[$popupOrder] = $row["OrderDate"];
 			        $CustomerID[$popupOrder] = $row["CustomerID"];
 			        $CustomerName[$popupOrder] = $row["CustomerName"];
-			        $Latitude[$popupOrder] = $row["Latitude"];
-			        $Longitude[$popupOrder] = $row["Longitude"];
+			        $latOrder[$popupOrder] = $row["latOrder"];
+			        $lonOrder[$popupOrder] = $row["lonOrder"];
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $popupOrder++;
@@ -205,7 +213,7 @@
 	   								for($j=0; $j<$popupOrder; $j++){
 	   							?>
 	                        	<tr>
-	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $Latitude[$j].','.$Longitude[$j].'&'. $OrderID[$j] ?>" 
+	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $latOrder[$j].','.$lonOrder[$j].'&'. $OrderID[$j] ?>" 
 	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
 	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
