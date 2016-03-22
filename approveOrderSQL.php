@@ -1,6 +1,8 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$dbManagement->update("UPDATE orders SET State='processing' WHERE OrderID='".$_REQUEST['OrderID']."'");
+	$orderSendDate = $_REQUEST['orderDate'];
+	$dbManagement->update("UPDATE orders SET State='processing', OrderSendDate='".$orderSendDate."' WHERE OrderID='".$_REQUEST['Orderid']."'");
+	
 	header( "location: /gobalchemicals/approveOrder.php" );
 ?>

@@ -150,19 +150,17 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM orders
-											JOIN customer ON customer.CustomerID=orders.CustomerID
-											WHERE StatePayment = 'waitingConfirm'
-											");
+			$result = $dbManagement->select("SELECT * FROM  customer ");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
-			    	$OrderID[$i] = $row["OrderID"];
+			    	// $OrderID[$i] = $row["OrderID"];
 			    	$CustomerID[$i] = $row["CustomerID"];
 			        $CustomerName[$i] = $row["CustomerName"]; 
 			        $CustomerTel[$i] = $row["CustomerTel"]; 
 			        $CustomerEmail[$i] = $row["CustomerEmail"]; 
+			        $StateCredit[$i] = $row["StateCredit"]; 
 			        $i++;
 			    }
 			}
@@ -171,10 +169,10 @@
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
-					<form action="paymentUpdateState.php">
+
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-						    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">รายการชำระเงิน</a></li>
+						    <li role="presentation" class="active"><a href="#approveOrder" aria-controls="home" role="tab" data-toggle="tab">การชำระเงิน</a></li>
 						</ul>
 
 						<!-- Tab panes -->
@@ -186,10 +184,10 @@
 
 
 			                        	<tr>
-			                        		<th>เลขที่ใบสั่งซื้อ</th>
+			                        		<!-- <th>เลขที่ใบสั่งซื้อ</th> -->
 			                        		<th>ชื่อลูกค้า</th>
 			                        		<th>เบอร์โทรศัพท์</th>
-			                                <th>ชำระเงิน</th>
+			                        		<th>สถานะการชำระเงิน</th>
 			                                <th>คำสั่ง</th>
 			                        	</tr>
 
@@ -199,24 +197,30 @@
 			                   			 ?>	
 
 			                        	<tr>
-			                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
-			                        			<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[$j]; ?>">
+	<!-- 		                        		<td id="orderid"><?php echo $OrderID[$j]; ?></td>
+			                        			<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[$j]; ?>"> -->
 			                       
 
 			                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
-			                        			<input type="hidden" id="paymentCustomerID" name="paymentCustomerID" value="<?php echo $CustomerID[$j]; ?>">	
-			                        	
+			                        			<input type="hidden" id="paymentCustomerID" name="paymentCustomerID" value="<?php echo $CustomerID[$j]; ?>">
 
+			                        		
+			                        	
 			                        		<td id="customertel"><?php echo $CustomerTel[$j]; ?></td>
-			                        		<td>
-			                        			 <select id="payment" name="paymentType">
+
+			                        		<td id="orderid"><?php echo $StateCredit[$j]; ?></td>
+<!-- 			                        		<td>
+			                        			 <select id="payment" name="<?php echo 'paymentType'.$CustomerID[$j]; ?>">
 													  <option value="" >------ กรุณาเลือก ------</option>
 												      <option value="approve">ชำระเงินแล้ว</option>
 												      <option value="nonapprove">ไม่ชำระเงิน</option>
 												</select> 
-			                        		</td>
+												
+			                        		</td> -->
 			                        		<td id="btn">
-			                        			<button type="submit" id="btnCF" name="btnCF">อัพเดท</button></td>
+			                        			<a href="paymentUpdateApprove.php?CustomerID=<?php echo $CustomerID[$j]; ?>">ล็อคการสั่ง</a>
+			                        			<a href="paymentUpdateNonApprove.php?CustomerID=<?php echo $CustomerID[$j]; ?>">ปลกล็อคการสั่ง</a>
+			                        		</td>
 
 			                        	</tr>
 			                        	<?php
@@ -224,8 +228,7 @@
 			                    		?> 
 								</table> 
 						    </div><!--- แจ้งซื้อสินค้า -->
-	                    </div>
-	                </form>
+	                    </div>   
 				</div>
 			</div>   
 		</div>

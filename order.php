@@ -3,6 +3,10 @@
 	if(!isset($_SESSION['CustomerName'])){
 		header( "location: /gobalchemicals/index.html" );
 	}
+
+	if(!($_SESSION['StateCredit'] == 'unlock')){
+		header( "location: /gobalchemicals/lockUser.php" );
+	}
 ?>
 <!DOCTYPE html>
 

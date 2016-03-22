@@ -19,7 +19,7 @@
 	$newID = $maxID + 1;
 	$newID = 'PO'.$newID;
 
-	$dbManagement->insert("INSERT INTO purchase(PurchaseID, PurchaseDate, SupplierID, ProductID, PurchaseAmount, StatePurchase,PurchaseDetail) VALUES ('".$newID."','".date("Y-m-d")."','".$_REQUEST['supplierId']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtProductAmount']."','processing','".$_REQUEST['txtPurchaseDetail']."')");
+	$dbManagement->insert("INSERT INTO purchase(PurchaseID, PurchaseDate, SupplierID, ProductID, PurchaseAmount, StatePurchase,PurchaseDetail,AmountMinusReceive) VALUES ('".$newID."','".date("Y-m-d")."','".$_REQUEST['supplierId']."','".$_REQUEST['ddProduct']."','".$_REQUEST['txtProductAmount']."','processing','".$_REQUEST['txtPurchaseDetail']."','".$_REQUEST['txtProductAmount']."')");
 
 
 require_once('mail.php');

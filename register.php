@@ -183,7 +183,7 @@ header('Access-Control-Request-Headers: x-requested-with');
                                 var my_DivObj=$("#map_canvas")[0];   
                                 // กำหนด Option ของแผนที่  
                                 var myOptions = {  
-                                    zoom: 13, // กำหนดขนาดการ zoom  
+                                    zoom: 8, // กำหนดขนาดการ zoom  
                                     center: my_Latlng , // กำหนดจุดกึ่งกลาง  
                                     mapTypeId:my_mapTypeId // กำหนดรูปแบบแผนที่  
                                 };  

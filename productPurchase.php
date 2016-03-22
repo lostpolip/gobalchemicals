@@ -159,7 +159,6 @@
 			        $SupplierName[$i] = $row["SupplierName"];
 			        $SupplierEmail[$i] = $row["SupplierEmail"];
 			        $PurchaseAmount[$i] = $row["PurchaseAmount"];
-			        $StateMail[$i] = $row["StateMail"];
 			        $i++;
 			    }
 			}

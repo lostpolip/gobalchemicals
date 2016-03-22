@@ -16,7 +16,8 @@
 	    	$ProductID = $row["ProductID"];
 	    	$ProductName = $row["ProductName"];
             $SupplierName = $row["SupplierName"];
-	    	$SupplierID = $row["SupplierID"];
+            $SupplierID = $row["SupplierID"];
+	    	$AmountMinusReceive = $row["AmountMinusReceive"];
 	    }
 	}else{
         echo('ไม่พบข้อมูลที่ค้นหา');
@@ -66,7 +67,7 @@
 
             <tr>
                 <td><label><span class="red-star">* </span>จำนวนสินค้าสั่งซื้อ :</label></td>
-                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" value="<?php echo $PurchaseAmount ?>" readonly>&nbsp;&nbsp;
+                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" value="<?php echo $AmountMinusReceive ?>" readonly>&nbsp;&nbsp;
                     <label>ตัน</label> 
                 </td>
             </tr>
@@ -90,3 +91,29 @@
             </tr>
 
         </table>
+    <script type="text/javascript"> 
+     $( document ).ready(function() {
+
+    $('#txtLotReceive').change(function(){
+        var lot =($('#txtLotReceive').val());
+        
+        $.ajax({
+            url: "searchLot.php", 
+            method: "GET",
+            data: { 
+                lot : lot 
+            },
+            success: function(result){
+                if (result==1) {
+                    alert('ล็อตสินค้าซ้ำ');
+                    $('#btnCF').prop("disabled",true);
+                }else{
+                    $('#btnCF').prop("disabled",false);
+                }
+            }
+            
+        });
+    });
+     });
+
+    </script>

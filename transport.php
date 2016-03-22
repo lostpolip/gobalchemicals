@@ -184,6 +184,7 @@
 			        $lonOrder[$popupOrder] = $row["lonOrder"];
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
+			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $popupOrder++;
 			    }		   
 			}
@@ -204,7 +205,7 @@
 							<table id="table2" width="100%">
 	                        	<tr> 
 	                        		<th>เลือก</th>	                                
-	                        		<th>วันที่สั่งซื้อ</th>
+	                        		<th>วันที่ส่งสินค้า</th>
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
@@ -217,7 +218,7 @@
 	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
 	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
-	                        		<td id="orderDate"><?php echo $OrderDate[$j]; ?></td>
+	                        		<td id="orderDate"><?php echo $OrderSendDate[$j]; ?></td>
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>

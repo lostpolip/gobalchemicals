@@ -168,8 +168,6 @@
 			        $ClaimID[$i] = $row["ClaimID"];
 			        $ClaimDate[$i] = $row["ClaimDate"];
 			        $OrderID[$i] = $row["OrderID"];
-			        $CustomerID[$i] = $row["CustomerID"];
-			        // $CustomerName[$i] = $row["CustomerName"];
 			        $ProductID[$i] = $row["ProductID"];
 			        $ProductName[$i] = $row["ProductName"];
 			        $ClaimAmount[$i] = $row["ClaimAmount"];
@@ -190,12 +188,13 @@
 			    	$TotalTransport[$r] = $row["TotalTransport"];
 			    	$ExtendedPrice[$r] = $row["ExtendedPrice"];
 			    	$State[$r] = $row["State"];
+			    	$OrderSendDate[$r] = $row["OrderSendDate"];
 			        $r++;
 			    }
 			}
 
 		?>
-	<form action="approveAddDateSQL.php">
+	<form action="approveOrderSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -215,20 +214,25 @@
 					    		<label id="labelDate"><span id="claimDD">วันที่สั่งซื้อสินค้า :&nbsp;&nbsp;</span><?php echo $OrderDate[$j]; ?></label>
 					    		&nbsp;&nbsp;				   				    		
 					    		<label id="labelState"><span id="claimST">สถานะ :&nbsp;&nbsp;</span><?php echo $State[$j]; ?></label>
-					    		<button id="btnApprove" class="btn btn-success"><a href="approveOrderSQL.php?OrderID=<?php echo $OrderID[$j]; ?>">อนุมัติ</a></button>&nbsp;
-								<button id="btnNonApprove" class="btn btn-danger"><a href="approveCancleOrderSQL.php?OrderID=<?php echo $OrderID[$j]; ?>">ไม่อนุมัติ</a></button>
 
 		                        	<tr>
 		                        		<th>เลขที่ใบสั่งซื้อ</th>
 		                                <th>ชื่อลูกค้า</th>
 		                                <th>รวมทั้งสิ้น</th>
+		                                <th>กำหนดวันที่ส่ง</th>
 		                                
 		                        	</tr>
 
 		                        	<tr>
 		                        		<td id="ordertid"><?php echo $OrderID[$j]; ?></td>
+		                        		<input type="hidden" id="Orderid" name="Orderid" value="<?php echo $OrderID[$j]; ?>">
 		                        		<td id="productname"><?php echo $CustomerName[$j]; ?></td>
 		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
+		                        		<td>
+		                        			<input type="date" id="orderDate" name="orderDate" min="<?php echo date('Y-m-d');?>" <?php if ($OrderSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> value="<?php echo $OrderSendDate[$j]; ?>">
+
+		                        			<button type="submit" id="btnSet" <?php if ($OrderSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> >อนุมัติ</button>
+		                        		</td>
 
 		                        	</tr>
 							</table> 
