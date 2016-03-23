@@ -229,9 +229,9 @@
 		                        		<td id="productname"><?php echo $CustomerName[$j]; ?></td>
 		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
 		                        		<td>
-		                        			<input type="date" id="orderDate" name="orderDate" min="<?php echo date('Y-m-d');?>" <?php if ($OrderSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> value="<?php echo $OrderSendDate[$j]; ?>">
+		                        			<input type="date" id="orderDate" name="ordersenddate" value="0000-00-00">
 
-		                        			<button type="submit" id="btnSet" <?php if ($OrderSendDate[$j]!='0000-00-00') { echo 'disabled';} ?> >อนุมัติ</button>
+		                        			<button type="submit" id="btnSet">อนุมัติ</button>
 		                        		</td>
 
 		                        	</tr>

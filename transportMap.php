@@ -359,13 +359,13 @@
 				                <div class="ExpensesAll">
 		                        	<p>ค่าใช้จ่าย</p>
 		                        	 <table id="table" style="width: 100%">
-<!-- 			                            <tr> 
-			                            	<td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
-			                            		<label id="ExpensesPerDay"></label>
+			                            <tr> 
+			                            	<td><!-- <label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
+			                            		<label id="ExpensesPerDay"></label> -->
 			                            		<input type="hidden" id="hiddenExpensesPerDay" name="hiddenExpensesPerDay" value="0" >
-			                            		<label>บาท</label>
+			                            		<!-- <label>บาท</label> -->
 			                            	</td>
-			                            </tr> -->
+			                            </tr>
 			                            <tr> 
 			                            	<td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
 			                            		<label id="ExpensesPerAround"></label>
