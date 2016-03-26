@@ -18,9 +18,11 @@
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
+		<link rel="stylesheet" type="text/css" href="css/datatable.min.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/datatable.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/approveOrder.js"></script>
 		<script type="text/javascript" src="js/chart.min.js"></script>
@@ -66,6 +68,10 @@
 		    width: auto;
 		    left: 28px;
 		    display: none;
+		}
+		.paginate_button{
+			width: 50px;
+			height: 50px;
 		}
 	</style>
 	
@@ -174,6 +180,23 @@
 					<label style="font-size: 24px;">บาท</label>
 				</td>
 			</div>
+			
+			<table id="table" style="display: none;"> 
+				<caption>Optional table caption.</caption> 
+					<thead> 
+						<tr> 
+							<th>#</th> 
+							<th>วันที่</th> 
+							<th>ราคาขาย</th> 
+							<th>ราคาขายราคาทุน(จากSupplier)</th> 
+							<th>กำไร</th> 
+						</tr> 
+					</thead> 
+				<tbody id="tablebody"> 
+					
+				</tbody> 
+			</table>
+
 			<br>
 			<br> 
 		</div><!--end of tooplate_main-->

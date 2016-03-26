@@ -41,7 +41,7 @@ $( document ).ready(function() {
 				    ]
 				};
 
-			    var myNewChart = new Chart(ctx).Line(data,{
+			    var myBarChart = new Chart(ctx).Bar(data,{
 				   animation: true,
 				   barValueSpacing : 5,
 				   barDatasetSpacing : 1,

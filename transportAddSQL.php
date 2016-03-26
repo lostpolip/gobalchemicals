@@ -25,7 +25,7 @@ $transportIDArray = array_filter($transportIDArray);
 	foreach ($transportIDArray as $orderID) {
 		$dbManagement->insert("INSERT INTO transportdetail(TransportID, OrderID) VALUES ('TS' '".$newID."','".$orderID."')");
 
-		$dbManagement->update("UPDATE orders SET State='complete',StatePayment='waitingConfirm' WHERE OrderID='".$orderID."'");
+		$dbManagement->update("UPDATE orders SET State='complete' WHERE OrderID='".$orderID."'");
 
 	}
 

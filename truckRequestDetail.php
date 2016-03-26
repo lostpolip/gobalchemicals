@@ -4,15 +4,20 @@
 	$dbManagement = new dbManagement();
 	$timeaction=$_REQUEST['timeaction'];
 	$truckdate=$_REQUEST['datetransport'];
-	$result = $dbManagement->select("SELECT * FROM  transport WHERE TimeAction = '".$timeaction."' AND TransportDate = '".$truckdate."'");
+	$Truck = $dbManagement->select("SELECT * FROM  transport
+									 WHERE TimeAction = '".$timeaction."' AND TransportDate = '".$truckdate."'");
 
 	$i=0;
-	if (mysqli_num_rows($result) > 0) {
-	    while($row = mysqli_fetch_assoc($result)) {
+	if (mysqli_num_rows($Truck) > 0) {
+	    while($row = mysqli_fetch_assoc($Truck)) {
 			        $TruckID[$i] = $row["TruckID"];
 			        $i++;
 	    }
 	}
+
+	// $Truck = [
+	//     	'ID'	=> $TruckID,
+	//     ];
 	
 
 	echo json_encode($TruckID);

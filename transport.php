@@ -5,7 +5,6 @@
 	}
 	if (!($_SESSION['PositionID'] == 4 || $_SESSION['PositionID'] == 1)) {
 		header( "location: /gobalchemicals/permission.php" );
-
 	}
 ?>
 <!DOCTYPE html>
@@ -99,7 +98,7 @@
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1>
 							<div id="tooplate_menu" class="ddsmoothmenu">
 								<ul >
-									<li><a href="#" class="selected">จัดการข้อมูล</a>
+									<li><a href="#" >จัดการข้อมูล</a>
 				                        <ul>
 												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
 												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
@@ -116,7 +115,7 @@
 										</ul>
 			                        </li>
 			                        
-			                        <li><a href="#">คลังสินค้า</a>
+			                        <li><a href="#" >คลังสินค้า</a>
 										<ul>
 											<li><a href="productReceive.php">รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
@@ -124,7 +123,7 @@
 									  	</ul>
 									</li>
 									
-									<li ><a href="#">ส่งสินค้า</a>
+									<li ><a href="#" class="selected">ส่งสินค้า</a>
 				                        <ul>
 												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
@@ -241,17 +240,17 @@
 								<br>
 
 								<div id="truckInfo">
-                         		<label id="title">ช่วงเวลาเดินทาง</label>
-		                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" class="time" required>
-			                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
-									<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" class="time" required>
-									<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
-								<br>
+	                         		<label id="title">ช่วงเวลาเดินทาง</label>
+			                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" class="time" required>
+				                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
+										<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" class="time" required>
+										<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
+									<br>
 
-								
-								<label id="title">รถบรรทุก</label>
-								<tr> 
+									
+									<label id="title">รถบรรทุก</label>
+									<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
 									<input id="txtTruck" readonly>
                                 	<label id="labelWeight">ตัน</label>
@@ -269,56 +268,57 @@
 											</select> 
 									</td>
 								</tr>
+								
 								<div id="truckDetail">
 								<br>
-								<table id="table" width="100%">
-									<tr id="row-truck">
-		                                <td>
-		                                	<input type="hidden" id="txtTruckID" >
+									<table id="table" width="100%">
+										<tr id="row-truck">
+			                                <td>
+			                                	<input type="hidden" id="txtTruckID" >
 
-		                                	<label id="label">ประเภทรถบรรทุก:</label>	
-		                                	<label id="txtTruckType" name="txtTruckType"></label>
+			                                	<label id="label">ประเภทรถบรรทุก:</label>	
+			                                	<label id="txtTruckType" name="txtTruckType"></label>
 
-		                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-		                                	<label id="label">เชื้อเพลิง :</label> 
-		                                	<label id="txtFuel" name="txtFuel" ></label>
+			                                	<label id="label">เชื้อเพลิง :</label> 
+			                                	<label id="txtFuel" name="txtFuel" ></label>
 
-											<br>
+												<br>
 
-		                                	<label id="label">น้ำหนักรถ:</label>	
-		                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
+			                                	<label id="label">น้ำหนักรถ:</label>	
+			                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
 
-		                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-		                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
-		                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
-		                                	<label id="labelWeight">ตัน</label>
+			                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
+			                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
+			                                	<label id="labelWeight">ตัน</label>
 
-		                                </td>
-	                            	</tr>
-                            	</table>
+			                                </td>
+		                            	</tr>
+	                            	</table>
 
 								<br>	
-                            	<label id="title">พนักงานขับ</label>
-		                            <tr> 
-										<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
-											<select id="ddEmployee" name="ddEmployee" >
-	                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
-	                                		</select>
-										</td>
-									</tr>
+                            		<label id="title">พนักงานขับ</label>
+			                            <tr> 
+											<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
+												<select id="ddEmployee" name="ddEmployee" >
+		                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
+		                                		</select>
+											</td>
+										</tr>
 
-								<table id="table3" width="100%">
-									<tr id="row-employee">
-		                                <td>
-		                                	<label id="label">เบอร์โทรศัพท์:</label>	
-		                                	<label id="txtTelEmployee" name="txtTelEmployee"></label>
-		                       			 </td>	
-		                       		</tr>
-		                       	</table>
- 							</div>
+									<table id="table3" width="100%">
+										<tr id="row-employee">
+			                                <td>
+			                                	<label id="label">เบอร์โทรศัพท์:</label>	
+			                                	<label id="txtTelEmployee" name="txtTelEmployee"></label>
+			                       			 </td>	
+			                       		</tr>
+			                       	</table>
+ 								</div>
 
 
 	                            <br>

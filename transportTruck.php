@@ -12,13 +12,17 @@
 
 			        $i++;
 	    }
+
+	    $Truck = [
+	    	'ID'	=> $TruckID,
+	    	'name'	=> $TruckName,
+	    	'weightcapacity' => $WeightCapacity,
+	    ];
+	} else {
+		$Truck = null;
 	}
 	
-	$Truck = [
-		'ID'	=> $TruckID,
-		'name'	=> $TruckName,
-		'weightcapacity' => $WeightCapacity,
-	];
+	
 
 	echo json_encode($Truck);
 

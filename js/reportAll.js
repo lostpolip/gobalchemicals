@@ -12,15 +12,23 @@ $( document ).ready(function() {
 				enddate : endDate
 			},
 			success: function(result){
+				$('#table').show();
+
     			var date = jQuery.parseJSON(result).date.split(',');
     			var price = jQuery.parseJSON(result).price.split(',');	
     			var cost = jQuery.parseJSON(result).cost.split(',');
     			var totalPrice = 0;
     			var totalCost = 0;
+    			var Profit = 0;
 				for (var i = 0; i < price.length; i++) {
+ 					Profit = parseInt(price[i]-cost[i]);
+						$('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+price[i]+"</td> <td>"+cost[i]+"</td> <td>"+Profit+"</td> </tr> ");
 				    totalPrice += parseInt(price[i]);
 				    totalCost += parseInt(cost[i]);
+				   
 				}
+				$('#table').DataTable();
+
 				$('#labelPrice').text(totalPrice);
 				$('#labelCost').text(totalCost);
 				$('#total').show();
@@ -53,7 +61,7 @@ $( document ).ready(function() {
 				    ]
 				};
 
-			    var myNewChart = new Chart(ctx).Line(data,{
+			    var myBarChart = new Chart(ctx).Bar(data,{
 				   animation: true,
 				   barValueSpacing : 5,
 				   barDatasetSpacing : 1,

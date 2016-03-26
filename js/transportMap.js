@@ -127,3 +127,22 @@ var formatNumber = function(temp) {
 	var temp = temp.toFixed(2);
 	return parseFloat(temp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

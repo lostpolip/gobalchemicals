@@ -73,7 +73,7 @@
 			    }
 			}
 
-		$result=$dbManagement->select("SELECT * FROM customer
+		$customer=$dbManagement->select("SELECT * FROM customer
 											JOIN province ON customer.ProvinceID=province.ProvinceID
 											JOIN aumphur ON customer.AumphurID=aumphur.AumphurID
 											JOIN district ON customer.DistrictID=district.DistrictID
@@ -81,24 +81,14 @@
 											WHERE CustomerID='".$_SESSION['CustomerID']."'");
 
 		$rate=$dbManagement->select("SELECT * FROM rate");
+		$result = $dbManagement->select("SELECT * FROM province ORDER BY ProvinceName");
 
 			$i = 0;
-			if (mysqli_num_rows($result) > 0) {
-			    while($row = mysqli_fetch_assoc($result)) {
+			if (mysqli_num_rows($customer) > 0) {
+			    while($row = mysqli_fetch_assoc($customer)) {
 			    	$CustomerID[$i] = $row["CustomerID"];
 			    	$CustomerName[$i] = $row["CustomerName"];
-			    	$CustomerTel[$i] = $row["CustomerTel"];
-			    	$CustomerAddress[$i] = $row["CustomerAddress"];
-			        $DistrictID[$i] = $row["DistrictID"];
-			        $DistrictName[$i] = $row["DistrictName"];
-			        $AumphurID[$i] = $row["AumphurID"];
-			        $AumphurName[$i] = $row["AumphurName"];
-			        $ProvinceID[$i] = $row["ProvinceID"];
-			        $ProvinceName[$i] = $row["ProvinceName"];
-			        $ZipcodeID[$i] = $row["ZipcodeID"];
-			        $Zipcode[$i] = $row["Zipcode"];	
 			        $Distance[$i] = $row["Distance"];	
-
 			        $i++;
 			    }
 			}
@@ -115,7 +105,14 @@
 			    }
 			}							
 
-			// print_r($ProductID); exit;
+			$i = 0;
+			if (mysqli_num_rows($result) > 0) {
+			    while($row = mysqli_fetch_assoc($result)) {
+			    	$ProvinceID[$i] = $row["ProvinceID"];
+			        $ProvinceName[$i] = $row["ProvinceName"];
+			        $i++;
+    		    }			   
+			}
 	?>
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">				
@@ -145,7 +142,12 @@
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
+        <style type="text/css">  
 
+            .hide {
+                display: none;
+            }
+        </style>  
 
 	<form action="orderAddSQL.php">
 		<div id="tooplate_main">
@@ -291,78 +293,75 @@
                     	<br>
                     	<div id="informationCustomer">
 							<input type="image" src="images/tabCustomer.png" id="informationCustomer">
+							<table id="table" style="width: 100%">
+								<tr>
+	                                <td><label><span class="red-star">* </span>จังหวัด :</label></td>
+	                                <td>
+	                                	<select id="province" name="province" required>
+	                                	<option value="" selected>------ เลือกจังหวัด ------</option>
+	                                	 	<?php
+	                        					for($j=0;$j<$i;$j++){ 
+	                        				?>	
+	                                		<option value="<?php echo $ProvinceID[$j]; ?>"><?php echo $ProvinceName[$j]; ?></option>
+	                                		<?php
+	                        					}
+	                        				?>
+										</select> 
+									</td>
+	                            </tr>         
+	                            <br>
+	                            <tr id="district-row">
+	                                <td><label><span class="red-star">* </span>อำเภอ :</label></td>
+	                                <td><select id="txtDistrict" name="txtDistrict">                                                              
+	                                </select> 
+	                                </td>
+	                            </tr>
+	                            <br>
+	                            <tr id="subDistrict-row">
+	                                <td><label><span class="red-star">* </span>ตำบล :</label></td>
+	                                <td><select id="txtSubDistrict" name="txtSubDistrict">
+	                                </select>
+	                                </td>
+	                            </tr>                            
 
-							<tr>
+	                             <br>                         
+	                            <tr id="zipcode-row">
+	                                <td><label><span class="red-star">* </span>รหัสไปรษณีย์ :</label></td>
+	                                <td><select type="text" id="txtZipcode" name="txtZipcode" >
+	                                </select>
+	                                </td>
+	                            </tr>
+	                            <br>
+
+	                             <input type="hidden" id="txtLatitude" name="txtLatitude" >
+                           		 <input type="hidden" id="txtLongitude" name="txtLongitude" >
+
+	                           	<tr>
+	                                <td><button type="button" id="btnCF" disabled>ค้นหาแผนที่</button></td> 
+                           		</tr>
+	                        </table>
+	                       
+
+							<div id="hide" class="hide">
 								<label id="labelMap" style="font-family: 'quarkbold'; color: #F7D358; font-size: 24px;margin-left: 300px;">กรุณาลากตำแหน่งที่จะส่งสินค้า</label>
 		                            <div id="map_canvas" style="width:550px; height:400px; margin-left:150px; "></div>     
-		                                    <input type="hidden" name="lat_value" type="text" id="lat_value" value="0" > 
-		                                    <input type="hidden" name="lon_value" type="text" id="lon_value" value="0" >  
-							</tr>
-							<br>
+		                                    <input type="hidden" name="lat_value" type="text" id="lat_value" > 
+		                                    <input type="hidden" name="lon_value" type="text" id="lon_value" > 
+		                                    <br>
 							 <tr>
                             	<td><button type="button" id="btnBack" style="margin-left: 300px;"><a href="indexCustomer.php?">ยกเลิก</a></button></td>
-                                <td><button type="submit" id="btnOK">ตกลง</button></td>     
-                            </tr>
+                                <td><button type="submit" id="btnSubmit">ตกลง</button></td>     
+                            </tr> 
+							</div>
+
+							
                     	</div>
                     </div>
 				</div>   
 			</div>
 		</div><!--end of tooplate_main-->
 	</form>
-                            <script type="text/javascript">  
-                            var map; // กำหนดตัวแปร map ไว้ด้านนอกฟังก์ชัน เพื่อให้สามารถเรียกใช้งาน จากส่วนอื่นได้  
-                            var GGM; // กำหนดตัวแปร GGM ไว้เก็บ google.maps Object จะได้เรียกใช้งานได้ง่ายขึ้น  
-                            function initialize() { // ฟังก์ชันแสดงแผนที่  
-                                GGM=new Object(google.maps); // เก็บตัวแปร google.maps Object ไว้ในตัวแปร GGM  
-                                // กำหนดจุดเริ่มต้นของแผนที่  
-                                var my_Latlng  = new GGM.LatLng(13.761728449950002,100.6527900695800);  
-                                var my_mapTypeId=GGM.MapTypeId.ROADMAP; // กำหนดรูปแบบแผนที่ที่แสดง  
-                                // กำหนด DOM object ที่จะเอาแผนที่ไปแสดง ที่นี้คือ div id=map_canvas  
-                                var my_DivObj=$("#map_canvas")[0];   
-                                // กำหนด Option ของแผนที่  
-                                var myOptions = {  
-                                    zoom: 13, // กำหนดขนาดการ zoom  
-                                    center: my_Latlng , // กำหนดจุดกึ่งกลาง  
-                                    mapTypeId:my_mapTypeId // กำหนดรูปแบบแผนที่  
-                                };  
-                                map = new GGM.Map(my_DivObj,myOptions);// สร้างแผนที่และเก็บตัวแปรไว้ในชื่อ map  
-                                  
-                                var my_Marker = new GGM.Marker({ // สร้างตัว marker  
-                                    position: my_Latlng,  // กำหนดไว้ที่เดียวกับจุดกึ่งกลาง  
-                                    map: map, // กำหนดว่า marker นี้ใช้กับแผนที่ชื่อ instance ว่า map  
-                                    draggable:true, // กำหนดให้สามารถลากตัว marker นี้ได้  
-                                    title:"คลิกลากเพื่อหาตำแหน่งจุดที่ต้องการ!" // แสดง title เมื่อเอาเมาส์มาอยู่เหนือ  
-                                });  
-                                  
-                                // กำหนด event ให้กับตัว marker เมื่อสิ้นสุดการลากตัว marker ให้ทำงานอะไร  
-                                GGM.event.addListener(my_Marker, 'dragend', function() {  
-                                    var my_Point = my_Marker.getPosition();  // หาตำแหน่งของตัว marker เมื่อกดลากแล้วปล่อย  
-                                    map.panTo(my_Point);  // ให้แผนที่แสดงไปที่ตัว marker         
-                                    $("#lat_value").val(my_Point.lat());  // เอาค่า latitude ตัว marker แสดงใน textbox id=lat_value  
-                                    $("#lon_value").val(my_Point.lng()); // เอาค่า longitude ตัว marker แสดงใน textbox id=lon_value   
-                                    $("#zoom_value").val(map.getZoom()); // เอาขนาด zoom ของแผนที่แสดงใน textbox id=zoom_value  
-                                });       
-                              
-                                // กำหนด event ให้กับตัวแผนที่ เมื่อมีการเปลี่ยนแปลงการ zoom  
-                                GGM.event.addListener(map, 'zoom_changed', function() {  
-                                    $("#zoom_value").val(map.getZoom()); // เอาขนาด zoom ของแผนที่แสดงใน textbox id=zoom_value    
-                                });  
-                              
-                            }  
-                            $(function(){  
-                                // โหลด สคริป google map api เมื่อเว็บโหลดเรียบร้อยแล้ว  
-                                // ค่าตัวแปร ที่ส่งไปในไฟล์ google map api  
-                                // v=3.2&sensor=false&language=th&callback=initialize  
-                                //  v เวอร์ชัน่ 3.2  
-                                //  sensor กำหนดให้สามารถแสดงตำแหน่งทำเปิดแผนที่อยู่ได้ เหมาะสำหรับมือถือ ปกติใช้ false  
-                                //  language ภาษา th ,en เป็นต้น  
-                                //  callback ให้เรียกใช้ฟังก์ชันแสดง แผนที่ initialize  
-                                $("<script/>", {  
-                                  "type": "text/javascript",  
-                                  src: "http://maps.google.com/maps/api/js?v=3.2&sensor=false&language=th&callback=initialize&key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8"  
-                                }).appendTo("body");      
-                            });  
-                            </script>    
+  
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
 	        

@@ -95,7 +95,7 @@
 							    background-color: #262424;
 								">
 					      <span class="input-group-btn">
-					        <button class="btn btn-default" type="button" id="btnSearch">Go!</button>
+					        <button class="btn btn-default" type="button" id="btnSearch">ตกลง</button>
 					      </span>
 					    </div><!-- /input-group -->
 					  </div><!-- /.col-lg-6 -->
