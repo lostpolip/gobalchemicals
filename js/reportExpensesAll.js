@@ -12,12 +12,19 @@ $( document ).ready(function() {
 				enddate : endDate
 			},
 			success: function(result){
+				$('#table').show();
+				
     			var date = jQuery.parseJSON(result).date.split(',');
     			var expenses = jQuery.parseJSON(result).expenses.split(',');
     			var totalExpenses = 0;
 				for (var i = 0; i < expenses.length; i++) {
-				    totalExpenses += parseInt(expenses[i]);
+				    
+				    $('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+expenses[i]+"</td> </tr> ");
+					totalExpenses += parseInt(expenses[i]);
 				}
+
+				
+				$('#table').DataTable();
 
 				$('#labelPrice').text(totalExpenses);
 				$('#total').show();	

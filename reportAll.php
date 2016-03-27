@@ -70,8 +70,8 @@
 		    display: none;
 		}
 		.paginate_button{
-			width: 50px;
-			height: 50px;
+			width: 5px;
+			height: 30px;
 		}
 	</style>
 	
@@ -177,6 +177,11 @@
 				<br>
 				<td><label style="font-size: 24px; margin-left: 370px;">ราคาทุน :</label>
 					<label id="labelCost" style="font-size: 22px;"></label>
+					<label style="font-size: 24px;">บาท</label>
+				</td>
+				<br>
+				<td><label style="font-size: 24px; margin-left: 370px;">กำไร :</label>
+					<label id="labelProfit" style="font-size: 22px;"></label>
 					<label style="font-size: 24px;">บาท</label>
 				</td>
 			</div>

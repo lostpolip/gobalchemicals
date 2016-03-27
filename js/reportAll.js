@@ -19,18 +19,21 @@ $( document ).ready(function() {
     			var cost = jQuery.parseJSON(result).cost.split(',');
     			var totalPrice = 0;
     			var totalCost = 0;
+    			var totalProfit = 0;
     			var Profit = 0;
 				for (var i = 0; i < price.length; i++) {
  					Profit = parseInt(price[i]-cost[i]);
 						$('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+price[i]+"</td> <td>"+cost[i]+"</td> <td>"+Profit+"</td> </tr> ");
 				    totalPrice += parseInt(price[i]);
 				    totalCost += parseInt(cost[i]);
+				    totalProfit = parseInt(totalPrice-totalCost);
 				   
 				}
 				$('#table').DataTable();
 
 				$('#labelPrice').text(totalPrice);
 				$('#labelCost').text(totalCost);
+				$('#labelProfit').text(totalProfit);
 				$('#total').show();
 				var ctx = $("#myChart").get(0).getContext("2d");
 			    var data = {

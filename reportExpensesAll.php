@@ -17,10 +17,12 @@
 		<link href="css/reportAll.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/datatable.min.css"/>
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/datatable.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/approveOrder.js"></script>
 		<script type="text/javascript" src="js/chart.min.js"></script>
@@ -162,11 +164,25 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px;">ราคาขาย :</label>
+				<td><label style="font-size: 24px; margin-left: 370px;">จำนวนค่าใช้จ่าย :</label>
 					<label id="labelPrice" style="font-size: 22px;"></label>
 					<label style="font-size: 24px;">บาท</label>
 				</td> 
 			</div>
+			<br>
+			<table id="table" style="display: none;"> 
+				<caption>Optional table caption.</caption> 
+					<thead> 
+						<tr> 
+							<th>#</th> 
+							<th>วันที่</th> 
+							<th>ค่าขนส่ง(ต่อวัน)</th> 
+						</tr> 
+					</thead> 
+				<tbody id="tablebody"> 
+					
+				</tbody> 
+			</table>
 			<br>
 		</div><!--end of tooplate_main-->
  	
