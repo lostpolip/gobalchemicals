@@ -170,19 +170,19 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px;">ราคาขาย :</label>
-					<label id="labelPrice" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาขาย :</label>
+					<label id="labelPrice" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td> 
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px;">ราคาทุน :</label>
-					<label id="labelCost" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาทุน :</label>
+					<label id="labelCost" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px;">กำไร :</label>
-					<label id="labelProfit" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไร :</label>
+					<label id="labelProfit" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>
 			</div>
 			

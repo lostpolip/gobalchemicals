@@ -331,3 +331,24 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: red;
 	font-size: 16px;
 }
+#btnBack{
+	font-family: 'quarklight';
+	font-size: 20px;
+    border-color: #DF0101;
+    background-color: #FE2E2E;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+	margin-left: 210px;
+}
+#btnSubmit{
+	font-family: 'quarklight';
+	font-size: 20px;
+	border-color: #088A4B;
+    background-color: #04B45F;
+	color: #FFFFFF;
+	border-style: solid;
+	height: 40px;
+	width: 120px;
+}

@@ -164,9 +164,9 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px;">จำนวนค่าใช้จ่าย :</label>
-					<label id="labelPrice" style="font-size: 22px;"></label>
-					<label style="font-size: 24px;">บาท</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">จำนวนค่าใช้จ่าย :</label>
+					<label id="labelPrice" style="font-size: 22px; font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px;" font-family: 'quarkbold';>บาท</label>
 				</td> 
 			</div>
 			<br>

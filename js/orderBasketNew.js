@@ -18,15 +18,15 @@ $( document ).ready(function() {
 			},
 			success: function(resultDistance){
 				var distance = resultDistance.rows[0].elements[0].distance.text;
-				var distanceSubString = distance.substring(0,5);
+				var distanceSubString = distance.substring(0,4);
 				var distancePerKm = distanceSubString*1.61;
 				$('#txtDistance').val(distancePerKm);
 
 				var calculatorTransport = Rete*distancePerKm;						
-				var totalTransport = parseInt(calculatorTransport.toFixed(2));									
+				var totalTransport = parseFloat(calculatorTransport.toFixed(2));									
 				$('#totalTransaction').val(totalTransport);
 
-				var ExtendedToint = parseInt(Extended);
+				var ExtendedToint = parseFloat(Extended);
 				var calculatorExtended =ExtendedToint+totalTransport ;
 				$('#totalExtendPrice').val(calculatorExtended);
 
