@@ -200,14 +200,12 @@
 	           
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
-	                    <label id="labelDate">วันที่จัดเส้นทาง:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport" 
-	                    min="<?php echo date('Y-m-d');?>" value="<?php echo date("Y-m-d")?>" required>
+	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
+	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
 	                    
 							<table id="table2" width="100%">
 	                        	<tr> 
 	                        		<th>เลือก</th>	                                
-	                        		<th>วันที่ส่งสินค้า</th>
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
@@ -221,7 +219,6 @@
 	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
 	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
-	                        		<td id="orderDate"><?php echo $OrderSendDate[$j]; ?></td>
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
@@ -244,17 +241,43 @@
 								<br>
 								<br>
 
-								<div id="truckInfo">
+								<div id="timeInfo">
 	                         		<label id="title">ช่วงเวลาเดินทาง</label>
 			                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" class="time" required>
-				                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
-										<input name="rdoDate" type="radio" id="rdoDate2" value="21:00-05:00" class="time" required>
-										<label id="rdoDate" for="rdoDate2">21:00-05:00 น.</label>
+				                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
+										<input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
+										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label>
+										<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
+										<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
 									<br>
-
-									
-									<label id="title">รถบรรทุก</label>
+								</div>
+								<div id="truckInfo">
+											<tr> 
+												<td>
+							
+													<div id="truckOther">
+														<label id="title">รถบรรทุก</label>
+														<br>
+													</div>
+				                                	<!-- <select multiple id="truckOther" name="truckOther">
+													</select> -->
+				                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				                                	<!-- <label id="label">หมายเลขทะเบียน :</label> 
+					                                	<select id="position" name="positionEmployee">
+														  <option value="" >------ กรุณาเลือก ------</option>
+			                                	 			<?php
+			                        							for($p=0;$p<$ddPosition;$p++){ 
+			                        						?>	
+			                                					<option value="<?php echo $PositionID[$p]; ?>"><?php echo $PositionName[$p]; ?></option>
+			                                				<?php
+			                        							}
+			                        						?>
+														</select> -->
+												</td>
+											</tr> 			
+								</div>	
+<!-- 								<label id="title">รถบรรทุก</label>
 									<tr> 
 									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
 									<input id="txtTruck" readonly>
@@ -276,33 +299,8 @@
 								
 								<div id="truckDetail">
 								<br>
-									<table id="table" width="100%">
-										<tr id="row-truck">
-			                                <td>
-			                                	<input type="hidden" id="txtTruckID" >
-
-			                                	<label id="label">ประเภทรถบรรทุก:</label>	
-			                                	<label id="txtTruckType" name="txtTruckType"></label>
-
-			                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-			                                	<label id="label">เชื้อเพลิง :</label> 
-			                                	<label id="txtFuel" name="txtFuel" ></label>
-
-												<br>
-
-			                                	<label id="label">น้ำหนักรถ:</label>	
-			                                	<label id="txtTruckWeight" name="txtTruckWeight" ></label>
-
-			                             		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-			                                	<label id="label">บรรจุน้ำหนักสินค้า :</label> 
-			                                	<label id="txtTruckCapacity" name="txtTruckCapacity" ></label>
-			                                	<label id="labelWeight">ตัน</label>
-
-			                                </td>
-		                            	</tr>
+									<table id="truckTypeDetail" width="100%">
+										
 	                            	</table>
 
 								<br>	
@@ -324,11 +322,10 @@
 			                       		</tr>
 			                       	</table>
  								</div>
-
-
+ -->
 	                            <br>
 	                            <br>
-	                            </div>
+	                          
 
 	                            <tr id="button-command">
 	                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
