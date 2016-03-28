@@ -17,7 +17,7 @@ header('Access-Control-Request-Headers: x-requested-with');
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
         <script type="text/javascript" src="js/register.js"></script>
-        <!-- <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>  -->
+       <!--  <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>  -->
 
 
 	</head>

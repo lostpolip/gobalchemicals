@@ -169,6 +169,7 @@
 
 			$order = $dbManagement->select("SELECT * FROM orders
 											JOIN customer ON orders.CustomerID=customer.CustomerID
+											JOIN province ON orders.ProvinceID=province.ProvinceID
 											WHERE State='processing'
 											");
 
@@ -184,6 +185,8 @@
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
+			        $ProvinceID[$popupOrder] = $row["ProvinceID"];
+			        $GeoName[$popupOrder] = $row["GeoName"];
 			        $popupOrder++;
 			    }		   
 			}
@@ -207,6 +210,7 @@
 	                        		<th>วันที่ส่งสินค้า</th>
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
+	                                <th>ภูมิภาค</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
 	                        	</tr>
 	                        	<?php 
@@ -220,6 +224,7 @@
 	                        		<td id="orderDate"><?php echo $OrderSendDate[$j]; ?></td>
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
+	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
 	                        	<?php

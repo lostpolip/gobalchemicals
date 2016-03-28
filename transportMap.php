@@ -176,6 +176,21 @@
            
         }
         
+        $Order = $dbManagement->select("SELECT * FROM orders
+                          WHERE OrderID= '".$order."'
+                          ");
+        $i=0;
+        if (mysqli_num_rows($Order) > 0) {
+            while($row = mysqli_fetch_assoc($Order)) {
+                $OrderID[$i] = $row["OrderID"];
+                $OrderSendDate[$i] = $row["OrderSendDate"];
+              $i++;
+            }
+           
+        }
+
+
+
       ?>
       <?php 
         $jsonDestination = json_encode($_REQUEST['destination']);
@@ -213,9 +228,12 @@
           <label id="Distance">รวมระยะทางทั้งหมด :</label>
             <input id="totalDistance" readonly>
             <b>กิโลเมตร</b>
-      
+        <br>
+        <br>
+        <label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
+        <label style="font-family: 'quarkbold'; color: #FFFFFF; font-size: 23px;"><?php echo $order ?></label>
         <div id="directions-panel"></div>
-
+        <br>
         <form action="expensiveAddSQL.php">
           <input type="hidden" id="transportId" name="transportId" value="0">
           <input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel ?>">
@@ -480,7 +498,7 @@
                   // For each route, display summary information.
                   for (var i = 0; i < route.legs.length; i++) {
                     var routeSegment = i + 1;
-                    summaryPanel.innerHTML += '<br><b>ส่วนเส้นทางที่: ' + routeSegment +
+                    summaryPanel.innerHTML += '<br><b>ลำดับและเส้นทางที่: ' + routeSegment +
                         '</b><br>';
                     summaryPanel.innerHTML += '<b>จาก</b> '+route.legs[i].start_address + '<br><b> ถึง</b>';
                     summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
