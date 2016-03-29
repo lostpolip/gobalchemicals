@@ -184,7 +184,6 @@
 			        $lonOrder[$popupOrder] = $row["lonOrder"];
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
-			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $ProvinceID[$popupOrder] = $row["ProvinceID"];
 			        $GeoName[$popupOrder] = $row["GeoName"];
 			        $popupOrder++;
@@ -253,57 +252,17 @@
 									<br>
 								</div>
 								<div id="truckInfo">
+										<label id="title">รถบรรทุก</label>
+										<br>
+										
 											<tr> 
 												<td>
-							
-													<div id="truckOther">
-														<label id="title">รถบรรทุก</label>
-														<br>
-													</div>
-				                                	<!-- <select multiple id="truckOther" name="truckOther">
-													</select> -->
-				                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				                                	<!-- <label id="label">หมายเลขทะเบียน :</label> 
-					                                	<select id="position" name="positionEmployee">
-														  <option value="" >------ กรุณาเลือก ------</option>
-			                                	 			<?php
-			                        							for($p=0;$p<$ddPosition;$p++){ 
-			                        						?>	
-			                                					<option value="<?php echo $PositionID[$p]; ?>"><?php echo $PositionName[$p]; ?></option>
-			                                				<?php
-			                        							}
-			                        						?>
-														</select> -->
+													<div id="truckOther"></div>
 												</td>
 											</tr> 			
 								</div>	
-<!-- 								<label id="title">รถบรรทุก</label>
-									<tr> 
-									<td><label id="labelTruck">ความจุของรถบรรทุก :</label>
-									<input id="txtTruck" readonly>
-                                	<label id="labelWeight">ตัน</label>
-                                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                	<label id="label">หมายเลขทะเบียน :</label> 
-		                                	<select id="position" name="positionEmployee">
-											  <option value="" >------ กรุณาเลือก ------</option>
-                                	 			<?php
-                        							for($p=0;$p<$ddPosition;$p++){ 
-                        						?>	
-                                					<option value="<?php echo $PositionID[$p]; ?>"><?php echo $PositionName[$p]; ?></option>
-                                				<?php
-                        							}
-                        						?>
-											</select> 
-									</td>
-								</tr>
-								
-								<div id="truckDetail">
-								<br>
-									<table id="truckTypeDetail" width="100%">
-										
-	                            	</table>
 
-								<br>	
+<!-- 								<br>	
                             		<label id="title">พนักงานขับ</label>
 			                            <tr> 
 											<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
@@ -321,10 +280,8 @@
 			                       			 </td>	
 			                       		</tr>
 			                       	</table>
- 								</div>
- -->
 	                            <br>
-	                            <br>
+	                            <br> -->
 	                          
 
 	                            <tr id="button-command">

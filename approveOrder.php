@@ -188,7 +188,6 @@
 			    	$TotalTransport[$r] = $row["TotalTransport"];
 			    	$ExtendedPrice[$r] = $row["ExtendedPrice"];
 			    	$State[$r] = $row["State"];
-			    	$OrderSendDate[$r] = $row["OrderSendDate"];
 			        $r++;
 			    }
 			}
@@ -219,7 +218,7 @@
 		                        		<th>เลขที่ใบสั่งซื้อ</th>
 		                                <th>ชื่อลูกค้า</th>
 		                                <th>รวมทั้งสิ้น</th>
-		                                <th>กำหนดวันที่ส่ง</th>
+		                                <th>คำสั่ง</th>
 		                                
 		                        	</tr>
 
@@ -229,8 +228,6 @@
 		                        		<td id="productname"><?php echo $CustomerName[$j]; ?></td>
 		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
 		                        		<td>
-		                        			<input type="date" id="orderDate" name="ordersenddate" value="0000-00-00">
-
 		                        			<button type="submit" id="btnSet">อนุมัติ</button>
 		                        		</td>
 

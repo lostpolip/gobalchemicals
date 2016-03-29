@@ -42,6 +42,7 @@ $( document ).ready(function() {
 	$('#row-employee').hide();
 	$('#timeInfo').hide();
 	$('#truckDetail').hide();
+	$('#truckInfo').hide();
 
 	$("input[name='destination[]'").on('change', function() {
 		var sum = 0;
@@ -116,6 +117,8 @@ $( document ).ready(function() {
 
 
 	$("input[name='rdoDate']").click(function(){
+		$('#truckInfo').show();
+
 		if (this.id == 'rdoDate1') {
 			var timeaction = $("#rdoDate1").val();
 		} else if (this.id == 'rdoDate2') {
