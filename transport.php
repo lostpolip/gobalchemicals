@@ -191,7 +191,7 @@
 			}
 
 		?>
-	<form action="transportMap.php">
+	<form id="transportAddForm" action="transportMap.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -253,8 +253,7 @@
 								</div>
 								<div id="truckInfo">
 										<label id="title">รถบรรทุก</label>
-										<br>
-										
+										<br>										
 											<tr> 
 												<td>
 													<div id="truckOther"></div>
@@ -262,31 +261,22 @@
 											</tr> 			
 								</div>	
 
-<!-- 								<br>	
+								<br>
+								<div id="employeeInfo">	
                             		<label id="title">พนักงานขับ</label>
 			                            <tr> 
-											<td><label id="labelEmployee">เลือกพนักงานขับรถ :</label>
-												<select id="ddEmployee" name="ddEmployee" >
-		                                	 		<option value="" selected>--------กรุณาเลือก--------</option>
-		                                		</select>
+											<td>
+												<div id="employeeOther"></div>
 											</td>
 										</tr>
-
-									<table id="table3" width="100%">
-										<tr id="row-employee">
-			                                <td>
-			                                	<label id="label">เบอร์โทรศัพท์:</label>	
-			                                	<label id="txtTelEmployee" name="txtTelEmployee"></label>
-			                       			 </td>	
-			                       		</tr>
-			                       	</table>
+			                    </div>
 	                            <br>
-	                            <br> -->
+	                            <br>
 	                          
 
 	                            <tr id="button-command">
 	                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
-	                                    <td><button type="submit" id="btnCF" class="btn btn-success btn-md" disabled>สร้างเส้นทาง</button></td>
+	                                    <td><button type="button" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
 	                                    
 	                            </tr>
 

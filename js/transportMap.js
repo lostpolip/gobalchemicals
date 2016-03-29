@@ -39,34 +39,39 @@ $( document ).ready(function() {
 	$('#truckInfo').hide();
 
 	
+	var TruckId =  $('#truck-id').val();
+		TruckId = TruckId.split(',');
+	for (x in TruckId) {
+		alert(TruckId[x]);
+		$('#btnCalculator' + TruckId[x]).click(function() {
+			var count = 0;
+			var countNumber = 0;
+			var patt= /^-?\d*\.?\d*$/;
+			alert( TruckId[x]);
+			$("body").find(".txtExpenses" + TruckId[x]).each(function() {
+				// alert(count);
+				if ($(this).val() == 0) {
+					count++;
+				}
+				// alert($(this).id);
+				if (patt.test($(this).val())) {
+					countNumber++;
+				}
+				
+			});
+			alert('count'+count);
+			alert('countNumber'+countNumber);
 
-	$(".txtExpenses").on('change',function() {
-		
-		var count = 0;
-		var patt= /[-+]?(\d*[.])?\d+/;
-		$("body").find(".txtExpenses").each(function() {
-			// alert(count);
-			if ($(this).val() == 0) {
-				count++;
-			}
-			if (!patt.test($(this).val())) {
-				count++;
-			}
-			
+
 		});
-		if (count==0) {
-				$('#btnCalculator').prop("disabled",false);
-				
-			} else {
-				$('#btnCalculator').prop("disabled",true);
-				
-			}
-		
-	});
+	}
+
+
 
 
 	$(':button[name=calculator]').click(function() {		
 		$('#truckInfo').show();
+
 		var consumptionExp = $('#consumptionExp').val();
 		var truckCost = $('#truckCost').val();
 		var residualValue = $('#residualValue').val();
@@ -76,7 +81,6 @@ $( document ).ready(function() {
 		var AmountExployee = $('#AmountExployee').val();
 		var MaintenanceExp = $('#MaintenanceExp').val();
 		var AmountDate = $('#AmountDate').val();
-		var AmountTruck = $('#AmountTruck').val();
 		var Distance = $('#totalDistance').val();
 
 		var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
@@ -91,8 +95,8 @@ $( document ).ready(function() {
 		var MaintenanceCost = MaintenanceExp;
 		var ExpensesAllKm = FuelCost+MaintenanceCost;
 
-		var ExpensesPerDay = (Distance*ExpensesAllKm*AmountTruck)+FixedcostsDay;
-		var ExpensesPerAround = ExpensesPerDay/AmountTruck;
+		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
+		var ExpensesPerAround = ExpensesPerDay;
 
 		$('#DepreciationMonth').text(formatNumber(DepreciationMonth));
 		$('#DepreciationDay').text(formatNumber(DepreciationDay));

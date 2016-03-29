@@ -155,43 +155,31 @@
         $order = implode(',', $order);
         $date =$_REQUEST['txtDateTransport'];
         $totalWeight=$_REQUEST['txtWeightProduct'];
-        $truck=$_REQUEST['hiddenTruckID'];
-        $employee=$_REQUEST['ddEmployee'];
+        $truck=$_REQUEST['listTruckName'];
+        $employee=$_REQUEST['listEmployeeName'];
         $routeTime=$_REQUEST['rdoDate'];
 
         require 'dbManagement.php';
-        $dbManagement = new dbManagement();     
-        $Truck = $dbManagement->select("SELECT * FROM truck
-                          WHERE TruckID= ".$_REQUEST['hiddenTruckID']."
-                          ");
-
-        if (mysqli_num_rows($Truck) > 0) {
-            while($row = mysqli_fetch_assoc($Truck)) {
-                $TruckID = $row["TruckID"];
-                $ConsumptionFuel = $row["ConsumptionFuel"];
-                $FuelID = $row["FuelID"];
-                $TruckCost = $row["TruckCost"];
-                $ResidualValue = $row["ResidualValue"];
-            }
-           
-        }
-        
-        $Order = $dbManagement->select("SELECT * FROM orders
-                          WHERE OrderID= '".$order."'
-                          ");
-        $i=0;
-        if (mysqli_num_rows($Order) > 0) {
-            while($row = mysqli_fetch_assoc($Order)) {
-                $OrderID[$i] = $row["OrderID"];
-                $OrderSendDate[$i] = $row["OrderSendDate"];
-              $i++;
-            }
-           
-        }
-
-
+        $dbManagement = new dbManagement();  
+        foreach ($truck as $key => $value) {
+          $Truck[$key] = $dbManagement->select("SELECT * FROM truck
+                            WHERE TruckID= '".$value."'
+                            ");
+          $i=0;
+          if (mysqli_num_rows($Truck[$key]) > 0) {
+              while($row = mysqli_fetch_assoc($Truck[$key])) {
+                  $TruckID[$key][$i] = $row["TruckID"];
+                  $ConsumptionFuel[$key][$i] = $row["ConsumptionFuel"];
+                  $FuelID[$key][$i] = $row["FuelID"];
+                  $TruckCost[$key][$i] = $row["TruckCost"];
+                  $ResidualValue[$key][$i] = $row["ResidualValue"];
+                  $i++;
+              }  
+          }             
+        }       
 
       ?>
+
       <?php 
         $jsonDestination = json_encode($_REQUEST['destination']);
         $jsonDestination = str_replace('"',"'",$jsonDestination);
@@ -239,21 +227,32 @@
           <input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel ?>">
           <input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost ?>">
           <input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue ?>">
+
                 <br>
-                
+              <?php 
+
+                foreach ($truck as $key => $value) {
+                  if ($key == 0) {
+                    $truckIdAll = $value;
+                  } else {
+                    $truckIdAll = $truckIdAll.','.$value;
+                  }
+              ?>
                   <div class="expensive">
                       <p>ค่าใช้จ่ายต่างๆ</p> 
                             <table id="table" style="width: 100%">
 
+
+
                                 <tr>
-                                    <td><label id="fuelId">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID ?></label></td>
+                                    <td><label id="<?php echo 'fuelId'.$value ?>">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID[$key][0] ?></label></td>
                     
                                 </tr>
 
                                 <tr>
                                     <td><label>ค่าน้ำมันเชื้อเพลิง:</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="FuelExpensive" name="FuelExpensive" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'FuelExpensive'.$value ?>" name="<?php echo 'FuelExpensive'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                        &nbsp;&nbsp;<label>บาท/ลิตร</label>
                                       
                     </td>
@@ -262,7 +261,7 @@
                   <tr>
                                     <td><label>ระยะเวลาค่าเสื่อมราคา :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'ConsumptionExp'.$value ?>" name="<?php echo 'ConsumptionExp'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                       &nbsp;&nbsp;<label>ปี</label>
                                     </td>
                                 </tr>
@@ -270,7 +269,7 @@
                                 <tr>
                                     <td><label>ค่าแรงงาน(ต่อคน) :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="LaborExpensive" name="LaborExpensive" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'LaborExpensive'.$value ?>" name="<?php echo 'LaborExpensive'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                       <label>บาท/วัน</label>
                                     </td>
                                 </tr>
@@ -278,7 +277,7 @@
                                 <tr>
                                     <td><label>จำนวนพนักงาน :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="AmountExployee" name="AmountExployee" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'AmountExployee'.$value ?>" name="<?php echo 'AmountExployee'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                       &nbsp;&nbsp;<label>คน</label>
                                     </td>
                                 </tr>
@@ -286,29 +285,22 @@
                                 <tr>
                                     <td><label>ค่าซ่อมบำรุง :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'MaintenanceExp'.$value ?>" name="<?php echo 'MaintenanceExp'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                       &nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td><label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
-                                      <input type="text" id="AmountDate" name="AmountDate" value="0" class="txtExpenses" required>
+                                      <input type="text" id="<?php echo 'AmountDate'.$value ?>" name="<?php echo 'AmountDate'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
                                       &nbsp;&nbsp;<label>วัน</label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><label>จำนวนรถที่ส่งสินค้า :</label>&nbsp;&nbsp;
-                                      <input type="text" id="AmountTruck" name="AmountTruck" value="0" class="txtExpenses" required>
-                                      &nbsp;&nbsp;<label>คัน</label>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td><label>ระยะทางที่วิ่ง :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;
-                                      <label label id="labelDistance"></label>
+                                      <label label id="labelDistance" name="labelDistance"></label>
                                       &nbsp;&nbsp;<label>กิโลเมตร</label> 
 
                                     </td>
@@ -316,10 +308,18 @@
 
                                 <br>
                                 <tr>
-                                  <td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" disabled>คำนวณ</button></td>
+                                  <td><button type="button" id="<?php echo 'btnCalculator'.$value ?>" name="<?php echo 'calculator'.$value ?>" class="btn btn-primary">คำนวณ</button></td>
                                 </tr>                                                         
                 </table>
               </div>
+            <?php
+              }
+            ?>
+            <input id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>"></input>
+
+
+
+
               <br>
               <br>
               <div id="truckInfo">
@@ -431,9 +431,9 @@
 
                       <input type="hidden" id="hiddenWeightProduct" name="hiddenWeightProduct" value="<?php echo $totalWeight ?>"> 
 
-                      <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo $truck ?>" >  
+                      <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo json_encode($truck) ?>" >  
 
-                      <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo $employee ?>" > 
+                      <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo json_encode($employee) ?>" > 
 
                       <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
 
@@ -535,7 +535,7 @@
               });
                   }
                   $('#totalDistance').val(totalDistance);
-                  $('#labelDistance').text(totalDistance);
+                  $('label[name=labelDistance]').text(totalDistance);
                 
                 } else {
                   window.alert('Directions request failed due to ' + status);
