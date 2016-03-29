@@ -76,6 +76,7 @@ $( document ).ready(function() {
 		var AmountExployee = $('#AmountExployee').val();
 		var MaintenanceExp = $('#MaintenanceExp').val();
 		var AmountDate = $('#AmountDate').val();
+		var AmountTruck = $('#AmountTruck').val();
 		var Distance = $('#totalDistance').val();
 
 		var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
@@ -90,8 +91,8 @@ $( document ).ready(function() {
 		var MaintenanceCost = MaintenanceExp;
 		var ExpensesAllKm = FuelCost+MaintenanceCost;
 
-		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
-		var ExpensesPerAround = ExpensesPerDay;
+		var ExpensesPerDay = (Distance*ExpensesAllKm*AmountTruck)+FixedcostsDay;
+		var ExpensesPerAround = ExpensesPerDay/AmountTruck;
 
 		$('#DepreciationMonth').text(formatNumber(DepreciationMonth));
 		$('#DepreciationDay').text(formatNumber(DepreciationDay));

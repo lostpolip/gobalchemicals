@@ -296,7 +296,14 @@
                                       <input type="text" id="AmountDate" name="AmountDate" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>วัน</label>
                                     </td>
-                                </tr> 
+                                </tr>
+
+                                <tr>
+                                    <td><label>จำนวนรถที่ส่งสินค้า :</label>&nbsp;&nbsp;
+                                      <input type="text" id="AmountTruck" name="AmountTruck" value="0" class="txtExpenses" required>
+                                      &nbsp;&nbsp;<label>คัน</label>
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <td><label>ระยะทางที่วิ่ง :</label>
@@ -306,6 +313,7 @@
 
                                     </td>
                                 </tr> 
+
                                 <br>
                                 <tr>
                                   <td><button type="button" id="btnCalculator" name="calculator" class="btn btn-primary" disabled>คำนวณ</button></td>
