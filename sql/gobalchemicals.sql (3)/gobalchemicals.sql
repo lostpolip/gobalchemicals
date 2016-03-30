@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Feb 24, 2016 at 07:52 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 7.0.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `gobalchemicals`
 --
@@ -1079,8 +1061,10 @@ CREATE TABLE `claim` (
 --
 
 INSERT INTO `claim` (`ClaimID`, `CustomerID`, `StateClaim`, `ClaimDate`, `ClaimSendDate`) VALUES
-('CL1', 16, 'confirm', '2016-02-25', '2016-03-03'),
-('CL2', 16, 'processing', '2016-02-25', '0000-00-00');
+('CL1', 60, 'complete', '2016-03-18', '2016-03-26'),
+('CL2', 60, 'complete', '2016-03-19', '2016-03-24'),
+('CL3', 64, 'complete', '2016-03-19', '2016-03-31'),
+('CL4', 60, 'processing', '2016-03-23', '2016-04-03');
 
 -- --------------------------------------------------------
 
@@ -1102,10 +1086,10 @@ CREATE TABLE `claimdetail` (
 --
 
 INSERT INTO `claimdetail` (`ClaimDetailID`, `OrderID`, `ClaimAmount`, `ProductID`, `ClaimProductDetail`, `ClaimID`) VALUES
-(29, 'OR4', 2, 17, '', 'CL1'),
-(30, 'OR4', 1, 18, '', 'CL1'),
-(31, 'OR4', 3, 17, '', 'CL2'),
-(32, 'OR4', 2, 18, '', 'CL2');
+(81, 'OR4', 1, 17, 'ถุงขาด', 'CL1'),
+(82, 'OR2', 2, 17, '', 'CL2'),
+(83, 'OR3', 3, 17, ' ถุงขาด', 'CL3'),
+(84, 'OR1', 2, 20, 'ถุงขาด', 'CL4');
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1100,7 @@ INSERT INTO `claimdetail` (`ClaimDetailID`, `OrderID`, `ClaimAmount`, `ProductID
 CREATE TABLE `customer` (
   `CustomerID` int(10) NOT NULL,
   `CustomerName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `CustomerAddress` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `CustomerAddress` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `AumphurID` int(100) NOT NULL,
   `ProvinceID` int(100) NOT NULL,
   `ZipcodeID` int(5) NOT NULL,
@@ -1126,21 +1110,26 @@ CREATE TABLE `customer` (
   `CustomerUsername` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `CustomerPassword` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `DistrictID` int(100) NOT NULL,
-  `Latitude` float NOT NULL,
-  `Longitude` float NOT NULL
+  `Latitude` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Longitude` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Distance` float NOT NULL,
+  `StateCredit` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`CustomerID`, `CustomerName`, `CustomerAddress`, `AumphurID`, `ProvinceID`, `ZipcodeID`, `CustomerTel`, `CustomerFax`, `CustomerEmail`, `CustomerUsername`, `CustomerPassword`, `DistrictID`, `Latitude`, `Longitude`) VALUES
-(16, 'Internation', '43/128', 952, 72, 7138, '098-7654322', '035-34211', 'qwerty455467@gmail.com', 'g', 'g', 8499, 0, 0),
-(17, 'Internationm', '43/12', 789, 56, 5912, '098-7654322', '035-34211', 'qwerty455467@gmail.com', 'a', 'a', 7083, 0, 0),
-(18, 'GenarationGroup CO.,LTD', '98 หมู่ 8', 406, 28, 2998, '098-7654322', '035-34211', 'qwerty455467@gmail.com', 'CM003', '1234', 3645, 0, 0),
-(19, 'Internation', '43/12', 797, 57, 5943, '098-7654322', '035-34211', 'qwerty455467@gmail.com', 'n', 'n', 7118, 0, 0),
-(20, 'บริษัทเนสเร่', '65/32 หมู่ 3', 787, 56, 5896, '045-3245432', '034-765654', 'qwerty455467@gmail.com', 'CM001', '1234', 7067, 0, 0),
-(21, 'บริษัททนูทริค (มหาชน)', '210/7 หมู่ 3 ', 165, 13, 1150, '086-3213212', '024-239004', 'qwerty455467@gmail.com', 'CM002', '1234', 1341, 0, 0);
+INSERT INTO `customer` (`CustomerID`, `CustomerName`, `CustomerAddress`, `AumphurID`, `ProvinceID`, `ZipcodeID`, `CustomerTel`, `CustomerFax`, `CustomerEmail`, `CustomerUsername`, `CustomerPassword`, `DistrictID`, `Latitude`, `Longitude`, `Distance`, `StateCredit`) VALUES
+(60, 'บริษัท พิบูลย์ชัยน้ำพริกเผาไทยแม่ประนอม จำกัด', '68/10', 48, 1, 168, '0-2441-3595', '0-2441-3595-8', 'qwerty455467@gmail.com', 'CM001', '1234', 233, '13.7766', '100.402', 25.599, 'unlock'),
+(62, 'บริษัทเนสท์เล่ฟู้ดสประเทศไทยจำกัด', '60/1 หมู่ 19 ซอย นิคมอุตสาหกรรมนวนคร ถนน พหลโยธิน', 67, 4, 288, '02-657-8000', '2-657-8000-4', 'qwerty455467@gmail.com', 'CM002', '1234', 367, '14.0230591', '100.6211913', 30.107, 'unlock'),
+(64, 'บริษัท เจริญโภคภัณฑ์อาหาร จำกัด (มหาชน)', '69/1 หมู่ 7 ถนนสายเอเชีย', 79, 5, 421, '0-3572-9415-22', '0-3531-4113', 'qwerty455467@gmail.com', 'CM003', '1234', 501, '13.5733785', '100.0834345', 52.969, 'unlock'),
+(66, 'บริษัทคิริบูน จำกัด', '43/12', 797, 57, 5943, '098-7654322', '035-34211', 'qwerty455467@gmail.com', 'n', 'n', 7118, '14.4631037', '100.1508291', 82.271, 'unlock'),
+(67, 'บริษัทไทยฟูดดิ้ง จำกัด', '78 หมู่ 2 ', 142, 11, 1017, '0-2441-3595', '0-2441-3595-8', 'qwerty455467@gmail.com', 'pran', '5335', 1163, '13.1641308', '100.9216588', 142.646, 'lock'),
+(68, 'บริษัทไทยยูเนียนโฟสเซ่น(มหาชน)', '72/1 ม.7 ถ.เศรษฐกิจ 1', 814, 59, 6164, '034-421-879', '034-421-870-4', 'qwerty455467@gmail.com', 'CM006', '1234', 7353, '13.5745302', '100.256934', 61.502, 'unlock'),
+(69, 'บริษัทไทยกูู๊ดดิ้ง จำกัด', '43/12', 905, 68, 6793, '098-7654322', '035-3421166', 'qwerty455467@gmail.com', 'CM007', '1234', 8068, '9.904389799999999', '98.5716868', 627.9, 'unlock'),
+(78, 'Internation', '43/12', 820, 61, 6232, '098-7654322', '0-2441-3595-8', 'qwerty455467@gmail.com', 'ddd', '1234', 7421, '13.05742448034955', '99.86774892109383', 148.442, 'unlock'),
+(79, 'Internation', '43/12', 196, 16, 1359, '098-7654322', '0-2441-3595-8', 'qwerty455467@gmail.com', 'ee', '1234', 1591, '14.050953018330599', '101.65518140156246', 158.102, 'unlock');
 
 -- --------------------------------------------------------
 
@@ -10091,11 +10080,16 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`EmployeeID`, `EmployeeName`, `EmployeeAddress`, `DistrictID`, `ProvinceID`, `ZipcodeID`, `EmployeeTel`, `PositionID`, `EmployeeUsername`, `EmployeePassword`, `AumphurID`, `StateEmployee`) VALUES
-(9, 'สมชาย ขายเข่ง', '24/1 ม. 4  ต.นารา', 7030, 56, 5862, '098-35473822', '1', 'EM006', '1234', 784, 'confirm'),
-(12, 'สมใจ ป่ะล้าา', '24/1 ม. 4  ต.นารา', 1753, 18, 1462, '089-7382993', '1', 'EM001', '1234', 213, 'confirm'),
-(13, 'Kanok podee', 'ุ65/2 ตำบลหัวใจ', 1594, 16, 1362, '089-7382993', '1', 'EM002', '1234', 196, 'confirm'),
-(14, 'Lostpolip', '32/2 ตำบลสยาม', 368, 4, 289, '043-765498', '2', 'EM003', '1234', 67, 'cancle'),
-(15, 'ชิษณุพงศ์ ธัญพันทธนันท์', '32/2 ตำบลสยาม', 191, 1, 128, '089-7382993', '2', 'EM004', '1234', 33, 'confirm');
+(12, 'ศุภธิดา วินิจโกศล', '24/1 ม. 4  ต.นารา', 1753, 18, 1462, '089-7382993', '2', 'EM001', '1234', 213, 'confirm'),
+(15, 'ชิษณุพงศ์ ธัญพันทธนันท์', '32/2 ตำบลสยาม', 191, 1, 128, '089-7382993', '3', 'EM004', '1234', 33, 'confirm'),
+(16, 'พรชัย เตียววิไล', '78 หมู่ 2', 7118, 57, 5943, '090-4465782', '3', 'EM003', '1234', 797, 'confirm'),
+(17, 'กนกวรรณ ใจมั่น', '246 หมู่ 2', 7118, 57, 5943, '087-5687927', '1', 'lostpolip', 'Kanokwan37', 797, 'confirm'),
+(18, 'รุ่งรัตน์ ใจมั่น', '78 หมู่ 2', 7118, 57, 5943, '081-7363757', '4', 'EM002', '1234', 797, 'confirm'),
+(19, 'ธนากร โสภาสพ', 'ุ65/2 ตำบลหัวใจ', 1504, 15, 0, '098-4375800', '3', 'EM006', '1234', 187, 'confirm'),
+(20, 'อภิรัตน์ กลิ่นประชา', '32/2 ตำบลสยาม', 561, 5, 481, '085-3211233', '3', 'EM007', '1234', 83, 'confirm'),
+(21, 'กิติศักดิ์ ทองมีทิพย์', '24/1 ม. 4  ต.นารา', 8320, 70, 6992, '086-4356765', '3', 'EM008', '1234', 929, 'confirm'),
+(22, 'อดิศักดิ์ แสงทอง', '32/2 ตำบลสยาม', 624, 6, 544, '076-4532455', '3', 'CM009', '1234', 90, 'confirm'),
+(23, 'วโรดม มีเจริญชัย', 'ุ65/2 ตำบลหัวใจ', 54, 1, 38, '090-44657825', '3', 'CM010', '1234', 7, 'confirm');
 
 -- --------------------------------------------------------
 
@@ -10105,15 +10099,18 @@ INSERT INTO `employee` (`EmployeeID`, `EmployeeName`, `EmployeeAddress`, `Distri
 
 CREATE TABLE `expenses` (
   `ExpensesID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `ExpensesDate` date NOT NULL,
-  `RouteID` int(10) NOT NULL,
-  `PriceFeul` float NOT NULL,
-  `LaborExp` float NOT NULL,
-  `CarryingExp` float NOT NULL,
-  `PassThroughExp` float NOT NULL,
-  `AnotherExp` float NOT NULL,
-  `State` int(11) NOT NULL
+  `StateExpenses` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `ExpensesDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`ExpensesID`, `StateExpenses`, `ExpensesDate`) VALUES
+('ES1', 'complete', '2016-03-31'),
+('ES2', 'complete', '2016-03-31'),
+('ES3', 'complete', '2016-03-31');
 
 -- --------------------------------------------------------
 
@@ -10167,7 +10164,7 @@ INSERT INTO `geography` (`GeoID`, `GeoName`) VALUES
 
 CREATE TABLE `orderdetail` (
   `OrderDetailID` int(10) NOT NULL,
-  `ProductID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ProductID` int(10) NOT NULL,
   `OrderAmount` float NOT NULL,
   `TotalVolumn` int(11) NOT NULL,
   `TotalCost` int(11) NOT NULL,
@@ -10180,12 +10177,41 @@ CREATE TABLE `orderdetail` (
 --
 
 INSERT INTO `orderdetail` (`OrderDetailID`, `ProductID`, `OrderAmount`, `TotalVolumn`, `TotalCost`, `OrderID`, `TotalPrice`) VALUES
-(289, '18', 2, 100, 142000, 'OR1', 199000),
-(290, '17', 31, 1550, 1860000, 'OR2', 2712500),
-(292, '20', 3, 150, 277500, 'OR3', 412500),
-(293, '21', 2, 100, 115000, 'OR3', 167500),
-(294, '17', 4, 200, 240000, 'OR4', 350000),
-(295, '18', 2, 100, 142000, 'OR4', 199000);
+(21, 18, 2, 100, 142000, 'OR1', 199000),
+(22, 17, 3, 150, 180000, 'OR1', 262500),
+(23, 20, 2, 100, 185000, 'OR2', 275000),
+(24, 21, 2, 100, 115000, 'OR2', 167500),
+(25, 17, 2, 100, 120000, 'OR3', 175000),
+(26, 17, 2, 100, 120000, 'OR4', 175000),
+(27, 18, 3, 150, 213000, 'OR4', 298500),
+(28, 20, 2, 100, 185000, 'OR5', 275000),
+(29, 19, 3, 150, 307500, 'OR5', 472500),
+(30, 21, 2, 100, 115000, 'OR6', 167500),
+(31, 17, 2, 100, 120000, 'OR6', 175000),
+(32, 18, 2, 100, 142000, 'OR7', 199000),
+(33, 18, 3, 150, 213000, 'OR8', 298500),
+(34, 17, 3, 150, 180000, 'OR4', 262500),
+(35, 18, 3, 150, 213000, 'OR4', 298500),
+(36, 17, 3, 150, 180000, 'OR5', 262500),
+(37, 17, 3, 150, 180000, 'OR6', 262500),
+(38, 18, 4, 200, 284000, 'OR6', 398000),
+(39, 17, 4, 200, 240000, 'OR7', 350000),
+(40, 20, 3, 150, 277500, 'OR8', 412500),
+(41, 19, 1, 50, 102500, 'OR8', 157500),
+(42, 18, 3, 150, 213000, 'OR9', 298500),
+(43, 18, 2, 100, 142000, 'OR10', 199000),
+(44, 17, 2, 100, 120000, 'OR11', 175000),
+(45, 17, 2, 100, 120000, 'OR12', 175000),
+(46, 17, 2, 100, 120000, 'OR13', 175000),
+(47, 18, 2, 100, 142000, 'OR13', 199000),
+(48, 20, 3, 150, 277500, 'OR14', 412500),
+(49, 19, 2, 100, 205000, 'OR14', 315000),
+(50, 17, 2, 100, 120000, 'OR15', 175000),
+(51, 18, 3, 150, 213000, 'OR15', 298500),
+(52, 18, 3, 150, 213000, 'OR16', 298500),
+(53, 17, 2, 100, 120000, 'OR16', 175000),
+(54, 18, 3, 150, 213000, 'OR16', 298500),
+(55, 17, 3, 150, 180000, 'OR17', 262500);
 
 -- --------------------------------------------------------
 
@@ -10196,36 +10222,43 @@ INSERT INTO `orderdetail` (`OrderDetailID`, `ProductID`, `OrderAmount`, `TotalVo
 CREATE TABLE `orders` (
   `OrderID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `CustomerID` int(10) NOT NULL,
-  `RateID` int(10) NOT NULL,
-  `TransportID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `State` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `State` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `OrderDate` date NOT NULL,
   `TotalPriceOrder` int(11) NOT NULL,
   `TotalVat` float NOT NULL,
   `TotalTransport` float NOT NULL,
-  `ExtendedPrice` float NOT NULL
+  `ExtendedPrice` float NOT NULL,
+  `UnitProduct` float NOT NULL,
+  `TotalCostOrder` int(11) NOT NULL,
+  `latOrder` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `lonOrder` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `DistanceOrder` float NOT NULL,
+  `ProvinceID` int(11) NOT NULL,
+  `SendOrder` date NOT NULL,
+  `TransportID` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `CustomerID`, `RateID`, `TransportID`, `State`, `OrderDate`, `TotalPriceOrder`, `TotalVat`, `TotalTransport`, `ExtendedPrice`) VALUES
-('OR1', 21, 0, '', 'complete', '2016-02-20', 199000, 13930, 0, 212930),
-('OR2', 20, 0, '', 'complete', '2016-02-20', 2712500, 189875, 0, 2902380),
-('OR3', 16, 0, '', 'complete', '2016-02-22', 580000, 40600, 0, 620600),
-('OR4', 16, 0, '', 'processing', '2016-02-23', 549000, 38430, 0, 587430);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `paymenttype`
---
-
-CREATE TABLE `paymenttype` (
-  `PaymentTypeID` int(10) NOT NULL,
-  `PaymentTypeName` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `orders` (`OrderID`, `CustomerID`, `State`, `OrderDate`, `TotalPriceOrder`, `TotalVat`, `TotalTransport`, `ExtendedPrice`, `UnitProduct`, `TotalCostOrder`, `latOrder`, `lonOrder`, `DistanceOrder`, `ProvinceID`, `SendOrder`, `TransportID`) VALUES
+('OR1', 62, 'Claimcomplete', '2016-03-27', 461500, 32305, 6896, 500701, 5, 322000, '14.550022502704843', '100.90547561645508', 104.489, 0, '0000-00-00', ''),
+('OR11', 60, 'processing', '2016-03-28', 175000, 12250, 5472.39, 192722, 2, 120000, '14.468090280035826', '100.15426232753907', 82.915, 0, '2016-03-01', ''),
+('OR12', 60, 'processing', '2016-03-28', 175000, 12250, 52492.4, 239742, 2, 120000, '8.088324969159101', '98.9039713173828', 795.34, 64, '2016-03-31', 'TS1'),
+('OR13', 60, 'complete', '2016-03-28', 374000, 26180, 7480.7, 407661, 4, 262000, '14.001042942860694', '99.58918977480471', 113.344, 56, '2016-03-31', 'TS1'),
+('OR14', 60, 'complete', '2016-03-28', 727500, 50925, 5429.89, 783855, 5, 482500, '13.701642457727075', '101.09041067829594', 82.271, 15, '2016-03-31', 'TS1'),
+('OR15', 60, 'complete', '2016-03-28', 473500, 33145, 22739.6, 529385, 5, 333000, '16.48078201759934', '99.53315710327149', 344.54, 49, '2016-03-31', 'TS7'),
+('OR16', 60, 'complete', '2016-03-29', 298500, 20895, 11476.1, 330871, 3, 213000, '15.176333649124674', '100.14682805834968', 173.88, 9, '2016-03-31', 'TS7'),
+('OR17', 60, 'complete', '2016-03-29', 262500, 18375, 6853.77, 287729, 3, 180000, '14.198679822660749', '101.24129685566413', 103.845, 17, '2016-03-31', 'TS7'),
+('OR2', 62, 'complete', '2016-03-17', 442500, 30975, 6864, 480339, 4, 300000, '13.67634532032939', '101.04280471801758', 104.006, 0, '0000-00-00', ''),
+('OR3', 62, 'processing', '2016-03-27', 175000, 12250, 8192, 195442, 2, 120000, '14.039007559838675', '99.51570510864258', 124.131, 0, '0000-00-00', ''),
+('OR4', 64, 'complete', '2016-03-23', 561000, 39270, 5568, 605838, 6, 393000, '14.448976606624473', '100.19136428833008', 84.364, 0, '0000-00-00', ''),
+('OR5', 64, 'complete', '2016-03-27', 262500, 18375, 3889, 284764, 3, 180000, '13.545041778821705', '100.27612209320068', 58.926, 0, '0000-00-00', ''),
+('OR6', 64, 'complete', '2016-03-21', 660500, 46235, 6131, 712866, 7, 464000, '13.411995914694021', '100.01558303833008', 92.897, 0, '0000-00-00', ''),
+('OR7', 64, 'complete', '2016-03-19', 350000, 24500, 8182, 382682, 4, 240000, '14.797123416525855', '100.62532424926758', 123.97, 0, '0000-00-00', ''),
+('OR8', 64, 'complete', '2016-03-28', 570000, 39900, 8564, 618464, 4, 380000, '14.017690218225484', '99.48274612426758', 129.766, 0, '0000-00-00', ''),
+('OR9', 64, 'processing', '2016-03-28', 298500, 20895, 14876.4, 334271, 3, 213000, '15.679568201707967', '100.13093948364258', 225.4, 0, '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -10243,8 +10276,10 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`PositionID`, `PositionName`) VALUES
-(1, 'พนักงานบัญชี'),
-(2, 'พนักงานขับรถ');
+(1, 'เจ้าของบริษัท/ผู้ดูแลระบบ'),
+(2, 'พนักงานคลังสินค้า'),
+(3, 'พนักงานขับรถ'),
+(4, 'พนักงานจัดการ');
 
 -- --------------------------------------------------------
 
@@ -10263,7 +10298,7 @@ CREATE TABLE `product` (
   `Price` float NOT NULL,
   `ProductAmount` int(11) NOT NULL,
   `ImageProduct` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `AmountBag` int(11) NOT NULL,
+  `OrderPoints` int(11) NOT NULL,
   `StateProduct` varchar(11) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -10271,13 +10306,14 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ProductID`, `ProductName`, `ProductTypeID`, `BrandID`, `SupplierID`, `ProductWeight`, `Cost`, `Price`, `ProductAmount`, `ImageProduct`, `AmountBag`, `StateProduct`) VALUES
-(17, 'ISOLATE SOY PROTEIN (EMULSIFICATION GRADE)', '1', '1', '3', 20, 1200, 1750, 224, 'shjinjianer-14060280.jpg', 0, 'confirm'),
-(18, 'Textured soy protein', '1', '7', '4', 20, 1420, 1990, 27, 'Textured_soy_protein.jpg', 0, 'confirm'),
-(19, 'Cellulose Fiber,JustFiber BH 65 FCC', '1', '2', '5', 20, 2050, 3150, 63, 'jpetfood.jpg', 0, 'confirm'),
-(20, 'Cellulose Fiber,JustFiber CL100FCC', '1', '2', '5', 20, 1850, 2750, 49, 'jcf.jpg', 0, 'confirm'),
-(21, 'Plastic', '2', '8', '6', 20, 1150, 1675, 55, '2212_fullimage_Plastices_Polymers_1_455x255.jpg', 0, 'confirm'),
-(22, 'Callium', '1', '1', '4', 20, 1000, 1400, 0, 'Show2.png', 0, 'cancle');
+INSERT INTO `product` (`ProductID`, `ProductName`, `ProductTypeID`, `BrandID`, `SupplierID`, `ProductWeight`, `Cost`, `Price`, `ProductAmount`, `ImageProduct`, `OrderPoints`, `StateProduct`) VALUES
+(17, 'ISOLATE SOY PROTEIN (EMULSIFICATION GRADE)', '1', '1', '3', 20, 1200, 1750, 250, 'shjinjianer-14060280.jpg', 36, 'confirm'),
+(18, 'Textured soy protein', '1', '7', '4', 20, 1420, 1990, 55, 'Textured_soy_protein.jpg', 36, 'confirm'),
+(19, 'Cellulose Fiber,JustFiber BH 65 FCC', '1', '2', '5', 20, 2050, 3150, 228, 'jpetfood.jpg', 120, 'confirm'),
+(20, 'Cellulose Fiber,JustFiber CL100FCC', '1', '2', '5', 20, 1850, 2750, 152, 'jcf.jpg', 120, 'confirm'),
+(21, 'Plastic', '2', '8', '6', 20, 1150, 1675, 38, '2212_fullimage_Plastices_Polymers_1_455x255.jpg', 42, 'confirm'),
+(22, 'Callium', '1', '1', '4', 20, 1000, 1400, 0, 'Show2.png', 0, 'cancle'),
+(23, 'ppp', '1', '1', '3', 0, 0, 0, 0, '', 0, 'cancle');
 
 -- --------------------------------------------------------
 
@@ -10291,16 +10327,19 @@ CREATE TABLE `productreceive` (
   `Lot` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `ExpiryDate` date NOT NULL,
   `ReceiveAmount` int(11) NOT NULL,
-  `State` int(11) NOT NULL,
-  `PurchaseID` int(11) NOT NULL
+  `StateReceive` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `PurchaseID` varchar(11) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `productreceive`
 --
 
-INSERT INTO `productreceive` (`ReceiveID`, `ReceiveDate`, `Lot`, `ExpiryDate`, `ReceiveAmount`, `State`, `PurchaseID`) VALUES
-('RE1', '2016-02-22', 'RW001', '2017-10-11', 40, 0, 0);
+INSERT INTO `productreceive` (`ReceiveID`, `ReceiveDate`, `Lot`, `ExpiryDate`, `ReceiveAmount`, `StateReceive`, `PurchaseID`) VALUES
+('RE10', '2016-03-19', 'RW00032', '2017-12-30', 50, 'complete', 'PO9'),
+('RE11', '2016-03-24', 'RW00035', '2016-03-30', 27, 'complete', 'PO11'),
+('RE4', '2016-03-26', 'RW00033', '2016-04-01', 30, 'complete', 'PO1'),
+('RE8', '2016-04-01', 'RW00034', '2016-04-03', 5, 'complete', 'PO6');
 
 -- --------------------------------------------------------
 
@@ -10331,91 +10370,92 @@ CREATE TABLE `province` (
   `ProvinceID` int(5) NOT NULL,
   `ProvinceCode` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `ProvinceName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `GeoID` int(5) NOT NULL
+  `GeoID` int(5) NOT NULL,
+  `GeoName` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `province`
 --
 
-INSERT INTO `province` (`ProvinceID`, `ProvinceCode`, `ProvinceName`, `GeoID`) VALUES
-(1, '10', 'กรุงเทพมหานคร   ', 2),
-(2, '11', 'สมุทรปราการ   ', 2),
-(3, '12', 'นนทบุรี   ', 2),
-(4, '13', 'ปทุมธานี   ', 2),
-(5, '14', 'พระนครศรีอยุธยา   ', 2),
-(6, '15', 'อ่างทอง   ', 2),
-(7, '16', 'ลพบุรี   ', 2),
-(8, '17', 'สิงห์บุรี   ', 2),
-(9, '18', 'ชัยนาท   ', 2),
-(10, '19', 'สระบุรี', 2),
-(11, '20', 'ชลบุรี   ', 5),
-(12, '21', 'ระยอง   ', 5),
-(13, '22', 'จันทบุรี   ', 5),
-(14, '23', 'ตราด   ', 5),
-(15, '24', 'ฉะเชิงเทรา   ', 5),
-(16, '25', 'ปราจีนบุรี   ', 5),
-(17, '26', 'นครนายก   ', 2),
-(18, '27', 'สระแก้ว   ', 5),
-(19, '30', 'นครราชสีมา   ', 3),
-(20, '31', 'บุรีรัมย์   ', 3),
-(21, '32', 'สุรินทร์   ', 3),
-(22, '33', 'ศรีสะเกษ   ', 3),
-(23, '34', 'อุบลราชธานี   ', 3),
-(24, '35', 'ยโสธร   ', 3),
-(25, '36', 'ชัยภูมิ   ', 3),
-(26, '37', 'อำนาจเจริญ   ', 3),
-(27, '39', 'หนองบัวลำภู   ', 3),
-(28, '40', 'ขอนแก่น   ', 3),
-(29, '41', 'อุดรธานี   ', 3),
-(30, '42', 'เลย   ', 3),
-(31, '43', 'หนองคาย   ', 3),
-(32, '44', 'มหาสารคาม   ', 3),
-(33, '45', 'ร้อยเอ็ด   ', 3),
-(34, '46', 'กาฬสินธุ์   ', 3),
-(35, '47', 'สกลนคร   ', 3),
-(36, '48', 'นครพนม   ', 3),
-(37, '49', 'มุกดาหาร   ', 3),
-(38, '50', 'เชียงใหม่   ', 1),
-(39, '51', 'ลำพูน   ', 1),
-(40, '52', 'ลำปาง   ', 1),
-(41, '53', 'อุตรดิตถ์   ', 1),
-(42, '54', 'แพร่   ', 1),
-(43, '55', 'น่าน   ', 1),
-(44, '56', 'พะเยา   ', 1),
-(45, '57', 'เชียงราย   ', 1),
-(46, '58', 'แม่ฮ่องสอน   ', 1),
-(47, '60', 'นครสวรรค์   ', 2),
-(48, '61', 'อุทัยธานี   ', 2),
-(49, '62', 'กำแพงเพชร   ', 2),
-(50, '63', 'ตาก   ', 4),
-(51, '64', 'สุโขทัย   ', 2),
-(52, '65', 'พิษณุโลก   ', 2),
-(53, '66', 'พิจิตร   ', 2),
-(54, '67', 'เพชรบูรณ์   ', 2),
-(55, '70', 'ราชบุรี   ', 4),
-(56, '71', 'กาญจนบุรี   ', 4),
-(57, '72', 'สุพรรณบุรี   ', 2),
-(58, '73', 'นครปฐม   ', 2),
-(59, '74', 'สมุทรสาคร   ', 2),
-(60, '75', 'สมุทรสงคราม   ', 2),
-(61, '76', 'เพชรบุรี   ', 4),
-(62, '77', 'ประจวบคีรีขันธ์   ', 4),
-(63, '80', 'นครศรีธรรมราช   ', 6),
-(64, '81', 'กระบี่   ', 6),
-(65, '82', 'พังงา   ', 6),
-(66, '83', 'ภูเก็ต   ', 6),
-(67, '84', 'สุราษฎร์ธานี   ', 6),
-(68, '85', 'ระนอง   ', 6),
-(69, '86', 'ชุมพร   ', 6),
-(70, '90', 'สงขลา   ', 6),
-(71, '91', 'สตูล   ', 6),
-(72, '92', 'ตรัง   ', 6),
-(73, '93', 'พัทลุง   ', 6),
-(74, '94', 'ปัตตานี   ', 6),
-(75, '95', 'ยะลา   ', 6),
-(76, '96', 'นราธิวาส   ', 6),
-(77, '97', 'บึงกาฬ', 3);
+INSERT INTO `province` (`ProvinceID`, `ProvinceCode`, `ProvinceName`, `GeoID`, `GeoName`) VALUES
+(1, '10', 'กรุงเทพมหานคร   ', 2, 'ภาคกลาง'),
+(2, '11', 'สมุทรปราการ   ', 2, 'ภาคกลาง'),
+(3, '12', 'นนทบุรี   ', 2, 'ภาคกลาง'),
+(4, '13', 'ปทุมธานี   ', 2, 'ภาคกลาง'),
+(5, '14', 'พระนครศรีอยุธยา   ', 2, 'ภาคกลาง'),
+(6, '15', 'อ่างทอง   ', 2, 'ภาคกลาง'),
+(7, '16', 'ลพบุรี   ', 2, 'ภาคกลาง'),
+(8, '17', 'สิงห์บุรี   ', 2, 'ภาคกลาง'),
+(9, '18', 'ชัยนาท   ', 2, 'ภาคกลาง'),
+(10, '19', 'สระบุรี', 2, 'ภาคกลาง'),
+(11, '20', 'ชลบุรี   ', 5, 'ภาคตะวันออก'),
+(12, '21', 'ระยอง   ', 5, 'ภาคตะวันออก'),
+(13, '22', 'จันทบุรี   ', 5, 'ภาคตะวันออก'),
+(14, '23', 'ตราด   ', 5, 'ภาคตะวันออก'),
+(15, '24', 'ฉะเชิงเทรา   ', 5, 'ภาคตะวันออก'),
+(16, '25', 'ปราจีนบุรี   ', 5, 'ภาคตะวันออก'),
+(17, '26', 'นครนายก   ', 2, 'ภาคกลาง'),
+(18, '27', 'สระแก้ว   ', 5, 'ภาคตะวันออก'),
+(19, '30', 'นครราชสีมา   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(20, '31', 'บุรีรัมย์   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(21, '32', 'สุรินทร์   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(22, '33', 'ศรีสะเกษ   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(23, '34', 'อุบลราชธานี   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(24, '35', 'ยโสธร   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(25, '36', 'ชัยภูมิ   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(26, '37', 'อำนาจเจริญ   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(27, '39', 'หนองบัวลำภู   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(28, '40', 'ขอนแก่น   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(29, '41', 'อุดรธานี   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(30, '42', 'เลย   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(31, '43', 'หนองคาย   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(32, '44', 'มหาสารคาม   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(33, '45', 'ร้อยเอ็ด   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(34, '46', 'กาฬสินธุ์   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(35, '47', 'สกลนคร   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(36, '48', 'นครพนม   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(37, '49', 'มุกดาหาร   ', 3, 'ภาคตะวันออกเฉียงเหนือ'),
+(38, '50', 'เชียงใหม่   ', 1, 'ภาคเหนือ'),
+(39, '51', 'ลำพูน   ', 1, 'ภาคเหนือ'),
+(40, '52', 'ลำปาง   ', 1, 'ภาคเหนือ'),
+(41, '53', 'อุตรดิตถ์   ', 1, 'ภาคเหนือ'),
+(42, '54', 'แพร่   ', 1, 'ภาคเหนือ'),
+(43, '55', 'น่าน   ', 1, 'ภาคเหนือ'),
+(44, '56', 'พะเยา   ', 1, 'ภาคเหนือ'),
+(45, '57', 'เชียงราย   ', 1, 'ภาคเหนือ'),
+(46, '58', 'แม่ฮ่องสอน   ', 1, 'ภาคเหนือ'),
+(47, '60', 'นครสวรรค์   ', 2, 'ภาคกลาง'),
+(48, '61', 'อุทัยธานี   ', 2, 'ภาคกลาง'),
+(49, '62', 'กำแพงเพชร   ', 2, 'ภาคกลาง'),
+(50, '63', 'ตาก   ', 4, 'ภาคจะวันตก'),
+(51, '64', 'สุโขทัย   ', 2, 'ภาคกลาง'),
+(52, '65', 'พิษณุโลก   ', 2, 'ภาคกลาง'),
+(53, '66', 'พิจิตร   ', 2, 'ภาคกลาง'),
+(54, '67', 'เพชรบูรณ์   ', 2, 'ภาคกลาง'),
+(55, '70', 'ราชบุรี   ', 4, 'ภาคจะวันตก'),
+(56, '71', 'กาญจนบุรี   ', 4, 'ภาคจะวันตก'),
+(57, '72', 'สุพรรณบุรี   ', 2, 'ภาคกลาง'),
+(58, '73', 'นครปฐม   ', 2, 'ภาคกลาง'),
+(59, '74', 'สมุทรสาคร   ', 2, 'ภาคกลาง'),
+(60, '75', 'สมุทรสงคราม   ', 2, 'ภาคกลาง'),
+(61, '76', 'เพชรบุรี   ', 4, 'ภาคจะวันตก'),
+(62, '77', 'ประจวบคีรีขันธ์   ', 4, 'ภาคตะวันตก'),
+(63, '80', 'นครศรีธรรมราช   ', 6, 'ภาคใต้'),
+(64, '81', 'กระบี่   ', 6, 'ภาคใต้'),
+(65, '82', 'พังงา   ', 6, 'ภาคใต้'),
+(66, '83', 'ภูเก็ต   ', 6, 'ภาคใต้'),
+(67, '84', 'สุราษฎร์ธานี   ', 6, 'ภาคใต้'),
+(68, '85', 'ระนอง   ', 6, 'ภาคใต้'),
+(69, '86', 'ชุมพร   ', 6, 'ภาคใต้'),
+(70, '90', 'สงขลา   ', 6, 'ภาคใต้'),
+(71, '91', 'สตูล   ', 6, 'ภาคใต้'),
+(72, '92', 'ตรัง   ', 6, 'ภาคใต้'),
+(73, '93', 'พัทลุง   ', 6, 'ภาคใต้'),
+(74, '94', 'ปัตตานี   ', 6, 'ภาคใต้'),
+(75, '95', 'ยะลา   ', 6, 'ภาคใต้'),
+(76, '96', 'นราธิวาส   ', 6, 'ภาคใต้'),
+(77, '97', 'บึงกาฬ', 3, 'ภาคตะวันออกเฉียงเหนือ');
 
 -- --------------------------------------------------------
 
@@ -10430,15 +10470,26 @@ CREATE TABLE `purchase` (
   `ProductID` int(11) NOT NULL,
   `PurchaseAmount` float NOT NULL,
   `StatePurchase` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `PurchaseDetail` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `PurchaseDetail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `AmountMinusReceive` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `purchase`
 --
 
-INSERT INTO `purchase` (`PurchaseID`, `PurchaseDate`, `SupplierID`, `ProductID`, `PurchaseAmount`, `StatePurchase`, `PurchaseDetail`) VALUES
-('PO1', '2016-02-22', 0, 17, 20, 'processing', '');
+INSERT INTO `purchase` (`PurchaseID`, `PurchaseDate`, `SupplierID`, `ProductID`, `PurchaseAmount`, `StatePurchase`, `PurchaseDetail`, `AmountMinusReceive`) VALUES
+('PO1', '2016-02-25', 3, 19, 40, 'complete', 'No Palet', 0),
+('PO10', '2016-03-19', 3, 18, 50, 'complete', '', 0),
+('PO11', '2016-03-22', 3, 17, 100, 'complete', '', 73),
+('PO2', '2016-03-08', 3, 19, 3, 'processing', 'No palet', 0),
+('PO3', '2016-03-15', 3, 18, 23, 'processing', '', 0),
+('PO4', '2016-03-18', 3, 17, 5, 'processing', '', 0),
+('PO5', '2016-03-18', 3, 17, 5, 'processing', '', 0),
+('PO6', '2016-03-18', 3, 17, 5, 'complete', '', 0),
+('PO7', '2016-03-19', 3, 17, 6, 'complete', 'not palet', 0),
+('PO8', '2016-03-19', 3, 21, 50, 'complete', '', 0),
+('PO9', '2016-03-19', 3, 18, 50, 'complete', 'Not palet', 0);
 
 -- --------------------------------------------------------
 
@@ -10448,23 +10499,21 @@ INSERT INTO `purchase` (`PurchaseID`, `PurchaseDate`, `SupplierID`, `ProductID`,
 
 CREATE TABLE `rate` (
   `RateID` int(10) NOT NULL,
-  `RateName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `RateAmount` float NOT NULL
+  `WeightOfProduct` int(11) NOT NULL,
+  `RatePerKm` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `route`
+-- Dumping data for table `rate`
 --
 
-CREATE TABLE `route` (
-  `RouteID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `TransportID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `Latitude` float NOT NULL,
-  `Longitude` float NOT NULL,
-  `State` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `rate` (`RateID`, `WeightOfProduct`, `RatePerKm`) VALUES
+(1, 1, 72),
+(2, 7, 66),
+(3, 10, 60),
+(4, 20, 54),
+(5, 36, 48),
+(6, 50, 42);
 
 -- --------------------------------------------------------
 
@@ -10503,23 +10552,17 @@ INSERT INTO `supplier` (`SupplierID`, `SupplierName`, `SupplierAddress`, `Suppli
 
 CREATE TABLE `transport` (
   `TransportID` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `TransportDate` date NOT NULL,
-  `TruckID` int(11) NOT NULL,
-  `EmployeeID` int(11) NOT NULL,
-  `TimeAction` time NOT NULL,
-  `TransportStatusID` int(11) NOT NULL
+  `TransportStatus` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `TotalWeightProduct` float NOT NULL,
+  `AmountDistance` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `transportstatus`
+-- Dumping data for table `transport`
 --
 
-CREATE TABLE `transportstatus` (
-  `TransportStatusID` int(11) NOT NULL,
-  `TransportStatusName` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `transport` (`TransportID`, `TransportStatus`, `TotalWeightProduct`, `AmountDistance`) VALUES
+('TS1', 'processing', 9, 399.9);
 
 -- --------------------------------------------------------
 
@@ -10535,18 +10578,26 @@ CREATE TABLE `truck` (
   `TruckWeight` float NOT NULL,
   `WeightQuantity` float NOT NULL,
   `WeightCapacity` float NOT NULL,
-  `StateTruck` varchar(11) COLLATE utf8_unicode_ci NOT NULL
+  `StateTruck` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `ConsumptionFuel` float NOT NULL,
+  `TruckCost` int(11) NOT NULL,
+  `ResidualValue` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `truck`
 --
 
-INSERT INTO `truck` (`TruckID`, `TruckName`, `TruckTypeID`, `FuelID`, `TruckWeight`, `WeightQuantity`, `WeightCapacity`, `StateTruck`) VALUES
-(1, 'กข-4535', 'หกล้อตู้ทึบ', 'แก๊ส LPG', 1700, 210, 210, 'confirm'),
-(2, 'กข-4535', 'หกล้อตู้ทึบ', 'เบนซิน', 1700, 210, 210, 'confirm'),
-(3, 'กข-4535', 'หกล้อตู้ทึบ', 'แก๊ส NGV', 1700, 12, 210, 'confirm'),
-(4, 'กข-4535', 'รถกระบะคอก', 'ดีเซล', 1700, 12, 210, 'confirm');
+INSERT INTO `truck` (`TruckID`, `TruckName`, `TruckTypeID`, `FuelID`, `TruckWeight`, `WeightQuantity`, `WeightCapacity`, `StateTruck`, `ConsumptionFuel`, `TruckCost`, `ResidualValue`) VALUES
+(5, 'กข-4535', 'รถกระบะคอก', 'ดีเซล', 1500, 100, 2, 'confirm', 10, 589000, 335000),
+(6, '80-5186', 'หกล้อรถคอก', 'แก๊ส NGV', 5000, 500, 10, 'confirm', 6, 1190000, 775000),
+(7, '15-7410', 'สิบล้อตู้ทึบ', 'แก๊ส NGV', 5000, 1000, 20, 'confirm', 5, 1850000, 1690000),
+(8, '56-0987', 'หกล้อตู้ทึบ', 'แก๊ส NGV', 8000, 350, 7, 'confirm', 6, 2555000, 1978000),
+(9, '34-8765', 'สิบล้อรถคอก', 'แก๊ส NGV', 4000, 1050, 21, 'confirm', 5, 3440000, 2845000),
+(10, '43-6532', 'หกล้อรถคอก', 'แก๊ส NGV', 5000, 500, 10, 'confirm', 6, 1230000, 794900),
+(11, '23-3445', 'หกล้อตู้ทึบ', 'แก๊ส NGV', 8000, 350, 7, 'confirm', 6, 1209000, 980000),
+(12, '75-3222', 'สิบล้อรถคอก', 'แก๊ส NGV', 4000, 1050, 21, 'confirm', 5, 1199000, 875000),
+(13, '66-8742', 'สิบล้อตู้ทึบ', 'แก๊ส NGV', 5000, 1000, 20, 'confirm', 5, 2100000, 1740000);
 
 -- --------------------------------------------------------
 
@@ -18128,12 +18179,6 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`OrderID`);
 
 --
--- Indexes for table `paymenttype`
---
-ALTER TABLE `paymenttype`
-  ADD PRIMARY KEY (`PaymentTypeID`);
-
---
 -- Indexes for table `position`
 --
 ALTER TABLE `position`
@@ -18176,12 +18221,6 @@ ALTER TABLE `rate`
   ADD PRIMARY KEY (`RateID`);
 
 --
--- Indexes for table `route`
---
-ALTER TABLE `route`
-  ADD PRIMARY KEY (`RouteID`);
-
---
 -- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
@@ -18192,12 +18231,6 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transport`
   ADD PRIMARY KEY (`TransportID`);
-
---
--- Indexes for table `transportstatus`
---
-ALTER TABLE `transportstatus`
-  ADD PRIMARY KEY (`TransportStatusID`);
 
 --
 -- Indexes for table `truck`
@@ -18235,12 +18268,12 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `claimdetail`
 --
 ALTER TABLE `claimdetail`
-  MODIFY `ClaimDetailID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ClaimDetailID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `CustomerID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT for table `district`
 --
@@ -18250,7 +18283,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `EmployeeID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `EmployeeID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `fuel`
 --
@@ -18260,22 +18293,17 @@ ALTER TABLE `fuel`
 -- AUTO_INCREMENT for table `orderdetail`
 --
 ALTER TABLE `orderdetail`
-  MODIFY `OrderDetailID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
---
--- AUTO_INCREMENT for table `paymenttype`
---
-ALTER TABLE `paymenttype`
-  MODIFY `PaymentTypeID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderDetailID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `PositionID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PositionID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ProductID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ProductID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `producttype`
 --
@@ -18285,7 +18313,7 @@ ALTER TABLE `producttype`
 -- AUTO_INCREMENT for table `rate`
 --
 ALTER TABLE `rate`
-  MODIFY `RateID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `RateID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
@@ -18295,7 +18323,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `truck`
 --
 ALTER TABLE `truck`
-  MODIFY `TruckID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `TruckID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `trucktype`
 --
