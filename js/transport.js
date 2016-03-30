@@ -43,7 +43,7 @@ $( document ).ready(function() {
 	$('#timeInfo').hide();
 	$('#truckDetail').hide();
 	$('#truckInfo').hide();
-	$('#employeeInfo').hide();
+	// $('#employeeInfo').hide();
 
 
 	$("input[name='destination[]'").on('change', function() {
@@ -97,7 +97,7 @@ $( document ).ready(function() {
 					});
 					
 					if (count >= minimum) {
-						$('#employeeInfo').show();
+						// $('#employeeInfo').show();
 
 
 						if (count - minimum >= 9) {
@@ -109,7 +109,7 @@ $( document ).ready(function() {
 							}
 						}
 					}	else {
-							$('#employeeInfo').hide();
+							// $('#employeeInfo').hide();
 							$("input[name='listEmployeeName[]']:checked").each(function() {
 								$(this).attr('checked', false);
 							});
