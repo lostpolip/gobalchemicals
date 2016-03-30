@@ -43,7 +43,7 @@ $( document ).ready(function() {
 	$('#timeInfo').hide();
 	$('#truckDetail').hide();
 	$('#truckInfo').hide();
-	// $('#employeeInfo').hide();
+	$('#employeeInfo').hide();
 
 
 	$("input[name='destination[]'").on('change', function() {
@@ -60,6 +60,7 @@ $( document ).ready(function() {
 
 	$("input[name='rdoDate']").click(function(){
 		$('#truckInfo').show();
+		$('#employeeInfo').hide();
 
 		if (this.id == 'rdoDate1') {
 			var timeaction = $("#rdoDate1").val();
@@ -82,7 +83,7 @@ $( document ).ready(function() {
 
 		    	for (var x in TruckOther['name']) {
 
-					$('#truckOther').append('<input type="checkbox" name="listTruckName[]" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
+					$('#truckOther').append('<input type="checkbox" name="listTruckName[]" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
 				}
 
 				$("input[name='listTruckName[]']").change(function() {
@@ -90,28 +91,29 @@ $( document ).ready(function() {
 					var count=0;
 					$("input[name='listEmployeeName[]']").each(function() {
 						$(this).attr('checked', false);
-						$(this).attr('disabled', false);
+
+						if ($(this).data('available') !=  'disabled') {
+							$(this).prop('disabled', false);
+						}
 					});
 					$("input[name='listTruckName[]']:checked").each(function() {
 						count = count + $(this).data('weight-capacity');
 					});
-					
+
 					if (count >= minimum) {
-						// $('#employeeInfo').show();
-
-
-						if (count - minimum >= 9) {
-							var r = confirm("น้ำหนักรถที่เลือก ไม่เหมาะสมกับน้ำหนักสินค้า");
-							if (!r) {
-								$("input[name='listTruckName[]']:checked").each(function() {
-									$(this).attr('checked', false);
-								});
+						$('#employeeInfo').show();
+						$("input[name='listTruckName[]']").each(function() {
+							if(!$(this).is(':checked')) {
+								$(this).prop('disabled', true);
 							}
-						}
+						});
 					}	else {
-							// $('#employeeInfo').hide();
-							$("input[name='listEmployeeName[]']:checked").each(function() {
-								$(this).attr('checked', false);
+							$('#employeeInfo').hide();
+
+							$("input[name='listTruckName[]']").each(function() {
+								if ($(this).data('available') !=  'disabled') {
+									$(this).prop('disabled', false);
+								}
 							});
 						}
 				});
@@ -131,7 +133,7 @@ $( document ).ready(function() {
 
 		    	for (var x in EmployeeOther['name']) {
 					
-					$('#employeeOther').append('<input type="checkbox" name="listEmployeeName[]" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther['available'][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
+					$('#employeeOther').append('<input type="checkbox" name="listEmployeeName[]" data-available="'+ EmployeeOther["available"][x]+'" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther["available"][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
 				}
 
 				$("input[name='listEmployeeName[]']").change(function() {
@@ -153,7 +155,9 @@ $( document ).ready(function() {
 						});
 					} else {
 						$("input[name='listEmployeeName[]']").each(function() {
-							$(this).prop('disabled', false);
+							if ($(this).data('available') !=  'disabled') {
+								$(this).prop('disabled', false);
+							}
 						});
 					}
 				});

@@ -226,8 +226,9 @@
         <label style="font-family: 'quarkbold'; color: #FFFFFF; font-size: 23px;"><?php echo $order ?></label>
         <div id="directions-panel"></div>
         <br>
+
         <form action="expensiveAddSQL.php">
-          <input type="hidden" id="transportId" name="transportId" value="0">
+          <input type="hidden" id="transportId" name="transportId">
               <br>
               <?php 
 
@@ -242,9 +243,9 @@
                       <p>ค่าใช้จ่ายต่างๆ</p> 
 
                           <table id="table" style="width: 100%">
-                            <input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel[$key][0] ?>">
-                            <input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost[$key][0] ?>">
-                            <input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue[$key][0] ?>">
+                            <input type="hidden" id="<?php echo 'consumptionExp'.$value ?>" name="<?php echo 'consumptionExp'.$value ?>" value="<?php echo $ConsumptionFuel[$key][0] ?>">
+                            <input type="hidden" id="<?php echo'truckCost'.$value ?>" name="<?php echo 'truckCost'.$value ?>" value="<?php echo $TruckCost[$key][0] ?>">
+                            <input type="hidden" id="<?php echo 'residualValue'.$value ?>" name="<?php echo 'residualValue' ?>" value="<?php echo $ResidualValue[$key][0] ?>">
 
                                 <tr>
                                     <td>
@@ -318,63 +319,49 @@
                                     <td>
                                       <label>ระยะทางที่วิ่ง :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;
-                                      <label label id="labelDistance" name="labelDistance"></label>
+                                      <label  id="labelDistance" name="labelDistance"></label>
                                       &nbsp;&nbsp;<label>กิโลเมตร</label> 
                                     </td>
                                 </tr> 
-
+                                <br>
                                 <br>
 
-                </table>
-              </div>
+                                <tr> 
+                                  <td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
+                                    <label id="<?php echo 'ExpensesPerAround'.$value ?>"></label>
+
+                                    <input type="hidden" id="<?php echo 'hiddenExpensesPerAround'.$value ?>" name="<?php echo 'hiddenExpensesPerAround'.$value ?>" value="0">
+                                    
+                                    <label>บาท</label>
+                                  </td>
+                                </tr>
+                          </table>
+                  </div>
             <?php
               }
             ?>
             <tr>
               <td><button type="button" id="<?php echo 'btnCalculator' ?>" name="<?php echo 'calculator' ?>" class="btn btn-primary" style="margin-left: 215px;">คำนวณ</button></td>
             </tr>      
-
-
-            <input id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>"></input>
-
-
-
+            <input type="hidden" id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>">\
 
               <br>
-              <br>
-              <div id="truckInfo">
-
-                        <div class="ExpensesAll">
-                              <p>สรุปค่าใช้จ่าย</p>
-                               <table id="table" style="width: 100%">
-                                  <tr> 
-                                    <td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
-                                      <label id="ExpensesPerAround"></label>
-                                      <input type="hidden" id="hiddenExpensesPerAround" name="hiddenExpensesPerAround" value="0">
-                                      <label>บาท</label>
-                                    </td>
-                                  </tr>
-
-                                  <tr> <td>&nbsp;</td></tr>
-                                </table>
-                            </div>  
-                        </div>
 
                         
-                          <div id="btnCB">
-                        <tr id="button-command">
-                            <td>
-                              <a href="indexEmployee.php">
-                              <button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
-                              </a>
-                            </td>
-                            
-                          
-                            <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md" disabled>บันทึกข้อมูล</button></td>
+            <div id="btnCB">
+              <tr id="button-command">
+                  <td>
+                    <a href="indexEmployee.php">
+                    <button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
+                    </a>
+                  </td>
+                  
                 
-                        </tr>
-                    </div>                
-              </form>           
+                  <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md" disabled>บันทึกข้อมูล</button></td>
+      
+              </tr>
+            </div>                
+        </form>           
 
         <br>
         <br>
@@ -470,30 +457,31 @@
   
                   }
                   if ($('#totalDistance').val() != '') {
-                    $.ajax({
-                url: "transportAddSQL.php", 
-                method: "GET",
-                data: { 
-                  totalDistance : totalDistance,
-                  orderid : $('#transport-orderid').val(),
-                  hiddenDate : $('#hiddenDate').val(),
-                  hiddenWeightProduct : $('#hiddenWeightProduct').val(),
-                  hiddenTruck : $('#hiddenTruck').val(),
-                  hiddenEmployee : $('#hiddenEmployee').val(),
-                  hiddenRouteTime : $('#hiddenRouteTime').val()
+                      $.ajax({
+                        url: "transportAddSQL.php", 
+                        method: "GET",
+                        data: { 
+                          totalDistance : totalDistance,
+                          orderid : $('#transport-orderid').val(),
+                          hiddenDate : $('#hiddenDate').val(),
+                          hiddenWeightProduct : $('#hiddenWeightProduct').val(),
+                          hiddenTruck : $('#hiddenTruck').val(),
+                          hiddenEmployee : $('#hiddenEmployee').val(),
+                          hiddenRouteTime : $('#hiddenRouteTime').val(),
+                        },
+                        success: function(results){
+                          console.log(results);
+                            $('#transportId').val(results);
+                          }
+                      });
+                    }
 
-                },
-                success: function(results){
-                  $('#transportId').val(results);
-                  }
-              });
-                  }
-                  $('#totalDistance').val(totalDistance);
-                  $('label[name=labelDistance]').text(totalDistance);
+                    $('#totalDistance').val(totalDistance);
+                    $('label[name=labelDistance]').text(totalDistance);
                 
-                } else {
-                  window.alert('Directions request failed due to ' + status);
-                }
+                    } else {
+                      window.alert('Directions request failed due to ' + status);
+                    }
               });
             }
 

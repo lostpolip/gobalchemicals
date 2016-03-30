@@ -259,9 +259,9 @@
 													<div id="truckOther"></div>
 												</td>
 											</tr>
-								<!-- </div> 			 -->
+								</div> 			
 								<br>
-								<!-- <div id="employeeInfo">	 -->
+								<div id="employeeInfo">	
                             		<label id="title">พนักงานขับ</label>
 			                            <tr> 
 											<td>

@@ -35,17 +35,7 @@ $( document ).ready(function() {
 	}, 5000);
 
 	$( "#submit" ).trigger( "click" );
-
 	$('#truckInfo').hide();
-
-	
-	$('#btnCalculator').click(function() {
-		
-
-	});
-
-
-
 
 	$(':button[name=calculator]').click(function() {
 		var count = 0;
@@ -68,35 +58,37 @@ $( document ).ready(function() {
 		}		
 		$('#truckInfo').show();
 
-		var consumptionExp = $('#consumptionExp').val();
-		var truckCost = $('#truckCost').val();
-		var residualValue = $('#residualValue').val();
-		var FuelExpensive = $('#FuelExpensive').val();
-		var ConsumptionExp = $('#ConsumptionExp').val();
-		var LaborExpensive = $('#LaborExpensive').val();
-		var AmountExployee = $('#AmountExployee').val();
-		var MaintenanceExp = $('#MaintenanceExp').val();
-		var AmountDate = $('#AmountDate').val();
-		var Distance = $('#totalDistance').val();
+		var truckIdAll = $('#truck-id').val().split(',');
+		for (y in truckIdAll) {
+			var consumptionExp = $('#consumptionExp'+truckIdAll[y]).val();
+			var truckCost = $('#truckCost'+truckIdAll[y]).val();
+			var residualValue = $('#residualValue'+truckIdAll[y]).val();
+			var FuelExpensive = $('#FuelExpensive'+truckIdAll[y]).val();
+			var ConsumptionExp = $('#ConsumptionExp'+truckIdAll[y]).val();
+			var LaborExpensive = $('#LaborExpensive'+truckIdAll[y]).val();
+			var AmountExployee = $('#AmountExployee'+truckIdAll[y]).val();
+			var MaintenanceExp = $('#MaintenanceExp'+truckIdAll[y]).val();
+			var AmountDate = $('#AmountDate'+truckIdAll[y]).val();
+			var Distance = $('#labelDistance').text();
 
-		var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
-		var DepreciationDay = DepreciationMonth/AmountDate;
-		var LaborExpDay = LaborExpensive*AmountExployee ;
-		var LaborExpMonth = LaborExpDay*AmountDate;
-		var FixedcostsDay = DepreciationDay+LaborExpDay;
-		var FixedcostsMonth = FixedcostsDay*AmountDate;
-		var FixedcostsAround = FixedcostsDay/1;
+			var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
+			var DepreciationDay = DepreciationMonth/AmountDate;
+			var LaborExpDay = LaborExpensive*AmountExployee ;
+			var LaborExpMonth = LaborExpDay*AmountDate;
+			var FixedcostsDay = DepreciationDay+LaborExpDay;
+			var FixedcostsMonth = FixedcostsDay*AmountDate;
+			var FixedcostsAround = FixedcostsDay/1;
 
-		var FuelCost = FuelExpensive/consumptionExp;
-		var MaintenanceCost = MaintenanceExp;
-		var ExpensesAllKm = FuelCost+MaintenanceCost;
+			var FuelCost = FuelExpensive/consumptionExp;
+			var MaintenanceCost = MaintenanceExp;
+			var ExpensesAllKm = FuelCost+MaintenanceCost;
 
-		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
-		var ExpensesPerAround = ExpensesPerDay;
-
-		$('#hiddenExpensesPerDay').val(formatNumber(ExpensesPerDay));
-		$('#hiddenExpensesPerAround').val(formatNumber(ExpensesPerAround));
-
+			var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
+			var ExpensesPerAround = ExpensesPerDay;
+			
+			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(formatNumber(ExpensesPerAround));
+			$('#ExpensesPerAround'+truckIdAll[y]).text(formatNumber(ExpensesPerAround));
+		}
 
 		$('#btnCF').prop("disabled",false);
 

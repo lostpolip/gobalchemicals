@@ -116,7 +116,7 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#" class="selected">คลังสินค้า</a>
+									<li><a href="#">คลังสินค้า</a>
 										<ul>
 											<li><a href="productReceive.php">รับสินค้า</a></li>
 											<li><a href="productPurchase.php">สั่งสินค้า</a></li>
