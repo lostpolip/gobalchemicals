@@ -156,7 +156,9 @@
         $date =$_REQUEST['txtDateTransport'];
         $totalWeight=$_REQUEST['txtWeightProduct'];
         $truck=$_REQUEST['listTruckName'];
+        $truckDB=implode(',', $truck);
         $employee=$_REQUEST['listEmployeeName'];
+        $employeeDB=implode(',', $employee);
         $routeTime=$_REQUEST['rdoDate'];
 
         require 'dbManagement.php';
@@ -169,6 +171,8 @@
           if (mysqli_num_rows($Truck[$key]) > 0) {
               while($row = mysqli_fetch_assoc($Truck[$key])) {
                   $TruckID[$key][$i] = $row["TruckID"];
+                  $TruckName[$key][$i] = $row["TruckName"];
+                  $TruckTypeID[$key][$i] = $row["TruckTypeID"];
                   $ConsumptionFuel[$key][$i] = $row["ConsumptionFuel"];
                   $FuelID[$key][$i] = $row["FuelID"];
                   $TruckCost[$key][$i] = $row["TruckCost"];
@@ -224,11 +228,7 @@
         <br>
         <form action="expensiveAddSQL.php">
           <input type="hidden" id="transportId" name="transportId" value="0">
-          <input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel ?>">
-          <input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost ?>">
-          <input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue ?>">
-
-                <br>
+              <br>
               <?php 
 
                 foreach ($truck as $key => $value) {
@@ -240,81 +240,101 @@
               ?>
                   <div class="expensive">
                       <p>ค่าใช้จ่ายต่างๆ</p> 
-                            <table id="table" style="width: 100%">
 
-
+                          <table id="table" style="width: 100%">
+                            <input type="hidden" id="consumptionExp" name="consumptionExp" value="<?php echo $ConsumptionFuel[$key][0] ?>">
+                            <input type="hidden" id="truckCost" name="truckCost" value="<?php echo $TruckCost[$key][0] ?>">
+                            <input type="hidden" id="residualValue" name="residualValue" value="<?php echo $ResidualValue[$key][0] ?>">
 
                                 <tr>
-                                    <td><label id="<?php echo 'fuelId'.$value ?>">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $FuelID[$key][0] ?></label></td>
+                                    <td>
+                                    <label id="<?php echo 'truckType'.$value ?>">รถบรรทุก:&nbsp;&nbsp;&nbsp;<?php echo $TruckTypeID[$key][0] ?></label>
+                              
+                                    <label id="<?php echo 'truckName'.$value ?>">|&nbsp;หมายเลขทะเบียน:&nbsp;&nbsp;&nbsp;<?php echo $TruckName[$key][0] ?></label>
+                                    </td>                                
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                      <label id="<?php echo 'fuelId'.$value ?>">ชนิดน้ำมัน:&nbsp;&nbsp;&nbsp;<?php echo $FuelID[$key][0] ?></label>
+                                    </td>
                     
                                 </tr>
 
                                 <tr>
-                                    <td><label>ค่าน้ำมันเชื้อเพลิง:</label>
+                                    <td>
+                                      <label>ค่าน้ำมันเชื้อเพลิง:</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'FuelExpensive'.$value ?>" name="<?php echo 'FuelExpensive'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                      <input type="text" id="<?php echo 'FuelExpensive'.$value ?>" name="<?php echo 'FuelExpensive'.$value ?>" value="0" class="txtExpenses" required>
                                        &nbsp;&nbsp;<label>บาท/ลิตร</label>
-                                      
-                    </td>
+                                    </td>
                                 </tr>
 
-                  <tr>
-                                    <td><label>ระยะเวลาค่าเสื่อมราคา :</label>
+                                 <tr>
+                                    <td>
+                                      <label>ระยะเวลาค่าเสื่อมราคา :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'ConsumptionExp'.$value ?>" name="<?php echo 'ConsumptionExp'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                      <input type="text" id="<?php echo 'ConsumptionExp'.$value ?>" name="<?php echo 'ConsumptionExp'.$value ?>" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>ปี</label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td><label>ค่าแรงงาน(ต่อคน) :</label>
+                                    <td>
+                                      <label>ค่าแรงงาน(ต่อคน) :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'LaborExpensive'.$value ?>" name="<?php echo 'LaborExpensive'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                      <input type="text" id="<?php echo 'LaborExpensive'.$value ?>" name="<?php echo 'LaborExpensive'.$value ?>" value="0" class="txtExpenses" required>
                                       <label>บาท/วัน</label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td><label>จำนวนพนักงาน :</label>
+                                    <td>
+                                      <label>จำนวนพนักงาน :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'AmountExployee'.$value ?>" name="<?php echo 'AmountExployee'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                      <input type="text" id="<?php echo 'AmountExployee'.$value ?>" name="<?php echo 'AmountExployee'.$value ?>" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>คน</label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td><label>ค่าซ่อมบำรุง :</label>
+                                    <td>
+                                      <label>ค่าซ่อมบำรุง :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'MaintenanceExp'.$value ?>" name="<?php echo 'MaintenanceExp'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                      <input type="text" id="<?php echo 'MaintenanceExp'.$value ?>" name="<?php echo 'MaintenanceExp'.$value ?>" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td><label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'AmountDate'.$value ?>" name="<?php echo 'AmountDate'.$value ?>" value="0" class="<?php echo 'txtExpenses'.$value ?>" required>
+                                    <td>
+                                      <label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
+                                      <input type="text" id="<?php echo 'AmountDate'.$value ?>" name="<?php echo 'AmountDate'.$value ?>" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>วัน</label>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td><label>ระยะทางที่วิ่ง :</label>
+                                    <td>
+                                      <label>ระยะทางที่วิ่ง :</label>
                                       &nbsp;&nbsp;&nbsp;&nbsp;
                                       <label label id="labelDistance" name="labelDistance"></label>
                                       &nbsp;&nbsp;<label>กิโลเมตร</label> 
-
                                     </td>
                                 </tr> 
 
                                 <br>
-                                <tr>
-                                  <td><button type="button" id="<?php echo 'btnCalculator'.$value ?>" name="<?php echo 'calculator'.$value ?>" class="btn btn-primary">คำนวณ</button></td>
-                                </tr>                                                         
+
                 </table>
               </div>
             <?php
               }
             ?>
+            <tr>
+              <td><button type="button" id="<?php echo 'btnCalculator' ?>" name="<?php echo 'calculator' ?>" class="btn btn-primary" style="margin-left: 215px;">คำนวณ</button></td>
+            </tr>      
+
+
             <input id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>"></input>
 
 
@@ -323,76 +343,10 @@
               <br>
               <br>
               <div id="truckInfo">
-                            <div class="Fixedcosts">
-                              <p>ต้นทุนคงที่</p>
-                               <table id="table" style="width: 100%">
-                                  <tr> 
-                                    <td><label>ค่าเสื่อมราคา :</label>
-                                      <label id="DepreciationDay"></label>
-                                      <label>(บาท/วัน)</label>
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                  </tr>
-                                  <tr> 
-                                    <td><label>ค่าแรงงาน :</label>
-                                      <label id="LoborExpDay"></label>
-                                      <label>(บาท/วัน)</label>
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                  </tr>
-                                  <tr> 
-                                    <td><label>ต้นทุนคงที่ต่อวัน :</label>
-                                      <label id="FixedcostsDay"></label>
-                                      <label>(บาท/วัน)</label>
-                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                  </tr>
-                                  <tr> 
-                                    <td><label>ต้นทุนคงที่ต่อรอบ :</label>
-                                      <label id="FixedcostsAround"></label>
-                                      <label>(บาท/รอบ)</label>
-                                    </td>
-                                  </tr>
-                                  <tr> <td>&nbsp;</td></tr>
-                                </table>
-                            </div>
-
-                            <div class="Variablecosts">
-                              <p>ต้นทุนผันแปร</p>
-                               <table id="table" style="width: 100%">
-                                  <tr> 
-                                    <td><label>ค่าน้ำมันเชื้อเพลิง :</label>
-                                      <label id="FuelCost"></label>
-                                      <label>(บาท/กม.)</label>
-                                    </td>
-                                  </tr>
-                                  <tr> 
-                                    <td><label>ค่าซ่อมบำรุง :</label>
-                                      <label id="MaintenanceCost"></label>
-                                      <label>(บาท/กม.)</label>
-                                    </td>
-                                  </tr>
-                                  <tr> 
-                                    <td><label>ค่าใช้จ่ายแปรผันรวมต่อกิโลเมตร :</label>
-                                      <label id="ExpensesAllKm"></label>
-                                      <label>(บาท/กม.)</label>
-                                    </td>
-                                  </tr>
-
-                                  <tr> <td>&nbsp;</td></tr>
-                                </table>
-                            </div>   
 
                         <div class="ExpensesAll">
-                              <p>ค่าใช้จ่าย</p>
+                              <p>สรุปค่าใช้จ่าย</p>
                                <table id="table" style="width: 100%">
-                                  <tr> 
-                                    <td><label>ค่าใช้จ่ายรวมต่อวัน :</label>&nbsp;&nbsp;&nbsp;
-                                      <label id="ExpensesPerDay"></label>
-                                      <input type="hidden" id="hiddenExpensesPerDay" name="hiddenExpensesPerDay" value="0" >
-                                      <label>บาท</label>
-                                    </td>
-                                  </tr>
                                   <tr> 
                                     <td><label>ค่าใช้จ่ายรวมต่อรอบ :</label>
                                       <label id="ExpensesPerAround"></label>
@@ -431,9 +385,9 @@
 
                       <input type="hidden" id="hiddenWeightProduct" name="hiddenWeightProduct" value="<?php echo $totalWeight ?>"> 
 
-                      <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo json_encode($truck) ?>" >  
+                      <input type="hidden" id="hiddenTruck" name="hiddenTruck" value="<?php echo $truckDB ?>" >  
 
-                      <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo json_encode($employee) ?>" > 
+                      <input type="hidden" id="hiddenEmployee" name="hiddenEmployee" value="<?php echo $employeeDB ?>" > 
 
                       <input type="hidden" id="hiddenRouteTime" name="hiddenRouteTime" value="<?php echo $routeTime ?>" > 
 

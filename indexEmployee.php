@@ -140,10 +140,17 @@
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
 		<?php
+			date_default_timezone_set('Asia/Bangkok');
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM product
 											WHERE StateProduct ='Confirm'");
+
+			$receive = $dbManagement->select("SELECT * FROM productreceive
+											JOIN purchase ON productreceive.PurchaseID = purchase.PurchaseID
+											WHERE StateReceive ='complete'
+											ORDER BY ExpiryDate
+											");
 
 			$i = 0;
 			$z =0;
@@ -164,17 +171,46 @@
 			        $i++;
 			    }
 			}
-			// if ($z > 0) {
-	  //       	print_r($alertProduct);exit;
-	  //       }
+
+			$r = 0;
+			$y = 0;
+			$datenow = date('Y-m-d');
+
+			if (mysqli_num_rows($receive) > 0) {
+			    while($row = mysqli_fetch_assoc($receive)) {
+			        $ProductPurchase[$r] = $row["ProductID"];
+			        $PurchaseID[$r] = $row["PurchaseID"];
+			        $ExpiryDate[$r] = $row["ExpiryDate"];
+			        $Lot[$r] = $row["Lot"];
+			        $ReceiveID[$r] = $row["ReceiveID"];
+
+			        if ($ExpiryDate[$r] <= $datenow) {
+			        	$alertLot[$y]	= [
+			        		'lots'	=> $Lot[$r],
+			        		'expirydate'	=> $ExpiryDate[$r],
+			        		'purchase'	=> $PurchaseID[$r],
+			        		'product'	=> $ProductPurchase[$r],
+			        		'receiveid'	=> $ReceiveID[$r],
+			        	];
+			        	$y++;
+			        }
+			        
+			        $r++;
+			    }
+			}
+
+
+
 		?>
 		<div id="tooplate_main">
 			<div class="col_fw_last">
-			<?php 
-				if ($z > 0) {
-			?>
+			
 				<div class="col_w630 float_l">
-					<h2>แจ้งเตือน</h2>
+
+				<?php 
+					if ($z > 0) {
+				?>
+					<h2>แจ้งเตือนสินค้า</h2>
 	    				<table id="table2" width="100%">
                         	<tr>
                                 <th>ชื่อสินค้า</th>
@@ -197,11 +233,54 @@
                         	<?php
                         	}
                         	?>
-                    </table>      
-				</div>
-				<?php 
+                    	</table> 
+                <?php 
 					}
 				?>
+		
+				<?php 
+					if ($y > 0) {
+				?>    	 
+
+					<h2>แจ้งเตือนสินค้าหมดอายุ</h2>
+	    				<table id="table2" width="100%">
+                        	<tr>
+                                <th>Lot</th>
+                                <th>วันหมดอายุ</th>    
+                                <th>จำนวนสินค้าในคคลังของLot</th>    
+                        	</tr>
+
+                        	<?php
+                        	for($l=0;$l<$y;$l++){ 
+
+                        	?>
+
+                        	<tr>
+                        		<td>
+                        			<label id="lot"><?php echo $alertLot[$l]['lots'] ?></label>
+                        			<input type="hidden" id="receiveid" name="receiveID" value="<?php echo $alertLot[$l]['receiveid'] ?>">
+                        		</td>
+                        		<td>
+                        			<label id="expiry" style="color: red;"><?php echo $alertLot[$l]['expirydate'] ?></label>
+                        		</td>
+                        		<td>
+                        			<input type="hidden" id="productid" name="productID" value="<?php echo $alertLot[$l]['product'] ?>">
+                        			<a href="receiveExpiry.php?receiveID=<?php echo $alertLot[$l]['receiveid']; ?>">
+                        				<button type="submit" id="btnPurchase" name="btnPurchase">ตัดสต๊อก</button>
+                        			</a>
+                        		</td>
+                        	</tr>
+                        	<?php
+                        	}
+                        	?>
+                    </table>
+                <?php 
+					}
+				?>      
+
+
+				</div>
+				
 			</div>
 		</div><!--end of tooplate_main-->
 

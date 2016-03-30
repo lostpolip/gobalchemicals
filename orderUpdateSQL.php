@@ -17,7 +17,6 @@
 	foreach ($orderid as $key => $value) {
 		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
 
-		// print_r("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
 		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
 
 	}

@@ -39,37 +39,33 @@ $( document ).ready(function() {
 	$('#truckInfo').hide();
 
 	
-	var TruckId =  $('#truck-id').val();
-		TruckId = TruckId.split(',');
-	for (x in TruckId) {
-		alert(TruckId[x]);
-		$('#btnCalculator' + TruckId[x]).click(function() {
-			var count = 0;
-			var countNumber = 0;
-			var patt= /^-?\d*\.?\d*$/;
-			alert( TruckId[x]);
-			$("body").find(".txtExpenses" + TruckId[x]).each(function() {
-				// alert(count);
-				if ($(this).val() == 0) {
-					count++;
-				}
-				// alert($(this).id);
-				if (patt.test($(this).val())) {
-					countNumber++;
-				}
-				
-			});
-			alert('count'+count);
-			alert('countNumber'+countNumber);
+	$('#btnCalculator').click(function() {
+		
+
+	});
 
 
+
+
+	$(':button[name=calculator]').click(function() {
+		var count = 0;
+		var countNumber = 0;
+		var patt= /[-+]?(\d*[.])?\d+/;
+		$("body").find(".txtExpenses").each(function() {
+			// alert(count);
+			if ($(this).val() == 0) {
+				count++;
+			}
+			// alert($(this).id);
+			if (!patt.test($(this).val())) {
+				countNumber++;
+			}
+			
 		});
-	}
-
-
-
-
-	$(':button[name=calculator]').click(function() {		
+		if (count > 0 || countNumber > 0) {
+			alert('กรุณากรอกข้อมูลให้ครบ');
+			return false;
+		}		
 		$('#truckInfo').show();
 
 		var consumptionExp = $('#consumptionExp').val();
@@ -98,20 +94,6 @@ $( document ).ready(function() {
 		var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 		var ExpensesPerAround = ExpensesPerDay;
 
-		$('#DepreciationMonth').text(formatNumber(DepreciationMonth));
-		$('#DepreciationDay').text(formatNumber(DepreciationDay));
-		$('#LoborExpMonth').text(LaborExpMonth);
-		$('#LoborExpDay').text(LaborExpDay);
-		$('#FixedcostsDay').text(formatNumber(FixedcostsDay));
-		$('#FixedcostsMonth').text(formatNumber(FixedcostsMonth));
-		$('#FixedcostsAround').text(formatNumber(FixedcostsAround));
-
-		$('#FuelCost').text(formatNumber(FuelCost));
-		$('#MaintenanceCost').text(MaintenanceCost);
-		$('#ExpensesAllKm').text(ExpensesAllKm);
-
-		$('#ExpensesPerDay').text(formatNumber(ExpensesPerDay));
-		$('#ExpensesPerAround').text(formatNumber(ExpensesPerAround));
 		$('#hiddenExpensesPerDay').val(formatNumber(ExpensesPerDay));
 		$('#hiddenExpensesPerAround').val(formatNumber(ExpensesPerAround));
 

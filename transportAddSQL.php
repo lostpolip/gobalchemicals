@@ -17,7 +17,9 @@ if (mysqli_num_rows($Transport) > 0) {
 }
 
 $newID = $maxID + 1;
-$orderID = $_REQUEST['orderid'];
+$orderID = $_REQUEST['transport-orderid'];
+$truckID = $_REQUEST['hiddenTruck'];
+$employeeID = $_REQUEST['hiddenEmployee'];
 $transportIDArray = explode(',',$orderID);
 $transportIDArray = array_filter($transportIDArray);
 

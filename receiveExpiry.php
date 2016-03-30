@@ -18,7 +18,7 @@
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
 
-		<link href="css/productReceive.css" rel="stylesheet" type="text/css" />
+		<link href="css/productPurchaseAdd.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
@@ -26,8 +26,8 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-		<script type="text/javascript" src="js/productReceive.js"></script>
-		
+		<script type="text/javascript" src="js/productPurchase.js"></script>
+	
 		
 
 		<script language="javascript" type="text/javascript">
@@ -49,7 +49,7 @@
 		})
 
 	</script>
-
+	
 	<style>
 		a.alert {
 			display: inline-block;
@@ -79,7 +79,7 @@
                     	<div id="tooplate_user">
 							<label id="label1"><?php echo $_SESSION['EmployeeName']?> |&nbsp;</label>
                         </div>
-                         <div id="imageMenuOrder" style="">
+                          <div id="imageMenuOrder" style="">
 
 							<a href="approveClaim.php" class="alert">
 								<input type="image" src="images/claim.png" alt="Submit" id="menu0rder">
@@ -91,7 +91,9 @@
                         </div>			
 					  <div id="tooplate_top">
 							<div id="tooplate_login">
-						  		<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
+		                       <form action="index.html" method="get">
+		  							<a href="logOutBack.php"><input type="button" name="Search" value="" alt="Search" id="searchbutton" class="sub_btn"  /></a>
+								</form>
 							</div>
 					  </div>						
 						<div id="site_title"><h1><a href="indexEmployee.php">Gray Box</a></h1></div>
@@ -142,70 +144,110 @@
 					</div> <!-- end of tooplate_header -->
 				</div><!--end of tooplate_wrapper-->
 		</div><!--end of tooplate_body_wrapper-->
-
 		<?php
+			// $receive =$_REQUEST['receiveID'];
+	
 			require 'dbManagement.php';
-			$dbManagement = new dbManagement();
-			$result = $dbManagement->select("SELECT * FROM productreceive
-											ORDER BY ReceiveID
+			$dbManagement = new dbManagement();	
+
+			$receive = $dbManagement->select("SELECT * FROM productreceive
+											JOIN purchase ON productreceive.PurchaseID = purchase.PurchaseID
+											WHERE ReceiveID ='".$_REQUEST['receiveID']."'
 											");
 
-			$i = 0;
-			if (mysqli_num_rows($result) > 0) {
-			    while($row = mysqli_fetch_assoc($result)) {
-			        $ReceiveID[$i] = $row["ReceiveID"];
-			        $Lot[$i] = $row["Lot"];
-			        $ExpiryDate[$i] = $row["ExpiryDate"];
-			        $ReceiveDate[$i] = $row["ReceiveDate"];
-			        $ReceiveAmount[$i] = $row["ReceiveAmount"];	
-			        $i++;
+			if (mysqli_num_rows($receive) > 0) {
+			    while($row = mysqli_fetch_assoc($receive)) {
+			        $ProductPurchase = $row["ProductID"];
+			        $PurchaseID = $row["PurchaseID"];
+			        $ReceiveID = $row["ReceiveID"];
 			    }
 			}
-		?>
 
+
+			$product = $dbManagement->select("SELECT * FROM product 
+											WHERE ProductID = '".$ProductPurchase."'");
+			
+			if (mysqli_num_rows($product) > 0) {
+			    while($row = mysqli_fetch_assoc($product)) {
+			        $ProductID = $row["ProductID"];
+			        $ProductName = $row["ProductName"];
+			    }
+			   
+			}
+			
+
+		?>
+	<form action="receiveExpiryAddSQL.php">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
 
-					<h2>รายการรับสินค้า</h2>
-                        <p>
-                            <button id="btnAdd"><a href="productReceiveAdd.php">รับสินค้า</a></button>
-                        </p>
+					<h2>จัดการสินค้าหมดอายุ</h2>
+                    <table id="table" style="width: 100%">
+                        	<tr>
+                                <td>
+                                	<label>เลขที่ใบรับสินค้า:</label>
+                                	<td><input type="text" id="txtReceive" name="txtReceive" value="<?php echo $ReceiveID ?>" readonly></td>
+                                	<input type="hidden" id="idReceive" name="idReceive" value="<?php echo $ReceiveID ?>">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label><span class="red-star">* </span>ชื่อสินค้า :</label></td>                       
+                                  <td><select id="ddProduct" name="ddProduct" >
+                                	 	<option value="" selected>-------- กรุณาเลือก --------</option>
+                                		<option value="<?php echo $ProductID ?>"><?php echo $ProductName ?></option>
+
+                                	</select>
+                                </td>
+                            </tr>
+
+
+                            <tr id="row_productType">
+                                <td><label>ประเภทสินค้า:</label></td>
+                                <td><label id="ddProductType" name="ddProductType"></label></td>
+                            </tr>
+
+                            <tr id="row-brandName">
+                                <td><label>ยี่ห้อ:</label></td>
+                                <td><label id="ddBrandName" name="ddBrandName"></label></td>
+                            </tr>
+
+                            <tr id="row-supplier">
+                                <td><label>ผู้จัดจำหน่าย:</label></td>
+                                <td><label id="ddSupplier" name="ddSupplier"></label>
+                         			<input type="hidden" id="supplierId" name="supplierId" value="<?php echo $SupplierID[0]; ?>">
+                                </td>
+                            </tr>
+
+                            <tr id="row-supplierEmail">
+                            	<td><label>Email:</label></td>
+                                <td><label id="txtSupplierEmail" name="txtSupplierEmail"></label></td>      
+                            </tr>
+
+
+                            <tr>
+                                <td><label><span class="red-star">* </span>จำนวนสินค้าที่มีในคลัง :</label></td>
+                                <td><input type="text" id="txtProductAmount" name="txtProductAmount" value="0" required>&nbsp;&nbsp;
+                                	<label>ตัน</label> 
+                                </td>
+                            </tr>                         
+
+                            <tr> <td><input type="hidden" id="txtProduct" name="txtProduct" value="<?php echo $ProductID ?>"></td>
+                            </tr>
+
+                            <tr> <td>&nbsp;</td></tr>
+
+                            <tr>
+                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack">กลับไปหน้าหลัก</button></a></td>
+                                    <td><button type="submit" id="btnCF">บันทึก</button></td>
+                                    
+                            </tr>
+
+                        </table>
 				</div>
-			</div>	
-						<table id="table2" width="100%">
-                        	<tr>
-                        		<th>รหัสรับสินค้า</th>
-                        		<th>Lot</th>
-                                <th>วันรับสินค้า</th>
-                                <th>วันหมดอายุ</th>
-                                <th>จำนวน(ตัน)</th>
-                                <!-- <th>คำสั่ง</th> -->
-                                
-                        	</tr>
-
-                        	<?php
-                        	for($j=0;$j<$i;$j++){ 
-                        	?>
-
-                        	<tr>
-                        		<td id="<?php echo $ReceiveID[$j] ?>"><?php echo $ReceiveID[$j] ?></td>
-                        		<td id="lot"><?php echo $Lot[$j] ?></td>
-                        		<td id="receiveDate"><?php echo $ReceiveDate[$j] ?></td>
-                        		<td id="expiryDate"><?php echo $ExpiryDate[$j] ?></td>
-                        		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
-                        		
-<!--                         		<td>
-                        			<button id="btnDelete"><a href="deleteProductReceiveSQL.php?ReceiveID=<?php echo $ReceiveID[$j]; ?>">ลบ</a></button>             
-                        		</td> -->
-                        	</tr>
-                        	<?php
-                        	}
-                        	?>
-
-                        </table>       
+			</div>
 		</div><!--end of tooplate_main-->
-	
+	</form>
 
 		<div id="tooplate_footer_wrapper">
 			<div id="tooplate_footer">
@@ -217,3 +259,4 @@
 	
 	</body>
 </html>
+
