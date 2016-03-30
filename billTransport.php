@@ -150,8 +150,7 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM transport
-											JOIN employee on transport.EmployeeID=employee.EmployeeID
-											JOIN truck on transport.TruckID=truck.TruckID
+											JOIN transportdetail on transport.TransportID=transportdetail.TransportID
 											WHERE TransportStatus='processing'
 											");
 
@@ -160,10 +159,6 @@
 			    while($row = mysqli_fetch_assoc($result)) {
 			    	$TransportID[$i] = $row["TransportID"];
 			        $TransportDate[$i] = $row["TransportDate"]; 
-			        $TruckID[$i] = $row["TruckID"]; 
-			        $TruckName[$i] = $row["TruckName"]; 
-			        $EmployeeID[$i] = $row["EmployeeID"];
-			        $EmployeeName[$i] = $row["EmployeeName"];
 			        $TimeAction[$i] = $row["TimeAction"];
 			        $TotalWeightProduct[$i] = $row["TotalWeightProduct"];
 			        $AmountDistance[$i] = $row["AmountDistance"];
@@ -191,8 +186,6 @@
 		                        	<tr>
 		                        		<th>เลขที่ใบส่ง</th>
 		                        		<th>วันที่ส่ง</th>
-		                        		<th>หมายเลขทะเบียนรถ</th>
-		                                <th>พนักงานขับรถ</th>
 		                                <th>เวลาส่งสินค้า</th>
 		                                <th>ระยะทาง(กม.)</th>
 		                                <th>น้ำหนักทั้งหมด</th>
@@ -209,8 +202,6 @@
 		                        			<input type="hidden" id="transportID" name="transportID" value="<?php echo $TransportID[$j]; ?>">
 		                        		
 		                        		<td id="transportdate"><?php echo $TransportDate[$j]; ?></td>
-		                        		<td id="trackname"><?php echo $TruckName[$j]; ?></td>
-		                        		<td id="employee"><?php echo $EmployeeName[$j]; ?></td>
 		                        		<td id="time"><?php echo $TimeAction[$j]; ?></td>
 		                        		<td id="distance"><?php echo $AmountDistance[$j]; ?></td>
 		                        		<td id="weight"><?php echo $TotalWeightProduct[$j]; ?></td>

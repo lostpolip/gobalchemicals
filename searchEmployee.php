@@ -3,7 +3,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  employee WHERE PositionID = 3 ");
-	$transport = $dbManagement->select("SELECT * FROM transport 
+	$transport = $dbManagement->select("SELECT * FROM transportdetail 
 									WHERE TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");
 	

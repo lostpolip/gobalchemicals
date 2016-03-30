@@ -343,7 +343,7 @@
             <tr>
               <td><button type="button" id="<?php echo 'btnCalculator' ?>" name="<?php echo 'calculator' ?>" class="btn btn-primary" style="margin-left: 215px;">คำนวณ</button></td>
             </tr>      
-            <input type="hidden" id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>">\
+            <input type="hidden" id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>">
 
               <br>
 
@@ -470,7 +470,6 @@
                           hiddenRouteTime : $('#hiddenRouteTime').val(),
                         },
                         success: function(results){
-                          console.log(results);
                             $('#transportId').val(results);
                           }
                       });
