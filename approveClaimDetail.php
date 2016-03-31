@@ -102,17 +102,18 @@
 								<ul >
 									<li><a href="#">จัดการข้อมูล</a>
 				                        <ul>
-												<li><a href="product.php" >ข้อมูลสินค้า</a></li>
-												<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
-												<li><a href="employee.php">ข้อมูลพนักงาน</a></li>
-				                                <li><a href="truck.php">ข้อมูลรถ</a></li>
+											<li><a href="product.php" >ข้อมูลสินค้า</a></li>
+											<li><a href="supplier.php">ข้อมูลผู้จัดจำหน่าย</a></li>
+											<li><a href="employee.php">ข้อมูลพนักงาน</a></li>
+			                                <li><a href="truck.php">ข้อมูลรถ</a></li>
 										</ul>
 			                        </li>
 									
 									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
-												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
-												<li><a href="claimList.php">การเคลมสินค้า</a></li>
+					                        <li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
+					                        <li><a href="claimList.php">การเคลมสินค้า</a></li>
+					                        <li><a href="paymentCustomer.php">การชำระเงิน</a></li>
 												
 										</ul>
 			                        </li>
@@ -127,8 +128,8 @@
 									
 									<li ><a href="#">ส่งสินค้า</a>
 				                        <ul>
-												<li ><a href="transport.php">จัดเส้นทาง</a></li>
-												<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
+											<li ><a href="transport.php">จัดเส้นทาง</a></li>
+											<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
 
 										</ul>
 			                        </li>

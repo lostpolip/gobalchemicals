@@ -111,7 +111,7 @@
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
-												
+												<li><a href="paymentCustomer.php">การชำระเงิน</a></li>	
 										</ul>
 			                        </li>
 									
@@ -149,7 +149,7 @@
 		<input type="hidden" id="ExtendedPrice" value="<?php echo $ExtendedPrice; ?>"></input>
 
 		<div id="tooplate_main">
-				<td><label id="labelTittle">รายงานค่าใช้จ่าย</label></td>
+				<td><label id="labelTittle">รายงานค่าใช้จ่ายค่าขนส่ง</label></td>
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>

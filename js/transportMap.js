@@ -68,15 +68,14 @@ $( document ).ready(function() {
 			var LaborExpensive = $('#LaborExpensive'+truckIdAll[y]).val();
 			var AmountExployee = $('#AmountExployee'+truckIdAll[y]).val();
 			var MaintenanceExp = $('#MaintenanceExp'+truckIdAll[y]).val();
-			var AmountDate = $('#AmountDate'+truckIdAll[y]).val();
 			var Distance = $('#labelDistance').text();
 
 			var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
-			var DepreciationDay = DepreciationMonth/AmountDate;
+			var DepreciationDay = DepreciationMonth/1;
 			var LaborExpDay = LaborExpensive*AmountExployee ;
-			var LaborExpMonth = LaborExpDay*AmountDate;
+			var LaborExpMonth = LaborExpDay*1;
 			var FixedcostsDay = DepreciationDay+LaborExpDay;
-			var FixedcostsMonth = FixedcostsDay*AmountDate;
+			var FixedcostsMonth = FixedcostsDay*1;
 			var FixedcostsAround = FixedcostsDay/1;
 
 			var FuelCost = FuelExpensive/consumptionExp;

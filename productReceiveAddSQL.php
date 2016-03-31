@@ -32,7 +32,7 @@
 			}
 		}
 
-	$receive=$dbManagement->insert("INSERT INTO productreceive (ReceiveID,ReceiveDate, Lot, ExpiryDate, ReceiveAmount, StateReceive,PurchaseID)  VALUES ('RE' '".$newID."','".$_REQUEST['txtDateReceive']."','".$_REQUEST['txtLotReceive']."','".$_REQUEST['txtExpiryDate']."','".$_REQUEST['txtReceiveAmount']."','complete','".$_REQUEST['txtPurchasseID']."')");
+	$receive=$dbManagement->insert("INSERT INTO productreceive (ReceiveID,ReceiveDate, Lot, ExpiryDate, ReceiveAmount, StateReceive,PurchaseID,AmountMinusOrder,ProductID)  VALUES ('RE' '".$newID."','".$_REQUEST['txtDateReceive']."','".$_REQUEST['txtLotReceive']."','".$_REQUEST['txtExpiryDate']."','".$_REQUEST['txtReceiveAmount']."','complete','".$_REQUEST['txtPurchasseID']."','".$_REQUEST['txtReceiveAmount']."','".$_REQUEST['txtProductID']."')");
 
 
 	$totalProduct = $_REQUEST['txtReceiveAmount']+$ProductAmount;

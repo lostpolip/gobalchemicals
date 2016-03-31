@@ -2,8 +2,9 @@
 		require 'dbManagement.php';
 		$dbManagement = new dbManagement();
 
-		$sumExpenses=$dbManagement->select("SELECT ExpensesDate,SUM(ExpensesPerDay) AS ExpensesPerDay 
+		$sumExpenses=$dbManagement->select("SELECT ExpensesDate,SUM(ExpensesPerAround) AS ExpensesPerAround 
 										 FROM expenses
+										 JOIN expensesdetail ON expenses.ExpensesID=expensesdetail.ExpensesID
 										 WHERE ExpensesDate between '".$_REQUEST['startdate']."' and '".$_REQUEST['enddate']."'
 										 	GROUP BY ExpensesDate
 										 ");
@@ -12,11 +13,11 @@
 			while($row = mysqli_fetch_assoc($sumExpenses)) {
 		        if ($i == 0) {
 					$ExpensesDate = $row["ExpensesDate"];
-			        $ExpensesPerDay = $row["ExpensesPerDay"];
+			        $ExpensesPerAround = $row["ExpensesPerAround"];
 			     
 		        } else {
 		        	$ExpensesDate = $ExpensesDate.','.$row["ExpensesDate"];
-			        $ExpensesPerDay = $ExpensesPerDay.','.$row["ExpensesPerDay"];
+			        $ExpensesPerAround = $ExpensesPerAround.','.$row["ExpensesPerAround"];
 			 
 		        }
 		        
@@ -25,7 +26,7 @@
 		}
 	$info = [
 		'date' => $ExpensesDate,
-		'expenses' => $ExpensesPerDay,
+		'expenses' => $ExpensesPerAround,
 	];
 	
 	echo json_encode($info);

@@ -12,14 +12,34 @@
 			    }
 		}
 
+		// $receive = $dbManagement->select("SELECT AmountMinusOrder,ReceiveDate,ProductID 
+		// 								 FROM productreceive
+		// 								 ORDER BY ReceiveDate ASC
+		// 								");
+
+		// $r = 0;
+		// if (mysqli_num_rows($receive) > 0) {
+		//     while($row = mysqli_fetch_assoc($receive)) {
+		//         $ReceiveDate[$r] = $row["ReceiveDate"];
+		// 	    $ProductIDReceive[$r] = $row["ProductID"];
+		//         $AmountMinusOrder[$r] = $row["AmountMinusOrder"];	
+		//         $r++;
+		//     }
+		// }
+
 	$orderid = explode(',',$_REQUEST['hiddenProductId']);
 	$totalunit = explode(',',$_REQUEST['hiddenEachUnit']);
+
 	foreach ($orderid as $key => $value) {
 		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
-		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
-		}
-	 
+		// $temp2 = $AmountMinusOrder[array_search($orderid[$key],$ProductIDReceive)] - $totalunit[$key];
 
+		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
+
+		// $dbManagement->update("UPDATE productreceive SET AmountMinusOrder='".$temp2."'
+		// 						   WHERE ProductID='".$orderid[$key]."' ORDER BY ReceiveDate ASC");
+		}
+	
 
 	$orderID = $_REQUEST['hiddenProductId'];
 	$orderId = $_REQUEST['hiddenOrderID'];
@@ -39,7 +59,7 @@
 
 			}
 
-			$dbManagement->insert("INSERT INTO orders(OrderID, CustomerID, State, OrderDate, TotalPriceOrder, TotalVat, TotalTransport, ExtendedPrice,UnitProduct,TotalCostOrder, latOrder, lonOrder, DistanceOrder, ProvinceID, SendOrder) VALUES ('".$_REQUEST['hiddenOrderID']."','".$_SESSION['CustomerID']."','no','".$_REQUEST['hiddenOrderDate']."','".$TotalPriceAll."','".$TotalVat."','".$_REQUEST['totalTransaction']."','".$ExtendedPrice."','".$_REQUEST['hiddenUnitProductAll']."','".$_REQUEST['hiddenTotalCostAll']."','".$_REQUEST['lat_value']."','".$_REQUEST['lon_value']."','".$_REQUEST['txtDistance']."','".$_REQUEST['province']."','0000-00-00')");
+			$dbManagement->insert("INSERT INTO orders(OrderID, CustomerID, State, OrderDate, TotalPriceOrder, TotalVat, TotalTransport, ExtendedPrice,UnitProduct,TotalCostOrder, latOrder, lonOrder, DistanceOrder, ProvinceID, SendOrder,OrderSendDate) VALUES ('".$_REQUEST['hiddenOrderID']."','".$_SESSION['CustomerID']."','no','".$_REQUEST['hiddenOrderDate']."','".$TotalPriceAll."','".$TotalVat."','".$_REQUEST['totalTransaction']."','".$ExtendedPrice."','".$_REQUEST['hiddenUnitProductAll']."','".$_REQUEST['hiddenTotalCostAll']."','".$_REQUEST['lat_value']."','".$_REQUEST['lon_value']."','".$_REQUEST['txtDistance']."','".$_REQUEST['province']."','0000-00-00','".$_REQUEST['hiddenOrderSendDate']."')");
 	}
 
 	header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );

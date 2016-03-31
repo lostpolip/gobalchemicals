@@ -111,7 +111,7 @@
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
-												
+												<li><a href="paymentCustomer.php">การชำระเงิน</a></li>
 										</ul>
 			                        </li>
 									
@@ -148,7 +148,8 @@
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM `purchase`
-												LEFT JOIN `supplier`ON purchase.SupplierID=supplier.SupplierID");
+											LEFT JOIN `supplier`ON purchase.SupplierID=supplier.SupplierID
+											ORDER BY PurchaseDate ASC ");
 
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {

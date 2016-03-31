@@ -111,7 +111,7 @@
                                 <ul>
                         <li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
                         <li><a href="claimList.php">การเคลมสินค้า</a></li>
-                        
+                        <li><a href="paymentCustomer.php">การชำระเงิน</a></li>
                     </ul>
                               </li>
                   
@@ -180,7 +180,8 @@
                   $i++;
               }  
           }             
-        }       
+        } 
+
 
       ?>
 
@@ -222,8 +223,16 @@
             <b>กิโลเมตร</b>
         <br>
         <br>
+
         <label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
-        <label style="font-family: 'quarkbold'; color: #FFFFFF; font-size: 23px;"><?php echo $order ?></label>
+            <?php
+                for($j=0;$j<$i;$j++){ 
+            ?>
+                <label style="font-family: 'quarkbold'; color: #FFFFFF; font-size: 23px;"><?php echo $order ?></label>
+            <?php
+              }
+            ?>
+
         <div id="directions-panel"></div>
         <br>
 
@@ -304,14 +313,6 @@
                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       <input type="text" id="<?php echo 'MaintenanceExp'.$value ?>" name="<?php echo 'MaintenanceExp'.$value ?>" value="0" class="txtExpenses" required>
                                       &nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                      <label>จำนวนวันทำงานต่อเดือน :</label>&nbsp;&nbsp;
-                                      <input type="text" id="<?php echo 'AmountDate'.$value ?>" name="<?php echo 'AmountDate'.$value ?>" value="0" class="txtExpenses" required>
-                                      &nbsp;&nbsp;<label>วัน</label>
                                     </td>
                                 </tr>
 
@@ -417,6 +418,8 @@
                 waypoints: waypts,
                 optimizeWaypoints: true,
                 travelMode: google.maps.TravelMode.DRIVING,
+                avoidHighways: true,
+                
               }, function(response, status) {
                 var arrayDestination = $('#arrayDestination').val().split('+');
 

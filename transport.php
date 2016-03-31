@@ -111,7 +111,7 @@
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
-												
+												<li><a href="paymentCustomer.php">การชำระเงิน</a></li>
 										</ul>
 			                        </li>
 			                        
@@ -185,7 +185,9 @@
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $ProvinceID[$popupOrder] = $row["ProvinceID"];
+			        $ProvinceName[$popupOrder] = $row["ProvinceName"];
 			        $GeoName[$popupOrder] = $row["GeoName"];
+			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $popupOrder++;
 			    }		   
 			}
@@ -205,9 +207,11 @@
 							<table id="table2" width="100%">
 	                        	<tr> 
 	                        		<th>เลือก</th>	                                
+	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
+	                                <th>จังหวัด</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
 	                        	</tr>
 	                        	<?php 
@@ -218,9 +222,11 @@
 	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
 	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
 	                        		</td>
+	                        		<td id="orderdate" ><?php echo $OrderSendDate[$j]; ?></td>
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
+	                        		<td id="province"><?php echo $ProvinceName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
 	                        	<?php
@@ -244,9 +250,11 @@
 	                         		<label id="title">ช่วงเวลาเดินทาง</label>
 			                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-15:00" class="time" required>
-				                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
-										<input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
-										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label>
+				                       	<label id="rdoDate" for="rdoDate1">09:00-15:00 น.</label>
+
+										<!-- <input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
+										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label> -->
+
 										<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
 										<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
 									<br>

@@ -35,6 +35,22 @@
 			});
 		</script>
 
+		<style type="text/css">
+			#OrderID{
+				margin: 20px 0 20px 25px;
+				font-family: 'quarkbold';
+				color: #FFFFFF;
+				font-size: 24px;	
+			}
+
+			#OrderSendDate{
+				margin: 20px 0 20px 140px;
+				font-family: 'quarkbold';
+				color: #FFFFFF;
+				font-size: 22px;	
+			}
+		</style>
+
 	</head>
 	<body>
 	<?php 
@@ -155,6 +171,9 @@
 	                        	<input type="hidden" id="hiddenOrderID" name="hiddenOrderID" value="<?php echo $newID ?>">
 	                        </td>
 
+	                        <td><label id="OrderSendDate">กำหนดวันส่งสินค้า: </label></td>
+	                        <td><input type="date" id="hiddenOrderSendDate" name="hiddenOrderSendDate" min="<?php echo date("Y-m-d"); ?>"></td>
+
 	                    </tr>
 
                     	<div id="informationCustomer">
@@ -167,7 +186,7 @@
                                 <td><label style="font-family: 'quarkbold'; color: #000; font-size: 22px;">จังหวัด :</label></td>
                                 <td>
                                 	<select id="province" name="province" required>
-                                	<option value="" selected>------ เลือกจังหวัด ------</option>
+                                	<option value="" selected>--- เลือกจังหวัด ---</option>
                                 	 	<?php
                         					for($j=0;$j<$i;$j++){ 
                         				?>	

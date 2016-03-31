@@ -133,6 +133,7 @@
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
+												<li><a href="paymentCustomer.php">การชำระเงิน</a></li>
 												
 										</ul>
 			                        </li>
