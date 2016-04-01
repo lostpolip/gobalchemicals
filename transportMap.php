@@ -234,7 +234,13 @@
             ?>
 
         <div id="directions-panel"></div>
-        <br>
+        <div id="ptt">
+          <IFRAME 
+              src="http://www.pttplc.com/th/GetOilPrice.aspx" 
+              width="100%" height="555" align="middle" scrolling="no" frameborder="0" margin-left="220px">  
+          </IFRAME>
+        </div>
+
 
         <form action="expensiveAddSQL.php">
           <input type="hidden" id="transportId" name="transportId">
@@ -249,13 +255,12 @@
                   }
               ?>
                   <div class="expensive">
-                      <p>ค่าใช้จ่ายต่างๆ</p> 
-
-                          <table id="table" style="width: 100%">
+                      <p>ค่าใช้จ่ายต่างๆ</p>
                             <input type="hidden" id="<?php echo 'consumptionExp'.$value ?>" name="<?php echo 'consumptionExp'.$value ?>" value="<?php echo $ConsumptionFuel[$key][0] ?>">
                             <input type="hidden" id="<?php echo'truckCost'.$value ?>" name="<?php echo 'truckCost'.$value ?>" value="<?php echo $TruckCost[$key][0] ?>">
                             <input type="hidden" id="<?php echo 'residualValue'.$value ?>" name="<?php echo 'residualValue' ?>" value="<?php echo $ResidualValue[$key][0] ?>">
 
+                            <table id="table" style="width: 100%">
                                 <tr>
                                     <td>
                                     <label id="<?php echo 'truckType'.$value ?>">รถบรรทุก:&nbsp;&nbsp;&nbsp;<?php echo $TruckTypeID[$key][0] ?></label>
@@ -340,13 +345,16 @@
                   </div>
             <?php
               }
-            ?>
-            <tr>
-              <td><button type="button" id="<?php echo 'btnCalculator' ?>" name="<?php echo 'calculator' ?>" class="btn btn-primary" style="margin-left: 215px;">คำนวณ</button></td>
-            </tr>      
-            <input type="hidden" id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>">
+            ?>     
+              <input type="hidden" id="truck-id" name="truck-id" value="<?php echo $truckIdAll; ?>">
 
-              <br>
+           <div id="btncal" style="margin-left: 215px; width: 500px; margin-bottom: 20px;">
+              <tr>
+                <td>
+                  <button type="button" id="<?php echo 'btnCalculator' ?>" name="<?php echo 'calculator' ?>" class="btn btn-primary" style="width: 200px;">คำนวณ</button>
+                </td>
+              </tr> 
+           </div>
 
                         
             <div id="btnCB">
@@ -355,11 +363,10 @@
                     <a href="indexEmployee.php">
                     <button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button>
                     </a>
+                  </td>                
+                  <td>
+                    <button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md" disabled>บันทึกข้อมูล</button>
                   </td>
-                  
-                
-                  <td><button type="submit" id="btnCF" name="btnCF" class="btn btn-success btn-md" disabled>บันทึกข้อมูล</button></td>
-      
               </tr>
             </div>                
         </form>           

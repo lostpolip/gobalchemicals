@@ -436,12 +436,20 @@ p{
     padding-top: 20px;
  }
  #directions-panel {
- 	width: 68%;
+ 	width: 55%;
  	margin: 10px 0 30px 210px;
     background-color: #FFEE77;
     padding: 10px;
     border-radius: 2px;
+    float: left;
  }
+ #ptt{
+ 	float: left;
+ 	margin-left: 30px;
+ 	height: 300px;
+
+ }
+
  b{
  	font-size: 21px;
 	font-family: 'quarkbold';
@@ -525,7 +533,9 @@ p{
 	width: 150px;
 }
 .expensive{
+
 	margin-left: 215px;
+	float: left;
 }
 #LaborExpensive{
 	font-family: 'quarklight';

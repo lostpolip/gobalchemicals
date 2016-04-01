@@ -180,7 +180,7 @@
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไร :</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไรข้างต้น :</label>
 					<label id="labelProfit" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>

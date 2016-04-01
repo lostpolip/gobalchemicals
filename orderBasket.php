@@ -231,7 +231,7 @@
 							<tr>
 								<div id="mapInfo">
 									<label id="labelMap" style="font-family: 'quarkbold'; color: #F7D358; font-size: 24px;margin-left: 300px;">กรุณาลากตำแหน่งที่จะส่งสินค้า</label>
-			                            <div id="map_canvas" style="width:550px; height:400px; margin-left:150px; "></div>     
+			                            <div id="map_canvas" style="width:820px; height:400px; margin-left:0px; "></div>     
 			                                    <input type="hidden" name="lat_value" type="text" id="lat_value" > 
 			                                    <input type="hidden" name="lon_value" type="text" id="lon_value" > 
 			                                    <input type="hidden" id="txtDistance" name="txtDistance">

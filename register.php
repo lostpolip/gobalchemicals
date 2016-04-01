@@ -50,12 +50,11 @@ header('Access-Control-Request-Headers: x-requested-with');
 
             /* css กำหนดความกว้าง ความสูงของแผนที่ */  
             #map_canvas {   
-                width:550px;  
+                width:750px;  
                 height:400px;  
-                margin-left:60px;  
             }  
             h4{
-                margin-left: 220px;
+                margin-left: 250px;
             }
             .hide {
                 display: none;
