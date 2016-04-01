@@ -70,7 +70,8 @@
 			        $OrderDate[$i] = $row["OrderDate"];
 			        $State[$i] = $row["State"];
 			        $SendOrder[$i] = $row["SendOrder"];
-			        $ExtendedPrice[$i] = $row["ExtendedPrice"];
+			        $TransportID[$i] = $row["TransportID"];
+			        $ExtendedPrice[$i] = $row["ExtendedPrice"];	
 			        $i++;
 			    }
 			}
@@ -87,7 +88,8 @@
                                 <th>วันที่สั่งซื้อ</th>
                                 <th>ยอดสุทธิ</th>
                                 <th>สถานะ</th>
-                                <th>วันที่ส่งสินค้า</th>
+                                <th>เลขใบส่งสินค้า</th>
+                                <th>วันที่จัดส่งสินค้า</th>
                                 <th>คำสั่ง</th>
                                 
                         	</tr>
@@ -100,6 +102,7 @@
                         		<td id="productname"><?php echo $OrderDate[$j]; ?></td>
                         		<td id="productprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
                         		<td id="productstate"><?php echo $State[$j]; ?></td>
+                        		<td id="productstate"><?php echo $TransportID[$j]; ?></td>
                         		<td id="datesendOrder"><?php echo $SendOrder[$j]; ?></td>
                         		<td>
                         			<button id="btnDetail"><a href="orderListDetail.php?OrderID=<?php echo $OrderID[$j]; ?>"> รายละเอียด</a></button>
