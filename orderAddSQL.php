@@ -12,33 +12,58 @@
 			    }
 		}
 
-		// $receive = $dbManagement->select("SELECT AmountMinusOrder,ReceiveDate,ProductID 
-		// 								 FROM productreceive
-		// 								 ORDER BY ReceiveDate ASC
-		// 								");
+		$receive = $dbManagement->select("SELECT AmountMinusOrder,ExpiryDate,ProductID 
+										 FROM productreceive
+										 ORDER BY ExpiryDate ASC
+										");
 
-		// $r = 0;
-		// if (mysqli_num_rows($receive) > 0) {
-		//     while($row = mysqli_fetch_assoc($receive)) {
-		//         $ReceiveDate[$r] = $row["ReceiveDate"];
-		// 	    $ProductIDReceive[$r] = $row["ProductID"];
-		//         $AmountMinusOrder[$r] = $row["AmountMinusOrder"];	
-		//         $r++;
-		//     }
-		// }
+		$r = 0;
+		if (mysqli_num_rows($receive) > 0) {
+		    while($row = mysqli_fetch_assoc($receive)) {
+		        $ExpiryDate[$r] = $row["ExpiryDate"];
+			    $ProductIDReceive[$r] = $row["ProductID"];
+		        $AmountMinusOrder[$r] = $row["AmountMinusOrder"];	
+		        $r++;
+		    }
+		}
 
 	$orderid = explode(',',$_REQUEST['hiddenProductId']);
 	$totalunit = explode(',',$_REQUEST['hiddenEachUnit']);
 
+	$count = 0;
+	$productID = [];
 	foreach ($orderid as $key => $value) {
 		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
-		// $temp2 = $AmountMinusOrder[array_search($orderid[$key],$ProductIDReceive)] - $totalunit[$key];
 
 		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
 
-		// $dbManagement->update("UPDATE productreceive SET AmountMinusOrder='".$temp2."'
-		// 						   WHERE ProductID='".$orderid[$key]."' ORDER BY ReceiveDate ASC");
+		$receive2 = $dbManagement->select("SELECT AmountMinusOrder,ExpiryDate 
+										 FROM productreceive 
+										 WHERE ProductID='".$orderid[$key]."' AND AmountMinusOrder > 0
+										 ORDER BY ExpiryDate ASC
+										");
+		$r2 = 0;
+		if (mysqli_num_rows($receive2) > 0) {
+		    while($row = mysqli_fetch_assoc($receive2)) {
+		        $ExpiryDate2[$r2] = $row["ExpiryDate"];
+		        $AmountMinusOrder2[$r2] = $row["AmountMinusOrder"];	
+			    $ProductIDReceive2[$r2] = $row["ProductID"];
+		        $r2++;
+		    }
 		}
+		print_r($AmountMinusOrder2);exit;
+		if (!in_array($orderid[$key], $productID)) {
+			$temp2 = $AmountMinusOrder2[array_search($orderid[$key],$ProductIDReceive2)] - $totalunit[$key];
+
+			$dbManagement->update("UPDATE productreceive SET AmountMinusOrder='".$temp2."'
+								   WHERE ProductID='".$orderid[$key]."'
+								   AND ExpiryDate='". $ExpiryDate2[$key]."'");
+		}
+		
+		$productID[$count] = $orderid[$key];
+		$count++;
+
+	}
 	
 
 	$orderID = $_REQUEST['hiddenProductId'];
@@ -62,6 +87,6 @@
 			$dbManagement->insert("INSERT INTO orders(OrderID, CustomerID, State, OrderDate, TotalPriceOrder, TotalVat, TotalTransport, ExtendedPrice,UnitProduct,TotalCostOrder, latOrder, lonOrder, DistanceOrder, ProvinceID, SendOrder,OrderSendDate) VALUES ('".$_REQUEST['hiddenOrderID']."','".$_SESSION['CustomerID']."','no','".$_REQUEST['hiddenOrderDate']."','".$TotalPriceAll."','".$TotalVat."','".$_REQUEST['totalTransaction']."','".$ExtendedPrice."','".$_REQUEST['hiddenUnitProductAll']."','".$_REQUEST['hiddenTotalCostAll']."','".$_REQUEST['lat_value']."','".$_REQUEST['lon_value']."','".$_REQUEST['txtDistance']."','".$_REQUEST['province']."','0000-00-00','".$_REQUEST['hiddenOrderSendDate']."')");
 	}
 
-	header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );
+	// header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );
 
 ?>
