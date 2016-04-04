@@ -1,10 +1,11 @@
 var map; // กำหนดตัวแปร map ไว้ด้านนอกฟังก์ชัน เพื่อให้สามารถเรียกใช้งาน จากส่วนอื่นได้  
 var GGM; // กำหนดตัวแปร GGM ไว้เก็บ google.maps Object จะได้เรียกใช้งานได้ง่ายขึ้น  
 function initialize() { // ฟังก์ชันแสดงแผนที่  
-
     GGM=new Object(google.maps); // เก็บตัวแปร google.maps Object ไว้ในตัวแปร GGM  
     // กำหนดจุดเริ่มต้นของแผนที่  
-    var my_Latlng  = new GGM.LatLng(lat,lng);  
+    var my_Latlng  = new GGM.LatLng(lat,lng);
+    $("#lat_value").val(lat);  // เอาค่า latitude ตัว marker แสดงใน textbox id=lat_value  
+	$("#lon_value").val(lng); // เอาค่า longitude ตัว marker แสดงใน textbox id=lon_value   
     var my_mapTypeId=GGM.MapTypeId.ROADMAP; // กำหนดรูปแบบแผนที่ที่แสดง  
     // กำหนด DOM object ที่จะเอาแผนที่ไปแสดง ที่นี้คือ div id=map_canvas  
     var my_DivObj=$("#map_canvas")[0];   
@@ -63,6 +64,7 @@ $( document ).ready(function() {
 			url: "https://maps.googleapis.com/maps/api/geocode/json", 
 			method: "GET",
 			crossDomain: true,
+			async: false,
 			data: { 
 				address : locationAddress,
 				zoom : 13,

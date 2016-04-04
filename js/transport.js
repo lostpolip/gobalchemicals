@@ -29,7 +29,6 @@ var orderAlert = function () {
 
 
 $( document ).ready(function() {
-
 	claimAlert();
 	orderAlert();
 	setInterval(function(){ 

@@ -235,7 +235,7 @@
 
         <div id="directions-panel"></div>
         <div id="ptt">
-          <IFRAME 
+          <IFRAME name="fuel"
               src="http://www.pttplc.com/th/GetOilPrice.aspx" 
               width="100%" height="555" align="middle" scrolling="no" frameborder="0" margin-left="220px">  
           </IFRAME>

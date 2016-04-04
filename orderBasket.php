@@ -25,14 +25,14 @@
 		<script type="text/javascript" src="js/orderBasket.js"></script>
 
 		<script type="text/javascript">
-			// $( document ).ready(function() {
-			// 	 if (window.history && window.history.pushState) {
-			// 	    window.history.pushState('forward', null, './order.php');
-			// 	    $(window).on('popstate', function() {
-			// 	      window.location.href = 'http://localhost/gobalchemicals/order.php';
-			// 	    });
-			// 	  }
-			// });
+			$( document ).ready(function() {
+				 // if (window.history && window.history.pushState) {
+				 //    window.history.pushState('forward', null, './order.php');
+				 //    $(window).on('popstate', function() {
+				 //      window.location.href = 'http://localhost/gobalchemicals/order.php';
+				 //    });
+				 //  }
+			});
 		</script>
 
 		<style type="text/css">
@@ -176,10 +176,14 @@
 
 	                    </tr>
 
-                    	<div id="informationCustomer">
+                    	<div id="informationCustomer" style="position: relative;">
 							<input type="image" src="images/tabCustomer.png" id="informationCustomer">
 
 						<br>
+							<div style="    position: absolute;top: 16px;left: 295px;">
+								<input type="checkbox" id="checkCustomer"><label for="checkCustomer">เลือกที่อยู่ปัจจุบัน</label>
+								<input type="hidden" id="customerid" value="<?php echo $CustomerID[0] ?>">
+							</div>
 						<br>
 
                             <tr>

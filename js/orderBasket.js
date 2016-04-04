@@ -1,7 +1,6 @@
 var map; // กำหนดตัวแปร map ไว้ด้านนอกฟังก์ชัน เพื่อให้สามารถเรียกใช้งาน จากส่วนอื่นได้  
 var GGM; // กำหนดตัวแปร GGM ไว้เก็บ google.maps Object จะได้เรียกใช้งานได้ง่ายขึ้น  
 function initialize() { // ฟังก์ชันแสดงแผนที่  
-	alert('ini');
     GGM=new Object(google.maps); // เก็บตัวแปร google.maps Object ไว้ในตัวแปร GGM  
     // กำหนดจุดเริ่มต้นของแผนที่  
     var my_Latlng  = new GGM.LatLng(lat,lng);
@@ -135,6 +134,7 @@ $( document ).ready(function() {
 			url: "https://maps.googleapis.com/maps/api/geocode/json", 
 			method: "GET",
 			crossDomain: true,
+			async: false,
 			data: { 
 				address : locationAddress,
 				zoom : 13,
@@ -166,7 +166,69 @@ $( document ).ready(function() {
 		});
 	});
 
+	$('#checkCustomer').change(function() {
+		var idCustomer = $('#customerid').val();
+		$.ajax({
+			url: "searchCustomer.php",
+			meyhod: "GET",
+			data: {
+				idCustomer : idCustomer
+			},
+			success: function(result){
+				if ($('#checkCustomer').is(':checked')) {
+					var result = jQuery.parseJSON(result);
+					$('#province').val(result.provinceID);
+					$('#txtDistrict').append("<option value=" + result.aumphurID + " selected>"+ result.aumphurName +"</option>");
+					$('#txtSubDistrict').append("<option value=" + result.districtID + " selected>" + result.districtName + "</option>");
+					$('#txtZipcode').append("<option value=" + result.zipcodeID + " selected>" + result.zipcode + "</option>");
 
+					$('#province').prop('disabled',true);
+					$('#txtDistrict').prop('disabled',true);
+					$('#txtSubDistrict').prop('disabled',true);
+					$('#txtZipcode').prop('disabled',true);
+				} else {
+					$('#province').prop('disabled',false);
+					$('#txtDistrict').prop('disabled',false);
+					$('#txtSubDistrict').prop('disabled',false);
+					$('#txtZipcode').prop('disabled',false);
+					$('#province').val($("#province option:first").val());
+					$('#txtDistrict').empty();
+					$('#txtSubDistrict').empty();
+					$('#txtZipcode').empty();
+				}
+			    
+			    // console.log(result);
+			    // $('#province option').each(function() {
+			    // 	$('#province').trigger('click');
+			    // 	if (result.province == $(this).val()) {
+			    // 		// $(this).attr('selected','selected');
+			    // 		$(this).trigger( "click" );
+			    // 	}
+			    // });
+
+			    // $('#txtDistrict option').each(function() {
+			    // 	if (result.aumphur == $(this).val()) {
+			    // 		$(this).attr('selected','selected');
+			    // 		// console.log($(this).val());
+			    // 	}
+			    // });
+
+			    // $('#txtSubDistrict option').each(function() {
+			    // 	if (result.district == $(this).val()) {
+			    // 		$(this).attr('selected','selected');
+			    // 	}
+			    // });
+
+			    // $('#txtZipcode option').each(function() {
+			    // 	if (result.zipcode == $(this).val()) {
+			    // 		$(this).attr('selected','selected');
+			    // 	}
+			    // });
+
+
+			}
+		});
+	});
 
 
 	$('#btncalculator').click(function() {
