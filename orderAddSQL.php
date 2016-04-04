@@ -30,7 +30,6 @@
 	$orderid = explode(',',$_REQUEST['hiddenProductId']);
 	$totalunit = explode(',',$_REQUEST['hiddenEachUnit']);
 
-	$count = 0;
 	$productID = [];
 	foreach ($orderid as $key => $value) {
 		$temp = $ProductAmount[array_search($orderid[$key],$ProductID)] - $totalunit[$key];
@@ -52,18 +51,26 @@
 		    }
 		}
 
-		if (!in_array($orderid[$key], $productID)) {
-			$temp2 = $AmountMinusOrder2[array_search($orderid[$key],$ProductIDReceive2)] - $totalunit[$key];
+		for ($i=0;$i<$r2;$i++) {
+			$temp2 = $AmountMinusOrder2[$i] - $totalunit[$key];
 
-			$dbManagement->update("UPDATE productreceive SET AmountMinusOrder='".$temp2."'
-								   WHERE ProductID='".$orderid[$key]."'
-								   AND ExpiryDate='". $ExpiryDate2[$key]."'");
+			if ($AmountMinusOrder2[$i] >= $totalunit[$key]) {
+				$dbManagement->update("UPDATE productreceive SET AmountMinusOrder='".$temp2."'
+		 					   WHERE ProductID='".$orderid[$key]."'
+		 					   AND ExpiryDate='". $ExpiryDate2[$i]."'");
+				break;
+			} else {
+				$totalunit[$key] = $totalunit[$key] -  $AmountMinusOrder2[$i]; 
+				$dbManagement->update("UPDATE productreceive SET AmountMinusOrder='0'
+		 					   WHERE ProductID='".$orderid[$key]."'
+		 					   AND ExpiryDate='". $ExpiryDate2[$i]."'");
+			}
+
+			
 		}
-		
-		$productID[$count] = $orderid[$key];
-		$count++;
 
 	}
+	
 	
 
 	$orderID = $_REQUEST['hiddenProductId'];

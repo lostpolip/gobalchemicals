@@ -25,14 +25,14 @@
 		<script type="text/javascript" src="js/orderBasket.js"></script>
 
 		<script type="text/javascript">
-			$( document ).ready(function() {
-				 if (window.history && window.history.pushState) {
-				    window.history.pushState('forward', null, './order.php');
-				    $(window).on('popstate', function() {
-				      window.location.href = 'http://localhost/gobalchemicals/order.php';
-				    });
-				  }
-			});
+			// $( document ).ready(function() {
+			// 	 if (window.history && window.history.pushState) {
+			// 	    window.history.pushState('forward', null, './order.php');
+			// 	    $(window).on('popstate', function() {
+			// 	      window.location.href = 'http://localhost/gobalchemicals/order.php';
+			// 	    });
+			// 	  }
+			// });
 		</script>
 
 		<style type="text/css">
