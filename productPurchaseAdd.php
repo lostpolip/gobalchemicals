@@ -147,7 +147,7 @@
 		<?php
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
-			$product = $dbManagement->select("SELECT * FROM product");
+			$product = $dbManagement->select("SELECT * FROM product WHERE StateProduct = 'confirm'");
 			$supplier = $dbManagement->select("SELECT * FROM supplier");
 
 			$ddProduct = 0;

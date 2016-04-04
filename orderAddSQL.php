@@ -37,7 +37,7 @@
 
 		$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$orderid[$key]."'");
 
-		$receive2 = $dbManagement->select("SELECT AmountMinusOrder,ExpiryDate 
+		$receive2 = $dbManagement->select("SELECT AmountMinusOrder,ExpiryDate,ProductID  
 										 FROM productreceive 
 										 WHERE ProductID='".$orderid[$key]."' AND AmountMinusOrder > 0
 										 ORDER BY ExpiryDate ASC
@@ -51,7 +51,7 @@
 		        $r2++;
 		    }
 		}
-		print_r($AmountMinusOrder2);exit;
+
 		if (!in_array($orderid[$key], $productID)) {
 			$temp2 = $AmountMinusOrder2[array_search($orderid[$key],$ProductIDReceive2)] - $totalunit[$key];
 
@@ -87,6 +87,6 @@
 			$dbManagement->insert("INSERT INTO orders(OrderID, CustomerID, State, OrderDate, TotalPriceOrder, TotalVat, TotalTransport, ExtendedPrice,UnitProduct,TotalCostOrder, latOrder, lonOrder, DistanceOrder, ProvinceID, SendOrder,OrderSendDate) VALUES ('".$_REQUEST['hiddenOrderID']."','".$_SESSION['CustomerID']."','no','".$_REQUEST['hiddenOrderDate']."','".$TotalPriceAll."','".$TotalVat."','".$_REQUEST['totalTransaction']."','".$ExtendedPrice."','".$_REQUEST['hiddenUnitProductAll']."','".$_REQUEST['hiddenTotalCostAll']."','".$_REQUEST['lat_value']."','".$_REQUEST['lon_value']."','".$_REQUEST['txtDistance']."','".$_REQUEST['province']."','0000-00-00','".$_REQUEST['hiddenOrderSendDate']."')");
 	}
 
-	// header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );
+	header( "location: /gobalchemicals/formOrder.php?OrderID=$orderId" );
 
 ?>
