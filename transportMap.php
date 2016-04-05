@@ -150,9 +150,11 @@
         $order = '';
         foreach ($destination as $key => $value) {
           $destinationLatlng[$key] = explode('&',$value);
-          $order[$key] = $destinationLatlng[$key][1];
+          $order[$key] = $destinationLatlng[$key][1];  
         }
+
         $order = implode(',', $order);
+        $orderArray = explode(',', $order);
         $date =$_REQUEST['txtDateTransport'];
         $totalWeight=$_REQUEST['txtWeightProduct'];
         $truck=$_REQUEST['listTruckName'];
@@ -160,6 +162,8 @@
         $employee=$_REQUEST['listEmployeeName'];
         $employeeDB=implode(',', $employee);
         $routeTime=$_REQUEST['rdoDate'];
+
+
 
         require 'dbManagement.php';
         $dbManagement = new dbManagement();  
@@ -182,7 +186,24 @@
           }             
         } 
 
-
+        foreach ($orderArray as $key => $value) {
+         
+           $Order[$key] = $dbManagement->select("SELECT * FROM orders
+                                                 JOIN customer ON orders.CustomerID=customer.CustomerID
+                                                 JOIN aumphur ON orders.AumphurID=aumphur.AumphurID
+                                                 WHERE OrderID= '".$value."'
+                                                  ");
+           $r=0;
+           if (mysqli_num_rows($Order[$key]) > 0) {
+               while($row = mysqli_fetch_assoc($Order[$key])) {
+                   $OrderID[$key][$r] = $row["OrderID"];
+                   $CustomerName[$key][$r] = $row["CustomerName"];
+                   $AumphurName[$key][$r] = $row["AumphurName"];
+                   $ProvinceName[$key][$r] = $row["ProvinceName"];
+                   $i++;
+               }  
+           }   
+        } 
       ?>
 
       <?php 
@@ -224,15 +245,28 @@
         <br>
         <br>
 
-        <label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
-            <?php
-                for($j=0;$j<$i;$j++){ 
-            ?>
-                <label style="font-family: 'quarkbold'; color: #FFFFFF; font-size: 23px;"><?php echo $order ?></label>
-            <?php
-              }
-            ?>
+          <label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
+          <br>
+          <?php 
 
+            foreach ($orderArray as $key => $value) {
+                if ($key == 0) {
+                  $OrderIdAll = $value;
+                } else {
+                  $OrderIdAll = $OrderIdAll.','.$value;
+                }
+              ?>  
+                   <label id="<?php echo 'ordersID'.$value ?>" name="<?php echo 'ordersID'.$value ?>" style="
+                   margin-left: 400px;font-family: 'quarkbold'; color: #FFFFFF; font-size: 22px;"><?php echo $OrderID[$key][0] ?> : <?php echo $CustomerName[$key][0] ?></label>
+                   <br>
+                   <label id="<?php echo 'address'.$value ?>" name="<?php echo 'address'.$value ?>" style="
+                   margin-left: 400px;font-family: 'quarkbold'; color: #000000; font-size: 22px;">สถานที่ : อำเภอ <?php echo $AumphurName[$key][0];?> จังหวัด <?php echo $ProvinceName[$key][0];?> </label>
+                   <br>
+              <?php
+                }
+              ?>     
+                    
+          
         <div id="directions-panel"></div>
         <div id="ptt">
           <IFRAME name="fuel"
@@ -457,7 +491,7 @@
                   // For each route, display summary information.
                   for (var i = 0; i < route.legs.length; i++) {
                     var routeSegment = i + 1;
-                    summaryPanel.innerHTML += '<br><b>ลำดับและเส้นทางที่: ' + routeSegment +
+                    summaryPanel.innerHTML += '<br><b>ลำดับOrderและเส้นทางที่: ' + routeSegment +
                         '</b><br>';
                     summaryPanel.innerHTML += '<b>จาก</b> '+route.legs[i].start_address + '<br><b> ถึง</b>';
                     summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
