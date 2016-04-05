@@ -177,18 +177,18 @@ $( document ).ready(function() {
 			success: function(result){
 				if ($('#checkCustomer').is(':checked')) {
 					var result = jQuery.parseJSON(result);
-					$('#province').val(result.provinceID);
-					$('#txtDistrict').append("<option value=" + result.aumphurID + " selected>"+ result.aumphurName +"</option>");
+					$('#province').append("<option value=" + result.provinceID + " selected>"+ result.provinceName +"</option>");
+					$('#txtDistrict').append("<option value=" + result.aumphurID + " selected >"+ result.aumphurName +"</option>");
 					$('#txtSubDistrict').append("<option value=" + result.districtID + " selected>" + result.districtName + "</option>");
 					$('#txtZipcode').append("<option value=" + result.zipcodeID + " selected>" + result.zipcode + "</option>");
 
 					$('#province').prop('disabled',true);
-					$('#txtDistrict').prop('disabled',true);
+					// $('#txtDistrict').prop('disabled',true);
 					$('#txtSubDistrict').prop('disabled',true);
 					$('#txtZipcode').prop('disabled',true);
 				} else {
 					$('#province').prop('disabled',false);
-					$('#txtDistrict').prop('disabled',false);
+					// $('#txtDistrict').prop('disabled',false);
 					$('#txtSubDistrict').prop('disabled',false);
 					$('#txtZipcode').prop('disabled',false);
 					$('#province').val($("#province option:first").val());
@@ -196,36 +196,6 @@ $( document ).ready(function() {
 					$('#txtSubDistrict').empty();
 					$('#txtZipcode').empty();
 				}
-			    
-			    // console.log(result);
-			    // $('#province option').each(function() {
-			    // 	$('#province').trigger('click');
-			    // 	if (result.province == $(this).val()) {
-			    // 		// $(this).attr('selected','selected');
-			    // 		$(this).trigger( "click" );
-			    // 	}
-			    // });
-
-			    // $('#txtDistrict option').each(function() {
-			    // 	if (result.aumphur == $(this).val()) {
-			    // 		$(this).attr('selected','selected');
-			    // 		// console.log($(this).val());
-			    // 	}
-			    // });
-
-			    // $('#txtSubDistrict option').each(function() {
-			    // 	if (result.district == $(this).val()) {
-			    // 		$(this).attr('selected','selected');
-			    // 	}
-			    // });
-
-			    // $('#txtZipcode option').each(function() {
-			    // 	if (result.zipcode == $(this).val()) {
-			    // 		$(this).attr('selected','selected');
-			    // 	}
-			    // });
-
-
 			}
 		});
 	});

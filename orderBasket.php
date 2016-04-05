@@ -190,7 +190,7 @@
                                 <td><label style="font-family: 'quarkbold'; color: #000; font-size: 22px;">จังหวัด :</label></td>
                                 <td>
                                 	<select id="province" name="province" required>
-                                	<option value="" selected>--- เลือกจังหวัด ---</option>
+                                	<option value="">--- เลือกจังหวัด ---</option>
                                 	 	<?php
                         					for($j=0;$j<$i;$j++){ 
                         				?>	

@@ -42,7 +42,7 @@
 	$dbManagement->update("UPDATE product SET ProductAmount='".$totalProduct."' WHERE ProductID='".$_REQUEST['txtProductID']."'");
 	if($totalProductInReceive == 0){
 
-		$dbManagement->update("UPDATE purchase SET StatePurchase='complete' WHERE PurchaseID ='".$_REQUEST['txtPurchasseID']."'");
+		$dbManagement->update("UPDATE purchase SET StatePurchase='complete',AmountMinusReceive='".$totalProductInReceive."' WHERE PurchaseID ='".$_REQUEST['txtPurchasseID']."'");
 	}else{
 		$dbManagement->update("UPDATE purchase SET AmountMinusReceive='".$totalProductInReceive."' WHERE PurchaseID ='".$_REQUEST['txtPurchasseID']."'");
 	}

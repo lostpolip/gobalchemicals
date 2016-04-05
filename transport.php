@@ -169,7 +169,7 @@
 
 			$order = $dbManagement->select("SELECT * FROM orders
 											JOIN customer ON orders.CustomerID=customer.CustomerID
-											JOIN province ON orders.ProvinceID=province.ProvinceID
+											JOIN aumphur ON orders.AumphurID=aumphur.AumphurID
 											WHERE State='processing'
 											");
 
@@ -184,8 +184,7 @@
 			        $lonOrder[$popupOrder] = $row["lonOrder"];
 			        $Distance[$popupOrder] = $row["Distance"];
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
-			        $ProvinceID[$popupOrder] = $row["ProvinceID"];
-			        $ProvinceName[$popupOrder] = $row["ProvinceName"];
+			        $AumphurID[$popupOrder] = $row["AumphurID"];
 			        $GeoName[$popupOrder] = $row["GeoName"];
 			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $popupOrder++;
@@ -211,7 +210,6 @@
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
-	                                <th>จังหวัด</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
 	                        	</tr>
 	                        	<?php 
@@ -226,7 +224,6 @@
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
-	                        		<td id="province"><?php echo $ProvinceName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
 	                        	<?php
