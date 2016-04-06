@@ -156,7 +156,9 @@
 			$result = $dbManagement->select("SELECT * FROM  claim  
 											JOIN customer ON claim.CustomerID=customer.CustomerID
 											JOIN claimdetail ON claim.ClaimID=claimdetail.ClaimID
-											WHERE StateClaim='Processing'		
+											WHERE StateClaim='Processing'
+											GROUP BY claimdetail.ClaimID
+											ORDER BY claim.ClaimID	
 											");
 
 
