@@ -63,8 +63,8 @@ $( document ).ready(function() {
 
 		if (this.id == 'rdoDate1') {
 			var timeaction = $("#rdoDate1").val();
-		// } else if (this.id == 'rdoDate2') {
-		// 	var timeaction = $("#rdoDate2").val();
+		} else if (this.id == 'rdoDate2') {
+			var timeaction = $("#rdoDate2").val();
 		} else {
 			var timeaction = $("#rdoDate3").val();
 		}

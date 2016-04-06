@@ -20,8 +20,9 @@
 	$TruckAll =$_REQUEST['truck-id'];
 	$IDBillTransport=$_REQUEST['transportId'];
 	$truckIDArray = explode(',',$TruckAll);
+	$date =$_REQUEST['hiddenDateExpenses'];
 
-	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate) VALUES ('ES' '".$newID."', 'complete','".date("Y-m-d")."')");
+	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate) VALUES ('ES' '".$newID."', 'complete','".$date."')");
 
 	foreach ($truckIDArray as $TruckAll) {
 		$expensesAround=$_REQUEST['hiddenExpensesPerAround'.$TruckAll];

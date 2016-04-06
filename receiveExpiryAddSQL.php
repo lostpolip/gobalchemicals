@@ -1,8 +1,9 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$productid = $_REQUEST['txtProduct'];
-	$receiveid = $_REQUEST['idReceive'];
+	$productid = $_REQUEST['productID'];
+	$receiveid = $_REQUEST['receiveID'];
+	$productamountExpiry = $_REQUEST['productAmount'];
 	
 	$result = $dbManagement->select("SELECT * FROM product WHERE ProductID='".$productid."' ");
 
@@ -13,9 +14,7 @@
 		    }
 		}
 
-	
-	$productAmount = $_REQUEST['txtProductAmount'];
-	$temp = $ProductAmount-$productAmount;
+	$temp = $ProductAmount-$productamountExpiry;
 	$dbManagement->update("UPDATE product SET ProductAmount='".$temp."' WHERE ProductID='".$productid."'");
 	$dbManagement->delete("DELETE FROM productreceive WHERE ReceiveID='".$receiveid."'");
 

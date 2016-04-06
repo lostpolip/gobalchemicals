@@ -13,7 +13,8 @@ $( document ).ready(function() {
 			},
 			success: function(result){
 				$('#table').show();
-
+				$('#tablebody').empty();
+				
     			var date = jQuery.parseJSON(result).date.split(',');
     			var price = jQuery.parseJSON(result).price.split(',');	
     			var cost = jQuery.parseJSON(result).cost.split(',');

@@ -25,8 +25,8 @@
 		<script type="text/javascript" src="js/datatable.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/approveOrder.js"></script>
-		<script type="text/javascript" src="js/chart.min.js"></script>
-		<script type="text/javascript" src="js/reportAll.js"></script>
+		<script type="text/javascript" src="js/chart.min.js"></script>		
+		<script type="text/javascript" src="js/reportCar.js"></script>
 		
 		
 
@@ -156,7 +156,7 @@
 		<input type="hidden" id="ExtendedPrice" value="<?php echo $ExtendedPrice; ?>"></input>
 
 		<div id="tooplate_main">
-				<td><label id="labelTittle">รายงานรายได้จากการขายสินค้า</label></td>
+				<td><label id="labelTittle">รายงานการใช้รถบรรทุก</label></td>
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>
@@ -170,22 +170,6 @@
 			<canvas id="myChart" width="800" height="400"></canvas>
 			<br>
 			<br>
-			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาขาย :</label>
-					<label id="labelPrice" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
-					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
-				</td> 
-				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาทุน :</label>
-					<label id="labelCost" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
-					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
-				</td>
-				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไรข้างต้น :</label>
-					<label id="labelProfit" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
-					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
-				</td>
-			</div>
 			
 			<table id="table" style="display: none;"> 
 				<caption>Optional table caption.</caption> 
@@ -193,9 +177,8 @@
 						<tr> 
 							<th>#</th> 
 							<th>วันที่</th> 
-							<th>ราคาขาย</th> 
-							<th>ราคาขายราคาทุน(จากSupplier)</th> 
-							<th>กำไรข้างต้น</th> 
+							<th>ประเภทรถบรรทุก</th> 
+							<th>จำนวนครั้ง</th> 
 						</tr> 
 					</thead> 
 				<tbody id="tablebody"> 

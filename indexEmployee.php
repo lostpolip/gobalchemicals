@@ -131,6 +131,7 @@
 			                            <ul>
 											<li><a href="reportAll.php">รายงานรายได้</a></li>
 											<li><a href="reportExpensesAll.php">รายงานค่าใช้จ่าย</a></li>
+											<li><a href="reportCar.php">รายงานการใช้รถบรรทุก</a></li>
 											
 									  </ul>
 									</li>
@@ -149,7 +150,7 @@
 
 			$receive = $dbManagement->select("SELECT * FROM productreceive
 											JOIN purchase ON productreceive.PurchaseID = purchase.PurchaseID
-											WHERE StateReceive ='complete'
+											WHERE StateReceive ='complete' AND AmountMinusOrder > 0
 											ORDER BY ExpiryDate
 											");
 
@@ -184,6 +185,7 @@
 			        $ExpiryDate[$r] = $row["ExpiryDate"];
 			        $Lot[$r] = $row["Lot"];
 			        $ReceiveID[$r] = $row["ReceiveID"];
+			        $AmountMinusOrder[$r] = $row["AmountMinusOrder"];
 
 			        if ($ExpiryDate[$r] <= $datenow) {
 			        	$alertLot[$y]	= [
@@ -192,6 +194,7 @@
 			        		'purchase'	=> $PurchaseID[$r],
 			        		'product'	=> $ProductPurchase[$r],
 			        		'receiveid'	=> $ReceiveID[$r],
+			        		'amount'	=> $AmountMinusOrder[$r],
 			        	];
 			        	$y++;
 			        }
@@ -238,7 +241,8 @@
                 <?php 
 					}
 				?>
-		
+			
+			<form action="receiveExpiryAddSQL.php">
 				<?php 
 					if ($y > 0) {
 				?>    	 
@@ -248,7 +252,8 @@
                         	<tr>
                                 <th>Lot</th>
                                 <th>วันหมดอายุ</th>    
-                                <th>จำนวนสินค้าในคคลังของLot</th>    
+                                <th>จำนวนสินค้าในคลังสินค้า</th>    
+                                <th>คำสั่ง</th>    
                         	</tr>
 
                         	<?php
@@ -266,9 +271,15 @@
                         		</td>
                         		<td>
                         			<input type="hidden" id="productid" name="productID" value="<?php echo $alertLot[$l]['product'] ?>">
-                        			<a href="receiveExpiry.php?receiveID=<?php echo $alertLot[$l]['receiveid']; ?>">
+                        			
+                        			<input type="hidden" id="amountProduct" name="productAmount" value="<?php echo $alertLot[$l]['amount'] ?>">
+
+                        			<label id="amountProduct"><?php echo $alertLot[$l]['amount'] ?></label>
+                        		</td>
+                        		<td>
+                        			<!-- <a href="receiveExpiry.php?receiveID=<?php echo $alertLot[$l]['receiveid']; ?>"> -->
                         				<button type="submit" id="btnPurchase" name="btnPurchase">ตัดสต๊อก</button>
-                        			</a>
+                        			<!-- </a> -->
                         		</td>
                         	</tr>
                         	<?php
@@ -278,7 +289,7 @@
                 <?php 
 					}
 				?>      
-
+				</form>
 
 				</div>
 			</div>

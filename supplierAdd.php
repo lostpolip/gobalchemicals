@@ -135,6 +135,7 @@
 			                            <ul>
 											<li><a href="reportAll.php">รายงานรายได้</a></li>
 											<li><a href="reportExpensesAll.php">รายงานค่าใช้จ่าย</a></li>
+											<li><a href="reportCar.php">รายงานการใช้รถบรรทุก</a></li>
 											
 									  </ul>
 									</li>

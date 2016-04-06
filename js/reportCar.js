@@ -1,11 +1,11 @@
 $( document ).ready(function() {
 	$('#total').hide();
-	
+
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
 		$.ajax({
-			url: "graphExpenses.php", 
+			url: "graphCar.php", 
 			method: "GET",
 			data: { 
 				startdate : startDate,
@@ -14,38 +14,32 @@ $( document ).ready(function() {
 			success: function(result){
 				$('#table').show();
 				$('#tablebody').empty();
-								
     			var date = jQuery.parseJSON(result).date.split(',');
-    			var expenses = jQuery.parseJSON(result).expenses.split(',');
-    			var totalExpenses = 0;
-				for (var i = 0; i < expenses.length; i++) {
-				    
-				    $('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+expenses[i]+"</td> </tr> ");
-					totalExpenses += parseInt(expenses[i]);
-				}
+    			var amount = jQuery.parseJSON(result).amount.split(',');	
+    			var type = jQuery.parseJSON(result).type.split(',');
 
+				for (var i = 0; i < amount.length; i++) {
+					$('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+type[i]+"</td> <td>"+amount[i]+"</td> </tr> ");
+				   
+				}
 				
 				$('#table').DataTable();
-
-				$('#labelPrice').text(totalExpenses);
-				$('#total').show();	
 
 				var ctx = $("#myChart").get(0).getContext("2d");
 			    var data = {
 			    	multiTooltipTemplate: "85858",
-				    labels: date,
+				    labels: type,
 				    datasets: [
 				        {
-				            label: "ค่าใช้จ่าย",
+				            label: "income",
 				            fillColor: "rgba(164, 242, 119, 0.5)",
 				            strokeColor: "rgba(220,220,220,1)",
-				            pointColor: "rgba(215, 145, 6, 0.9)",
+				            pointColor: "#000",
 				            pointStrokeColor: "#fff",
 				            pointHighlightFill: "#fff",
 				            pointHighlightStroke: "rgba(220,220,220,1)",
-				            data: expenses,
-				        },
-
+				            data: amount,
+				        }
 				    ]
 				};
 
