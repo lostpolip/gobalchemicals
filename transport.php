@@ -172,6 +172,7 @@
 											JOIN customer ON orders.CustomerID=customer.CustomerID
 											JOIN aumphur ON orders.AumphurID=aumphur.AumphurID
 											WHERE State='processing'
+											ORDER BY OrderSendDate
 											");
 
 			$popupOrder = 0;

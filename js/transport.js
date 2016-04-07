@@ -55,7 +55,9 @@ $( document ).ready(function() {
 		$("#rdoDate1").trigger('click');
 	});
 
-
+	$("input[name='txtDateTransport']").click(function(){
+		$('#truckInfo').hide();
+	});
 
 	$("input[name='rdoDate']").click(function(){
 		$('#truckInfo').show();

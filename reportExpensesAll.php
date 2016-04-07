@@ -165,11 +165,22 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">จำนวนค่าใช้จ่าย :</label>
-					<label id="labelPrice" style="font-size: 22px; font-family: 'quarklight'; color: #337ab7;"></label>
-					<label style="font-size: 24px;" font-family: 'quarkbold';>บาท</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">รายได้ค่าขนส่ง :</label>
+					<label id="labelExpensesOrder" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td> 
+				<br>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ค่าใช้จ่ายค่าขนส่ง :</label>
+					<label id="labelExpenses" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
+				</td>
+				<br>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไรข้างต้น :</label>
+					<label id="labelProfit" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
+					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
+				</td>
 			</div>
+
 			<br>
 			<table id="table" style="display: none;"> 
 				<caption>Optional table caption.</caption> 
@@ -177,7 +188,9 @@
 						<tr> 
 							<th>#</th> 
 							<th>วันที่</th> 
-							<th>ค่าขนส่ง(ต่อวัน)</th> 
+							<th>รายได้ค่าขนส่ง(ต่อวัน)</th> 
+							<th>ค่าใช้จ่ายค่าขนส่ง(ต่อวัน)</th> 
+							<th>กำไร(ต่อวัน)</th> 
 						</tr> 
 					</thead> 
 				<tbody id="tablebody"> 

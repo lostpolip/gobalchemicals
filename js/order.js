@@ -48,7 +48,7 @@ $( document ).ready(function() {
 			$('#hiddentotalPriceOrder' + productID).removeAttr("disabled");		
 			$('#hiddentotalCostOrder' + productID).removeAttr("disabled");	
 			$('#hiddenproductCost' + productID).removeAttr("disabled");
-			// $('#hiddenproductName' + productID).removeAttr("disabled");
+			$('#hiddenproductName' + productID).removeAttr("disabled");
 
 			if ($('#order-id').val() == '') {
 				$('#order-id').val(productID);
@@ -68,7 +68,7 @@ $( document ).ready(function() {
 			$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');	
 			$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
 			$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
-			// $('#hiddenproductName' + productID).attr("disabled", 'disabled');
+			$('#hiddenproductName' + productID).attr("disabled", 'disabled');
 
 			var reqEx = new RegExp(productID, "g");
 			$('#order-id').val(orderIDVal.replace(reqEx,''));
@@ -91,6 +91,7 @@ $( document ).ready(function() {
 		$('#hiddentotalUnitOrder' + productID).attr("disabled", 'disabled');
 		$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
 		$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
+		$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');
 		return false;
 	});
 
