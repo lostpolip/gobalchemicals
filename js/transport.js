@@ -55,9 +55,12 @@ $( document ).ready(function() {
 		$("#rdoDate1").trigger('click');
 	});
 
-	$("input[name='txtDateTransport']").click(function(){
-		$('#truckInfo').hide();
-	});
+	// $("input[name='txtDateTransport']").change(function(){
+	// 	$('#truckInfo').hide();
+	// 	$('#employeeInfo').hide();
+	// 	$('#timeInfo').hide();
+	// 	$('#').empty();
+	// });
 
 	$("input[name='rdoDate']").click(function(){
 		$('#truckInfo').show();
@@ -65,8 +68,8 @@ $( document ).ready(function() {
 
 		if (this.id == 'rdoDate1') {
 			var timeaction = $("#rdoDate1").val();
-		} else if (this.id == 'rdoDate2') {
-			var timeaction = $("#rdoDate2").val();
+		// } else if (this.id == 'rdoDate2') {
+		// 	var timeaction = $("#rdoDate2").val();
 		} else {
 			var timeaction = $("#rdoDate3").val();
 		}

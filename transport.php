@@ -188,6 +188,7 @@
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $AumphurID[$popupOrder] = $row["AumphurID"];
 			        $GeoName[$popupOrder] = $row["GeoName"];
+			        $ProvinceName[$popupOrder] = $row["ProvinceName"];
 			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $popupOrder++;
 			    }		   
@@ -212,6 +213,7 @@
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
+	                                <th>จังหวัด</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
 	                        	</tr>
 	                        	<?php 
@@ -226,6 +228,7 @@
 	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
 	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
 	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
+	                        		<td id="province"><?php echo $ProvinceName[$j]; ?></td>
 	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
 	                        	</tr>
 	                        	<?php
@@ -248,11 +251,11 @@
 								<div id="timeInfo">
 	                         		<label id="title">ช่วงเวลาเดินทาง</label>
 			                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-16:00" class="time" required>
-				                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
+				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="10:00-15:00" class="time" required>
+				                       	<label id="rdoDate" for="rdoDate1">10:00-15:00 น.</label>
 
-										<input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
-										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label>
+										<!-- <input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
+										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label> -->
 
 										<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
 										<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
