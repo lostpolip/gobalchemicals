@@ -26,6 +26,20 @@ var orderAlert = function () {
 	});
 }
 
+function addCommas(nStr)
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+
 $( document ).ready(function() {	
 	claimAlert();
 	orderAlert();
@@ -85,8 +99,8 @@ $( document ).ready(function() {
 			var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 			var ExpensesPerAround = ExpensesPerDay;
 			
-			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(formatNumber(ExpensesPerAround));
-			$('#ExpensesPerAround'+truckIdAll[y]).text(formatNumber(ExpensesPerAround));
+			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(addCommas(ExpensesPerAround));
+			$('#ExpensesPerAround'+truckIdAll[y]).text(addCommas(ExpensesPerAround));
 		}
 
 		$('#btnCF').prop("disabled",false);

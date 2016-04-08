@@ -1,9 +1,24 @@
+function diffDate(startdate, enddate) {
+	var start = new Date(startdate),
+    end   = new Date(enddate),
+    diff  = new Date(end - start),
+    days  = diff/1000/60/60/24;
+
+	return days;
+}
+
 $( document ).ready(function() {
 	$('#total').hide();
 
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
+
+		if (diffDate(startDate, endDate) < 0) {
+			alert('กรุณาเลือกวันใหม่');
+			return false;
+		}
+		
 		$.ajax({
 			url: "graphCar.php", 
 			method: "GET",

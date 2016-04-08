@@ -78,6 +78,9 @@
 
 	</head>
 	<body>
+	<?php
+	date_default_timezone_set('Asia/Bangkok');
+	?>
 
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">
@@ -160,10 +163,10 @@
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>
-                    <td><input type="date" id="startDate" name="startDate"></td>
+                    <td><input type="date" id="startDate" name="startDate" max="<?php echo date("Y-m-d")?>"></td>
                     <td><label id="labelDate1">ถึง</label></td>
 			    	<td><label id="labelDate1">วันที่ :</label></td> 
-                    <td><input type="date" id="endDate" name="endDate"></td>
+                    <td><input type="date" id="endDate" name="endDate" max="<?php echo date("Y-m-d")?>"></td>
                     <td><button type="button" id="btnView" class="btn btn-primary">view</button></td>
     			</tr>
     			<br>
@@ -176,7 +179,7 @@
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td> 
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาทุน :</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ราคาสินค้า(จากSupplier) :</label>
 					<label id="labelCost" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>
@@ -194,7 +197,7 @@
 							<th>#</th> 
 							<th>วันที่</th> 
 							<th>ราคาขาย</th> 
-							<th>ราคาขายราคาทุน(จากSupplier)</th> 
+							<th>ราคาทุน(จากSupplier)</th> 
 							<th>กำไรข้างต้น</th> 
 						</tr> 
 					</thead> 

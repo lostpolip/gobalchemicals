@@ -168,17 +168,17 @@
 			<br>
 			<br>
 			<div id="total">
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">รายได้ค่าขนส่ง :</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">รายได้จากค่าขนส่ง :</label>
 					<label id="labelExpensesOrder" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td> 
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ค่าใช้จ่ายค่าขนส่ง :</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">ค่าใช้จ่ายการขนส่ง :</label>
 					<label id="labelExpenses" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>
 				<br>
-				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไรข้างต้น :</label>
+				<td><label style="font-size: 24px; margin-left: 370px; font-family: 'quarkbold';">กำไรจากค่าขนส่ง :</label>
 					<label id="labelProfit" style="font-size: 22px;  font-family: 'quarklight'; color: #337ab7;"></label>
 					<label style="font-size: 24px; font-family: 'quarkbold';">บาท</label>
 				</td>

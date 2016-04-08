@@ -1,3 +1,15 @@
+function addCommas(nStr)
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
 
 $( document ).ready(function() {
 	$(':button[name=order]').click(function() {		
@@ -31,7 +43,7 @@ $( document ).ready(function() {
 		}
 
 		$('#totalProductOrder' + productID).text(totalProduct);
-		$('#totalPriceOrder' + productID).text(totalPrice);
+		$('#totalPriceOrder' + productID).text(addCommas(totalPrice));
 		$('#totalUnitOrder' + productID).text(totalUnit);
 
 		$('#hiddenProductOrder' + productID).val(totalProduct);

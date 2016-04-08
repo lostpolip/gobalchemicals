@@ -28,7 +28,7 @@ $( document ).ready(function() {
 		var endDate = $('#endDate').val();
 		
 		if (diffDate(startDate, endDate) < 0) {
-			alert('jfkdls;ajfkd;l');
+			alert('กรุณาเลือกวันใหม่');
 			return false;
 		}
 
@@ -40,7 +40,7 @@ $( document ).ready(function() {
 				enddate : endDate
 			},
 			success: function(result){
-				console.log(result);
+	
 				$('#table').show();
 				$('#tablebody').empty();
 								
@@ -54,7 +54,7 @@ $( document ).ready(function() {
 
 				for (var i = 0; i < expenses.length; i++) {
 				    Profit = parseFloat(expensesOrder[i]-expenses[i]);
-				    $('#tablebody').append("<tr> <th scope='row'>"+parseFloat(i+1)+"</th><td>"+addCommas(date[i])+"</td> <td>"+addCommas(expensesOrder[i])+"</td> <td>"+addCommas(Math.round(expenses[i]*100)/100)+"</td> <td>"+addCommas( Math.round(Profit*100)/100)+"</td> </tr> ");
+				    $('#tablebody').append("<tr> <th scope='row'>"+parseFloat(i+1)+"</th><td>"+date[i]+"</td> <td>"+addCommas(Math.round(expensesOrder[i]*100)/100)+"</td> <td>"+addCommas(Math.round(expenses[i]*100)/100)+"</td> <td>"+addCommas( Math.round(Profit*100)/100)+"</td> </tr> ");
 					totalExpenses += parseFloat(expenses[i]);
 					totalExpensesOrder += parseFloat(expensesOrder[i]);
 					totalProfit = parseFloat(totalExpensesOrder-totalExpenses);
@@ -63,9 +63,9 @@ $( document ).ready(function() {
 				
 				$('#table').DataTable();
 
-				$('#labelExpensesOrder').text(totalExpensesOrder);
-				$('#labelExpenses').text(totalExpenses);
-				$('#labelProfit').text(totalProfit);
+				$('#labelExpensesOrder').text(addCommas(Math.round(totalExpensesOrder*100)/100));
+				$('#labelExpenses').text(addCommas(Math.round(totalExpenses*100)/100));
+				$('#labelProfit').text(addCommas(Math.round(totalProfit*100)/100));
 				$('#total').show();
 
 				var ctx = $("#myChart").get(0).getContext("2d");

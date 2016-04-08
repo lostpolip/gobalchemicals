@@ -1,9 +1,37 @@
+function addCommas(nStr)
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+function diffDate(startdate, enddate) {
+	var start = new Date(startdate),
+    end   = new Date(enddate),
+    diff  = new Date(end - start),
+    days  = diff/1000/60/60/24;
+
+	return days;
+}
+
 $( document ).ready(function() {
 	$('#total').hide();
 
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
+
+		if (diffDate(startDate, endDate) < 0) {
+			alert('กรุณาเลือกวันใหม่');
+			return false;
+		}
+
 		$.ajax({
 			url: "graphExtend.php", 
 			method: "GET",
@@ -23,18 +51,18 @@ $( document ).ready(function() {
     			var totalProfit = 0;
     			var Profit = 0;
 				for (var i = 0; i < price.length; i++) {
- 					Profit = parseInt(price[i]-cost[i]);
-						$('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+price[i]+"</td> <td>"+cost[i]+"</td> <td>"+Profit+"</td> </tr> ");
-				    totalPrice += parseInt(price[i]);
-				    totalCost += parseInt(cost[i]);
-				    totalProfit = parseInt(totalPrice-totalCost);
+ 					Profit = parseFloat(price[i]-cost[i]);
+						$('#tablebody').append("<tr> <th scope='row'>"+parseFloat(i+1)+"</th><td>"+date[i]+"</td> <td>"+addCommas(Math.round(price[i]*100)/100)+"</td> <td>"+addCommas(Math.round(cost[i]*100)/100)+"</td> <td>"+addCommas(Math.round(Profit*100)/100)+"</td> </tr> ");
+				    totalPrice += parseFloat(price[i]);
+				    totalCost += parseFloat(cost[i]);
+				    totalProfit = parseFloat(totalPrice-totalCost);
 				   
 				}
 				$('#table').DataTable();
 
-				$('#labelPrice').text(totalPrice);
-				$('#labelCost').text(totalCost);
-				$('#labelProfit').text(totalProfit);
+				$('#labelPrice').text(addCommas(Math.round(totalPrice*100)/100));
+				$('#labelCost').text(addCommas(Math.round(totalCost*100)/100));
+				$('#labelProfit').text(addCommas(Math.round(totalProfit*100)/100));
 				$('#total').show();
 				var ctx = $("#myChart").get(0).getContext("2d");
 			    var data = {
@@ -59,7 +87,7 @@ $( document ).ready(function() {
 				            pointStrokeColor: "#fff",
 				            pointHighlightFill: "#fff",
 				            pointHighlightStroke: "rgba(220,220,220,1)",
-				            data: cost
+				            data: cost,
 				        }
 
 				    ]
