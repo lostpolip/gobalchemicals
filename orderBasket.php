@@ -347,7 +347,8 @@
 	                    			</td>
 	                    			<td>
 	                    				<input type="hidden" id="rate" name="rate" value="<?php echo $RatePerKm[$x];?>">
-		                        		<input id="totalTransaction" name="totalTransaction" value="0" readonly> 
+		                        		<input type="hidden" id="totalTransaction" name="totalTransaction" value="0" readonly> 
+		                        		<input id="hiddentotalTransaction" name="hiddentotalTransaction" value="0" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -358,7 +359,8 @@
 	                    			</td>
 	                    			<td>
 	                    				<input type="hidden" id="extended" name="extended" value="<?php echo $ExtendedPrice ?>">
-		                        		<input id="totalExtendPrice" name="totalExtendPrice" value="0" readonly> 
+		                        		<input type="hidden" id="totalExtendPrice" name="totalExtendPrice" value="0" readonly> 
+		                        		<input  id="hiddentotalExtendPrice" name="hiddentotalExtendPrice" value="0" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>

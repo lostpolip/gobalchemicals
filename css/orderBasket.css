@@ -607,10 +607,20 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	font-size: 19px;
 	text-align: right;
 }
+#hiddentotalExtendPrice{
+	color: red;
+	width: 200px;
+	font-size: 19px;
+	text-align: right;
+}
 #star{
 	color: red;
 }
 #totalTransaction {
+	text-align: right;
+	width: 200px;
+}
+#hiddentotalTransaction {
 	text-align: right;
 	width: 200px;
 }
@@ -629,4 +639,3 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	color: #F7D358;
 	font-size: 22px;
 }
-#

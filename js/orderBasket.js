@@ -236,11 +236,13 @@ $( document ).ready(function() {
 
 				var calculatorTransport = Rete*distancePerKm;						
 				var totalTransport = parseFloat(calculatorTransport.toFixed(2));									
-				$('#totalTransaction').val(addCommas(totalTransport));
+				$('#totalTransaction').val(totalTransport);
+				$('#hiddentotalTransaction').val(addCommas(totalTransport));
 
 				var ExtendedToint = parseFloat(Extended);
 				var calculatorExtended =ExtendedToint+totalTransport ;
-				$('#totalExtendPrice').val(addCommas(calculatorExtended));
+				$('#totalExtendPrice').val(calculatorExtended);
+				$('#hiddentotalExtendPrice').val(addCommas(calculatorExtended));
 
 
 			}

@@ -99,8 +99,8 @@ $( document ).ready(function() {
 			var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 			var ExpensesPerAround = ExpensesPerDay;
 			
-			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(addCommas(ExpensesPerAround));
-			$('#ExpensesPerAround'+truckIdAll[y]).text(addCommas(ExpensesPerAround));
+			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(Math.round(ExpensesPerAround*100)/100);
+			$('#ExpensesPerAround'+truckIdAll[y]).text(addCommas(Math.round(ExpensesPerAround*100)/100));
 		}
 
 		$('#btnCF').prop("disabled",false);
