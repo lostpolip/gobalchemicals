@@ -72,6 +72,9 @@
 
 	</head>
 	<body>
+	<?php
+	date_default_timezone_set('Asia/Bangkok');
+	?>
 
 			<div id="tooplate_body_wrapper">
 				<div id="tooplate_wrapper">
@@ -154,10 +157,10 @@
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>
-                    <td><input type="date" id="startDate" name="startDate"></td>
+                    <td><input type="date" id="startDate" name="startDate" max="<?php echo date("Y-m-d")?>"></td>
                     <td><label id="labelDate1">ถึง</label></td>
 			    	<td><label id="labelDate1">วันที่ :</label></td> 
-                    <td><input type="date" id="endDate" name="endDate"></td>
+                    <td><input type="date" id="endDate" name="endDate" max="<?php echo date("Y-m-d")?>"></td>
                     <td><button type="button" id="btnView" class="btn btn-primary">view</button></td>
     			</tr>
     			<br>

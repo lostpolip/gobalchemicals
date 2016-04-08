@@ -584,6 +584,7 @@
 		      travelMode: google.maps.DirectionsTravelMode.DRIVING,
 		      waypoints: waypts,
 		      optimizeWaypoints: true,
+          avoidHighways: true,
 		    };
 		    directionsService.route(request, function(response, status) {
 		      if (status == google.maps.DirectionsStatus.OK) {

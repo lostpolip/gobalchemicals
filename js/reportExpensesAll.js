@@ -1,9 +1,37 @@
+function addCommas(nStr)
+{
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+function diffDate(startdate, enddate) {
+	var start = new Date(startdate),
+    end   = new Date(enddate),
+    diff  = new Date(end - start),
+    days  = diff/1000/60/60/24;
+
+	return days;
+}
+
 $( document ).ready(function() {
 	$('#total').hide();
 	
 	$('#btnView').click(function() {
 		var startDate = $('#startDate').val();
 		var endDate = $('#endDate').val();
+		
+		if (diffDate(startDate, endDate) < 0) {
+			alert('jfkdls;ajfkd;l');
+			return false;
+		}
+
 		$.ajax({
 			url: "graphExpenses.php", 
 			method: "GET",
@@ -25,11 +53,11 @@ $( document ).ready(function() {
     			var totalProfit = 0;
 
 				for (var i = 0; i < expenses.length; i++) {
-				    Profit = parseInt(expensesOrder[i]-expenses[i]);
-				    $('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+expensesOrder[i]+"</td> <td>"+expenses[i]+"</td> <td>"+Profit+"</td> </tr> ");
-					totalExpenses += parseInt(expenses[i]);
-					totalExpensesOrder += parseInt(expensesOrder[i]);
-					totalProfit = parseInt(totalExpensesOrder-totalExpenses);
+				    Profit = parseFloat(expensesOrder[i]-expenses[i]);
+				    $('#tablebody').append("<tr> <th scope='row'>"+parseFloat(i+1)+"</th><td>"+addCommas(date[i])+"</td> <td>"+addCommas(expensesOrder[i])+"</td> <td>"+addCommas(Math.round(expenses[i]*100)/100)+"</td> <td>"+addCommas( Math.round(Profit*100)/100)+"</td> </tr> ");
+					totalExpenses += parseFloat(expenses[i]);
+					totalExpensesOrder += parseFloat(expensesOrder[i]);
+					totalProfit = parseFloat(totalExpensesOrder-totalExpenses);
 				}
 
 				
