@@ -254,8 +254,8 @@
 				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-16:00" class="time" required>
 				                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
 
-										<input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
-										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label>
+										<!-- <input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
+										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label> -->
 
 										<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
 										<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
