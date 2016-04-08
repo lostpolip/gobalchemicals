@@ -55,12 +55,14 @@ $( document ).ready(function() {
 		$("#rdoDate1").trigger('click');
 	});
 
-	// $("input[name='txtDateTransport']").change(function(){
-	// 	$('#truckInfo').hide();
-	// 	$('#employeeInfo').hide();
-	// 	$('#timeInfo').hide();
-	// 	$('#').empty();
-	// });
+	$("input[name='txtDateTransport']").change(function(){
+		$('#truckInfo').hide();
+		$('#employeeInfo').hide();
+		$('#timeInfo').hide();
+		$("input[name='destination[]'").each(function() {
+			$(this).prop('checked', false);
+		});
+	});
 
 	$("input[name='rdoDate']").click(function(){
 		$('#truckInfo').show();

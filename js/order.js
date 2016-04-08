@@ -84,6 +84,7 @@ $( document ).ready(function() {
 
 	$(':button[name=btnDelete]').click(function() {
 		var productID = $(this).data('productid');
+		var orderIDValue = $('#order-id').val();
 		$('#row' + productID).addClass('hide');
 
 		$('#hiddenproductID' + productID).attr("disabled", 'disabled');
@@ -92,11 +93,24 @@ $( document ).ready(function() {
 		$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
 		$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
 		$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');
+
+		var reqEx = new RegExp(productID, "g");
+		$('#order-id').val(orderIDValue.replace(reqEx,''));
+		$('#order-id').val($.trim($('#order-id').val()));
+
+		if ($('#order-id').val() == '') {
+			$('#btnCF').prop('disabled', true);
+		}
 		return false;
 	});
 
 	$('#button-basket').click(function() {
 		var orderIDVal =  $('#order-id').val();
+		if ($('#order-id').val() == '') {
+			$('#btnCF').prop('disabled', true);
+		} else {
+			$('#btnCF').prop('disabled', false);
+		}
 		if (orderIDVal == '') {
 			$('#btnCF').attr('disabled','disabled');
 		} else {
