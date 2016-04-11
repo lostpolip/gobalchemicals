@@ -84,6 +84,8 @@
 	$TotalVat=str_replace(',', '', $totalVat);
 	$ExtendedPrice=str_replace(',', '', $totalExtendPrice);
 
+	
+
 	if ($orderID != '') {
 		foreach ($orderIDArray as $orderID) {
 				$dbManagement->insert("INSERT INTO orderdetail(ProductID, OrderAmount, TotalVolumn, TotalCost,OrderID,TotalPrice) VALUES ('".$orderID."','".$_REQUEST['hiddenOrderAmount'.$orderID]."','".$_REQUEST['hiddenTotalUnit'.$orderID]."','".$_REQUEST['hiddenTotalCost'.$orderID]."','".$_REQUEST['hiddenOrderID']."','".$_REQUEST['hiddenTotalPrice'.$orderID]."')");

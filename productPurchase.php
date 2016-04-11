@@ -195,7 +195,7 @@
 
                         	<tr>
                         		<td id="purchaseId"><?php echo $PurchaseID[$j] ?></td>
-                        		<td id="purchaseDate"><?php echo $PurchaseDate[$j] ?></td>
+                        		<td id="purchaseDate"><?php echo date("d-m-Y", strtotime($PurchaseDate[$j])) ?></td>
                         		<td id="purchaseSupplier"><?php echo $SupplierName[$j] ?></td>
                         		<td id="purchaseSupplierEmail"><?php echo $SupplierEmail[$j] ?></td>
                         		<td id="purchaseAmount"><?php echo $PurchaseAmount[$j] ?></td>

@@ -24,7 +24,7 @@
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/orderBasket.js"></script>
 
-		<script type="text/javascript">
+<!-- 		<script type="text/javascript">
 			$( document ).ready(function() {
 				 if (window.history && window.history.pushState) {
 				    window.history.pushState('forward', null, './order.php');
@@ -33,7 +33,7 @@
 				    });
 				  }
 			});
-		</script>
+		</script> -->
 
 		<style type="text/css">
 			#OrderID{
@@ -285,8 +285,8 @@
                         		<td id="productname"><?php echo $ProductName[array_search($value ,$ProductID)] ?></td>
                         		<td id="orderamount"><?php echo $_REQUEST["hiddenProductOrder$value"] ?></td>
                         		<td id="totalUnit"><?php echo number_format($_REQUEST["hiddentotalUnitOrder$value"]); ?></td>
-                        		<td id="productprice"><?php echo number_format($Price[array_search($value ,$ProductID)]); ?></td>
-                        		<td id="totalprice"><?php echo number_format($_REQUEST["hiddentotalPriceOrder$value"]); ?></td>
+                        		<td id="productprice"><?php echo number_format($Price[array_search($value ,$ProductID)], 2, '.', ','); ?></td>
+                        		<td id="totalprice"><?php echo number_format($_REQUEST["hiddentotalPriceOrder$value"], 2, '.', ',');?></td>
 
 
                         		<input type="hidden" name="<?php echo 'hiddenProductId' ?>" value="<?php echo $productIdAll ?>">
@@ -326,7 +326,7 @@
 	                    				<label>ราคาสินค้า :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalPriceAll" name="totalPriceAll" value="<?php echo number_format($totalPrice); ?>" readonly> 
+		                        		<input id="totalPriceAll" name="totalPriceAll" value="<?php echo number_format($totalPrice, 2, '.', ','); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>
@@ -336,7 +336,7 @@
 	                    				<label>ภาษีมูลค่าเพิ่ม 7% :</label>
 	                    			</td>
 	                    			<td>
-		                        		<input id="totalVat" name="totalVat" value="<?php echo number_format($vat); ?>" readonly> 
+		                        		<input id="totalVat" name="totalVat" value="<?php echo number_format($vat, 2, '.', ','); ?>" readonly> 
 		                        		<label>บาท</label>
 		                        	</td>
 		                        </tr>		                      

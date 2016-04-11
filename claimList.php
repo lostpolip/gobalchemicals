@@ -202,9 +202,9 @@
 		                        		<td id="claimid"><?php echo $ClaimID[$j]; ?></td>
 		                        			<input type="hidden" id="claimID" name="claimID" value="<?php echo $ClaimID[$j]; ?>">
 		                        		
-		                        		<td id="claimdate"><?php echo $ClaimDate[$j]; ?></td>
+		                        		<td id="claimdate"><?php echo date("d-m-Y", strtotime($ClaimDate[$j])) ?></td>
 		                        		<td id="customername"><?php echo $CustomerName[$j]; ?></td>
-		                        		<td id="claimdetail"><?php echo $ClaimSendDate[$j]; ?></td>
+		                        		<td id="claimdetail"><?php echo date("d-m-Y", strtotime($ClaimSendDate[$j])) ?></td>
 		                        		<td id="claimdetail">
 		                        			<button id="btnDetail"><a href="ClaimListDetail.php?ClaimID=<?php echo $ClaimID[$j]; ?>"> รายละเอียด</a></button></td>
 		                        	</tr>

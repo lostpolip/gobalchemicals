@@ -210,26 +210,17 @@
 	                        	<tr> 
 	                        		<th>เลือก</th>	                                
 	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
-	                        		<th>รหัสสั่งซื้อ</th>
-	                                <th>ชื่อลูกค้า</th>
-	                                <th>ภูมิภาค</th>
-	                                <th>จังหวัด</th>
-	                                <th>น้ำหนักสินค้า(ตัน)</th>
+	                        	
 	                        	</tr>
 	                        	<?php 
-	   								for($j=0; $j<$popupOrder; $j++){
+	   								for($j=0; $j<$ddtruck; $j++){
 	   							?>
 	                        	<tr>
-	                        		<td><input type="checkbox" name="destination[]" value="<?php echo $latOrder[$j].','.$lonOrder[$j].'&'. $OrderID[$j] ?>" 
-	                        		data-unitproduct="<?php echo $UnitProduct[$j]; ?>"
-	                        		data-orderid="<?php echo $OrderID[$j]; ?>">
+	                        		<td><input type="checkbox" name="destination[]" 
+	                        		data-unitproduct="<?php echo $WeightCapacity[$j]; ?>">
 	                        		</td>
-	                        		<td id="orderdate" ><?php echo $OrderSendDate[$j]; ?></td>
-	                        		<td id="orderId" ><?php echo $OrderID[$j]; ?></td>
-	                        		<td id="customerName"><?php echo $CustomerName[$j]; ?></td>
-	                        		<td id="Geo"><?php echo $GeoName[$j]; ?></td>
-	                        		<td id="province"><?php echo $ProvinceName[$j]; ?></td>
-	                        		<td id="productWeight"><?php echo $UnitProduct[$j]; ?></td>
+	                        		<td id="orderdate" ><?php echo $TruckTypeID[$j]; ?></td>
+	                        	
 	                        	</tr>
 	                        	<?php
                         			}

@@ -14,7 +14,8 @@
             $PurchaseDate = $row["PurchaseDate"];
 	    	$PurchaseAmount = $row["PurchaseAmount"];
 	    	$ProductID = $row["ProductID"];
-	    	$ProductName = $row["ProductName"];
+            $ProductName = $row["ProductName"];
+	    	$ProductAmount = $row["ProductAmount"];
             $SupplierName = $row["SupplierName"];
             $SupplierID = $row["SupplierID"];
 	    	$AmountMinusReceive = $row["AmountMinusReceive"];
@@ -74,7 +75,7 @@
 
             <tr>
                 <td><label><span class="red-star">* </span>จำนวนสินค้าที่รับ :</label></td>
-                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" required>&nbsp;&nbsp;
+                <td><input type="text" id="txtReceiveAmount" name="txtReceiveAmount" data-max="<?php echo $AmountMinusReceive ?>" value="0" required>&nbsp;&nbsp;
                 	<label>ตัน</label> 
                 </td>
             </tr>
@@ -114,6 +115,5 @@
             
         });
     });
-     });
-
+    
     </script>

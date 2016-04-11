@@ -227,7 +227,7 @@
 		                        		<td id="ordertid"><?php echo $OrderID[$j]; ?></td>
 		                        		<input type="hidden" id="Orderid" name="Orderid" value="<?php echo $OrderID[$j]; ?>">
 		                        		<td id="productname"><?php echo $CustomerName[$j]; ?></td>
-		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
+		                        		<td id="totalprice"><?php echo number_format($ExtendedPrice[$j],2,'.',','); ?></td>
 		                        		<td>
 		                        			<button type="submit" id="btnSet">อนุมัติ</button>
 		                        		</td>

@@ -623,6 +623,8 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 #hiddentotalTransaction {
 	text-align: right;
 	width: 200px;
+	font-size: 19px;
+
 }
 #totalVat{
 	text-align: right;

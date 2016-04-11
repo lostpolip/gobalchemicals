@@ -1,5 +1,4 @@
 <?php
-
 class mail {
 	public function sendmail($body,$sendTo){
 		require_once('PHPMailer_v5.0.2/class.phpmailer.php');

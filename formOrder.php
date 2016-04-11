@@ -46,11 +46,12 @@
 
 			$i=0;
 			if (mysqli_num_rows($orderdetail) > 0) {
-			    while($row = mysqli_fetch_assoc($orderdetail)) {
+			    while($row = mysqli_fetch_assoc($orderdetail)) {  
 					$ProductID[$i] = $row["ProductID"];
 					$ProductName[$i] = $row["ProductName"];
 					$OrderAmount[$i] = $row["OrderAmount"];
 					$TotalPrice[$i] = $row["TotalPrice"];
+					$TotalVolumn[$i] = $row["TotalVolumn"];
 					$Price[$i] = $row["Price"];
 			    $i++;
 			    }
@@ -88,8 +89,9 @@
                         	<tr>
                         		<th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">รหัสสินค้า</th>
                                 <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">รายละเอียด</th>
-                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน</th>
-                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">หน่วยละ</th>
+                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน(ตัน)</th>
+                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน(ถุง)</th>
+                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">หน่วยละ/ถุง</th>
                                 <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวนเงิน</th>
                                 
                                 
@@ -101,8 +103,9 @@
                         		<td id="productid" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;"><?php echo $ProductID[$j]; ?></td>
                         		<td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;"><?php echo $ProductName[$j]; ?></td>
                         		<td id="productamount" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; text-align: right;"><?php echo $OrderAmount[$j]; ?></td>
-                                <td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;"><?php echo number_format($Price[$j]); ?></td>
-                                <td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000;"><?php echo number_format($TotalPrice[$j]); ?></td>
+                        		<td id="productamount" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; text-align: right;"><?php echo $TotalVolumn[$j]; ?></td>
+                                <td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; padding-left: 55px;"><?php echo number_format($Price[$j],2,'.',','); ?></td>
+                                <td id="productname" style="border: 1px solid #000000; background-color: #FFFFFF; font-size: 18px; color: #000000; padding-left: 33px;"><?php echo number_format($TotalPrice[$j],2,'.',','); ?></td>
                         	</tr>
                         	<?php
                         		}
@@ -114,22 +117,22 @@
 	                    	<table id="table1" width="91%">
 	                        	<tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">รวมเป็นเงิน :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;"><?php echo number_format($TotalPriceOrder); ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 220px;"><?php echo number_format($TotalPriceOrder, 2, '.', ','); ?></th>
 	                            </tr>
 
 	                            <tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">ค่าขนส่ง :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;"><?php echo number_format($TotalTransport); ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 240px;"><?php echo $TotalTransport ?></th>
 	                            </tr>  
                                 
                                 <tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">มูลค่าเพิ่ม 7.00% :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;"><?php echo number_format($TotalVat); ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 225px;"><?php echo number_format($TotalVat, 2, '.', ','); ?></th>
 	                            </tr>  
                                 
                                 <tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">ยอดเงินสุทธิ :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000;"><?php echo number_format($ExtendedPrice); ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 220px;"><?php echo $ExtendedPrice ?></th>
 	                            </tr>    
 							</table>  
 							<br>

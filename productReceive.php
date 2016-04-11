@@ -192,8 +192,8 @@
                         	<tr>
                         		<td id="<?php echo $ReceiveID[$j] ?>"><?php echo $ReceiveID[$j] ?></td>
                         		<td id="lot"><?php echo $Lot[$j] ?></td>
-                        		<td id="receiveDate"><?php echo $ReceiveDate[$j] ?></td>
-                        		<td id="expiryDate"><?php echo $ExpiryDate[$j] ?></td>
+                        		<td id="receiveDate"><?php echo date("d-m-Y", strtotime($ReceiveDate[$j])) ?></td>
+                        		<td id="expiryDate"><?php echo date("d-m-Y", strtotime($ExpiryDate[$j])) ?></td>
                         		<td id="ReceiveAmount"><?php echo $ReceiveAmount[$j] ?></td>
                         		
 <!--                         		<td>

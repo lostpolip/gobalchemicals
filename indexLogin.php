@@ -27,6 +27,6 @@ session_start();
 			
 		}
 	}
-	header( "location: /gobalchemicals/indexEmployee.php" );
 
+	header( "location: /gobalchemicals/indexEmployee.php" );
 ?>
