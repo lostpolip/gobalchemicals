@@ -172,7 +172,6 @@
 											JOIN customer ON orders.CustomerID=customer.CustomerID
 											JOIN aumphur ON orders.AumphurID=aumphur.AumphurID
 											WHERE State='processing'
-											ORDER BY OrderSendDate
 											");
 
 			$popupOrder = 0;
@@ -188,7 +187,6 @@
 			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
 			        $AumphurID[$popupOrder] = $row["AumphurID"];
 			        $GeoName[$popupOrder] = $row["GeoName"];
-			        $ProvinceName[$popupOrder] = $row["ProvinceName"];
 			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
 			        $popupOrder++;
 			    }		   
@@ -206,53 +204,7 @@
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
 	                    
-							<table id="table2" width="100%">
-	                        	<tr> 
-	                        		<th>เลือก</th>	                                
-	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
-	                        	
-	                        	</tr>
-	                        	<?php 
-	   								for($j=0; $j<$ddtruck; $j++){
-	   							?>
-	                        	<tr>
-	                        		<td><input type="checkbox" name="destination[]" 
-	                        		data-unitproduct="<?php echo $WeightCapacity[$j]; ?>">
-	                        		</td>
-	                        		<td id="orderdate" ><?php echo $TruckTypeID[$j]; ?></td>
-	                        	
-	                        	</tr>
-	                        	<?php
-                        			}
-                        		?>
-                        		
-                        	</table>     	
-                        	<br>
-
-								<tr> 
-								
-									<td><label id="labelWeight">รวมน้ำหนักสินค้าทั้งหมด :</label>
-										<input type="text" id="txtWeightProduct" name="txtWeightProduct" value="0" readonly> 
-										<label id="labelWeight">ตัน</label>
-									</td>
-								</tr>
-								<br>
-								<br>
-
-								<div id="timeInfo">
-	                         		<label id="title">ช่วงเวลาเดินทาง</label>
-			                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-16:00" class="time" required>
-				                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
-
-										<!-- <input name="rdoDate" type="radio" id="rdoDate2" value="10:00-15:00" class="time" required>
-										<label id="rdoDate" for="rdoDate2">10:00-15:00 น.</label> -->
-
-										<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
-										<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
-									<br>
-								</div>
-								<div id="truckInfo">
+								<div id="truckInfo" style="width: 400px;">
 										<label id="title">รถบรรทุก</label>
 										<br>										
 											<tr> 
@@ -262,7 +214,7 @@
 											</tr>
 								</div> 			
 								<br>
-								<div id="employeeInfo">	
+								<div id="employeeInfo"style="width: 400px;">	
                             		<label id="title">พนักงานขับ</label>
 			                            <tr> 
 											<td>

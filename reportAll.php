@@ -4,8 +4,14 @@
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 ?>
-<!DOCTYPE html>
 
+<script type="text/javascript">
+	function myFunction() {
+	    window.print();
+	}
+</script>
+
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -160,6 +166,9 @@
 
 		<div id="tooplate_main">
 				<td><label id="labelTittle">รายงานรายได้จากการขายสินค้า</label></td>
+				<button style="	font-family: 'quarklight'; font-size: 20px;border-color: #2E2EFE;background-color: #5882FA;
+					color: #fff;border-style: solid;height: 40px;width: 120px; margin-left: 350px; " onclick="myFunction()" >พิมพ์เอกสาร</button>
+
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>

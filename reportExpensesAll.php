@@ -4,6 +4,13 @@
 		header( "location: /gobalchemicals/indexLogin.html" );
 	}
 ?>
+
+<script type="text/javascript">
+	function myFunction() {
+	    window.print();
+	}
+</script>
+
 <!DOCTYPE html>
 
 <html>
@@ -154,6 +161,9 @@
 
 		<div id="tooplate_main">
 				<td><label id="labelTittle">รายงานค่าใช้จ่ายค่าขนส่ง</label></td>
+				<button style="	font-family: 'quarklight'; font-size: 20px;border-color: #2E2EFE;background-color: #5882FA;
+					color: #fff;border-style: solid;height: 40px;width: 120px; margin-left: 400px; " onclick="myFunction()" >พิมพ์เอกสาร</button>
+				<br>		
 				<br>		
 			    <tr>
 			    	<td><label id="labelDate">วันที่ :</label></td>

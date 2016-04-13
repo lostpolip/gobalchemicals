@@ -4,8 +4,7 @@
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  employee WHERE PositionID = 3 ");
 	$transport = $dbManagement->select("SELECT * FROM transportdetail 
-									WHERE  TimeAction = '".$_REQUEST['timeaction']."'
-									AND  TransportDate = '".$_REQUEST['datetransport']."'");
+									WHERE TransportDate = '".$_REQUEST['datetransport']."'");
 	
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
