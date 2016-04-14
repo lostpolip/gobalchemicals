@@ -7,6 +7,13 @@ function diffDate(startdate, enddate) {
 	return days;
 }
 
+function formatDate(date) {
+	var arrayDate = date.split('-');
+
+	return arrayDate[2]+'-'+arrayDate[1]+'-'+arrayDate[0];
+}
+
+
 $( document ).ready(function() {
 	$('#total').hide();
 
@@ -34,7 +41,7 @@ $( document ).ready(function() {
     			var type = jQuery.parseJSON(result).type.split(',');
 
 				for (var i = 0; i < amount.length; i++) {
-					$('#tablebody').append("<tr> <th scope='row'>"+parseInt(i+1)+"</th><td>"+date[i]+"</td> <td>"+type[i]+"</td> <td>"+amount[i]+"</td> </tr> ");
+					$('#tablebody').append("<tr> <th scope='row' style='text-align:center;'>"+parseInt(i+1)+"</th><td style='text-align:center;'>"+formatDate(date[i])+"</td> <td style='text-align:center;'>"+type[i]+"</td> <td style='text-align:center;'>"+amount[i]+"</td> </tr> ");
 				   
 				}
 				

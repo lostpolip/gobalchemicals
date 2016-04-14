@@ -95,8 +95,8 @@
                                 <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">รายละเอียด</th>
                                 <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน(ตัน)</th>
                                 <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวน(ถุง)</th>
-                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">หน่วยละ/ถุง</th>
-                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวนเงิน</th>
+                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">หน่วยละ/ถุง(บาท)</th>
+                                <th style="border: 1px solid #000000; background-color: #A4A4A4;font-size: 18px;color: #000000;">จำนวนเงิน(บาท)</th>
                                 
                                 
                         	</tr>

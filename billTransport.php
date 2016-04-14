@@ -159,6 +159,8 @@
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
 			    	$TransportID[$i] = $row["TransportID"];
+			    	$TransportDate[$i] = $row["TransportDate"];
+			    	$TimeAction[$i] = $row["TimeAction"];
 			        $AmountDistance[$i] = $row["AmountDistance"];
 			        $i++;
 			    }
@@ -183,6 +185,8 @@
 
 		                        	<tr>
 		                        		<th>เลขที่ใบส่ง</th>
+		                        		<th>วันที่ส่ง</th>
+		                        		<th>เวลาจัดส่ง</th>
 		                                <th>ระยะทาง(กม.)</th>
 		                                <th>คำสั่ง</th>
 		                        	</tr>
@@ -195,7 +199,9 @@
 		                        	<tr>
 		                        		<td id="transportid"><?php echo $TransportID[$j]; ?></td>
 		                        			<input type="hidden" id="transportID" name="transportID" value="<?php echo $TransportID[$j]; ?>">
-		                        		<td id="distance"><?php echo $AmountDistance[$j]; ?></td>
+		                        		<td id="distance"><?php echo date("d-m-Y", strtotime($TransportDate[$j])) ?></td>
+		                        		<td id="distance"><?php echo $TimeAction[$j]; ?></td>
+		                        		<td id="distance"><?php echo number_format($AmountDistance[$j],1,'.',','); ?></td>
 		                        		<td id="btn">
 		                        			<a href="transportConfirm.php?TransportID=<?php echo $TransportID[$j]; ?>"><button type="submit" id="btnCF" name="btnCF">ยืนยันการส่ง</button></a></td>
 
