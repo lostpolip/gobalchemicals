@@ -46,6 +46,7 @@ $( document ).ready(function() {
     			var date = jQuery.parseJSON(result).date.split(',');
     			var price = jQuery.parseJSON(result).price.split(',');	
     			var cost = jQuery.parseJSON(result).cost.split(',');
+
     			var totalPrice = 0;
     			var totalCost = 0;
     			var totalProfit = 0;

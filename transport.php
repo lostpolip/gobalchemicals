@@ -203,34 +203,55 @@
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
-	                    
-								<div id="truckInfo" style="width: 400px;">
-										<label id="title">รถบรรทุก</label>
-										<br>										
-											<tr> 
-												<td>
-													<div id="truckOther"></div>
-												</td>
-											</tr>
-								</div> 			
-								<br>
-								<div id="employeeInfo"style="width: 400px;">	
-                            		<label id="title">พนักงานขับ</label>
-			                            <tr> 
-											<td>
-												<div id="employeeOther"></div>
-											</td>
-										</tr>
-			                    </div>
-	                            <br>
-	                            <br>
-	                          
 
-	                            <tr id="button-command">
-	                            		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
-	                                    <td><button type="button" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
-	                                    
-	                            </tr>
+
+						<div id="timeInfo">
+                     		<label id="title">ช่วงเวลาเดินทาง</label>
+	                       		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                       	<input name="rdoDate" id="rdoDate1" type="radio" value="09:00-16:00" class="time" required>
+		                       	<label id="rdoDate" for="rdoDate1">09:00-16:00 น.</label>
+
+								<input name="rdoDate" type="radio" id="rdoDate3" value="21:00-05:00" class="time" required>
+								<label id="rdoDate" for="rdoDate3">21:00-05:00 น.</label>
+							<br>
+						</div>
+	                    
+						<div id="truckInfo" style="width: 400px;">
+								<label id="title">รถบรรทุก</label>
+								<br>										
+									<tr> 
+										<td>
+											<div id="truckOther"></div>
+										</td>
+									</tr>
+						</div> 
+						<br>
+
+						<div id="employeeInfo"style="width: 400px;">	
+                    		<label id="title">พนักงานขับ</label>
+	                            <tr> 
+									<td>
+										<div id="employeeOther"></div>
+									</td>
+								</tr>
+	                    </div>
+	                    <br>
+
+	                    <div id="orderInfo">
+	                    	<label id="title">Order</label>
+	                    		<tr>
+	                    			<td>
+	                    				<div id="orderOther"></div>
+	                    			</td>
+	                    		</tr>
+	                    </div>
+                        <br>
+                        <br>
+                        <tr id="button-command">
+                        		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
+                                <td><button type="button" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
+                                
+                        </tr>
 
 	                        
 				</div>
