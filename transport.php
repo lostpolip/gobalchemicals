@@ -24,7 +24,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&language=th">
         </script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
@@ -250,8 +250,13 @@
 	                    </div>
                         <br>
                         <br>
-
+						<select multiple="" id="waypoints" class="hide">
+                                      <option value="13.9967993,99.9857224" selected></option>
+                                      <option value="13.6833577,101.069204" selected></option>
+                                  </select>
                         <div id="map"></div>
+                          <input type="hidden" id="start" value="13.922174, 100.468186">
+                          <input type="hidden" id="end" value="13.922208, 100.468212">
                         
 
 

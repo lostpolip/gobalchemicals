@@ -26,78 +26,91 @@ var orderAlert = function () {
 	});
 }
 
-function initMap() {
-  var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer;
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 18,
-    center: {lat: 13.922080715335339, lng: 100.46815484762192}
-  });
-  directionsDisplay.setMap(map);
 
-  document.getElementById('submit').addEventListener('click', function() {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-  });
-}
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,
+          center: {lat: 13.922080715335339, lng: 100.46815484762192}
+        });
+        directionsDisplay.setMap(map);
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var waypts = [];
-  var checkboxArray = document.getElementById('waypoints');
-  for (var i = 0; i < checkboxArray.length; i++) {
-    if (checkboxArray.options[i].selected) {
-      waypts.push({
-        location: checkboxArray[i].value,
-        stopover: true
-      });
-    }
-  }
-  directionsService.route({
-    origin: document.getElementById('start').value,
-    destination: document.getElementById('end').value,
-    waypoints: waypts,
-    optimizeWaypoints: true,
-    travelMode: google.maps.TravelMode.DRIVING,
-    avoidHighways: true,
-    
-  }, function(response, status) {
-    var arrayDestination = $('#arrayDestination').val().split('+');
+      }
 
-    var temp = [];
-    var a = [];
-    var count = response.request.waypoints.length;
-    for (i = 0; i<count;i++) {
-      temp[i] = arrayDestination[i].split('&');
-    }
-
-    // jQuery.inArray( temp[0][0], response.request.waypoints );
-    for (i = 0; i<count;i++) {
-      for (j=0;j<count;j++) {
-        if (temp[j][0] == response.request.waypoints[i].location) {
-          a[i] = j;
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+        var checkboxArray = document.getElementById('waypoints');
+        for (var i = 0; i < checkboxArray.length; i++) {
+          if (checkboxArray.options[i].selected) {
+            waypts.push({
+              location: checkboxArray[i].value,
+              stopover: true
+            });
+          }
         }
-      }
-    }
-    // console.log(a);
-    // console.log(response.request.waypoints[0].location);
-    // console.log(jQuery.inArray( temp[0][0], response.request.waypoints ));
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      var route = response.routes[0];
-      var summaryPanel = document.getElementById('directions-panel');
-      summaryPanel.innerHTML = '';
-      var totalDistance = 0;
-      // For each route, display summary information.
-      for (var i = 0; i < route.legs.length; i++) {
-        var routeSegment = i + 1;
-        summaryPanel.innerHTML += '<br><b>ลำดับOrderและเส้นทางที่: ' + routeSegment +
-            '</b><br>';
-        summaryPanel.innerHTML += '<b>จาก</b> '+route.legs[i].start_address + '<br><b> ถึง</b>';
-        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-        summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
-        ////////// here
-        totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: google.maps.TravelMode.DRIVING,
+          avoidHighways: true,
+          
+        }, function(response, status) {
+          var arrayDestination = $('#arrayDestination').val().split('+');
 
-      }
+          var temp = [];
+          var a = [];
+          var count = response.request.waypoints.length;
+          for (i = 0; i<count;i++) {
+            temp[i] = arrayDestination[i].split('&');
+          }
+
+          // jQuery.inArray( temp[0][0], response.request.waypoints );
+          for (i = 0; i<count;i++) {
+            for (j=0;j<count;j++) {
+              if (temp[j][0] == response.request.waypoints[i].location) {
+                a[i] = j;
+              }
+            }
+          }
+          // console.log(a);
+          // console.log(response.request.waypoints[0].location);
+          // console.log(jQuery.inArray( temp[0][0], response.request.waypoints ));
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('directions-panel');
+            summaryPanel.innerHTML = '';
+            var totalDistance = 0;
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<br><b>ลำดับOrderและเส้นทางที่: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += '<b>จาก</b> '+route.legs[i].start_address + '<br><b> ถึง</b>';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += 'เป็นระยะทาง : '+route.legs[i].distance.text + '<br><br>';
+              ////////// here
+              totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
+
+            }
+    	}
+        });
+    }
+      
+
+
+
+
+      
+ 
+
+
+
+
 
 $( document ).ready(function() {
 	claimAlert();
@@ -198,4 +211,6 @@ $( document ).ready(function() {
 	$('#btnCF').click(function(){
 
 	});
+
+	initMap();
 });
