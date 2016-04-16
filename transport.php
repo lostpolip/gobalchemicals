@@ -23,6 +23,9 @@
 		<link rel="stylesheet" type="text/css" href="fonts/font-quark.css"/>
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
+        </script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/transport.js"></script>
@@ -247,6 +250,11 @@
 	                    </div>
                         <br>
                         <br>
+
+                        <div id="map"></div>
+                        
+
+
                         <tr id="button-command">
                         		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
                                 <td><button type="button" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
@@ -265,6 +273,11 @@
 				<div class="cleaner"></div><!--end of tooplate_footer-->
 			</div><!--end of tooplate_footer-->
 		</div> <!--end of tooplate_footer_wrapper-->
+
+
+
+
+
 
 	
 	</body>

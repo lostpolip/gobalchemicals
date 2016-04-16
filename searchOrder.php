@@ -46,6 +46,8 @@
 	        $UnitProduct1[$i1] = $row["UnitProduct"];
 	        $GeoID1[$i1] = $row["GeoID"];
 	        $GeoName1[$i1] = $row["GeoName"];
+	        $latOrder1[$i1] = $row["latOrder"];
+	        $lonOrder1[$i1] = $row["lonOrder"];
 	        $i1++;
 	    }
 
@@ -55,6 +57,8 @@
     		'UnitProduct'	=> $UnitProduct1,
     		'GeoID'	=> $GeoID1,
     		'GeoName'	=> $GeoName1,
+    		'latOrder'	=> $latOrder1,
+    		'lonOrder'	=> $lonOrder1,
 	    ];
 	}
 
@@ -66,6 +70,8 @@
 	        $UnitProduct2[$i2] = $row["UnitProduct"];
 	        $GeoID2[$i2] = $row["GeoID"];
 	        $GeoName2[$i2] = $row["GeoName"];
+	        $latOrder2[$i2] = $row["latOrder"];
+	        $lonOrder2[$i2] = $row["lonOrder"];
 	        $i2++;
 	    }
 
@@ -75,6 +81,8 @@
     		'UnitProduct'	=> $UnitProduct2,
     		'GeoID'	=> $GeoID2,
     		'GeoName'	=> $GeoName2,
+    		'latOrder'	=> $latOrder2,
+    		'lonOrder'	=> $lonOrder2,
 	    ];
 	}
 
@@ -86,6 +94,8 @@
 	        $UnitProduct3[$i3] = $row["UnitProduct"];
 	        $GeoID3[$i3] = $row["GeoID"];
 	        $GeoName3[$i3] = $row["GeoName"];
+	        $latOrder3[$i3] = $row["latOrder"];
+	        $lonOrder3[$i3] = $row["lonOrder"];
 	        $i3++;
 	    }
 
@@ -95,6 +105,8 @@
     		'UnitProduct'	=> $UnitProduct3,
     		'GeoID'	=> $GeoID3,
     		'GeoName'	=> $GeoName3,
+    		'latOrder'	=> $latOrder3,
+    		'lonOrder'	=> $lonOrder3,
 	    ];
 	}
 
@@ -106,6 +118,8 @@
 	        $UnitProduct4[$i4] = $row["UnitProduct"];
 	        $GeoID4[$i4] = $row["GeoID"];
 	        $GeoName4[$i4] = $row["GeoName"];
+	        $latOrder4[$i4] = $row["latOrder"];
+	        $lonOrder4[$i4] = $row["lonOrder"];
 	        $i4++;
 	    }
 
@@ -115,6 +129,8 @@
     		'UnitProduct'	=> $UnitProduct4,
     		'GeoID'	=> $GeoID4,
     		'GeoName'	=> $GeoName4,
+    		'latOrder'	=> $latOrder4,
+    		'lonOrder'	=> $lonOrder4,
 	    ];
 	}
 
@@ -126,6 +142,8 @@
 	        $UnitProduct5[$i5] = $row["UnitProduct"];
 	        $GeoID5[$i5] = $row["GeoID"];
 	        $GeoName5[$i5] = $row["GeoName"];
+	        $latOrder5[$i5] = $row["latOrder"];
+	        $lonOrder5[$i5] = $row["lonOrder"];
 	        $i5++;
 	    }
 
@@ -135,6 +153,8 @@
     		'UnitProduct'	=> $UnitProduct5,
     		'GeoID'	=> $GeoID5,
     		'GeoName'	=> $GeoName5,
+    		'latOrder'	=> $latOrder5,
+    		'lonOrder'	=> $lonOrder5,
 	    ];
 	}
 
@@ -146,6 +166,8 @@
 	        $UnitProduct6[$i6] = $row["UnitProduct"];
 	        $GeoID6[$i6] = $row["GeoID"];
 	        $GeoName6[$i6] = $row["GeoName"];
+	        $latOrder6[$i6] = $row["latOrder"];
+	        $lonOrder6[$i6] = $row["lonOrder"];
 	        $i6++;
 	    }
 
@@ -155,9 +177,10 @@
     		'UnitProduct'	=> $UnitProduct6,
     		'GeoID'	=> $GeoID6,
     		'GeoName'	=> $GeoName6,
+    		'latOrder'	=> $latOrder6,
+    		'lonOrder'	=> $lonOrder6,
 	    ];
 	}
-	echo '<pre>';
 
 	foreach ($order as $key => $value) {
 		$countWeight = 0;
@@ -175,24 +198,17 @@
 	// print_r($order);
 	foreach ($arrayInQueue as $key => $value) {
 		for ($i=0; $i < $value + 1; $i++) {
-			$new[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
-			$new[$key]['OrderSendDate'][$i] = $order[$key]['OrderSendDate'][$i];
-			$new[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
-			$new[$key]['GeoID'][$i] = $order[$key]['GeoID'][$i];
-			$new[$key]['GeoName'][$i] = $order[$key]['GeoName'][$i];
+			$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
+			$orderInQueue[$key]['OrderSendDate'][$i] = $order[$key]['OrderSendDate'][$i];
+			$orderInQueue[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
+			$orderInQueue[$key]['GeoID'][$i] = $order[$key]['GeoID'][$i];
+			$orderInQueue[$key]['GeoName'][$i] = $order[$key]['GeoName'][$i];
+			$orderInQueue[$key]['latOrder'][$i] = $order[$key]['latOrder'][$i];
+			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
 		}
 	}
-
-	print_r($new);
-	// $order = [
-	// 	'ID'	=> $OrderID,
-	// 	'date'	=> $OrderSendDate,
-	// 	'unit'	=> $UnitProduct,
-	// 	'geoID'	=> $GeoID,
-	// 	'geoName'	=> $GeoName,
-	// ];
-	
-	// echo json_encode($order);
-	// echo json_encode($order);
+	// echo '<pre>';
+	// print_r($orderInQueue);
+	echo json_encode($orderInQueue);
 
 ?>
