@@ -2,47 +2,34 @@
 require 'dbManagement.php';
 $dbManagement = new dbManagement();
 
-$Transport=$dbManagement->select("SELECT TransportID FROM transport ");
+$expenses=$dbManagement->select("SELECT ExpensesID FROM expenses ");
 $i = 0;
 $maxID = 0;
-if (mysqli_num_rows($Transport) > 0) {
-	while($row = mysqli_fetch_assoc($Transport)) {
-        $TransportID[$i] = $row["TransportID"];
+if (mysqli_num_rows($expenses) > 0) {
+	while($row = mysqli_fetch_assoc($expenses)) {
+        $ExpensesID[$i] = $row["ExpensesID"];
 
-        if ($maxID < str_replace('TS','',$TransportID[$i])) {
-        	$maxID = str_replace('TS','',$TransportID[$i]);
+        if ($maxID < str_replace('ES','',$ExpensesID[$i])) {
+        	$maxID = str_replace('ES','',$ExpensesID[$i]);
         }
         $i++;
 	}
 }
-
 $newID = $maxID + 1;
-$orderID = $_REQUEST['orderid'];
-$truckID = $_REQUEST['hiddenTruck'];
-$employeeID = $_REQUEST['hiddenEmployee'];
-$transportIDArray = explode(',',$orderID);
-$transportTruckIDArray = explode(',',$truckID);
-$transportEmployeeIDArray = explode(',',$employeeID);
-$transportIDArray = array_filter($transportIDArray);
+
+$transportId = $_REQUEST['transportId'];
+$truckId = $_REQUEST['truckId'];
+$employeeId = $_REQUEST['employeeId'];
+$dateTransport = $_REQUEST['dateTransport'];
+$timeTransport = $_REQUEST['timeTransport'];
+$distance = $_REQUEST['distance'];
+$expensesAround =$_REQUEST['hiddenExpensesPerAround'];	
+
+	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,TotalWeightProduct,AmountDistance,TransportDate, TruckID, EmployeeID, TimeAction) VALUES ('".$transportId."','processing',0,'".$distance."','".$dateTransport."','".$truckId."','".$employeeId."','".$timeTransport."')");
+
+	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate,TransportID, TruckID, ExpensesPerAround) VALUES ('ES' '".$newID."', 'complete','".$dateTransport."','".$transportId."','".$truckId."','".$expensesAround."')");
+
 	
-	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,TotalWeightProduct,AmountDistance) VALUES ('TS' '".$newID."','processing','".$_REQUEST['hiddenWeightProduct']."','".$_REQUEST['totalDistance']."')");
-
-	if ($orderID != '') {
-		foreach ($transportIDArray as $orderID) {
-
-			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$_REQUEST['hiddenDate']."',TransportID='TS' '".$newID."' WHERE OrderID='".$orderID."'");
-
-		}
-
-		$temp = 0;
-		foreach ($transportTruckIDArray as $truckID) {
-
-			$dbManagement->insert("INSERT INTO transportdetail(TransportDate, TruckID, EmployeeID, TimeAction,TransportID) VALUES ('".$_REQUEST['hiddenDate']."','".$transportTruckIDArray[$temp]."','".$transportEmployeeIDArray[$temp]."','".$_REQUEST['hiddenRouteTime']."','TS' '".$newID."')");	
-				$temp++;	
-			}	
-	}
-
-	echo 'TS'.$newID;
-	
+header( "location: /gobalchemicals/billTransport.php" );
 
 ?>

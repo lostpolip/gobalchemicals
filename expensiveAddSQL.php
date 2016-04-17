@@ -17,19 +17,16 @@
 		}
 	}
 	$newID = $maxID + 1;
-	$TruckAll =$_REQUEST['truck-id'];
+
+	$TruckAll =$_REQUEST['truckId'];
 	$IDBillTransport=$_REQUEST['transportId'];
-	$truckIDArray = explode(',',$TruckAll);
-	$date =$_REQUEST['hiddenDateExpenses'];
+	$date =$_REQUEST['dateTransport'];
+	$expensesAround =$_REQUEST['hiddenExpensesPerAround'];
 
 	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate) VALUES ('ES' '".$newID."', 'complete','".$date."')");
 
-	foreach ($truckIDArray as $TruckAll) {
-		$expensesAround=$_REQUEST['hiddenExpensesPerAround'.$TruckAll];
-	
-		$dbManagement->insert("INSERT INTO expensesdetail(TransportID, TruckID, ExpensesPerAround,ExpensesID) VALUES ('".$IDBillTransport."','".$TruckAll."','".$expensesAround."','ES' '".$newID."')");
-	
-	}
+
+	$dbManagement->insert("INSERT INTO expensesdetail(TransportID, TruckID, ExpensesPerAround,ExpensesID) VALUES ('".$IDBillTransport."','".$TruckAll."','".$expensesAround."','ES' '".$newID."')");
 
 	header( "location: /gobalchemicals/indexEmployee.php" );
 ?>

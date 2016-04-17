@@ -195,7 +195,7 @@
 			}
 
 		?>
-	<form id="transportAddForm" action="transportMap.php">
+	<form id="transportAddForm" action="test1.php" method="post">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -239,35 +239,36 @@
 	                    </div>
 	                    <br>
 
-	                    <div id="orderInfo">
+<!-- 	                    <div id="orderInfo">
 	                    	<label id="title">Order</label>
 	                    		<tr>
 	                    			<td>
 	                    				<div id="orderOther"></div>
 	                    			</td>
 	                    		</tr>
-	                    </div>
+	                    </div> -->
                         <br>
                         <br>
 
 						<select multiple="" id="waypoints" class="hide"></select>
-                    	<div id="map" style="width: 500px; height: 500px;"></div>
-                    	<input  id="geoID1" name="geoID" value="0"></input>
-                    	<input  id="geoID2" name="geoID" value="0"></input>
-                    	<input  id="geoID3" name="geoID" value="5"></input>
-                    	<input  id="geoID4" name="geoID" value="10"></input>
-                    	<input  id="geoID5" name="geoID" value="0"></input>
-                    	<input  id="min" value="1000000"></input>
-                    	<button id="checkLeastDistance" type="button"></button>
 
-                          <input type="hidden" id="start" value="13.922174, 100.468186">
-                          <input type="hidden" id="end" value="13.922208, 100.468212">
+                    	<div id="map" class="hide"></div>
+                    	<input  id="geoID1" name="geoID" value="0" class="hide"></input>
+                    	<input  id="geoID2" name="geoID" value="0" class="hide"></input>
+                    	<input  id="geoID3" name="geoID" value="0" class="hide"></input>
+                    	<input  id="geoID4" name="geoID" value="0" class="hide"></input>
+                    	<input  id="geoID5" name="geoID" value="0" class="hide"></input>
+                    	<input  id="min" name="min" data-min="1000000" class="hide"></input>
+                    	<button id="checkLeastDistance" type="button" class="hide"></button>
+
+		                  <input type="hidden" id="start" value="13.922174, 100.468186">
+		                  <input type="hidden" id="end" value="13.922208, 100.468212">
                         
-
+                          <!-- <button id="test" type="button">test</button> -->
 
                         <tr id="button-command">
                         		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
-                                <td><button type="button" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
+                                <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
                                 
                         </tr>
 
@@ -373,6 +374,54 @@
 		  });
 		}
 
+		//show real map 
+		function initMap2() {
+		  var directionsService = new google.maps.DirectionsService;
+		  var directionsDisplay = new google.maps.DirectionsRenderer;
+		  var map = new google.maps.Map(document.getElementById('realMap'), {
+		    zoom: 18,
+		    center: {lat: 13.922080715335339, lng: 100.46815484762192}
+		  });
+		  directionsDisplay.setMap(map);
+			calculateAndDisplayRoute2(directionsService, directionsDisplay);
+
+		}
+
+		function calculateAndDisplayRoute2(directionsService, directionsDisplay) {
+		  var waypts = [];
+		  var checkboxArray = document.getElementById('geoIdWaypoints');
+		  for (var i = 0; i < checkboxArray.length; i++) {
+		    if (checkboxArray.options[i].selected) {
+		      waypts.push({
+		        location: checkboxArray[i].value,
+		        stopover: true
+		      });
+		    }
+		  }
+
+		  directionsService.route({
+		   	origin: document.getElementById('start').value,
+		    destination: document.getElementById('end').value,
+		    waypoints: waypts,
+		    optimizeWaypoints: true,
+		    travelMode: google.maps.TravelMode.DRIVING,
+		    avoidHighways: true,
+		  }, function(response, status) {
+		    if (status === google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(response);
+				var route = response.routes[0];
+				var totalDistance = 0;
+				// For each route, display summary information.
+				for (var i = 0; i < route.legs.length; i++) {
+					var routeSegment = i + 1;
+					totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
+				}
+
+		    } else {
+		      window.alert('Directions request failed due to ' + status);
+		    }
+		  });
+		}
 
 		$( document ).ready(function() {
 
@@ -413,15 +462,14 @@
 								method: "GET",
 								data: { 
 									weightCar : weightCar,
+									datetransport : $('#txtDateTransport').val()
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
-									var leastDistance;
 									for (geoId in orderInQueue) {
 										for (index in orderInQueue[geoId]['OrderID']) {
 											var lat = orderInQueue[geoId]['latOrder'][index];
 											var lng = orderInQueue[geoId]['lonOrder'][index];
-											// console.log('geocod='+geoId+'->'+lat+','+lng);
 											$('#waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
 											initMap(geoId);
 										}
@@ -457,19 +505,43 @@
 			$('#txtDateTransport').change(function(){
 				$('#rdoDate1').trigger('click');
 			});
-			$("input[name*='geoID']").each(function() {
-				$min = $('#min').val();
-				alert($(this).val()+'|'+$min);
-				if ($(this).val() < $min && $(this).val()!=0) {
-					$('#min').val($(this).val());
-					$('#min').data('min', this.id);
-				}
-			});
 			$('#checkLeastDistance').click(function(){
-				
-			});
+				var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
+				$("input[name*='geoID']").each(function() {
+					var min = parseFloat($('#min').data('min'));
+					var value = parseFloat($(this).val());
 
-			
+					if (value < min && value!=0) {
+						$('#min').val(this.id);
+						$('#min').data('min', value);
+					}
+				});
+
+				// $('#geoIdWaypoints').empty();
+
+				// $.ajax({
+				// 	url: "searchGeoid.php", 
+				// 	method: "GET",
+				// 	data: { 
+				// 		weightCar : weightCar,
+				// 		geoId : $('#min').data('min'),
+				// 	},
+				// 	success: function(orderInQueue){
+				// 		var orderInQueue = jQuery.parseJSON(orderInQueue);
+
+				// 		var lat,lng;
+
+				// 		for (geoId in orderInQueue) {
+				// 			for (index in orderInQueue[geoId]['OrderID']) {
+				// 				lat = orderInQueue[geoId]['latOrder'][index];
+				// 				lng = orderInQueue[geoId]['lonOrder'][index];
+				// 				$('#geoIdWaypoints').append('<option value="'+lat+','+lng+'" selected></option>');
+				// 				initMap2();
+				// 			}	
+				// 		}
+				// 	}
+				// });
+			});
 		});
 
 	</script>

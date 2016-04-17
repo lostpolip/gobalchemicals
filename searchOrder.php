@@ -2,40 +2,42 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$weightCar = $_REQUEST['weightCar'];
+	$datetransport = $_REQUEST['datetransport'];
+
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 1
+									AND GeoID = 1 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 
 	$Geo2 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 2
+									AND GeoID = 2 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 
 	$Geo3 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 3
+									AND GeoID = 3 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 
 	$Geo4 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 4
+									AND GeoID = 4 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 
 	$Geo5 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 5
+									AND GeoID = 5 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 
 	$Geo6 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 6
+									AND GeoID = 6 AND OrderSendDate = '".$datetransport."'
 									ORDER BY OrderSendDate");
 	
 	$i1=0;

@@ -70,18 +70,15 @@ $( document ).ready(function() {
 			alert('กรุณากรอกข้อมูลให้ครบ');
 			return false;
 		}		
-		$('#truckInfo').show();
 
-		var truckIdAll = $('#truck-id').val().split(',');
-		for (y in truckIdAll) {
-			var consumptionExp = $('#consumptionExp'+truckIdAll[y]).val();
-			var truckCost = $('#truckCost'+truckIdAll[y]).val();
-			var residualValue = $('#residualValue'+truckIdAll[y]).val();
-			var FuelExpensive = $('#FuelExpensive'+truckIdAll[y]).val();
-			var ConsumptionExp = $('#ConsumptionExp'+truckIdAll[y]).val();
-			var LaborExpensive = $('#LaborExpensive'+truckIdAll[y]).val();
-			var AmountExployee = $('#AmountExployee'+truckIdAll[y]).val();
-			var MaintenanceExp = $('#MaintenanceExp'+truckIdAll[y]).val();
+			var consumptionExp = $('#consumptionExp').val();
+			var truckCost = $('#truckCost').val();
+			var residualValue = $('#residualValue').val();
+			var FuelExpensive = $('#FuelExpensive').val();
+			var ConsumptionExp = $('#ConsumptionExp').val();
+			var LaborExpensive = $('#LaborExpensive').val();
+			var AmountExployee = $('#AmountExployee').val();
+			var MaintenanceExp = $('#MaintenanceExp').val();
 			var Distance = $('#labelDistance').text();
 
 			var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;
@@ -99,9 +96,9 @@ $( document ).ready(function() {
 			var ExpensesPerDay = (Distance*ExpensesAllKm)+FixedcostsDay;
 			var ExpensesPerAround = ExpensesPerDay;
 			
-			$('#hiddenExpensesPerAround'+truckIdAll[y]).val(Math.round(ExpensesPerAround*100)/100);
-			$('#ExpensesPerAround'+truckIdAll[y]).text(addCommas(Math.round(ExpensesPerAround*100)/100));
-		}
+			$('#hiddenExpensesPerAround').val(Math.round(ExpensesPerAround*100)/100);
+			$('#ExpensesPerAround').text(addCommas(Math.round(ExpensesPerAround*100)/100));
+		
 
 		$('#btnCF').prop("disabled",false);
 
