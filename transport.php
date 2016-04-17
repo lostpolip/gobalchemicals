@@ -26,6 +26,9 @@
 
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&language=th">
+    </script>
+		<script type="text/javascript" src="js/transport.js"></script>
 		
 
 		<script language="javascript" type="text/javascript">
@@ -246,10 +249,17 @@
 	                    </div>
                         <br>
                         <br>
-						<select multiple="" id="waypoints" class="hide">
 
-                      	</select>
+						<select multiple="" id="waypoints" class="hide"></select>
                     	<div id="map" style="width: 500px; height: 500px;"></div>
+                    	<input  id="geoID1" name="geoID" value="0"></input>
+                    	<input  id="geoID2" name="geoID" value="0"></input>
+                    	<input  id="geoID3" name="geoID" value="5"></input>
+                    	<input  id="geoID4" name="geoID" value="10"></input>
+                    	<input  id="geoID5" name="geoID" value="0"></input>
+                    	<input  id="min" value="1000000"></input>
+                    	<button id="checkLeastDistance" type="button"></button>
+
                           <input type="hidden" id="start" value="13.922174, 100.468186">
                           <input type="hidden" id="end" value="13.922208, 100.468212">
                         
@@ -312,7 +322,7 @@
 		}
 
 
-		function initMap() {
+		function initMap(geoId) {
 		  var directionsService = new google.maps.DirectionsService;
 		  var directionsDisplay = new google.maps.DirectionsRenderer;
 		  var map = new google.maps.Map(document.getElementById('map'), {
@@ -320,11 +330,11 @@
 		    center: {lat: 13.922080715335339, lng: 100.46815484762192}
 		  });
 		  directionsDisplay.setMap(map);
-			calculateAndDisplayRoute(directionsService, directionsDisplay);
+			calculateAndDisplayRoute(directionsService, directionsDisplay, geoId);
 
 		}
 
-		function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+		function calculateAndDisplayRoute(directionsService, directionsDisplay, geoId) {
 		  var waypts = [];
 		  var checkboxArray = document.getElementById('waypoints');
 		  for (var i = 0; i < checkboxArray.length; i++) {
@@ -353,7 +363,9 @@
 					var routeSegment = i + 1;
 					totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
 				}
-				alert(totalDistance);
+				var oldDistance = $('#'+ geoId).val();
+				$('#'+ geoId).val(parseFloat(oldDistance)+parseFloat(totalDistance));
+				$('#checkLeastDistance').trigger('click');
 
 		    } else {
 		      window.alert('Directions request failed due to ' + status);
@@ -363,14 +375,6 @@
 
 
 		$( document ).ready(function() {
-			claimAlert();
-			orderAlert();
-			setInterval(function(){ 
-				claimAlert();
-				orderAlert();
-			}, 5000);
-
-
 
 			$("input[name='rdoDate']").click(function(){
 				$('#truckInfo').show();
@@ -403,7 +407,7 @@
 
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
-
+							$('#waypoints').empty();
 							$.ajax({
 								url: "searchOrder.php", 
 								method: "GET",
@@ -412,20 +416,15 @@
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
-
+									var leastDistance;
 									for (geoId in orderInQueue) {
-
 										for (index in orderInQueue[geoId]['OrderID']) {
 											var lat = orderInQueue[geoId]['latOrder'][index];
 											var lng = orderInQueue[geoId]['lonOrder'][index];
-											console.log('geocod='+geoId+'->'+lat+','+lng);
+											// console.log('geocod='+geoId+'->'+lat+','+lng);
+											$('#waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
+											initMap(geoId);
 										}
-										$('#waypoints').append('<option value="'+lat+','+lng'" selected></option>');
-										// console.log('\n');
-										// console.log(orderInQueue[geoId]['latOrder']);
-										// for (index in orderInQueue[geoId]) {
-										// 	console.log(index);
-										// }
 									}
 								}
 							});
@@ -458,9 +457,16 @@
 			$('#txtDateTransport').change(function(){
 				$('#rdoDate1').trigger('click');
 			});
-
-			$('#btnCF').click(function(){
-
+			$("input[name*='geoID']").each(function() {
+				$min = $('#min').val();
+				alert($(this).val()+'|'+$min);
+				if ($(this).val() < $min && $(this).val()!=0) {
+					$('#min').val($(this).val());
+					$('#min').data('min', this.id);
+				}
+			});
+			$('#checkLeastDistance').click(function(){
+				
 			});
 
 			
@@ -468,7 +474,5 @@
 
 	</script>
 
-	<script 
-    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBQWx9LHwmq7KUVzQr0JNfWmYnqhxUMz8&callback=initMap&language=th">
-    </script>
+	
 </html>
