@@ -34,7 +34,7 @@ $OrderIDArray = explode(',',$orderID);
 
 	if ($orderID != '') {
 		foreach ($OrderIDArray as $orderID) {
-			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$dateTransport."',TransportID='TS' '".$newID."' WHERE OrderID='".$orderID."'");
+			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$dateTransport."',TransportID='".$transportId."' WHERE OrderID='".$orderID."'");
 		}
 	}
 	

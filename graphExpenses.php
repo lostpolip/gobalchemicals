@@ -4,7 +4,7 @@
 
 		$sumExpensesOrder=$dbManagement->select("SELECT SUM(`TotalTransport`) AS TotalTransport,`OrderSendDate`
 											FROM `orders` 
-											JOIN transportdetail ON orders.`TransportID`=transportdetail.TransportID 
+											JOIN transport ON orders.`TransportID`=transport.TransportID 
 											GROUP BY `OrderSendDate`
 										 	");
 		$i = 0;
@@ -25,8 +25,8 @@
 		}
 
 		$sumExpenses=$dbManagement->select("SELECT SUM(`ExpensesPerAround`) AS ExpensesPerAround ,TransportDate 
-											FROM expensesdetail 
-											JOIN transportdetail ON expensesdetail.`TransportID`=transportdetail.TransportID 
+											FROM expenses 
+											JOIN transport ON expenses.`TransportID`=transport.TransportID 
 											GROUP BY TransportDate
 										 	");
 		$e = 0;

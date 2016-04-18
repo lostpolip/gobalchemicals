@@ -2,8 +2,8 @@
 		require 'dbManagement.php';
 		$dbManagement = new dbManagement();
 
-		$sumExpenses=$dbManagement->select("SELECT TransportDate,transportdetail.TruckID,COUNT(transportdetail.TruckID) AS AmountTruck,TruckTypeID 
-			FROM transportdetail JOIN truck ON transportdetail.TruckID=truck.TruckID 
+		$sumExpenses=$dbManagement->select("SELECT TransportDate,transport.TruckID,COUNT(transport.TruckID) AS AmountTruck,TruckTypeID 
+			FROM transport JOIN truck ON transport.TruckID=truck.TruckID 
 			 WHERE TransportDate between '".$_REQUEST['startdate']."' and '".$_REQUEST['enddate']."'
 			 GROUP BY TruckTypeID
 			 ORDER BY TransportDate

@@ -519,6 +519,10 @@
 			    }
 			  }
 
+			  var weightCar = $("input[name='truckWeight']").val();
+			  var geoId = $("input[name='geo']").val();
+			  var date = $("input[name='dateTransport']").val();
+
 			  $.ajax({
 			  	url: "searchGeoid.php", 
 			  	method: "GET",

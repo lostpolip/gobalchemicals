@@ -93,26 +93,27 @@
 
         </table>
     <script type="text/javascript"> 
-     $( document ).ready(function() {
 
-    $('#txtLotReceive').change(function(){
-        var lot =($('#txtLotReceive').val());
-        
-        $.ajax({
-            url: "searchLot.php", 
-            method: "GET",
-            data: { 
-                lot : lot 
-            },
-            success: function(result){
-                if (result==1) {
-                    alert('ล็อตสินค้าซ้ำ');
-                    $('#btnCF').prop("disabled",true);
-                }else{
-                    $('#btnCF').prop("disabled",false);
-                }
-            }
+    $( document ).ready(function() {
+        $('#txtLotReceive').change(function(){
+            var lot =($('#txtLotReceive').val());
             
+            $.ajax({
+                url: "searchLot.php", 
+                method: "GET",
+                data: { 
+                    lot : lot 
+                },
+                success: function(result){
+                    if (result==1) {
+                        alert('ล็อตสินค้าซ้ำ');
+                        $('#btnCF').prop("disabled",true);
+                    }else{
+                        $('#btnCF').prop("disabled",false);
+                    }
+                }
+                
+            });
         });
     });
     

@@ -238,6 +238,7 @@
                     	<input  id="geoID3" name="geoID" value="0" class="hide"></input>
                     	<input  id="geoID4" name="geoID" value="0" class="hide"></input>
                     	<input  id="geoID5" name="geoID" value="0" class="hide"></input>
+                    	<input  id="geoID6" name="geoID" value="0" class="hide"></input>
                     	<input  id="min" name="min" data-min="1000000" class="hide"></input>
                     	<button id="checkLeastDistance" type="button" class="hide"></button>
 
@@ -349,59 +350,11 @@
 				$('#checkLeastDistance').trigger('click');
 
 		    } else {
-		      window.alert('Directions request failed due to ' + status);
+		      // window.alert('Directions request failed due to ' + status);
 		    }
 		  });
 		}
 
-		//show real map 
-		function initMap2() {
-		  var directionsService = new google.maps.DirectionsService;
-		  var directionsDisplay = new google.maps.DirectionsRenderer;
-		  var map = new google.maps.Map(document.getElementById('realMap'), {
-		    zoom: 18,
-		    center: {lat: 13.922080715335339, lng: 100.46815484762192}
-		  });
-		  directionsDisplay.setMap(map);
-			calculateAndDisplayRoute2(directionsService, directionsDisplay);
-
-		}
-
-		function calculateAndDisplayRoute2(directionsService, directionsDisplay) {
-		  var waypts = [];
-		  var checkboxArray = document.getElementById('geoIdWaypoints');
-		  for (var i = 0; i < checkboxArray.length; i++) {
-		    if (checkboxArray.options[i].selected) {
-		      waypts.push({
-		        location: checkboxArray[i].value,
-		        stopover: true
-		      });
-		    }
-		  }
-
-		  directionsService.route({
-		   	origin: document.getElementById('start').value,
-		    destination: document.getElementById('end').value,
-		    waypoints: waypts,
-		    optimizeWaypoints: true,
-		    travelMode: google.maps.TravelMode.DRIVING,
-		    avoidHighways: true,
-		  }, function(response, status) {
-		    if (status === google.maps.DirectionsStatus.OK) {
-				directionsDisplay.setDirections(response);
-				var route = response.routes[0];
-				var totalDistance = 0;
-				// For each route, display summary information.
-				for (var i = 0; i < route.legs.length; i++) {
-					var routeSegment = i + 1;
-					totalDistance = totalDistance + parseFloat(route.legs[i].distance.text.replace('กม.',''));
-				}
-
-		    } else {
-		      window.alert('Directions request failed due to ' + status);
-		    }
-		  });
-		}
 
 		$( document ).ready(function() {
 

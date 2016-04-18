@@ -3,7 +3,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  truck order by WeightCapacity");
-	$transport = $dbManagement->select("SELECT * FROM transportdetail 
+	$transport = $dbManagement->select("SELECT * FROM transport 
 									WHERE  TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");
 	
