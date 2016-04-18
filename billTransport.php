@@ -108,7 +108,7 @@
 										</ul>
 			                        </li>
 									
-									<li><a href="#" class="selected">ตรวจสอบข้อมูล</a>
+									<li><a href="#">ตรวจสอบข้อมูล</a>
 				                        <ul>
 												<li><a href="investigateOrder.php">การสั่งซื้อสินค้า</a></li>
 												<li><a href="claimList.php">การเคลมสินค้า</a></li>
@@ -125,7 +125,7 @@
 									  	</ul>
 									</li>
 									
-									<li ><a href="#">ส่งสินค้า</a>
+									<li ><a href="#" class="selected">ส่งสินค้า</a>
 				                        <ul>
 												<li ><a href="transport.php">จัดเส้นทาง</a></li>
 												<li ><a href="billTransport.php">ใบส่งสินค้า</a></li>
@@ -159,7 +159,6 @@
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
 			    	$TransportID[$i] = $row["TransportID"];
-			        $TotalWeightProduct[$i] = $row["TotalWeightProduct"];
 			        $AmountDistance[$i] = $row["AmountDistance"];
 			        $i++;
 			    }
@@ -185,7 +184,6 @@
 		                        	<tr>
 		                        		<th>เลขที่ใบส่ง</th>
 		                                <th>ระยะทาง(กม.)</th>
-		                                <th>น้ำหนักทั้งหมด(ตัน)</th>
 		                                <th>คำสั่ง</th>
 		                        	</tr>
 
@@ -198,7 +196,6 @@
 		                        		<td id="transportid"><?php echo $TransportID[$j]; ?></td>
 		                        			<input type="hidden" id="transportID" name="transportID" value="<?php echo $TransportID[$j]; ?>">
 		                        		<td id="distance"><?php echo $AmountDistance[$j]; ?></td>
-		                        		<td id="weight"><?php echo $TotalWeightProduct[$j]; ?></td>
 		                        		<td id="btn">
 		                        			<a href="transportConfirm.php?TransportID=<?php echo $TransportID[$j]; ?>"><button type="submit" id="btnCF" name="btnCF">ยืนยันการส่ง</button></a></td>
 

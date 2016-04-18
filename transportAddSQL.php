@@ -23,12 +23,20 @@ $employeeId = $_REQUEST['employeeId'];
 $dateTransport = $_REQUEST['dateTransport'];
 $timeTransport = $_REQUEST['timeTransport'];
 $distance = $_REQUEST['distance'];
-$expensesAround =$_REQUEST['hiddenExpensesPerAround'];	
+$expensesAround =$_REQUEST['hiddenExpensesPerAround'];
+$orderID = $_REQUEST['orderid'];	
+$OrderIDArray = explode(',',$orderID);
 
-	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,TotalWeightProduct,AmountDistance,TransportDate, TruckID, EmployeeID, TimeAction) VALUES ('".$transportId."','processing',0,'".$distance."','".$dateTransport."','".$truckId."','".$employeeId."','".$timeTransport."')");
+
+	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,AmountDistance,TransportDate, TruckID, EmployeeID, TimeAction) VALUES ('".$transportId."','processing','".$distance."','".$dateTransport."','".$truckId."','".$employeeId."','".$timeTransport."')");
 
 	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate,TransportID, TruckID, ExpensesPerAround) VALUES ('ES' '".$newID."', 'complete','".$dateTransport."','".$transportId."','".$truckId."','".$expensesAround."')");
 
+	if ($orderID != '') {
+		foreach ($OrderIDArray as $orderID) {
+			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$dateTransport."',TransportID='TS' '".$newID."' WHERE OrderID='".$orderID."'");
+		}
+	}
 	
 header( "location: /gobalchemicals/billTransport.php" );
 

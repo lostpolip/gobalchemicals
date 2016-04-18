@@ -33,4 +33,26 @@ $( document ).ready(function() {
 		claimAlert();
 		orderAlert();
 	}, 5000);
+
+	$('#order').hide();
+
+	$("input[name='txtDateTransport']").change(function(){
+		$('#order').show();
+		
+		$.ajax({
+			url: "tableOrder.php", 
+			method: "GET",
+			data: { 
+				datetransport : $('#txtDateTransport').val()
+			},
+			success: function(result){
+			$('#table2').empty();
+			var orderDetail = jQuery.parseJSON(result);
+			for (var x in orderDetail['OrderID']) {
+				$('#table2').append("<tr> <th>วันที่กำหนดส่งสินค้า</th> <th>รหัสสั่งซื้อ</th> <th>ชื่อลูกค้า</th> <th>ภูมิภาค</th> <th>น้ำหนักสินค้า(ตัน)</th> </tr> <tr> <td>"+orderDetail['OrderID'][x]+"</td> <td>"+orderDetail['OrderSendDate'][x]+"</td> <td>"+orderDetail['GeoName'][x]+"</td> <td>"+orderDetail['CustomerName'][x]+"</td> <td>"+orderDetail['UnitProduct'][x]+"</td> </tr> ");	   
+				}
+			}
+		});
+
+	});
 });

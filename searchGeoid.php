@@ -54,6 +54,7 @@
 			$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
 			$orderInQueue[$key]['latOrder'][$i] = $order[$key]['latOrder'][$i];
 			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
+			$orderInQueue[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
 		}
 	}
 

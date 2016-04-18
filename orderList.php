@@ -99,11 +99,11 @@
                         	<tr>
                         		<td id="productid"><?php echo $OrderID[$j]; ?></td>
                         			<input type="hidden" id="orderID" name="orderID" value="<?php echo $OrderID[$j]; ?>">
-                        		<td id="productname"><?php echo $OrderDate[$j]; ?></td>
+                        		<td id="productname"><?php echo date("d-m-Y", strtotime($OrderDate[$j] )) ?></td>
                         		<td id="productprice"><?php echo number_format($ExtendedPrice[$j]); ?></td>
                         		<td id="productstate"><?php echo $State[$j]; ?></td>
                         		<td id="productstate"><?php echo $TransportID[$j]; ?></td>
-                        		<td id="datesendOrder"><?php echo $SendOrder[$j]; ?></td>
+                        		<td id="datesendOrder"><?php echo date("d-m-Y", strtotime($SendOrder[$j])) ?></td>
                         		<td>
                         			<button id="btnDetail"><a href="orderListDetail.php?OrderID=<?php echo $OrderID[$j]; ?>"> รายละเอียด</a></button>
  

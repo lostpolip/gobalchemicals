@@ -170,32 +170,8 @@
 			   
 			}
 
-			$order = $dbManagement->select("SELECT * FROM orders
-											JOIN customer ON orders.CustomerID=customer.CustomerID
-											JOIN aumphur ON orders.AumphurID=aumphur.AumphurID
-											WHERE State='processing'
-											");
-
-			$popupOrder = 0;
-			if (mysqli_num_rows($order) > 0) {
-			    while($row = mysqli_fetch_assoc($order)) {
-			        $OrderID[$popupOrder] = $row["OrderID"];
-			        $OrderDate[$popupOrder] = $row["OrderDate"];
-			        $CustomerID[$popupOrder] = $row["CustomerID"];
-			        $CustomerName[$popupOrder] = $row["CustomerName"];
-			        $latOrder[$popupOrder] = $row["latOrder"];
-			        $lonOrder[$popupOrder] = $row["lonOrder"];
-			        $Distance[$popupOrder] = $row["Distance"];
-			        $UnitProduct[$popupOrder] = $row["UnitProduct"];
-			        $AumphurID[$popupOrder] = $row["AumphurID"];
-			        $GeoName[$popupOrder] = $row["GeoName"];
-			        $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
-			        $popupOrder++;
-			    }		   
-			}
-
 		?>
-	<form id="transportAddForm" action="test1.php" method="post">
+	<form id="transportAddForm" action="transportMap.php" method="post">
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l">
@@ -205,6 +181,20 @@
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+
+	                    <div id="order">
+							<table id="table2" width="100%">
+	                        	<tr> 	                                
+	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
+	                        		<th>รหัสสั่งซื้อ</th>
+	                                <th>ชื่อลูกค้า</th>
+	                                <th>ภูมิภาค</th>
+	                                <th>น้ำหนักสินค้า(ตัน)</th>
+	                        	</tr>
+	                    		
+	                    	</table> 
+                    	</div>    	
+                    	<br>
 
 
 						<div id="timeInfo">
@@ -237,17 +227,7 @@
 									</td>
 								</tr>
 	                    </div>
-	                    <br>
 
-<!-- 	                    <div id="orderInfo">
-	                    	<label id="title">Order</label>
-	                    		<tr>
-	                    			<td>
-	                    				<div id="orderOther"></div>
-	                    			</td>
-	                    		</tr>
-	                    </div> -->
-                        <br>
                         <br>
 
 						<select multiple="" id="waypoints" class="hide"></select>
@@ -506,7 +486,6 @@
 				$('#rdoDate1').trigger('click');
 			});
 			$('#checkLeastDistance').click(function(){
-				var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
 				$("input[name*='geoID']").each(function() {
 					var min = parseFloat($('#min').data('min'));
 					var value = parseFloat($(this).val());
@@ -516,31 +495,6 @@
 						$('#min').data('min', value);
 					}
 				});
-
-				// $('#geoIdWaypoints').empty();
-
-				// $.ajax({
-				// 	url: "searchGeoid.php", 
-				// 	method: "GET",
-				// 	data: { 
-				// 		weightCar : weightCar,
-				// 		geoId : $('#min').data('min'),
-				// 	},
-				// 	success: function(orderInQueue){
-				// 		var orderInQueue = jQuery.parseJSON(orderInQueue);
-
-				// 		var lat,lng;
-
-				// 		for (geoId in orderInQueue) {
-				// 			for (index in orderInQueue[geoId]['OrderID']) {
-				// 				lat = orderInQueue[geoId]['latOrder'][index];
-				// 				lng = orderInQueue[geoId]['lonOrder'][index];
-				// 				$('#geoIdWaypoints').append('<option value="'+lat+','+lng+'" selected></option>');
-				// 				initMap2();
-				// 			}	
-				// 		}
-				// 	}
-				// });
 			});
 		});
 
