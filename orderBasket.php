@@ -55,10 +55,10 @@
 	<body>
 	<?php 
 		$orderId = explode(' ',$_REQUEST['order-id']);
-		// print_r($_REQUEST);
 		require 'dbManagement.php';
 		$dbManagement = new dbManagement();
 		date_default_timezone_set('Asia/Bangkok');
+		$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 		$order=$dbManagement->select("SELECT OrderID FROM orders ");
 		$i = 0;
 		$maxID = 0;
@@ -172,7 +172,7 @@
 	                        </td>
 
 	                        <td><label id="OrderSendDate">กำหนดวันส่งสินค้า: </label></td>
-	                        <td><input type="date" id="hiddenOrderSendDate" name="hiddenOrderSendDate" min="<?php echo date("Y-m-d"); ?>"></td>
+	                        <td><input type="date" id="hiddenOrderSendDate" name="hiddenOrderSendDate" min="<?php echo date("Y-m-d", $tomorrow); ?>"></td>
 
 	                    </tr>
 
