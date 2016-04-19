@@ -182,6 +182,8 @@
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
 
+	                    <input type="hidden" id="DateTransport" name="DateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+
 	                    <div id="order">
 							<table id="table2" width="100%">
 	                        	<tr> 	                                
@@ -378,7 +380,7 @@
 					method: "GET",
 					data: { 
 						timeaction : timeaction,
-						datetransport : $('#txtDateTransport').val()
+						datetransport : $('#DateTransport').val()
 					},
 					success: function(result){
 						var TruckOther = jQuery.parseJSON(result);
@@ -420,7 +422,7 @@
 					method: "GET",
 					data: { 
 						timeaction : timeaction,
-						datetransport : $('#txtDateTransport').val()
+						datetransport : $('#DateTransport').val()
 					},
 					success: function(result){
 						$('#employeeOther').empty();
