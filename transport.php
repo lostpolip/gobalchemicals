@@ -150,6 +150,8 @@
 
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
+			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$truck = $dbManagement->select("SELECT * FROM truck");
@@ -180,9 +182,9 @@
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d',$lastDay);?>" required>
 
-	                    <input type="hidden" id="DateTransport" name="DateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+	                    <input type="hidden" id="DateTransport" name="DateTransport" value="<?php echo date('Y-m-d',$tomorrow);?>" required>
 
 	                    <div id="order">
 							<table id="table2" width="100%">
