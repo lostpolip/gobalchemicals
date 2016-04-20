@@ -390,9 +390,27 @@
 				    	for (var x in TruckOther['name']) {
 							$('#truckOther').append('<input type="radio" name="listTruckName" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
 						}
+						var CarID = $("input[name='listTruckName']:checked").val();
+						$.ajax({
+							url: "searchEmployee.php", 
+							method: "GET",
+							data: { 
+								CarID : CarID
+							},
+							success: function(result){
+								$('#employeeOther').empty();
+								var EmployeeOther = jQuery.parseJSON(result);
+
+						    	for (var x in EmployeeOther['name']) {
+									$('#employeeOther').append('<input type="radio" name="listEmployeeName" data-available="'+ EmployeeOther["available"][x]+'" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther["available"][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
+								}
+							}
+						});
 
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
+							var CarID = $("input[name='listTruckName']:checked").val();
+
 							$('#waypoints').empty();
 							$.ajax({
 								url: "searchOrder.php", 
@@ -417,25 +435,9 @@
 							
 						});
 					}
-				});
-
-				$.ajax({
-					url: "searchEmployee.php", 
-					method: "GET",
-					data: { 
-						timeaction : timeaction,
-						datetransport : $('#DateTransport').val()
-					},
-					success: function(result){
-						$('#employeeOther').empty();
-						var EmployeeOther = jQuery.parseJSON(result);
-
-				    	for (var x in EmployeeOther['name']) {
-							$('#employeeOther').append('<input type="radio" name="listEmployeeName" data-available="'+ EmployeeOther["available"][x]+'" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther["available"][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
-						}
-					}
-				});
+				});			
 			});
+
 
 			$('#rdoDate1').trigger('click');
 

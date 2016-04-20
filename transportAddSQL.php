@@ -21,6 +21,7 @@ $transportId = $_REQUEST['transportId'];
 $truckId = $_REQUEST['truckId'];
 $employeeId = $_REQUEST['employeeId'];
 $dateTransport = $_REQUEST['dateTransport'];
+$date = $_REQUEST['date'];
 $timeTransport = $_REQUEST['timeTransport'];
 $distance = $_REQUEST['distance'];
 $expensesAround =$_REQUEST['hiddenExpensesPerAround'];
@@ -28,13 +29,13 @@ $orderID = $_REQUEST['orderid'];
 $OrderIDArray = explode(',',$orderID);
 
 
-	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,AmountDistance,TransportDate, TruckID, EmployeeID, TimeAction) VALUES ('".$transportId."','processing','".$distance."','".$dateTransport."','".$truckId."','".$employeeId."','".$timeTransport."')");
+	$dbManagement->insert("INSERT INTO transport(TransportID, TransportStatus,AmountDistance,TransportDate, TruckID, EmployeeID, TimeAction) VALUES ('".$transportId."','processing','".$distance."','".$date."','".$truckId."','".$employeeId."','".$timeTransport."')");
 
 	$dbManagement->insert("INSERT INTO expenses(ExpensesID, StateExpenses, ExpensesDate,TransportID, TruckID, ExpensesPerAround) VALUES ('ES' '".$newID."', 'complete','".$dateTransport."','".$transportId."','".$truckId."','".$expensesAround."')");
 
 	if ($orderID != '') {
 		foreach ($OrderIDArray as $orderID) {
-			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$dateTransport."',TransportID='".$transportId."' WHERE OrderID='".$orderID."'");
+			$dbManagement->update("UPDATE orders SET State='complete', SendOrder ='".$date."',TransportID='".$transportId."' WHERE OrderID='".$orderID."'");
 		}
 	}
 	

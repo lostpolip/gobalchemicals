@@ -194,7 +194,6 @@
 			}
 			$i++;
 		}
-
 	}
 
 	// print_r($order);
@@ -209,8 +208,8 @@
 			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
 		}
 	}
-	// echo '<pre>';
-	// print_r($orderInQueue);
-	echo json_encode($orderInQueue);
+	echo '<pre>';
+	print_r($orderInQueue);
+	// echo json_encode($orderInQueue);
 
 ?>
