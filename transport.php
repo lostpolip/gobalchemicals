@@ -184,7 +184,7 @@
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d',$lastDay);?>" required>
 
-	                    <input type="hidden" id="DateTransport" name="DateTransport" value="<?php echo date('Y-m-d',$tomorrow);?>" required>
+	                    <!-- <input type="hidden" id="DateTransport" name="DateTransport" value="<?php echo date('Y-m-d',$tomorrow);?>" required> -->
 
 	                    <div id="order">
 							<table id="table2" width="100%">
@@ -354,7 +354,7 @@
 				$('#checkLeastDistance').trigger('click');
 
 		    } else {
-		      // window.alert('Directions request failed due to ' + status);
+		      window.alert('Directions request failed due to ' + status);
 		    }
 		  });
 		}
@@ -379,27 +379,32 @@
 					method: "GET",
 					data: { 
 						// timeaction : timeaction,
-						datetransport : $('#DateTransport').val()
+						datetransport : $('#txtDateTransport').val()
 					},
 					success: function(result){
 						var TruckOther = jQuery.parseJSON(result);
 				    	for (var x in TruckOther['name']) {
-							$('#truckOther').append('<input type="radio" name="listTruckName" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-Minweight="'+ $.trim(TruckOther["minweight"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
+							$('#truckOther').append('<input type="radio" name="listTruckName" data-repair="'+$.trim(TruckOther["staterepair"][x])+'" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-Minweight="'+ $.trim(TruckOther["minweight"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label id="truck'+$.trim(TruckOther["ID"][x])+'" for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
 						}
+						$("input[name='listTruckName']").each(function(){
+							if($(this).data('repair') == 'ซ่อมบำรุง') {
+								$("#truck"+this.id).css("background-color", "red");
+								$("#"+this.id).prop('disabled', 'disabled');
+							}
+						});
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
-							var minWeightCar = $("input[name='listTruckName']:checked").data('Minweight');
 							$('#waypoints').empty();
 							$.ajax({
 								url: "searchOrder.php", 
 								method: "GET",
 								data: { 
 									weightCar : weightCar,
-									minWeightCar : minWeightCar,
-									datetransport : $('#txtDateTransport').val()
+									// datetransport : $('#txtDateTransport').val()
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
+									// console.log(orderInQueue);
 									for (geoId in orderInQueue) {
 										for (index in orderInQueue[geoId]['OrderID']) {
 											var lat = orderInQueue[geoId]['latOrder'][index];
@@ -419,7 +424,7 @@
 					method: "GET",
 					data: { 
 						// timeaction : timeaction,
-						datetransport : $('#DateTransport').val()
+						datetransport : $('#txtDateTransport').val()
 					},
 					success: function(result){
 						$('#employeeOther').empty();

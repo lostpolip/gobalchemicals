@@ -150,7 +150,7 @@
 
 		$Time = $_REQUEST['rdoDate']; 
 		$DateTransport = $_REQUEST['txtDateTransport']; 
-		$Date = $_REQUEST['DateTransport']; 
+		// $Date = $_REQUEST['DateTransport']; 
 		$TruckId = $_REQUEST['listTruckName'];
 		$EmployeeId = $_REQUEST['listEmployeeName'];
 		$GeoidMin = $_REQUEST['min']; 

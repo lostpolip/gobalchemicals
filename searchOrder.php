@@ -2,43 +2,42 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$weightCar = $_REQUEST['weightCar'];
-	$minWeightCar = $_REQUEST['minWeightCar'];
-	$datetransport = $_REQUEST['datetransport'];
+	// $datetransport = $_REQUEST['datetransport'];
 
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 1 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 1 
 									ORDER BY OrderSendDate");
 
 	$Geo2 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 2 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 2 
 									ORDER BY OrderSendDate");
 
 	$Geo3 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 3 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 3 
 									ORDER BY OrderSendDate");
 
 	$Geo4 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 4 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 4 
 									ORDER BY OrderSendDate");
 
 	$Geo5 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 5 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 5 
 									ORDER BY OrderSendDate");
 
 	$Geo6 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 6 AND OrderSendDate = '".$datetransport."'
+									AND GeoID = 6 
 									ORDER BY OrderSendDate");
 	
 	$i1=0;
