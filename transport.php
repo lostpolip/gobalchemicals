@@ -52,6 +52,7 @@
 	</script>
 	
 	<style>
+	
 		a.alert {
 			display: inline-block;
 			position: relative;
