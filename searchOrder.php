@@ -2,6 +2,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$weightCar = $_REQUEST['weightCar'];
+	$minWeightCar = $_REQUEST['minWeightCar'];
 	$datetransport = $_REQUEST['datetransport'];
 
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
@@ -208,8 +209,8 @@
 			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
 		}
 	}
-	echo '<pre>';
-	print_r($orderInQueue);
-	// echo json_encode($orderInQueue);
+	// echo '<pre>';
+	// print_r($orderInQueue);
+	echo json_encode($orderInQueue);
 
 ?>

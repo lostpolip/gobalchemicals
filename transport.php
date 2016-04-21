@@ -188,13 +188,13 @@
 
 	                    <div id="order">
 							<table id="table2" width="100%">
-	                        	<tr> 	                                
+	                        	<!-- <tr> 	                                
 	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                        	</tr>
+	                        	</tr> -->
 	                    		
 	                    	</table> 
                     	</div>    	
@@ -360,63 +360,42 @@
 		}
 
 
-		$( document ).ready(function() {
 
+		$( document ).ready(function() {
 			$("input[name='rdoDate']").click(function(){
 				$('#truckInfo').show();
 				$('#employeeInfo').hide();
 				$('#truckOther').html('');
 				$('#employeeInfo').show();
-
-
 				if (this.id == 'rdoDate1') {
 					var timeaction = $("#rdoDate1").val();
-				} else if (this.id == 'rdoDate2') {
-					var timeaction = $("#rdoDate2").val();
+				// } else if (this.id == 'rdoDate2') {
+				// 	var timeaction = $("#rdoDate2").val();
 				} else {
 					var timeaction = $("#rdoDate3").val();
 				}
-
 				$.ajax({
 					url: "searchTruck.php", 
 					method: "GET",
 					data: { 
-						timeaction : timeaction,
+						// timeaction : timeaction,
 						datetransport : $('#DateTransport').val()
 					},
 					success: function(result){
 						var TruckOther = jQuery.parseJSON(result);
-
 				    	for (var x in TruckOther['name']) {
-							$('#truckOther').append('<input type="radio" name="listTruckName" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
+							$('#truckOther').append('<input type="radio" name="listTruckName" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-Minweight="'+ $.trim(TruckOther["minweight"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
 						}
-						var CarID = $("input[name='listTruckName']:checked").val();
-						$.ajax({
-							url: "searchEmployee.php", 
-							method: "GET",
-							data: { 
-								CarID : CarID
-							},
-							success: function(result){
-								$('#employeeOther').empty();
-								var EmployeeOther = jQuery.parseJSON(result);
-
-						    	for (var x in EmployeeOther['name']) {
-									$('#employeeOther').append('<input type="radio" name="listEmployeeName" data-available="'+ EmployeeOther["available"][x]+'" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther["available"][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
-								}
-							}
-						});
-
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
-							var CarID = $("input[name='listTruckName']:checked").val();
-
+							var minWeightCar = $("input[name='listTruckName']:checked").data('Minweight');
 							$('#waypoints').empty();
 							$.ajax({
 								url: "searchOrder.php", 
 								method: "GET",
 								data: { 
 									weightCar : weightCar,
+									minWeightCar : minWeightCar,
 									datetransport : $('#txtDateTransport').val()
 								},
 								success: function(orderInQueue){
@@ -431,16 +410,27 @@
 									}
 								}
 							});
-
 							
 						});
 					}
-				});			
+				});
+				$.ajax({
+					url: "searchEmployee.php", 
+					method: "GET",
+					data: { 
+						// timeaction : timeaction,
+						datetransport : $('#DateTransport').val()
+					},
+					success: function(result){
+						$('#employeeOther').empty();
+						var EmployeeOther = jQuery.parseJSON(result);
+				    	for (var x in EmployeeOther['name']) {
+							$('#employeeOther').append('<input type="radio" name="listEmployeeName" data-available="'+ EmployeeOther["available"][x]+'" id="'+ $.trim(EmployeeOther["ID"][x]) +'" value="'+ $.trim(EmployeeOther["ID"][x]) +'"'+ EmployeeOther["available"][x]+' > '+'<label for="'+ $.trim(EmployeeOther["ID"][x]) +'">'+EmployeeOther['name'][x] +'</label><br>');
+						}
+					}
+				});
 			});
-
-
 			$('#rdoDate1').trigger('click');
-
 			$('#txtDateTransport').change(function(){
 				$('#rdoDate1').trigger('click');
 			});
@@ -448,7 +438,6 @@
 				$("input[name*='geoID']").each(function() {
 					var min = parseFloat($('#min').data('min'));
 					var value = parseFloat($(this).val());
-
 					if (value < min && value!=0) {
 						$('#min').val(this.id);
 						$('#min').data('min', value);
@@ -456,7 +445,6 @@
 				});
 			});
 		});
-
 	</script>
 
 	

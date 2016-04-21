@@ -143,6 +143,8 @@
 		</div><!--end of tooplate_body_wrapper-->
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
+			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			$dateTransport = date('Y-m-d',$lastDay);
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM product
@@ -168,6 +170,24 @@
 			    }
 			}
 
+
+			$transport = $dbManagement->select("SELECT * FROM orders 
+												JOIN customer ON orders.CustomerID=customer.CustomerID
+												WHERE  State ='processing'  
+												AND OrderSendDate = '".$dateTransport."'
+												ORDER BY OrderSendDate");
+
+			$or = 0;
+			if (mysqli_num_rows($transport) > 0) {
+			    while($row = mysqli_fetch_assoc($transport)) {
+			        $OrderID[$or] = $row["OrderID"];
+			        $CustomerName[$or] = $row["CustomerName"];
+			        $UnitProduct[$or] = $row["UnitProduct"];
+			        $OrderSendDate[$or] = $row["OrderSendDate"];
+			        $or++;
+			    }
+			}
+
 		?>
 		<div id="tooplate_main">
 			<div class="col_fw_last">
@@ -175,27 +195,27 @@
 				<div class="col_w630 float_l">
 
 				<?php 
-					if ($z > 0) {
+					if ($or > 0) {
 				?>
-					<h2>แจ้งเตือนสินค้า</h2>
+					<h2>แจ้งเตือนorderค้าง</h2>
 	    				<table id="table2" width="100%">
                         	<tr>
-                                <th>ชื่อสินค้า</th>
-                                <th>จำนวนสินค้า</th>    
+                                <th>เลขที่ใบสั่งซื้อ</th>
+                                <th>วันที่</th>    
+                                <th>ชื่อลูกค้า</th>    
+                                <th>จำนวน(ตัน)</th>    
                         	</tr>
 
                         	<?php
-                        	for($j=0;$j<$z;$j++){ 
+                        	for($t=0;$t<$or;$t++){ 
 
                         	?>
 
                         	<tr>
-                        		<td>
-                        			<label id="productName"><?php echo $alertProduct[$j]['name'] ?></label>
-                        		</td>
-                        		<td>
-                        			<label id="productAmount" style="color: red;"><?php echo $alertProduct[$j]['amount'] ?></label>
-                        		</td>
+                        		<td><label><?php echo $OrderID[$t]; ?></label></td>
+                        		<td><label><?php echo $OrderSendDate[$t]; ?></label></td>
+                        		<td><label><?php echo $CustomerName[$t]; ?></label></td>
+                        		<td><label><?php echo $UnitProduct[$t]; ?></label></td>
                         	</tr>
                         	<?php
                         	}
@@ -204,6 +224,37 @@
                 <?php 
 					}
 				?>
+
+				<?php 
+					if ($z > 0) {
+				?>
+					<h2>แจ้งเตือนสินค้า</h2>
+	    				<table id="table2" width="100%">
+	                    	<tr>
+	                            <th>ชื่อสินค้า</th>
+	                            <th>จำนวนสินค้า</th>    
+	                    	</tr>
+
+	                    	<?php
+	                    	for($j=0;$j<$z;$j++){ 
+
+	                    	?>
+
+	                    	<tr>
+	                    		<td>
+	                    			<label id="productName"><?php echo $alertProduct[$j]['name'] ?></label>
+	                    		</td>
+	                    		<td>
+	                    			<label id="productAmount" style="color: red;"><?php echo $alertProduct[$j]['amount'] ?></label>
+	                    		</td>
+	                    	</tr>
+	                    	<?php
+	                    	}
+	                    	?>
+	                	</table> 
+	            <?php 
+					}
+				?>				
 
 				</div>
 			</div>
