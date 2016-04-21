@@ -107,7 +107,7 @@
     		'UnitProduct'	=> $UnitProduct3,
     		'GeoID'	=> $GeoID3,
     		'GeoName'	=> $GeoName3,
-    		'latOrder'	=> $latOrder3,
+    		'latOrder'	=> $latOrder3,   
     		'lonOrder'	=> $lonOrder3,
 	    ];
 	}
