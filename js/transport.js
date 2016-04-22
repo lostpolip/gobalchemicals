@@ -36,14 +36,15 @@ $( document ).ready(function() {
 
 	$('#order').hide();
 
-	$("input[name='txtDateTransport']").change(function(){
+	$("input[name='lastDate']").change(function(){
 		$('#order').show();
-		$('#table2').empty();		
+		$('#table2').empty();
+		
 		$.ajax({
 			url: "tableOrder.php", 
 			method: "GET",
 			data: { 
-				datetransport : $('#txtDateTransport').val()
+				datetransport : $('#lastDate').val()
 			},
 			success: function(result){
 			// $('#table2').empty();

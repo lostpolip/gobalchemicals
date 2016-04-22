@@ -150,6 +150,8 @@
 
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
+			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$truck = $dbManagement->select("SELECT * FROM truck");
@@ -180,7 +182,10 @@
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+	                    <input type="date" id="lastDate" name="lastDate" min="<?php echo date('Y-m-d',$lastDay);?>"  required>
+
+	                    <input type="hidden" id="tomorrowDate" name="tomorrowDate" value="<?php echo date('Y-m-d',$tomorrow);?>"  required>
+
 
 	                    <div id="order">
 							<table id="table2" width="100%">
@@ -367,8 +372,8 @@
 
 				if (this.id == 'rdoDate1') {
 					var timeaction = $("#rdoDate1").val();
-				} else if (this.id == 'rdoDate2') {
-					var timeaction = $("#rdoDate2").val();
+				// } else if (this.id == 'rdoDate2') {
+				// 	var timeaction = $("#rdoDate2").val();
 				} else {
 					var timeaction = $("#rdoDate3").val();
 				}
@@ -377,25 +382,42 @@
 					url: "searchTruck.php", 
 					method: "GET",
 					data: { 
-						timeaction : timeaction,
-						datetransport : $('#txtDateTransport').val()
+						// timeaction : timeaction,
+						datetransport : $('#tomorrowDate').val()
 					},
 					success: function(result){
 						var TruckOther = jQuery.parseJSON(result);
 
 				    	for (var x in TruckOther['name']) {
-							$('#truckOther').append('<input type="radio" name="listTruckName" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
+							$('#truckOther').append('<input type="radio" name="listTruckName" data-repair="'+$.trim(TruckOther["staterepair"][x])+'" data-minweight="'+$.trim(TruckOther["minweight"][x])+'" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label id="truck'+$.trim(TruckOther["ID"][x])+'" for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
 						}
+
+						$("input[name='listTruckName']").each(function(){
+							if($(this).data('repair') == 'ซ่อมบำรุง') {
+								$("#truck"+this.id).css("background-color", "red");
+								$("#"+this.id).prop('disabled', 'disabled');
+							}
+						});
+
+						window.a = 0;
+						$("input[name='listEmployeeName']:enabled").each(function(){
+							if (window.a==0) {
+						      $(this).attr('checked', true);
+							}
+							window.a++;
+						});
 
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
+							var minweight = $("input[name='listTruckName']:checked").data('minweight');
 							$('#waypoints').empty();
 							$.ajax({
 								url: "searchOrder.php", 
 								method: "GET",
 								data: { 
 									weightCar : weightCar,
-									datetransport : $('#txtDateTransport').val()
+									minweight : minweight,
+									datetransport : $('#lastDate').val()
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
@@ -419,8 +441,8 @@
 					url: "searchEmployee.php", 
 					method: "GET",
 					data: { 
-						timeaction : timeaction,
-						datetransport : $('#txtDateTransport').val()
+						// timeaction : timeaction,
+						datetransport : $('#tomorrowDate').val()
 					},
 					success: function(result){
 						$('#employeeOther').empty();

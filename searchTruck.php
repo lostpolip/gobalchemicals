@@ -3,9 +3,12 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  truck order by WeightCapacity");
-	$transport = $dbManagement->select("SELECT * FROM transport 
-									WHERE  TimeAction = '".$_REQUEST['timeaction']."'
-									AND TransportDate = '".$_REQUEST['datetransport']."'");
+	$transport = $dbManagement->select("SELECT * FROM transport
+									WHERE  TransportDate = '".$_REQUEST['datetransport']."'");
+
+	// $transport = $dbManagement->select("SELECT * FROM transport
+	// 								WHERE TimeAction = '".$_REQUEST['timeaction']."'
+	// 								AND TransportDate = '".$_REQUEST['datetransport']."'");
 	
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
@@ -18,6 +21,8 @@
 			        $WeightQuantity[$i] = $row["WeightQuantity"];
 			        $WeightCapacity[$i] = $row["WeightCapacity"];
 			        $StateTruck[$i] = $row["StateTruck"];
+			        $StateRepair[$i] = $row["StateRepair"];
+			        $MinWeight[$i] = $row["MinWeight"];
 			        $available[$i] = '';
 			        $i++;
 	    }
@@ -47,7 +52,9 @@
 		'trucktype'	=> $TruckTypeID,
 		'fuel'	=> $FuelID,
 		'truckweight'	=> $TruckWeight,
+		'staterepair'	=> $StateRepair,
 		'weightcapacity'	=> $WeightCapacity,
+		'minweight'	=> $MinWeight,
 		'available'	=> $available,
 	];
 	

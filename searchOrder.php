@@ -2,6 +2,7 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$weightCar = $_REQUEST['weightCar'];
+	$minweight = $_REQUEST['minweight'];
 	$datetransport = $_REQUEST['datetransport'];
 
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
