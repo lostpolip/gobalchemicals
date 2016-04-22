@@ -38,8 +38,7 @@ $( document ).ready(function() {
 
 	$("input[name='txtDateTransport']").change(function(){
 		$('#order').show();
-		$('#table2').empty();
-		
+		$('#table2').empty();		
 		$.ajax({
 			url: "tableOrder.php", 
 			method: "GET",
