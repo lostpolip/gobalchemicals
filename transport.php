@@ -40,7 +40,6 @@
 	</script>
 
 	<script type="text/javascript">
-
 		ddsmoothmenu.init({
 			mainmenuid: "tooplate_menu", //menu DIV id
 			orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
@@ -48,11 +47,9 @@
 			//customtheme: ["#1c5a80", "#18374a"],
 			contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 		})
-
 	</script>
 	
 	<style>
-	
 		a.alert {
 			display: inline-block;
 			position: relative;
@@ -152,11 +149,9 @@
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
 			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
-			$tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$truck = $dbManagement->select("SELECT * FROM truck");
-
 			$ddtruck = 0;
 			if (mysqli_num_rows($truck) > 0) {
 			    while($row = mysqli_fetch_assoc($truck)) {
@@ -172,7 +167,6 @@
 			    }
 			   
 			}
-
 		?>
 	<form id="transportAddForm" action="transportMap.php" method="post">
 		<div id="tooplate_main">
@@ -185,17 +179,15 @@
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
 	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d',$lastDay);?>" required>
 
-	                    <!-- <input type="hidden" id="DateTransport" name="DateTransport" value="<?php echo date('Y-m-d',$tomorrow);?>" required> -->
-
 	                    <div id="order">
 							<table id="table2" width="100%">
-	                        	<!-- <tr> 	                                
+	                        	<tr> 	                                
 	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                        	</tr> -->
+	                        	</tr>
 	                    		
 	                    	</table> 
                     	</div>    	
@@ -293,7 +285,6 @@
 				}
 			});
 		}
-
 		var orderAlert = function () {
 			$.ajax({
 				url: "alertOrder.php", 
@@ -307,8 +298,6 @@
 				}
 			});
 		}
-
-
 		function initMap(geoId) {
 		  var directionsService = new google.maps.DirectionsService;
 		  var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -318,9 +307,7 @@
 		  });
 		  directionsDisplay.setMap(map);
 			calculateAndDisplayRoute(directionsService, directionsDisplay, geoId);
-
 		}
-
 		function calculateAndDisplayRoute(directionsService, directionsDisplay, geoId) {
 		  var waypts = [];
 		  var checkboxArray = document.getElementById('waypoints');
@@ -332,7 +319,6 @@
 		      });
 		    }
 		  }
-
 		  directionsService.route({
 		   	origin: document.getElementById('start').value,
 		    destination: document.getElementById('end').value,
@@ -353,15 +339,11 @@
 				var oldDistance = $('#'+ geoId).val();
 				$('#'+ geoId).val(parseFloat(oldDistance)+parseFloat(totalDistance));
 				$('#checkLeastDistance').trigger('click');
-
 		    } else {
-		      window.alert('Directions request failed due to ' + status);
+		      // window.alert('Directions request failed due to ' + status);
 		    }
 		  });
 		}
-
-
-
 		$( document ).ready(function() {
 			$("input[name='rdoDate']").click(function(){
 				$('#truckInfo').show();
@@ -379,7 +361,7 @@
 					url: "searchTruck.php", 
 					method: "GET",
 					data: { 
-						// timeaction : timeaction,
+						timeaction : timeaction,
 						datetransport : $('#txtDateTransport').val()
 					},
 					success: function(result){
@@ -393,6 +375,7 @@
 								$("#"+this.id).prop('disabled', 'disabled');
 							}
 						});
+						
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
 							$('#waypoints').empty();
@@ -401,11 +384,10 @@
 								method: "GET",
 								data: { 
 									weightCar : weightCar,
-									// datetransport : $('#txtDateTransport').val()
+									datetransport : $('#txtDateTransport').val()
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
-									// console.log(orderInQueue);
 									for (geoId in orderInQueue) {
 										for (index in orderInQueue[geoId]['OrderID']) {
 											var lat = orderInQueue[geoId]['latOrder'][index];
@@ -424,7 +406,7 @@
 					url: "searchEmployee.php", 
 					method: "GET",
 					data: { 
-						// timeaction : timeaction,
+						timeaction : timeaction,
 						datetransport : $('#txtDateTransport').val()
 					},
 					success: function(result){

@@ -2,43 +2,44 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$weightCar = $_REQUEST['weightCar'];
-	// $datetransport = $_REQUEST['datetransport'];
+	$minWeightCar = $_REQUEST['minWeightCar'];
+	$datetransport = $_REQUEST['datetransport'];
 
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 1 
-									ORDER BY OrderSendDate");
+									AND GeoID = 1 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 
 	$Geo2 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 2 
-									ORDER BY OrderSendDate");
+									AND GeoID = 2 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 
 	$Geo3 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 3 
-									ORDER BY OrderSendDate");
+									AND GeoID = 3 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 
 	$Geo4 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 4 
-									ORDER BY OrderSendDate");
+									AND GeoID = 4 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 
 	$Geo5 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 5 
-									ORDER BY OrderSendDate");
+									AND GeoID = 5 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 
 	$Geo6 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 6 
-									ORDER BY OrderSendDate");
+									AND GeoID = 6 AND OrderSendDate = '".$datetransport."'
+									ORDER BY UnitProduct");
 	
 	$i1=0;
 	if (mysqli_num_rows($Geo1) > 0) {

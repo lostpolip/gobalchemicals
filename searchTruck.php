@@ -3,8 +3,9 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  truck  order by WeightCapacity");
-	$transport = $dbManagement->select("SELECT * FROM transport 
-									WHERE TransportDate = '".$_REQUEST['datetransport']."'");
+	$transport = $dbManagement->select("SELECT * FROM transport
+									WHERE TimeAction = '".$_REQUEST['timeaction']."'
+									AND TransportDate = '".$_REQUEST['datetransport']."'");
 	
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
