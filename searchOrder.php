@@ -200,18 +200,32 @@
 
 	// print_r($order);
 	foreach ($arrayInQueue as $key => $value) {
+		$currentWeight = 0;
 		for ($i=0; $i < $value + 1; $i++) {
-			$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
-			$orderInQueue[$key]['OrderSendDate'][$i] = $order[$key]['OrderSendDate'][$i];
-			$orderInQueue[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
-			$orderInQueue[$key]['GeoID'][$i] = $order[$key]['GeoID'][$i];
-			$orderInQueue[$key]['GeoName'][$i] = $order[$key]['GeoName'][$i];
-			$orderInQueue[$key]['latOrder'][$i] = $order[$key]['latOrder'][$i];
-			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
+			$currentWeight = $currentWeight+$order[$key]['UnitProduct'][$i];
+		}
+
+		if ($currentWeight>=$minweight) {
+
+			for ($i=0; $i < $value + 1; $i++) {
+				$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
+				$orderInQueue[$key]['OrderSendDate'][$i] = $order[$key]['OrderSendDate'][$i];
+				$orderInQueue[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
+				$orderInQueue[$key]['GeoID'][$i] = $order[$key]['GeoID'][$i];
+				$orderInQueue[$key]['GeoName'][$i] = $order[$key]['GeoName'][$i];
+				$orderInQueue[$key]['latOrder'][$i] = $order[$key]['latOrder'][$i];
+				$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
+			}
 		}
 	}
-	// echo '<pre>';
-	// print_r($orderInQueue);
-	echo json_encode($orderInQueue);
+
+	if (isset($orderInQueue)) {
+		// echo '<pre>';
+		// print_r($orderInQueue);
+		echo json_encode($orderInQueue);
+	} else {
+		echo json_encode('empty');
+	}
+	
 
 ?>

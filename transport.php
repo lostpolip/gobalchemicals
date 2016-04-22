@@ -187,16 +187,19 @@
 	                    <input type="hidden" id="tomorrowDate" name="tomorrowDate" value="<?php echo date('Y-m-d',$tomorrow);?>"  required>
 
 
-	                    <div id="order">
+	                    <div id="order" >
 							<table id="table2" width="100%">
-	                        	<tr> 	                                
-	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
-	                        		<th>รหัสสั่งซื้อ</th>
-	                                <th>ชื่อลูกค้า</th>
-	                                <th>ภูมิภาค</th>
-	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                        	</tr>
-	                    		
+								<thead>
+									<tr> 	                                
+										<th>วันที่กำหนดส่งสินค้า</th>	                                
+										<th>รหัสสั่งซื้อ</th>
+								        <th>ชื่อลูกค้า</th>
+								        <th>ภูมิภาค</th>
+								        <th>น้ำหนักสินค้า(ตัน)</th>
+									</tr>
+								</thead>
+								<tbody id="bodyTable">	
+								</tbody>
 	                    	</table> 
                     	</div>    	
                     	<br>
@@ -254,7 +257,7 @@
 
                         <tr id="button-command">
                         		<td><a href="indexEmployee.php"><button type="button" id="btnBack" class="btn btn-danger btn-md">กลับไปหน้าหลัก</button></a></td>
-                                <td><button type="submit" id="btnCF" class="btn btn-success btn-md">สร้างเส้นทาง</button></td>
+                                <td><button type="submit" id="btnCF" class="btn btn-success btn-md" disabled>สร้างเส้นทาง</button></td>
                                 
                         </tr>
 
@@ -372,8 +375,6 @@
 
 				if (this.id == 'rdoDate1') {
 					var timeaction = $("#rdoDate1").val();
-				// } else if (this.id == 'rdoDate2') {
-				// 	var timeaction = $("#rdoDate2").val();
 				} else {
 					var timeaction = $("#rdoDate3").val();
 				}
@@ -399,15 +400,14 @@
 							}
 						});
 
-						window.a = 0;
-						$("input[name='listEmployeeName']:enabled").each(function(){
-							if (window.a==0) {
-						      $(this).attr('checked', true);
-							}
-							window.a++;
-						});
-
 						$("input[name='listTruckName']").change(function() {
+							window.a = 0;
+							$("input[name='listEmployeeName']:enabled").each(function(){
+								if (window.a==0) {
+							      $(this).attr('checked', true);
+								}
+								window.a++;
+							});
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
 							var minweight = $("input[name='listTruckName']:checked").data('minweight');
 							$('#waypoints').empty();
@@ -421,14 +421,23 @@
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
-									for (geoId in orderInQueue) {
-										for (index in orderInQueue[geoId]['OrderID']) {
-											var lat = orderInQueue[geoId]['latOrder'][index];
-											var lng = orderInQueue[geoId]['lonOrder'][index];
-											$('#waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
-											initMap(geoId);
+									if (orderInQueue=='empty') {
+										alert('รถบรรทุกคันนี้ไม่เหมาะสมกับการจัดเส้นทางค่ะ');
+										$('#btnCF').prop('disabled',true);
+										return false;
+									} else {
+										for (geoId in orderInQueue) {
+											for (index in orderInQueue[geoId]['OrderID']) {
+												var lat = orderInQueue[geoId]['latOrder'][index];
+												var lng = orderInQueue[geoId]['lonOrder'][index];
+												$('#waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
+												initMap(geoId);
+											}
 										}
+										$('#btnCF').prop('disabled',false);
+
 									}
+									
 								}
 							});
 
@@ -457,8 +466,10 @@
 
 			$('#rdoDate1').trigger('click');
 
-			$('#txtDateTransport').change(function(){
+			$('#lastDate').change(function(){
 				$('#rdoDate1').trigger('click');
+				$('#truckOther').html('');
+
 			});
 			$('#checkLeastDistance').click(function(){
 				$("input[name*='geoID']").each(function() {

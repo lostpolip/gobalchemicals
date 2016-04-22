@@ -200,11 +200,11 @@
 			  <input id="totalDistance" readonly>
 			  <b>กิโลเมตร</b>
 			<br>
-
-			<label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
+		<div id="detailOrderSend" style="margin-top: 25px;">
+			<label style="font-family: 'quarkbold'; color: #01DFA5; font-size: 26px; margin-left: 210px;vertical-align: top">หมายเลขใบสั่งซื้อของเส้นทางนี้ :</label>
 			<label id="ordersID" style=" margin-left: 40px;font-family: 'quarkbold'; color: #FFFFFF; font-size: 22px;"></label>
-			<br>
-  
+		</div>
+			
 			<select multiple="" id="geoIdWaypoints" class="hide"></select>
 			<select multiple="" id="Waypoints" class="hide"></select>
 			<input type="hidden" id="start" value="13.922174, 100.468186">
@@ -252,15 +252,6 @@
                             </td>
                         </tr>
 
- <!--                         <tr>
-                            <td>
-                              <label>ระยะเวลาค่าเสื่อมราคา :</label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" class="txtExpenses" required>
-                              &nbsp;&nbsp;<label>ปี</label>
-                            </td>
-                        </tr> -->
-
                         <tr>
                             <td>
                               <label>ค่าแรงงาน(ต่อคน) :</label>
@@ -278,15 +269,6 @@
                               &nbsp;&nbsp;<label>คน</label>
                             </td>
                         </tr>
-
-<!--                         <tr>
-                            <td>
-                              <label>ค่าซ่อมบำรุง :</label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" class="txtExpenses" required>
-                              &nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
-                            </td>
-                        </tr> -->
 
                         <tr>
                             <td>
@@ -540,13 +522,18 @@
 			  			for (index in orderInQueue[geoId]['OrderID']) {
 			  				lat = orderInQueue[geoId]['latOrder'][index];
 			  				lng = orderInQueue[geoId]['lonOrder'][index];
-			  				order = orderInQueue[geoId]['OrderID'][index]+orderInQueue[geoId]['AumphurName'][index]+orderInQueue[geoId]['ProvinceName'][index];
-			  				// aumphurName = orderInQueue[geoId]['AumphurName'];
-			  				// provinceName = orderInQueue[geoId]['ProvinceName'];
-
+			  				order = orderInQueue[geoId]['OrderID'];
+			  				showOrder = orderInQueue[geoId]['OrderID'][index]+orderInQueue[geoId]['AumphurName'][index]+orderInQueue[geoId]['ProvinceName'][index];
+			  				
 			  				$('#Waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
 			  				$('#orderid').val(order);
-			  				$('#ordersID').text(order);
+		  				
+			  				var oldOrder = $('#ordersID').html();
+			  				if (oldOrder== '') {
+			  					$('#ordersID').html(showOrder);
+			  				} else {
+			  					$('#ordersID').html(oldOrder+'<br>'+showOrder);
+			  				}
 			  				ginit();
 			  			}	
 			  		}

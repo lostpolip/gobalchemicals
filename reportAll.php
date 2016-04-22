@@ -203,11 +203,11 @@
 				<caption>Optional table caption.</caption> 
 					<thead> 
 						<tr> 
-							<th>#</th> 
-							<th>วันที่</th> 
-							<th>ราคาขาย</th> 
-							<th>ราคาทุน(จากSupplier)</th> 
-							<th>กำไรข้างต้น</th> 
+							<th><center>#</center></th> 
+							<th><center>วันที่</center></th> 
+							<th><center>ราคาขาย(บาท)</center></th> 
+							<th><center>ราคาทุนของสินค้า(บาท)</center></th> 
+							<th><center>กำไรข้างต้น(บาท)</center></th> 
 						</tr> 
 					</thead> 
 				<tbody id="tablebody"> 
