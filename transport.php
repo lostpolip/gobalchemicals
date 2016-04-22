@@ -40,6 +40,7 @@
 	</script>
 
 	<script type="text/javascript">
+
 		ddsmoothmenu.init({
 			mainmenuid: "tooplate_menu", //menu DIV id
 			orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
@@ -47,9 +48,11 @@
 			//customtheme: ["#1c5a80", "#18374a"],
 			contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 		})
+
 	</script>
 	
 	<style>
+	
 		a.alert {
 			display: inline-block;
 			position: relative;
@@ -148,10 +151,12 @@
 
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
-			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			// $lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			// $tomorrow = mktime(0, 0, 0, date("m"), date("d")+1, date("y"));
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();			
 			$truck = $dbManagement->select("SELECT * FROM truck");
+
 			$ddtruck = 0;
 			if (mysqli_num_rows($truck) > 0) {
 			    while($row = mysqli_fetch_assoc($truck)) {
@@ -167,6 +172,7 @@
 			    }
 			   
 			}
+
 		?>
 	<form id="transportAddForm" action="transportMap.php" method="post">
 		<div id="tooplate_main">
@@ -177,17 +183,18 @@
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
-	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d',$lastDay);?>" required>
+	                    <input type="date" id="txtDateTransport" name="txtDateTransport" min="<?php echo date('Y-m-d');?>" value="<?php echo date('Y-m-d');?>" required>
+
 
 	                    <div id="order">
 							<table id="table2" width="100%">
-	                        	<tr> 	                                
+	                        	<!-- <tr> 	                                
 	                        		<th>วันที่กำหนดส่งสินค้า</th>	                                
 	                        		<th>รหัสสั่งซื้อ</th>
 	                                <th>ชื่อลูกค้า</th>
 	                                <th>ภูมิภาค</th>
 	                                <th>น้ำหนักสินค้า(ตัน)</th>
-	                        	</tr>
+	                        	</tr> -->
 	                    		
 	                    	</table> 
                     	</div>    	
@@ -285,6 +292,7 @@
 				}
 			});
 		}
+
 		var orderAlert = function () {
 			$.ajax({
 				url: "alertOrder.php", 
@@ -298,6 +306,8 @@
 				}
 			});
 		}
+
+
 		function initMap(geoId) {
 		  var directionsService = new google.maps.DirectionsService;
 		  var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -307,7 +317,9 @@
 		  });
 		  directionsDisplay.setMap(map);
 			calculateAndDisplayRoute(directionsService, directionsDisplay, geoId);
+
 		}
+
 		function calculateAndDisplayRoute(directionsService, directionsDisplay, geoId) {
 		  var waypts = [];
 		  var checkboxArray = document.getElementById('waypoints');
@@ -319,6 +331,7 @@
 		      });
 		    }
 		  }
+
 		  directionsService.route({
 		   	origin: document.getElementById('start').value,
 		    destination: document.getElementById('end').value,
@@ -339,11 +352,15 @@
 				var oldDistance = $('#'+ geoId).val();
 				$('#'+ geoId).val(parseFloat(oldDistance)+parseFloat(totalDistance));
 				$('#checkLeastDistance').trigger('click');
+
 		    } else {
-		      // window.alert('Directions request failed due to ' + status);
+		      window.alert('Directions request failed due to ' + status);
 		    }
 		  });
 		}
+
+
+
 		$( document ).ready(function() {
 			$("input[name='rdoDate']").click(function(){
 				$('#truckInfo').show();
@@ -352,8 +369,8 @@
 				$('#employeeInfo').show();
 				if (this.id == 'rdoDate1') {
 					var timeaction = $("#rdoDate1").val();
-				// } else if (this.id == 'rdoDate2') {
-				// 	var timeaction = $("#rdoDate2").val();
+				} else if (this.id == 'rdoDate2') {
+					var timeaction = $("#rdoDate2").val();
 				} else {
 					var timeaction = $("#rdoDate3").val();
 				}
@@ -365,6 +382,7 @@
 						datetransport : $('#txtDateTransport').val()
 					},
 					success: function(result){
+						console.log(result);
 						var TruckOther = jQuery.parseJSON(result);
 				    	for (var x in TruckOther['name']) {
 							$('#truckOther').append('<input type="radio" name="listTruckName" data-repair="'+$.trim(TruckOther["staterepair"][x])+'" data-weight-capacity="'+ $.trim(TruckOther["weightcapacity"][x]) +'" data-Minweight="'+ $.trim(TruckOther["minweight"][x]) +'" data-available="'+ TruckOther["available"][x] +'" id="'+ $.trim(TruckOther["ID"][x]) +'" value="'+ $.trim(TruckOther["ID"][x]) +'"'+ TruckOther['available'][x]+' > '+'<label id="truck'+$.trim(TruckOther["ID"][x])+'" for="'+ $.trim(TruckOther["ID"][x]) +'">'+TruckOther['trucktype'][x]+'('+ TruckOther['weightcapacity'][x]	+'ตัน) | เลขทะเบียน: '+TruckOther['name'][x] +'</label><br>');
@@ -375,7 +393,16 @@
 								$("#"+this.id).prop('disabled', 'disabled');
 							}
 						});
-						
+
+						window.a = 0;
+						$("input[name='listEmployeeName']:enabled").each(function(){
+							if (window.a==0) {
+						      $(this).attr('checked', true);
+							}
+							window.a++;
+						});
+
+
 						$("input[name='listTruckName']").change(function() {
 							var weightCar = $("input[name='listTruckName']:checked").data('weight-capacity');
 							$('#waypoints').empty();
@@ -388,6 +415,7 @@
 								},
 								success: function(orderInQueue){
 									var orderInQueue = jQuery.parseJSON(orderInQueue);
+									// console.log(orderInQueue);
 									for (geoId in orderInQueue) {
 										for (index in orderInQueue[geoId]['OrderID']) {
 											var lat = orderInQueue[geoId]['latOrder'][index];

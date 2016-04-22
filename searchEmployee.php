@@ -3,10 +3,12 @@
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
 	$result = $dbManagement->select("SELECT * FROM  employee WHERE PositionID = 3 AND StateSick='มาทำงาน' ");
+	// $transport = $dbManagement->select("SELECT * FROM transport
+	// 								WHERE TransportDate = '".$_REQUEST['datetransport']."'");
 	$transport = $dbManagement->select("SELECT * FROM transport
 									WHERE TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");
-
+	
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
 	    while($row = mysqli_fetch_assoc($result)) {
