@@ -33,12 +33,12 @@ $( document ).ready(function() {
 		claimAlert();
 		orderAlert();
 	}, 5000);
+		$('#order').hide();
 
-	$('#order').hide();
 
 	$("input[name='lastDate']").change(function(){
 		$('#order').show();
-		$('#table2').empty();
+		$('#bodyTable').empty();
 		
 		$.ajax({
 			url: "tableOrder.php", 
@@ -50,9 +50,15 @@ $( document ).ready(function() {
 			// $('#table2').empty();
 			// <th>วันที่กำหนดส่งสินค้า</th> <th>รหัสสั่งซื้อ</th> <th>ชื่อลูกค้า</th> <th>ภูมิภาค</th> <th>น้ำหนักสินค้า(ตัน)</th> </tr>
 			var orderDetail = jQuery.parseJSON(result);
-			for (var x in orderDetail['OrderID']) {
-				$('#table2').append("<tr>  <tr> <td>"+orderDetail['OrderID'][x]+"</td> <td>"+orderDetail['OrderSendDate'][x]+"</td> <td>"+orderDetail['GeoName'][x]+"</td> <td>"+orderDetail['CustomerName'][x]+"</td> <td>"+orderDetail['UnitProduct'][x]+"</td> </tr> ");	   
+			if (orderDetail != 'empty') {
+				for (var x in orderDetail['OrderID']) {
+					$('#bodyTable').append("<tr>  <td>"+orderDetail['OrderID'][x]+"</td> <td>"+orderDetail['OrderSendDate'][x]+"</td> <td>"+orderDetail['GeoName'][x]+"</td> <td>"+orderDetail['CustomerName'][x]+"</td> <td>"+orderDetail['UnitProduct'][x]+"</td> </tr> ");	      
 				}
+			} else {
+				$('#bodyTable').empty();
+				$('#bodyTable').append("<tr><td colspan='5'>ไม่พบรายการที่สั่งซื้อ</td></tr> ");	      
+			}
+			
 			}
 		});
 

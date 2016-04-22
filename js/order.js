@@ -30,16 +30,16 @@ $( document ).ready(function() {
 		var totalCost = productCost*totalUnit;
 		var orderIDVal =  $('#order-id').val();
 
-		// window.totalWeight = 0;
-		// $('label[id="totalProductOrder"]').each(function(){
-		// 	if (!$(this.data == ' ')) {
-		// 		window.totalWeight = window.totalWeight + parseFloat(totalProduct);
-		// 	}
+		window.totalWeight = 0;
+		$('label[id^="totalProductOrder"]').each(function(){
+			// alert(this.id);
+			if ($(this).text() != '') {
+				window.totalWeight = window.totalWeight + parseFloat($(this).text());
+			}
 			
-		// });
-		// console.log(window.totalWeight = window.totalWeight + parseFloat(totalProduct));
-
-		// if (window.totalWeight <=25) {
+		});
+		
+		if (parseFloat(window.totalWeight)+parseFloat(totalProduct) <=25) {
 
 			if (totalProduct > productAmount ) {
 				alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');
@@ -96,10 +96,9 @@ $( document ).ready(function() {
 				var reqEx = new RegExp(productID, "g");
 				$('#order-id').val(orderIDVal.replace(reqEx,''));
 			}
-		// }
-		// 	else{
-		// 		alert('สั่งซื้อสินค้าได้มากสุด 25 ตันค่ะ');
-		// 	}
+		} else {
+			alert('สั่งซื้อสินค้าได้มากสุด 25 ตันค่ะ');
+		}
 	});
 
 

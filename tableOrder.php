@@ -24,17 +24,19 @@ if (mysqli_num_rows($order) > 0) {
         $GeoName[$popupOrder] = $row["GeoName"];
         $OrderSendDate[$popupOrder] = $row["OrderSendDate"];
         $popupOrder++;
-    }		   
+    }	
+    $order = [
+        'OrderID' => $OrderID,
+        'OrderDate' => $OrderDate,
+        'CustomerName' => $CustomerName,
+        'UnitProduct' => $UnitProduct,
+        'GeoName' => $GeoName,
+        'OrderSendDate' => $OrderSendDate,
+    ];
+
+    echo json_encode($order);	   
+} else {
+    echo json_encode('empty');
 }
 
-$order = [
-	'OrderID' => $OrderID,
-	'OrderDate' => $OrderDate,
-	'CustomerName' => $CustomerName,
-	'UnitProduct' => $UnitProduct,
-	'GeoName' => $GeoName,
-	'OrderSendDate' => $OrderSendDate,
-];
-
-echo json_encode($order);
 ?>
