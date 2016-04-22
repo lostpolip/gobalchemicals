@@ -57,9 +57,13 @@
 			    }
 			}
 		?>
-			<a href="order.php"><button style="	font-family: 'quarklight';font-size: 20px;border-color: #DF0101;background-color: #FE2E2E;color: #fff;border-style: solid;height: 40px;width: 120px;margin-left: 900px; ">ยกเลิก</button></a>				
+			<a href="order.php"><button style="	font-family: 'quarklight';font-size: 20px;border-color: #088A4B;background-color: #04B45F;color: #fff;border-style: solid;height: 40px;width: 120px;margin-left: 800px; ">สั่งสินค้าเพิ่ม</button></a>	
+
 			<button style="	font-family: 'quarklight'; font-size: 20px;border-color: #2E2EFE;background-color: #5882FA;
-				color: #fff;border-style: solid;height: 40px;width: 120px; margin-left: 50px; " onclick="myFunction()" >พิมพ์เอกสาร</button>
+				color: #fff;border-style: solid;height: 40px;width: 120px; margin-left: 20px; " onclick="myFunction()" >พิมพ์เอกสาร</button>
+
+			<a href="indexCustomer.php"><button style="	font-family: 'quarklight';font-size: 20px;border-color: #DF0101;background-color: #FE2E2E;color: #fff;border-style: solid;height: 40px;width: 120px;margin-left: 20px; ">กลับไปหน้าหลัก</button></a>		
+
 
 				<div class="floating-box" style="float: left;width: 1240px;height: 1120px;margin: 10px;border: 3px solid #E6E6E6; ">
 					<div class="box-Logo" style="width: 220px; height: 100px; margin: 50px 0 0 100px;">
@@ -122,7 +126,7 @@
 
 	                            <tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">ค่าขนส่ง :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 240px;"><?php echo $TotalTransport ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 240px;"><?php echo number_format($TotalTransport, 2, '.', ','); ?></th>
 	                            </tr>  
                                 
                                 <tr>
@@ -132,7 +136,7 @@
                                 
                                 <tr>
 									<th style="border: 1px solid #000000; background-color: #D8D8D8;font-size: 18px;width: 728px; text-align: right; color: #000000;">ยอดเงินสุทธิ :</th>
-	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 220px;"><?php echo $ExtendedPrice ?></th>
+	                                <th style="border: 1px solid #000000; font-size: 18px;color: #000000; padding-left: 220px;"><?php echo number_format($ExtendedPrice, 2, '.', ','); ?></th>
 	                            </tr>    
 							</table>  
 							<br>

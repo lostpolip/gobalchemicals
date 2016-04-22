@@ -35,9 +35,12 @@ $( document ).ready(function() {
 		// 	if (!$(this.data == ' ')) {
 		// 		window.totalWeight = window.totalWeight + parseFloat(totalProduct);
 		// 	}
+			
 		// });
-		
+		// console.log(window.totalWeight = window.totalWeight + parseFloat(totalProduct));
+
 		// if (window.totalWeight <=25) {
+
 			if (totalProduct > productAmount ) {
 				alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');
 				return false;
@@ -93,11 +96,10 @@ $( document ).ready(function() {
 				var reqEx = new RegExp(productID, "g");
 				$('#order-id').val(orderIDVal.replace(reqEx,''));
 			}
-		// }else{
-		// 	alert('สั่งซื้อสินค้าได้มากสุด 25 ตันค่ะ');
 		// }
-
-
+		// 	else{
+		// 		alert('สั่งซื้อสินค้าได้มากสุด 25 ตันค่ะ');
+		// 	}
 	});
 
 

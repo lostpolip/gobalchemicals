@@ -185,7 +185,7 @@
 										<label><?php echo $ProductID[$j]; ?></label>	
 									<br>
 										<span>ราคาสินค้า :</span>
-										<label id="<?php echo 'productPrice' . $ProductID[$j]; ?>"><?php echo $Price[$j]; ?></label>
+										<label id="<?php echo 'productPrice' . $ProductID[$j]; ?>"><?php echo number_format($Price[$j]); ?></label>
 										<span>บาท</span>	
 
 										<input type="hidden" id="<?php echo 'productCost' . $ProductID[$j]; ?>">
