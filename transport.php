@@ -182,7 +182,7 @@
 	                    <input type="hidden" id="txtTransportID" name="txtTransportID">
 	                    
 	                    <label id="labelDate">วันที่ส่งสินค้า:</label>
-	                    <input type="date" id="lastDate" name="lastDate" min="<?php echo date('Y-m-d',$lastDay);?>"  required>
+	                    <input type="date" id="lastDate" name="lastDate" min="<?php echo date('Y-m-d');?>" required>
 
 	                    <input type="hidden" id="tomorrowDate" name="tomorrowDate" value="<?php echo date('Y-m-d',$tomorrow);?>"  required>
 
@@ -217,7 +217,8 @@
 						</div>
 	                    
 						<div id="truckInfo" style="width: 400px;">
-								<label id="title">รถบรรทุก</label>
+								<label id="title">รถบรรทุก :</label>
+								<img src="images/red.png">
 								<br>										
 									<tr> 
 										<td>
@@ -365,7 +366,7 @@
 
 
 		$( document ).ready(function() {
-
+			
 			$("input[name='rdoDate']").click(function(){
 				$('#truckInfo').show();
 				$('#employeeInfo').hide();

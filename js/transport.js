@@ -26,6 +26,13 @@ var orderAlert = function () {
 	});
 }
 
+
+function formatDate(date) {
+	var arrayDate = date.split('-');
+
+	return arrayDate[2]+'-'+arrayDate[1]+'-'+arrayDate[0];
+}
+
 $( document ).ready(function() {
 	claimAlert();
 	orderAlert();
@@ -47,12 +54,11 @@ $( document ).ready(function() {
 				datetransport : $('#lastDate').val()
 			},
 			success: function(result){
-			// $('#table2').empty();
-			// <th>วันที่กำหนดส่งสินค้า</th> <th>รหัสสั่งซื้อ</th> <th>ชื่อลูกค้า</th> <th>ภูมิภาค</th> <th>น้ำหนักสินค้า(ตัน)</th> </tr>
+
 			var orderDetail = jQuery.parseJSON(result);
 			if (orderDetail != 'empty') {
 				for (var x in orderDetail['OrderID']) {
-					$('#bodyTable').append("<tr>  <td>"+orderDetail['OrderID'][x]+"</td> <td>"+orderDetail['OrderSendDate'][x]+"</td> <td>"+orderDetail['GeoName'][x]+"</td> <td>"+orderDetail['CustomerName'][x]+"</td> <td>"+orderDetail['UnitProduct'][x]+"</td> </tr> ");	      
+					$('#bodyTable').append("<tr>  <td>"+formatDate(orderDetail['OrderSendDate'][x])+"</td> <td>"+orderDetail['OrderID'][x]+"</td>  <td>"+orderDetail['GeoName'][x]+"</td> <td>"+orderDetail['CustomerName'][x]+"</td> <td>"+orderDetail['UnitProduct'][x]+"</td> </tr> ");	      
 				}
 			} else {
 				$('#bodyTable').empty();

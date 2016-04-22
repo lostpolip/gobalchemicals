@@ -66,6 +66,7 @@
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM product WHERE StateProduct='confirm'");
 
+
 			$i = 0;
 			if (mysqli_num_rows($result) > 0) {
 			    while($row = mysqli_fetch_assoc($result)) {
@@ -79,20 +80,29 @@
 			        $i++;
 			    }
 			}
-
 			$max=$ProductAmount;
+
+
+			$truck = $dbManagement->select("SELECT MAX(WeightCapacity) AS WeightCapacity FROM truck");
+
+			if (mysqli_num_rows($truck) > 0) {
+			    while($row = mysqli_fetch_assoc($truck)) {
+			        $WeightCapacity = $row["WeightCapacity"];
+			    }
+			}
 		?>
 	
 		<div id="tooplate_main">
 			<div class="col_fw_last">
 				<div class="col_w630 float_l"><br>
 						<label id="label1">สินค้าทั้งหมด&nbsp;</label>
+						<input type="hidden" id="weightTruck" name="weightTruck" value="<?php echo $WeightCapacity ?>">
 						<tr>
 							<td>
 							
 					<form action="orderBasket.php" method="POST">		
 						<!-- Button trigger modal -->
-							<label id="label2">** จำกัดการสั่งซื้อ 25 ตัน/ครั้ง &nbsp;</label>
+							<label id="label2">* จำกัดการสั่งซื้อ 25 ตัน/ครั้ง &nbsp;</label>
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
 						<!-- Button trigger modal -->

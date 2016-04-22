@@ -199,11 +199,11 @@
 				<caption>Optional table caption.</caption> 
 					<thead> 
 						<tr> 
-							<th>#</th> 
-							<th>วันที่</th> 
-							<th>รายได้ค่าขนส่ง(ต่อวัน)</th> 
-							<th>ค่าใช้จ่ายค่าขนส่ง(ต่อวัน)</th> 
-							<th>กำไร(ต่อวัน)</th> 
+							<th><center>#</center></th> 
+							<th><center>วันที่</center></th> 
+							<th><center>รายได้ค่าขนส่ง(บาท)</center></th> 
+							<th><center>ค่าใช้จ่ายค่าขนส่ง(บาท)</center></th> 
+							<th><center>กำไร(บาท)</center></th> 
 						</tr> 
 					</thead> 
 				<tbody id="tablebody"> 

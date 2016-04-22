@@ -38,6 +38,6 @@ $OrderIDArray = explode(',',$orderID);
 		}
 	}
 	
-header( "location: /gobalchemicals/billTransport.php" );
+header( "location: /gobalchemicals/transport.php" );
 
 ?>

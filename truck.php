@@ -161,6 +161,7 @@
 			        $TruckWeight[$i] = $row["TruckWeight"];
 			        $WeightCapacity[$i] = $row["WeightCapacity"];
 			        $WeightQuantity[$i] = $row["WeightQuantity"];
+			        $StateRepair[$i] = $row["StateRepair"];
 			        $i++;
 			    }
 			}
@@ -194,6 +195,8 @@
                                 <th>น้ำหนักรถ</th>
                                 <th>บรรจุน้ำหนัก</th>
                                 <th>ปริมาณสินค้า</th>
+                                <th>สถานะ</th>
+                                <th>ตั้งค่า</th>
                                 <th>คำสั่ง</th>
                                 
                         	</tr>
@@ -208,6 +211,21 @@
                         		<td id="carweight"><?php echo number_format($TruckWeight[$j]); ?></td>
                         		<td id="carcapaity"><?php echo number_format($WeightCapacity[$j]); ?></td>
                         		<td id="carquantity"><?php echo number_format($WeightQuantity[$j]); ?></td>
+                        		<td id="StateRepair"><?php echo $StateRepair[$j]; ?></td>
+
+                        		<form action="updateStateRepair.php">
+	                        		<td id="StateSick">
+	                        			<select id="staterepair" name="staterepair">
+	                        			  <option selected>เลือก</option>
+	                        			  <option value="ปกติ">ปกติ</option>
+	                        			  <option value="ซ่อมบำรุง">ซ่อมบำรุง</option>
+	                        			</select>
+	                        			<input type="hidden" name="id" value="<?php echo $TruckID[$j] ?>">
+	                        			<button type="submit" id="btnCF">อัพเดท</button>
+	                        			
+	                        		</td>
+                        		</form>
+
                         		<td>
                         			<button id="btnDetail"><a href="truckDetail.php?TruckID=<?php echo $TruckID[$j]; ?>">รายละเอียด</a></button>
                         			<button id="btnEdit"><a href="truckEdit.php?TruckID=<?php echo $TruckID[$j]; ?>">แก้ไข</a></button>

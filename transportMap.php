@@ -275,6 +275,7 @@
                               <label>ระยะทางที่วิ่ง :</label>
                               &nbsp;&nbsp;&nbsp;&nbsp;
                               <label  id="labelDistance" name="labelDistance"></label>
+                              <input type="hidden" id="hiddenDistance" name="hiddenDistance"></label>
                               &nbsp;&nbsp;<label>กิโลเมตร</label> 
                             </td>
                         </tr> 
@@ -333,6 +334,20 @@
 
 	<script type="text/javascript">
 
+	function addCommas(nStr)
+	{
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
+	}
+
+
 		//show real map 
 		function initMap2() {
 		  var directionsService = new google.maps.DirectionsService;
@@ -386,9 +401,10 @@
 		    } else {
 		      window.alert('Directions request failed due to ' + status);
 		    }
-			    $('#totalDistance').val(totalDistance);
-			    $('#distance').val(totalDistance);
-			    $('label[name=labelDistance]').text(totalDistance);
+			    $('#totalDistance').val(addCommas(Math.round(totalDistance*100)/100));
+			    $('#distance').val(totalDistance); hiddenDistance
+			    $('#hiddenDistance').val(totalDistance); 
+			    $('label[name=labelDistance]').text(addCommas(Math.round(totalDistance*100)/100));
 		  });
 		}
 

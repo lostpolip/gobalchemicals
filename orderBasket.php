@@ -24,7 +24,7 @@
 		<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
 		<script type="text/javascript" src="js/orderBasket.js"></script>
 
-<!-- 		<script type="text/javascript">
+		<script type="text/javascript">
 			$( document ).ready(function() {
 				 if (window.history && window.history.pushState) {
 				    window.history.pushState('forward', null, './order.php');
@@ -33,7 +33,7 @@
 				    });
 				  }
 			});
-		</script> -->
+		</script>
 
 		<style type="text/css">
 			#OrderID{

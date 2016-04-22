@@ -29,6 +29,7 @@ $( document ).ready(function() {
 		var totalPrice = productPrice*totalUnit;
 		var totalCost = productCost*totalUnit;
 		var orderIDVal =  $('#order-id').val();
+		var weightTruck = $('#weightTruck').val();
 
 		window.totalWeight = 0;
 		$('label[id^="totalProductOrder"]').each(function(){
@@ -39,7 +40,7 @@ $( document ).ready(function() {
 			
 		});
 		
-		if (parseFloat(window.totalWeight)+parseFloat(totalProduct) <=25) {
+		if (parseFloat(window.totalWeight)+parseFloat(totalProduct) <=weightTruck) {
 
 			if (totalProduct > productAmount ) {
 				alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');

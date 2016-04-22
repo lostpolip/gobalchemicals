@@ -20,6 +20,12 @@ function diffDate(startdate, enddate) {
 	return days;
 }
 
+function formatDate(date) {
+	var arrayDate = date.split('-');
+
+	return arrayDate[2]+'-'+arrayDate[1]+'-'+arrayDate[0];
+}
+
 $( document ).ready(function() {
 	$('#total').hide();
 	
@@ -54,7 +60,7 @@ $( document ).ready(function() {
 
 				for (var i = 0; i < expenses.length; i++) {
 				    Profit = parseFloat(expensesOrder[i]-expenses[i]);
-				    $('#tablebody').append("<tr> <th scope='row'>"+parseFloat(i+1)+"</th><td>"+date[i]+"</td> <td>"+addCommas(Math.round(expensesOrder[i]*100)/100)+"</td> <td>"+addCommas(Math.round(expenses[i]*100)/100)+"</td> <td>"+addCommas( Math.round(Profit*100)/100)+"</td> </tr> ");
+				    $('#tablebody').append("<tr> <th scope='row' style='text-align:center;'>"+parseFloat(i+1)+"</th><td style='text-align:center;'>"+formatDate(date[i])+"</td> <td style='text-align:right;'>"+addCommas(Math.round(expensesOrder[i]*100)/100)+"</td> <td style='text-align:right;'>"+addCommas(Math.round(expenses[i]*100)/100)+"</td> <td style='text-align:right;'>"+addCommas( Math.round(Profit*100)/100)+"</td> </tr> ");
 					totalExpenses += parseFloat(expenses[i]);
 					totalExpensesOrder += parseFloat(expensesOrder[i]);
 					totalProfit = parseFloat(totalExpensesOrder-totalExpenses);

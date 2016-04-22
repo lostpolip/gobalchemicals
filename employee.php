@@ -88,6 +88,7 @@
 			        $PositionID[$i] = $row["PositionID"];
 			        $PositionName[$i] = $row["PositionName"];
 			        $EmployeeTel[$i] = $row["EmployeeTel"];
+			        $StateSick[$i] = $row["StateSick"];
 			        $EmployeeUsername[$i] = $row["EmployeeUsername"];
 			        $EmployeePassword[$i] = $row["EmployeePassword"];	
 
@@ -194,6 +195,8 @@
                                 <th>ชื่อพนักงาน</th>
                                 <th>ตำแหน่ง</th>
                                 <th>เบอร์โทรศัพท์</th>
+                                <th>สถานะ</th>
+                                <th>ตั่งค่า</th>
                                 <th>คำสั่ง</th>
                                 
                         	</tr>
@@ -203,12 +206,26 @@
                         	?>
 
                         	<tr>
-                        	<!-- 	<td id="username"><?php echo $Username[$j] ?></td>
-                        		<td id="password"><?php echo $Password[$j] ?></td> -->
+
                         		<td id="employeeid"><?php echo $EmployeeID[$j] ?></td>
                         		<td id="employeename"><?php echo $EmployeeName[$j] ?></td>
                         		<td id="employeeposition"><?php echo $PositionName[$j] ?></td>
                         		<td id="employeetel"><?php echo $EmployeeTel[$j] ?></td>
+                        		<td id="StateSick"><?php echo $StateSick[$j] ?></td>
+
+                        		<form action="updateStateSick.php">
+	                        		<td id="StateSick">
+	                        			<select id="statesick" name="statesick">
+	                        			  <option selected>เลือก</option>
+	                        			  <option value="มาทำงาน">มาทำงาน</option>
+	                        			  <option value="ลากิจ">ลากิจ</option>
+	                        			  <option value="ลาป่วย">ลาป่วย</option>
+	                        			</select>
+	                        			<input type="hidden" name="id" value="<?php echo $EmployeeID[$j] ?>">
+	                        			<button type="submit" id="btnCF">อัพเดท</button>
+	                        			
+	                        		</td>
+                        		</form>
                         		
                         		<td>
                         			<button id="btnDetail"><a href="employeeDetail.php?EmployeeID=<?php echo $EmployeeID[$j]; ?>">รายละเอียด</a></button>
