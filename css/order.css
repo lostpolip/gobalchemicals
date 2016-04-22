@@ -454,7 +454,7 @@ h6 { font-size: 13px; margin: 0 0 5px; padding: 0; }
 	width: 53px;
 	height: 51px;
 	background:url(../images/basket.png);
-	margin-left: 590px;
+	margin-left: 260px;
 	margin-bottom: 5px;
 }
 #numberLevel{
@@ -479,4 +479,10 @@ input{
 	font-family: 'quarkbold';
 	color: #e5a923;
 	font-size: 36px;	
+}
+#label2{
+	font-family: 'quarkbold';
+	color: #B40404;
+	font-size: 24px;	
+	margin-left:45px;
 }

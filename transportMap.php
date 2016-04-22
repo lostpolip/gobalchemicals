@@ -149,7 +149,8 @@
 	<?php
 
 		$Time = $_REQUEST['rdoDate']; 
-		$DateTransport = $_REQUEST['tomorrowDate']; 
+		$TomorrowDate = $_REQUEST['tomorrowDate']; 
+		$LastDate = $_REQUEST['lastDate']; 
 		$TruckId = $_REQUEST['listTruckName'];
 		$EmployeeId = $_REQUEST['listEmployeeName'];
 		$GeoidMin = $_REQUEST['min']; 
@@ -251,14 +252,14 @@
                             </td>
                         </tr>
 
-                         <tr>
+ <!--                         <tr>
                             <td>
                               <label>ระยะเวลาค่าเสื่อมราคา :</label>
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <input type="text" id="ConsumptionExp" name="ConsumptionExp" value="0" class="txtExpenses" required>
                               &nbsp;&nbsp;<label>ปี</label>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <td>
@@ -278,14 +279,14 @@
                             </td>
                         </tr>
 
-                        <tr>
+<!--                         <tr>
                             <td>
                               <label>ค่าซ่อมบำรุง :</label>
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <input type="text" id="MaintenanceExp" name="MaintenanceExp" value="0" class="txtExpenses" required>
                               &nbsp;&nbsp;<label>บาท/กิโลเมตร</label>
                             </td>
-                        </tr>
+                        </tr> -->
 
                         <tr>
                             <td>
@@ -321,7 +322,8 @@
        
         	<input type="hidden" name="transportId" id="transportId" value="<?php echo $newID ?>">
         	<input type="hidden" name="timeTransport" id="timeTransport" value="<?php echo $Time ?>">
-        	<input type="hidden" name="dateTransport" id="dateTransport" value="<?php echo $DateTransport ?>">
+        	<input type="hidden" name="tomorrowDate" id="tomorrowDate" value="<?php echo $TomorrowDate ?>">
+        	<input type="hidden" name="lastDate" id="lastDate" value="<?php echo $LastDate ?>">
         	<input type="hidden" name="truckId" id="truckId" value="<?php echo $TruckID ?>">
         	<input type="hidden" name="truckWeight" id="truckWeight" value="<?php echo $WeightCapacity ?>">
         	<input type="hidden" name="employeeId" id="employeeId" value="<?php echo $EmployeeId ?>">
@@ -410,7 +412,7 @@
 
 		var weightCar = $("input[name='truckWeight']").val();
 		var geoId = $("input[name='geo']").val();
-		var date = $("input[name='dateTransport']").val();
+		var date = $("input[name='lastDate']").val();
 
 		$.ajax({
 			url: "searchGeoid.php", 
@@ -521,7 +523,7 @@
 
 			  var weightCar = $("input[name='truckWeight']").val();
 			  var geoId = $("input[name='geo']").val();
-			  var date = $("input[name='dateTransport']").val();
+			  var date = $("input[name='lastDate']").val();
 
 			  $.ajax({
 			  	url: "searchGeoid.php", 
@@ -538,7 +540,9 @@
 			  			for (index in orderInQueue[geoId]['OrderID']) {
 			  				lat = orderInQueue[geoId]['latOrder'][index];
 			  				lng = orderInQueue[geoId]['lonOrder'][index];
-			  				order = orderInQueue[geoId]['OrderID'];
+			  				order = orderInQueue[geoId]['OrderID'][index]+orderInQueue[geoId]['AumphurName'][index]+orderInQueue[geoId]['ProvinceName'][index];
+			  				// aumphurName = orderInQueue[geoId]['AumphurName'];
+			  				// provinceName = orderInQueue[geoId]['ProvinceName'];
 
 			  				$('#Waypoints').append('<option value="'+lat+','+lng+'" selected></option>');
 			  				$('#orderid').val(order);

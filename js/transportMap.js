@@ -75,10 +75,10 @@ $( document ).ready(function() {
 			var truckCost = $('#truckCost').val();
 			var residualValue = $('#residualValue').val();
 			var FuelExpensive = $('#FuelExpensive').val();
-			var ConsumptionExp = $('#ConsumptionExp').val();
+			var ConsumptionExp = 12.5;
 			var LaborExpensive = $('#LaborExpensive').val();
 			var AmountExployee = $('#AmountExployee').val();
-			var MaintenanceExp = $('#MaintenanceExp').val();
+			var MaintenanceExp = 5;
 			var Distance = $('#labelDistance').text();
 
 			var DepreciationMonth = ((truckCost-residualValue)/ConsumptionExp)/12;

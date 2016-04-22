@@ -92,6 +92,7 @@
 							
 					<form action="orderBasket.php" method="POST">		
 						<!-- Button trigger modal -->
+							<label id="label2">** จำกัดการสั่งซื้อ 25 ตัน/ครั้ง &nbsp;</label>
 							<button type="button" class="btn btn-primary btn-lg" id="button-basket" data-toggle="modal" data-target="#myModal">
 							</button>
 						<!-- Button trigger modal -->

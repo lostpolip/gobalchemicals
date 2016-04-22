@@ -9,7 +9,7 @@
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
 									AND GeoID = $geoId AND OrderSendDate = '".$date."'
-									ORDER BY OrderSendDate");
+									ORDER BY UnitProduct");
 
 	$i=0;
 	if (mysqli_num_rows($result) > 0) {
@@ -19,6 +19,8 @@
 	        $UnitProduct[$i] = $row["UnitProduct"];
 	        $GeoID[$i] = $row["GeoID"];
 	        $GeoName[$i] = $row["GeoName"];
+	        $AumphurName[$i] = $row["AumphurName"];
+	        $ProvinceName[$i] = $row["ProvinceName"];
 	        $latOrder[$i] = $row["latOrder"];
 	        $lonOrder[$i] = $row["lonOrder"];
 	        $i++;
@@ -30,6 +32,8 @@
     		'UnitProduct'	=> $UnitProduct,
     		'GeoID'	=> $GeoID,
     		'GeoName'	=> $GeoName,
+    		'AumphurName'	=> $AumphurName,
+    		'ProvinceName'	=> $ProvinceName,
     		'latOrder'	=> $latOrder,
     		'lonOrder'	=> $lonOrder,
 	    ];
@@ -52,6 +56,8 @@
 	foreach ($arrayInQueue as $key => $value) {
 		for ($i=0; $i < $value + 1; $i++) {
 			$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
+			$orderInQueue[$key]['AumphurName'][$i] = $order[$key]['AumphurName'][$i];
+			$orderInQueue[$key]['ProvinceName'][$i] = $order[$key]['ProvinceName'][$i];
 			$orderInQueue[$key]['latOrder'][$i] = $order[$key]['latOrder'][$i];
 			$orderInQueue[$key]['lonOrder'][$i] = $order[$key]['lonOrder'][$i];
 			$orderInQueue[$key]['UnitProduct'][$i] = $order[$key]['UnitProduct'][$i];
