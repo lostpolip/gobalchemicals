@@ -34,7 +34,7 @@ $( document ).ready(function() {
 		orderAlert();
 	}, 5000);
 
-	
+	$('#order').hide();
 
 	$("input[name='txtDateTransport']").change(function(){
 		$('#order').show();

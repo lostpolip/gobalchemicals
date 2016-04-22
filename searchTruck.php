@@ -2,9 +2,7 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$result = $dbManagement->select("SELECT * FROM  truck  order by WeightCapacity");
-	// $transport = $dbManagement->select("SELECT * FROM transport 
-	// 								WHERE TransportDate = '".$_REQUEST['datetransport']."'");
+	$result = $dbManagement->select("SELECT * FROM  truck order by WeightCapacity");
 	$transport = $dbManagement->select("SELECT * FROM transport 
 									WHERE  TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");
@@ -20,8 +18,6 @@
 			        $WeightQuantity[$i] = $row["WeightQuantity"];
 			        $WeightCapacity[$i] = $row["WeightCapacity"];
 			        $StateTruck[$i] = $row["StateTruck"];
-			        $StateRepair[$i] = $row["StateRepair"];
-			        $MinWeight[$i] = $row["MinWeight"];
 			        $available[$i] = '';
 			        $i++;
 	    }
@@ -52,8 +48,6 @@
 		'fuel'	=> $FuelID,
 		'truckweight'	=> $TruckWeight,
 		'weightcapacity'	=> $WeightCapacity,
-		'staterepair'	=> $StateRepair,
-		'minweight'	=> $MinWeight,
 		'available'	=> $available,
 	];
 	

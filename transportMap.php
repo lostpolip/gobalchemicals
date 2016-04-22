@@ -150,7 +150,6 @@
 
 		$Time = $_REQUEST['rdoDate']; 
 		$DateTransport = $_REQUEST['txtDateTransport']; 
-		// $Date = $_REQUEST['DateTransport']; 
 		$TruckId = $_REQUEST['listTruckName'];
 		$EmployeeId = $_REQUEST['listEmployeeName'];
 		$GeoidMin = $_REQUEST['min']; 
@@ -323,7 +322,6 @@
         	<input type="hidden" name="transportId" id="transportId" value="<?php echo $newID ?>">
         	<input type="hidden" name="timeTransport" id="timeTransport" value="<?php echo $Time ?>">
         	<input type="hidden" name="dateTransport" id="dateTransport" value="<?php echo $DateTransport ?>">
-        	<input type="hidden" name="date" id="date" value="<?php echo $Date ?>">
         	<input type="hidden" name="truckId" id="truckId" value="<?php echo $TruckID ?>">
         	<input type="hidden" name="truckWeight" id="truckWeight" value="<?php echo $WeightCapacity ?>">
         	<input type="hidden" name="employeeId" id="employeeId" value="<?php echo $EmployeeId ?>">

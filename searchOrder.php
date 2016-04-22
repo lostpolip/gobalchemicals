@@ -7,38 +7,38 @@
 	$Geo1 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 1 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 1 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 
 	$Geo2 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 2 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 2 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 
 	$Geo3 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 3 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 3 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 
 	$Geo4 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 4 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 4 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 
 	$Geo5 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 5 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 5 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 
 	$Geo6 = $dbManagement->select("SELECT * FROM  aumphur
 									JOIN orders ON aumphur.AumphurID=orders.AumphurID
 									WHERE  State ='processing' AND UnitProduct <= $weightCar 
-									AND GeoID = 6 AND OrderSendDate ='".$datetransport."'
-									ORDER BY UnitProduct");
+									AND GeoID = 6 AND OrderSendDate = '".$datetransport."'
+									ORDER BY OrderSendDate");
 	
 	$i1=0;
 	if (mysqli_num_rows($Geo1) > 0) {
@@ -194,12 +194,11 @@
 			}
 			$i++;
 		}
-	}
-	// echo '<pre>';
-	// print_r($value2);
-	
-	foreach ($arrayInQueue as $key => $value) {
 
+	}
+
+	// print_r($order);
+	foreach ($arrayInQueue as $key => $value) {
 		for ($i=0; $i < $value + 1; $i++) {
 			$orderInQueue[$key]['OrderID'][$i] = $order[$key]['OrderID'][$i];
 			$orderInQueue[$key]['OrderSendDate'][$i] = $order[$key]['OrderSendDate'][$i];

@@ -30,73 +30,61 @@ $( document ).ready(function() {
 		var totalCost = productCost*totalUnit;
 		var orderIDVal =  $('#order-id').val();
 
-		// window.totalWeight=0;
-		// $('label[id="totalProductOrder"]').each(function(){
-		// 	if (!$(this.data) == '') {
-		// 		window.totalWeight = window.totalWeight+parseFloat(string);
-		// 	}
-		// });
+		if (totalProduct > productAmount ) {
+			alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');
+			return false;
+		}
 
-		// if (window.totalWeight<=25) {
-			
-			if (totalProduct > productAmount ) {
-				alert ('มีจำนวนสินค้าในสต๊อก '+ productAmount +' ตัน');
-				return false;
-			}
+		if(totalProduct <= 0){
+			alert('กรุณากรอกจำนวนสินค้า');
+			return false;
+		}else {
+			alert('เพิ่มสินค้าในตะกร้าเรียบร้อยค่ะ');
+		}
 
-			if(totalProduct <= 0){
-				alert('กรุณากรอกจำนวนสินค้า');
-				return false;
-			}else {
-				alert('เพิ่มสินค้าในตะกร้าเรียบร้อยค่ะ');
-			}
+		$('#totalProductOrder' + productID).text(totalProduct);
+		$('#totalPriceOrder' + productID).text(addCommas(totalPrice));
+		$('#totalUnitOrder' + productID).text(totalUnit);
 
-			$('#totalProductOrder' + productID).text(totalProduct);
-			$('#totalPriceOrder' + productID).text(addCommas(totalPrice));
-			$('#totalUnitOrder' + productID).text(totalUnit);
+		$('#hiddenProductOrder' + productID).val(totalProduct);
+		$('#hiddentotalUnitOrder' + productID).val(totalUnit);
+		$('#hiddentotalPriceOrder' + productID).val(totalPrice);
+		$('#hiddentotalCostOrder' + productID).val(totalCost);
 
-			$('#hiddenProductOrder' + productID).val(totalProduct);
-			$('#hiddentotalUnitOrder' + productID).val(totalUnit);
-			$('#hiddentotalPriceOrder' + productID).val(totalPrice);
-			$('#hiddentotalCostOrder' + productID).val(totalCost);
+		if (totalProduct > 0) {
+			$('#row' + productID).removeClass('hide');
 
-			if (totalProduct > 0) {
-				$('#row' + productID).removeClass('hide');
+			$('#hiddenproductID' + productID).removeAttr("disabled");
+			$('#hiddenProductOrder' + productID).removeAttr("disabled");
+			$('#hiddentotalUnitOrder' + productID).removeAttr("disabled");
+			$('#hiddentotalPriceOrder' + productID).removeAttr("disabled");		
+			$('#hiddentotalCostOrder' + productID).removeAttr("disabled");	
+			$('#hiddenproductCost' + productID).removeAttr("disabled");
+			$('#hiddenproductName' + productID).removeAttr("disabled");
 
-				$('#hiddenproductID' + productID).removeAttr("disabled");
-				$('#hiddenProductOrder' + productID).removeAttr("disabled");
-				$('#hiddentotalUnitOrder' + productID).removeAttr("disabled");
-				$('#hiddentotalPriceOrder' + productID).removeAttr("disabled");		
-				$('#hiddentotalCostOrder' + productID).removeAttr("disabled");	
-				$('#hiddenproductCost' + productID).removeAttr("disabled");
-				$('#hiddenproductName' + productID).removeAttr("disabled");
-
-				if ($('#order-id').val() == '') {
-					$('#order-id').val(productID);
-				} else {
-					$('#order-id').val(orderIDVal + ' ' + productID);
-				}
-
-				// check duplicate id
-				arr =  $.unique($('#order-id').val().split(' '));
-				$('#order-id').val(arr.join(' '));
+			if ($('#order-id').val() == '') {
+				$('#order-id').val(productID);
 			} else {
-				$('#row' + productID).addClass('hide');
-
-				$('#hiddenproductID' + productID).attr("disabled", 'disabled');
-				$('#hiddenProductOrder' + productID).attr("disabled", 'disabled');
-				$('#hiddentotalUnitOrder' + productID).attr("disabled", 'disabled');
-				$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');	
-				$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
-				$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
-				$('#hiddenproductName' + productID).attr("disabled", 'disabled');
-
-				var reqEx = new RegExp(productID, "g");
-				$('#order-id').val(orderIDVal.replace(reqEx,''));
+				$('#order-id').val(orderIDVal + ' ' + productID);
 			}
-		// } else {
-		// 	alert('สั่งซื้อสินค้าได้มากสุด 25 ตันค่ะ');
-		// }
+
+			// check duplicate id
+			arr =  $.unique($('#order-id').val().split(' '));
+			$('#order-id').val(arr.join(' '));
+		} else {
+			$('#row' + productID).addClass('hide');
+
+			$('#hiddenproductID' + productID).attr("disabled", 'disabled');
+			$('#hiddenProductOrder' + productID).attr("disabled", 'disabled');
+			$('#hiddentotalUnitOrder' + productID).attr("disabled", 'disabled');
+			$('#hiddentotalCostOrder' + productID).attr("disabled", 'disabled');	
+			$('#hiddentotalPriceOrder' + productID).attr("disabled", 'disabled');		
+			$('#hiddenproductCost' + productID).attr("disabled", 'disabled');
+			$('#hiddenproductName' + productID).attr("disabled", 'disabled');
+
+			var reqEx = new RegExp(productID, "g");
+			$('#order-id').val(orderIDVal.replace(reqEx,''));
+		}
 
 	});
 

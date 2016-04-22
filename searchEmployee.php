@@ -2,9 +2,7 @@
 <?php
 	require 'dbManagement.php';
 	$dbManagement = new dbManagement();
-	$result = $dbManagement->select("SELECT * FROM  employee WHERE PositionID = 3 AND StateSick='มาทำงาน' ");
-	// $transport = $dbManagement->select("SELECT * FROM transport
-	// 								WHERE TransportDate = '".$_REQUEST['datetransport']."'");
+	$result = $dbManagement->select("SELECT * FROM  employee WHERE PositionID = 3 ");
 	$transport = $dbManagement->select("SELECT * FROM transport
 									WHERE TimeAction = '".$_REQUEST['timeaction']."'
 									AND TransportDate = '".$_REQUEST['datetransport']."'");
