@@ -187,10 +187,10 @@
 				<caption>Optional table caption.</caption> 
 					<thead> 
 						<tr> 
-							<th>#</th> 
-							<th>วันที่</th> 
-							<th>ประเภทรถบรรทุก</th> 
-							<th>จำนวนครั้ง</th> 
+							<th><center>#</center></th> 
+							<th><center>วันที่</center></th> 
+							<th><center>ประเภทรถบรรทุก</center></th> 
+							<th><center>จำนวนครั้ง</center></th> 
 						</tr> 
 					</thead> 
 				<tbody id="tablebody"> 

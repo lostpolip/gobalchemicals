@@ -141,8 +141,8 @@
 		</div><!--end of tooplate_body_wrapper-->
 		<?php
 			date_default_timezone_set('Asia/Bangkok');
-			$lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
-			$dateTransport = date('Y-m-d',$lastDay);
+			// $lastDay = mktime(0, 0, 0, date("m"), date("d")-1, date("y"));
+			$dateTransport = date('Y-m-d');
 			require 'dbManagement.php';
 			$dbManagement = new dbManagement();
 			$result = $dbManagement->select("SELECT * FROM product
@@ -190,7 +190,7 @@
 				<?php 
 					if ($or > 0) {
 				?>
-					<h2>แจ้งเตือนorderค้าง</h2>
+					<h2>แจ้งเตือนorderค้างส่ง</h2>
 	    				<table id="table2" width="100%">
                         	<tr>
                                 <th>เลขที่ใบสั่งซื้อ</th>
