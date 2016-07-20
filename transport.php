@@ -229,7 +229,7 @@
 						<br>
 
 						<div id="employeeInfo"style="width: 400px;">	
-                    		<label id="title">พนักงานขับ</label>
+                    		<label id="title">พนักงานขับรถ</label>
 	                            <tr> 
 									<td>
 										<div id="employeeOther"></div>
